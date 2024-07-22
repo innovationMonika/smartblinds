@@ -52,7 +52,7 @@
 "Email","E-mailadres"
 "Claim now","Vraag nu aan"
 "Orders before 17:00 will be delivered by post tomorrow","Voor 17:00 uur besteld, morgen thuis met briefpost"
-"You have no samples in your basket","U heeft geen stalen in uw winkelmandje"
+"You have no samples in your basket","Je hebt geen stalen in je winkelwagen"
 "Basket","Stalenwaaier"
 "translucent","lichtdoorlatend"
 "obscuring","verduisterend"
@@ -73,7 +73,7 @@
 "Mrs.","Mevr."
 "Assemble","Bekijk"
 "Create an account so you can order faster next time and view your order history.","Maak een account aan, zodat je de volgende keer sneller kunt bestellen en je bestelgeschiedenis kunt inzien."
-"Your samples claim required has been accepted. Order ID: %1","Uw bestelnummer is: %1. We sturen u een orderbevestiging met verdere details en informatie."
+"Your samples claim required has been accepted. Order ID: %1","Je bestelnummer is: %1. We sturen je een orderbevestiging met verdere details en informatie via e-mail."
 "Confirm password","Bevestig wachtwoord"
 "Phone number","Telefoonnummer"
 "Obscuring","Verduisterend"
@@ -242,7 +242,7 @@
 "Proceed to Checkout","Ga verder",module,Magento_Checkout
 "Place Order","Afrekenen",module,Magento_Payment
 "I would like to receive tips & tricks about the product I am going to order","Ik ontvang graag tips & tricks over het product dat ik ga bestellen"
-"More Choices:","Handige Accessoires:",module,Magento_Catalog
+"More Choices:","Aanbevolen voor jou:",module,Magento_Catalog
 "Please pick a installation type to configure your product.","Kies een montagetype om je product verder samen te stellen."
 "Your price","Jouw prijs"
 "Request Free Sample","Gratis Staal Aanvragen"
@@ -300,3 +300,19 @@
 "Your product is too small. The minimum width is 50 cm.","Jouw product is te smal. De minimale breedte is 50 cm."
 "Your product is too broad and therefore cannot be delivered. The maximum width is 580 cm.","Jouw product is te breed en kan daardoor niet geleverd worden. De maximale breedte is 580 cm."
 "Manually operated","Handbediend"
+You have no items in your shopping cart.,Je hebt geen product(en) in je winkelwagen.
+"Recently Viewed","Eerder door jou bekeken:"
+Show Password,Wachtwoord weergeven
+"You have not set a default billing address.","Je hebt geen standaard factuuradres ingevoerd."
+"You have placed no orders.","Je hebt tot op heden nog geen bestellingen geplaatst.",module,Magento_Sales
+"You have not entered a product SKU. Please <a href=""%1"">click here</a> to add product(s) by SKU.","Je hebt geen artikelnummer ingevuld. Gelieve<a href=""%1"">hier te klikken</a> om producten via Art. nr. toe te voegen.",module,Magento_AdvancedCheckout
+"You have not entered a product SKU.","Je hebt geen artikelnummer ingevuld.",module,Magento_AdvancedCheckout
+"You have not purchased any downloadable products yet.","Je hebt nog geen producten besteld die je kunt downloaden.",module,Magento_Downloadable
+"You have no stored payment methods.","Je hebt geen opgeslagen betaalmethoden.",module,Magento_Vault
+"You have submitted no reviews.","Je hebt nog geen reviews geschreven.",module,Magento_Review
+"You can track your order status by creating an account.","Door het aanmaken van een account, kun je de status van je bestelling inzien.",module,Magento_Checkout
+"If you have an account, sign in with your email address.","Als je een account hebt, meld je dan aan met je e-mailadres.",module,Magento_Customer
+"You are signed out","Je bent afgemeld",module,Magento_Customer
+"You have logged out.","Je bent afgemeld.",module,Magento_Backend
+"You have signed out and will go to our homepage in 5 seconds.","Je hebt je afgemeld en zal over 5 seconden naar de homepage doorgestuurd worden.",module,Magento_Customer
+

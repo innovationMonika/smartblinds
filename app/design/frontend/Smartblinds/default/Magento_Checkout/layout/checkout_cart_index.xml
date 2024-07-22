@@ -42,6 +42,16 @@
                     <argument name="row_element" xsi:type="string">li</argument>
                 </arguments>
             </block>
+            <!-- <block class="Magento\Framework\View\Element\Template" name="custom.email.field" template="Smartblinds_AddToCart::email_field.phtml" before="cart.summary.inner">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="blockName" xsi:type="string">custom-email-field</item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block> -->
+            <block class="Magento\Framework\View\Element\Template" name="custom.js.mobile" template="Smartblinds_ConfigurableProduct::product/view/info/customJs.phtml" before="cart.summary.inner" />
 
             <block class="Magento\Cms\Block\Block" name="checkout.review.block" after="-">
                 <arguments>
@@ -61,5 +71,7 @@
         <move element="checkout.cart.coupon" destination="cart.summary.inner" after="checkout.cart.totals.container" />
         <move element="checkout.cart.methods.bottom" destination="cart.summary.inner" after="checkout.cart.coupon" />
         <referenceBlock name="top-notification-bar" remove="true"/>
+        <block class="Magento\Checkout\Block\Cart\Additional\Info" name="additional.product.info.second"
+               template="Magento_Checkout::cart/additional/info.phtml"/>
     </body>
 </page>

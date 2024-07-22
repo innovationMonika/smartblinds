@@ -16,25 +16,4 @@
  * @package 	Anowave_Ec
  * @copyright 	Copyright (c) 2023 Anowave (https://www.anowave.com/)
  * @license  	https://www.anowave.com/license-agreement/
- */
-
-define(['mage/utils/wrapper'], function(wrapper)
-{
-    'use strict';
-
-    return function(checkEmailAvailability) 
-    {
-        return wrapper.wrap(checkEmailAvailability, function (originalAction, deferred, email) 
-        {
-        	if ('undefined' !== typeof dataLayer)
-        	{
-        		dataLayer.push(
-        		{
-        			event: 'checkEmailAvailability'
-        		});
-        	}
-        	
-            return originalAction(deferred, email);
-        });
-    };
-});
+ */define(["mage/utils/wrapper"],function(e){"use strict";return function(t){return e.wrap(t,function(n,a,r){return typeof dataLayer!="undefined"&&dataLayer.push({event:"checkEmailAvailability"}),n(a,r)})}});

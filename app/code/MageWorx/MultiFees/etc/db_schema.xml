@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mageworx_multifees_fee" resource="default" engine="innodb" comment="mageworx_multifees_fee">
+    <column xsi:type="int" name="fee_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Fee ID"/>
+    <column xsi:type="smallint" name="type" padding="5" unsigned="true" nullable="false" identity="false" default="1" comment="1-Cart Fee,2-Payment Fee,3-Shipping Fee"/>
+    <column xsi:type="text" name="input_type" nullable="false" comment="Input Types"/>
+    <column xsi:type="boolean" name="is_onetime" nullable="false" default="true" comment="Is Onetime"/>
+    <column xsi:type="boolean" name="required" nullable="false" default="true" comment="Is Required"/>
+    <column xsi:type="text" name="sales_methods" nullable="false" comment="Sales Methods" disabled="true"/>
+    <column xsi:type="varchar" name="applied_totals" nullable="false" length="255" default="subtotal" comment="Applied Totals"/>
+    <column xsi:type="int" name="tax_class_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Tax Class ID (0-None)"/>
+    <column xsi:type="text" name="conditions_serialized" nullable="true" comment="Conditions Serialized"/>
+    <column xsi:type="smallint" name="enable_customer_message" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Enable Customer Message"/>
+    <column xsi:type="smallint" name="enable_date_field" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Enable Date Field"/>
+    <column xsi:type="int" name="total_ordered" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Total Ordered"/>
+    <column xsi:type="decimal" name="total_base_amount" scale="2" precision="10" unsigned="false" nullable="true"/>
+    <column xsi:type="smallint" name="sort_order" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Sort Order"/>
+    <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="1" comment="Is Active"/>
+    <column xsi:type="text" name="shipping_methods" nullable="true" comment="Shipping Methods"/>
+    <column xsi:type="text" name="payment_methods" nullable="true" comment="Payment Methods"/>
+    <column xsi:type="varchar" name="apply_per" nullable="true" length="255" default="per_item" comment="Apply Per"/>
+    <column xsi:type="decimal" name="unit_count" scale="4" precision="12" unsigned="true" nullable="false" default="1" comment="Unit Count"/>
+    <column xsi:type="varchar" name="count_percent_from" nullable="true" length="255" default="whole_cart" comment="Count Percent From"/>
+    <column xsi:type="text" name="actions_serialized" nullable="true" comment="Actions Serialized"/>
+    <column xsi:type="boolean" name="use_bundle_qty" nullable="true" comment="Use Bundle Products Qty"/>
+    <column xsi:type="text" name="min_amount" nullable="true" comment="Min Amount For Percent Option"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="fee_id"/>
+    </constraint>
+  </table>
+  <table name="mageworx_multifees_fee_language" resource="default" engine="innodb" comment="Fee Language Table">
+    <column xsi:type="int" name="fee_lang_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Fee Language ID"/>
+    <column xsi:type="int" name="fee_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Fee ID"/>
+    <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="true" identity="false" comment="Store ID"/>
+    <column xsi:type="text" name="title" nullable="false" comment="Title"/>
+    <column xsi:type="text" name="description" nullable="false" comment="Description"/>
+    <column xsi:type="text" name="customer_message_title" nullable="false" comment="Customer Message Title"/>
+    <column xsi:type="text" name="date_field_title" nullable="false" comment="Date Field Title"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="fee_lang_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_8901B0FF3EDF889EAC8F29136422FF51" table="mageworx_multifees_fee_language" column="fee_id" referenceTable="mageworx_multifees_fee" referenceColumn="fee_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_MULTIFEES_FEE_LANGUAGE_STORE_ID_STORE_STORE_ID" table="mageworx_multifees_fee_language" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+    <constraint xsi:type="unique" referenceId="MAGEWORX_MULTIFEES_FEE_LANGUAGE_FEE_ID_STORE_ID">
+      <column name="fee_id"/>
+      <column name="store_id"/>
+    </constraint>
+  </table>
+  <table name="mageworx_multifees_fee_store" resource="default" engine="innodb" comment="Fee To Store Linkage Table">
+    <column xsi:type="int" name="fee_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Fee ID"/>
+    <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Store ID"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="fee_id"/>
+      <column name="store_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_569DD5C8DF7F6598981CFC0BE21415AC" table="mageworx_multifees_fee_store" column="fee_id" referenceTable="mageworx_multifees_fee" referenceColumn="fee_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_MULTIFEES_FEE_STORE_STORE_ID_STORE_STORE_ID" table="mageworx_multifees_fee_store" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+  </table>
+  <table name="mageworx_multifees_fee_option" resource="default" engine="innodb" comment="Fee Option Table">
+    <column xsi:type="int" name="fee_option_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Fee Option ID"/>
+    <column xsi:type="int" name="fee_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Fee ID"/>
+    <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="true" nullable="false" default="0" comment="Price"/>
+    <column xsi:type="varchar" name="price_type" nullable="false" length="7" default="fixed" comment="Price Type"/>
+    <column xsi:type="smallint" name="is_default" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Is Default"/>
+    <column xsi:type="smallint" name="position" padding="5" unsigned="true" nullable="true" identity="false" comment="Position"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="fee_option_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_MULTIFEES_FEE_OPT_FEE_ID_MAGEWORX_MULTIFEES_FEE_FEE_ID" table="mageworx_multifees_fee_option" column="fee_id" referenceTable="mageworx_multifees_fee" referenceColumn="fee_id" onDelete="CASCADE"/>
+  </table>
+  <table name="mageworx_multifees_fee_option_language" resource="default" engine="innodb" comment="Fee Option Language Table">
+    <column xsi:type="int" name="fee_option_lang_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Fee Option Lang ID"/>
+    <column xsi:type="int" name="fee_option_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Fee Option ID"/>
+    <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="true" identity="false" comment="Store ID"/>
+    <column xsi:type="text" name="title" nullable="false" comment="Title"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="fee_option_lang_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_0261293F9C49FE98777C3114F1F090EA" table="mageworx_multifees_fee_option_language" column="fee_option_id" referenceTable="mageworx_multifees_fee_option" referenceColumn="fee_option_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="MAGEWORX_MULTIFEES_FEE_OPTION_LANGUAGE_STORE_ID_STORE_STORE_ID" table="mageworx_multifees_fee_option_language" column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+  </table>
+  <table name="mageworx_multifees_fee_customer_group" resource="default" engine="innodb" comment="MageWorx Fees To Customer Groups Relations">
+    <column xsi:type="int" name="fee_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Fee ID"/>
+    <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Group Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="fee_id"/>
+      <column name="customer_group_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_29A725258338896822DE68357C47F58D" table="mageworx_multifees_fee_customer_group" column="fee_id" referenceTable="mageworx_multifees_fee" referenceColumn="fee_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_5A989B84B90DD79E2C05F529DC894C98" table="mageworx_multifees_fee_customer_group" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="CASCADE"/>
+    <index referenceId="MAGEWORX_MULTIFEES_FEE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID" indexType="btree">
+      <column name="customer_group_id"/>
+    </index>
+  </table>
+  <table name="quote" resource="default">
+      <column xsi:type="varchar" name="applied_mageworx_fee_ids" nullable="true" length="255" comment="Applied MageWorx Fee Ids"/>
+      <column xsi:type="varchar" name="applied_mageworx_product_fee_ids" nullable="true" length="255" comment="Applied MageWorx Product Fee Ids"/>
+  </table>
+  <table name="quote_address" resource="default">
+    <column xsi:type="decimal" name="mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_fee_details" nullable="false" comment="MageWorx Fee Details"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Product Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_product_fee_details" nullable="false" comment="MageWorx Product Fee Details"/>
+  </table>
+  <table name="sales_order" resource="default">
+    <column xsi:type="decimal" name="mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_fee_details" nullable="false" comment="MageWorx Fee Details"/>
+    <column xsi:type="text" name="mageworx_fee_invoiced" nullable="false" comment="MageWorx Fee Invoiced"/>
+    <column xsi:type="text" name="base_mageworx_fee_invoiced" nullable="false" comment="Base MageWorx Fee Invoiced"/>
+    <column xsi:type="text" name="mageworx_fee_refunded" nullable="false" comment="MageWorx Fee Refunded"/>
+    <column xsi:type="text" name="base_mageworx_fee_refunded" nullable="false" comment="Base MageWorx Fee Refunded"/>
+    <column xsi:type="text" name="mageworx_fee_cancelled" nullable="false" comment="MageWorx Fee Canceled"/>
+    <column xsi:type="text" name="base_mageworx_fee_cancelled" nullable="false" comment="Base MageWorx Fee Canceled"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Product Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_product_fee_details" nullable="false" comment="MageWorx Product Fee Details"/>
+    <column xsi:type="text" name="mageworx_product_fee_invoiced" nullable="false" comment="MageWorx Product Fee Invoiced"/>
+    <column xsi:type="text" name="base_mageworx_product_fee_invoiced" nullable="false" comment="Base MageWorx Product Fee Invoiced"/>
+    <column xsi:type="text" name="mageworx_product_fee_refunded" nullable="false" comment="MageWorx Product Fee Refunded"/>
+    <column xsi:type="text" name="base_mageworx_product_fee_refunded" nullable="false" comment="Base MageWorx Product Fee Refunded"/>
+    <column xsi:type="text" name="mageworx_product_fee_cancelled" nullable="false" comment="MageWorx Product Fee Canceled"/>
+    <column xsi:type="text" name="base_mageworx_product_fee_cancelled" nullable="false" comment="Base MageWorx Product Fee Canceled"/>
+  </table>
+  <table name="sales_invoice" resource="default">
+    <column xsi:type="decimal" name="mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_fee_details" nullable="false" comment="MageWorx Fee Details"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Product Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_product_fee_details" nullable="false" comment="MageWorx Product Fee Details"/>
+  </table>
+  <table name="sales_creditmemo" resource="default">
+    <column xsi:type="decimal" name="mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_fee_details" nullable="false" comment="MageWorx Fee Details"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Amount"/>
+    <column xsi:type="decimal" name="mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Mageworx Product Fee Tax Amount"/>
+    <column xsi:type="decimal" name="base_mageworx_product_fee_tax_amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Base MageWorx Product Fee Tax Amount"/>
+    <column xsi:type="text" name="mageworx_product_fee_details" nullable="false" comment="MageWorx Product Fee Details"/>
+  </table>
+</schema>

@@ -1,0 +1,1 @@
+define(["Magento_Ui/js/form/element/date","uiRegistry"],function(n,t){"use strict";return n.extend({onUpdate:function(){this._super();var e;try{e=this.containers[0].containers[0]?this.containers[0].containers[0]:t.get("index = mageworx-fee-form-container")}catch{e=t.get("index = mageworx-fee-form-container")}this.applyOnClick&&e.onSubmit()}})});

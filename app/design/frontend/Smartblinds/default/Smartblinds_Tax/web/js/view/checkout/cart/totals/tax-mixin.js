@@ -1,17 +1,1 @@
-define([], function () {
-    'use strict';
-
-    const mixin = {
-        ifShowValue: function () {
-            if (window.checkoutConfig.isHideTax) {
-                return false;
-            }
-            return this._super();
-        }
-    };
-
-    return function (target) {
-        return target.extend(mixin);
-    };
-});
-
+define([],function(){"use strict";const n={ifShowValue:function(){return window.checkoutConfig.isHideTax?!1:this._super()}};return function(e){return e.extend(n)}});

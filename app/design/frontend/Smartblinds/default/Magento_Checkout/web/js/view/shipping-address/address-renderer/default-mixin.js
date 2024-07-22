@@ -1,15 +1,1 @@
-define([], function () {
-    'use strict';
-
-    var mixin = {
-        preSelectAddress: function () {
-            if (this.address().isDefaultShipping()) {
-                this.selectAddress();
-            }
-        }
-    };
-
-    return function (target) {
-        return target.extend(mixin);
-    };
-});
+define([],function(){"use strict";var e={preSelectAddress:function(){this.address().isDefaultShipping()&&this.selectAddress()}};return function(t){return t.extend(e)}});

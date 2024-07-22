@@ -1,0 +1,9 @@
+{
+    "name": "mageworx/module-multifeesmeta",
+    "version": "2.4.6",
+    "type": "metapackage",
+    "require": {
+        "mageworx/module-info": ">=1.0.0",
+        "mageworx/module-multifees": "2.4.5"
+    }
+}

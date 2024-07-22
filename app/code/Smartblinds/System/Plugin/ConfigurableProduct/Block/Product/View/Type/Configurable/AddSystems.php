@@ -8,6 +8,7 @@ use Magento\Framework\Serialize\Serializer\Json;
 use Smartblinds\System\Model\Config as SystemConfig;
 use Smartblinds\System\Model\ResourceModel\System\CollectionFactory;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class AddSystems
 {
@@ -15,19 +16,23 @@ class AddSystems
     private Json $json;
     private CollectionFactory $collectionFactory;
     private SystemConfig $systemConfig;
+    protected $storeManager;
+
 
     public function __construct(
         Json $json,
         CollectionFactory $collectionFactory,
         Repository $repositoryAttribute,
         PriceCurrencyInterface $priceCurrency,
-        SystemConfig $systemConfig
+        SystemConfig $systemConfig,
+        StoreManagerInterface $storeManager
     ) {
         $this->json = $json;
         $this->collectionFactory = $collectionFactory;
         $this->repositoryAttribute = $repositoryAttribute;
         $this->priceCurrency = $priceCurrency;
         $this->systemConfig = $systemConfig;
+        $this->storeManager = $storeManager;
     }
 
     public function afterGetJsonConfig(
@@ -37,13 +42,26 @@ class AddSystems
         $systemCategory = $subject->getProduct()->getSystemCategory();
 
         $config = $this->json->unserialize($result);
-        $systems = $this->collectionFactory->create()
-            ->addFieldToFilter('system_category', ['eq' => $systemCategory])
-            ->getItems();
+
+        $currentStoreID = $this->storeManager->getStore()->getId();
+        $systems = $this->collectionFactory->create();
+        // Check if the current store ID exists in the storeviews field
+        $systems->getSelect()->where(
+            'FIND_IN_SET(?, storeviews) OR storeviews IS NULL OR storeviews = "" OR storeviews = "0"',
+            $currentStoreID
+        );
+
+        // You can add additional filters if needed
+        $systems->addFieldToFilter('system_category', ['eq' => $systemCategory]);
+
+        // Retrieve the items
+        $systems = $systems->getItems();
 
         foreach ($systems as $system) {
             /** @var @system \Smartblinds\System\Model\System */
             $config['systems'][] = [
+                'currentStoreID' => $currentStoreID,
+                'id' => $system->getData('id'),
                 'systemType' => $system->getData('system_type'),
                 'controlType' => $system->getData('control_type'),
                 'controlTypeData' => $this->getControlType(),
@@ -66,8 +84,13 @@ class AddSystems
                 'minHeight' => (float) $system->getData('min_height'),
                 'maxWidth' => (float) $system->getStoreMaxWidthPrice(),
                 'maxHeight' => (float) $system->getStoreMaxHeightPrice(),
-                'isChainCustomerGroup' => $this->systemConfig->isShowControlType(),
+                'isChainCustomerGroup' => $this->systemConfig->isShowControlType()
             ];
+
+             $config['systemsPlaceholder'][$system->getData('id')] = [
+                'widthPlaceHolder' => $system->getData('max_width_placeholder'),
+                'heightPlaceHolder' => $system->getData('max_height_placeholder')
+             ];
         }
         $config['systemSizeValues'] = $this->getSystemSizesJson();
         $config['fabricSizeValues'] = $this->getFabricSizesJson();

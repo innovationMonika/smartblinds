@@ -1,17 +1,1 @@
-define([
-    'underscore'
-], function (
-    _
-) {
-    'use strict';
-
-    return function (mappedAttributes, productId) {
-        return _.object(_.filter(_.map(mappedAttributes, function (attribute) {
-            var selectableOption = _.find(attribute.options, function (option) {
-                return _.contains(option.products, productId);
-            })
-            return selectableOption ? [attribute.code, selectableOption.id] : null;
-        })));
-    };
-
-});
+define(["underscore"],function(n){"use strict";return function(r,u){return n.object(n.filter(n.map(r,function(t){var e=n.find(t.options,function(i){return n.contains(i.products,u)});return e?[t.code,e.id]:null})))}});

@@ -136,7 +136,7 @@ define([
             _.each(value, function (value, key) {
                 this.$valueField.data(key, value);
             }, this);
-            //this._updatePlaceholders(value);
+            this._updatePlaceholders(value);
             const
                 widthCm = value.width / 10,
                 heightCm = value.height / 10;
@@ -237,8 +237,15 @@ define([
             }
         },
 
-        _updatePlaceholders: function (value) {
-            this.$widthField.attr('placeholder', this.$widthField.data('placeholder'));
+     _updatePlaceholders: function (value) {
+
+        var system = System.get();
+       if (!system) {
+                return;
+            }
+
+        const systemPlaceholderID = window.jsonConfig.systemsPlaceholder[system.id];
+           /* this.$widthField.attr('placeholder', this.$widthField.data('placeholder'));
             this.$heightField.attr('placeholder', this.$heightField.data('placeholder'));
 
             const optionParams = OptionParams.get();
@@ -249,8 +256,10 @@ define([
 
             const system = optionParams.system;
             const systemValues = window.jsonConfig.systemTypeValues;
-            const toString = $t(' to ');
-            if (!value || (!value.width && !value.height)) {
+            const toString = $t(' to '); */
+         this.$widthField.attr('placeholder', systemPlaceholderID.widthPlaceHolder);
+         this.$heightField.attr('placeholder', systemPlaceholderID.heightPlaceHolder);
+            /*if (!value || (!value.width && !value.height)) {
                 let systemMinWidth = System.getCommonMinWidth();
                 if (systemValues[system?.systemType] === "tdbu") {
                     systemMinWidth = system.minWidth;
@@ -265,7 +274,7 @@ define([
             if (!value.width && value.height) {
                 const maxWidth = calculations.calcMaxWidth(optionParams);
                 this.$widthField.attr('placeholder', (system.minWidth / 10) + toString + (maxWidth / 10) + ' cm');
-            }
+            }*/
         },
 
         _optionHandler: function (element, optionConfig) {

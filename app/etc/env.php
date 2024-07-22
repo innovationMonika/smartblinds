@@ -1,30 +1,30 @@
 <?php
 return [
     'backend' => [
-        'frontName' => 'admin_smrtdb'
+        'frontName' => 'admin'
     ],
     'domains' => [
-        'smartblinds.nl' => [
+        'staging.commerce.smartblinds.nl' => [
             'MAGE_RUN_CODE' => 'default',
             'MAGE_RUN_TYPE' => 'store'
         ],
-        'smartblinds.be' => [
+        'staging.commerce.smartblinds.be' => [
             'MAGE_RUN_CODE' => 'be',
             'MAGE_RUN_TYPE' => 'store'
         ],
-        'smartblinds.com' => [
+        'staging.commerce.smartblinds.com' => [
             'MAGE_RUN_CODE' => 'com',
             'MAGE_RUN_TYPE' => 'store'
         ],
-        'smartblinds.co.uk' => [
+        'staging.commerce.smartblinds.co.uk' => [
             'MAGE_RUN_CODE' => 'uk',
             'MAGE_RUN_TYPE' => 'store'
         ],
-        'smartblinds.de' => [
+        'staging.commerce.smartblinds.de' => [
             'MAGE_RUN_CODE' => 'de',
             'MAGE_RUN_TYPE' => 'store'
         ],
-        'smartblinds.at' => [
+        'staging.commerce.smartblinds.at' => [
             'MAGE_RUN_CODE' => 'at',
             'MAGE_RUN_TYPE' => 'store'
         ]
@@ -43,9 +43,9 @@ return [
         'connection' => [
             'default' => [
                 'host' => 'localhost',
-                'dbname' => 'smartblinds_live',
-                'username' => 'smartblinds_live',
-                'password' => 'bEu80gOZlDiM',
+                'dbname' => 'smartblinds_stag',
+                'username' => 'smartblinds_stag',
+                'password' => 'aUpX27ojnt23AQoo9bEWTb913Fm3CE5Z',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
@@ -62,52 +62,20 @@ return [
         ]
     ],
     'x-frame-options' => 'SAMEORIGIN',
-    'MAGE_MODE' => 'production',
+    'MAGE_MODE' => 'developer',
     'session' => [
-        'save' => 'redis',
-        'redis' => [
-            'host' => '/home/livesmartblinds/domains/smartblinds.nl/var/run/redis-session.sock',
-            'port' => '0',
-            'password' => '',
-            'timeout' => '2.5',
-            'persistent_identifier' => '',
-            'database' => '0',
-            'compression_threshold' => '2048',
-            'compression_library' => 'gzip',
-            'log_level' => '1',
-            'max_concurrency' => '6',
-            'break_after_frontend' => '5',
-            'break_after_adminhtml' => '30',
-            'first_lifetime' => '600',
-            'bot_first_lifetime' => '60',
-            'bot_lifetime' => '7200',
-            'disable_locking' => '0',
-            'min_lifetime' => '60',
-            'max_lifetime' => '2592000'
-        ]
+        'save' => 'files'
     ],
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => 'f06_',
-                'backend' => 'Magento\\Framework\\Cache\\Backend\\Redis',
-                'backend_options' => [
-                    'server' => '/home/livesmartblinds/domains/smartblinds.nl/var/run/redis-backend.sock',
-                    'database' => '0',
-                    'port' => '0',
-                    'password' => '',
-                    'compress_data' => '1',
-                    'compression_lib' => ''
-                ]
+                'id_prefix' => '476_'
             ],
             'page_cache' => [
-                'id_prefix' => 'f06_'
+                'id_prefix' => '476_'
             ]
         ],
-        'allow_parallel_generation' => false,
-        'graphql' => [
-            'id_salt' => 'P2m9jYGXS5tn5lkJ970k4tluyue8qlOQ'
-        ]
+        'allow_parallel_generation' => false
     ],
     'lock' => [
         'provider' => 'db',
@@ -144,8 +112,8 @@ return [
         'config_webservice' => 1,
         'translate' => 1,
         'vertex' => 1,
-        'amasty_shopby' => 1,
-        'ec_cache' => 1
+        'ec_cache' => 1,
+        'amasty_shopby' => 1
     ],
     'downloadable_domains' => [
         'coulisse.loc'
@@ -153,11 +121,9 @@ return [
     'install' => [
         'date' => 'Mon, 22 Mar 2021 16:59:42 +0000'
     ],
-    'http_cache_hosts' => [
-        [
-            'host' => '127.0.0.1',
-            'port' => '6181'
-        ]
-    ],
-    'is_secure' => true
+    'is_secure' => true,
+    'http_auth' => [
+        'user' => 'smart_dev',
+        'pass' => 'smart_dev'
+    ]
 ];

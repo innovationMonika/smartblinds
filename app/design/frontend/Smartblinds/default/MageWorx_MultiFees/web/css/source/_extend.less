@@ -1,0 +1,115 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .cart-totals .totals-mageworx-fee-details, .opc-block-summary .table-totals .totals-mageworx-fee-details,
+    .cart-totals .totals-mageworx-product-fee-details, .opc-block-summary .table-totals .totals-mageworx-product-fee-details {
+        display: table-row !important;
+        border: none !important;
+    }
+
+    .cart-content {
+        #block-fee-summary {
+            width: 100%;
+        }
+
+        #mageworx-fee-container {
+            fieldset {
+                margin: 0;
+            }
+
+            .field-fees-wrapper {
+                .lib-vendor-prefix-display(flex);
+                .lib-vendor-box-align(center);
+                .lib-css(justify-content, space-between, 1);
+                border: 1px solid #d5d4d4;
+                background-color: @color-white;
+                padding: 3px 15px;
+                box-sizing: border-box;
+                height: 46px;
+
+                .control {
+                    .lib-vendor-prefix-order(1);
+                    float: none;
+                    width: auto;
+                    font-weight: bold;
+                    margin-right: auto;
+                    width: 100%;
+
+                    .admin__field {
+                        border: none;
+                        padding: 0;
+                        margin: 0;
+                    }
+                }
+
+                .field-note {
+                    .lib-vendor-prefix-order(2);
+                    margin-left: 10px;
+                }
+
+                .checkout-custom-checkbox {
+                    padding: 0;
+
+                    .custom-checkbox-label {
+                        .lib-vendor-prefix-display(flex);
+                        .lib-css(justify-content, space-between, 1);
+                        padding-left: 35px;
+                        width: 100%;
+                        box-sizing: border-box;
+
+                        span {
+                            &:not(.label-text) {
+                                color: @smartblinds-color-green;
+                            }
+                        }
+
+                        &::before {
+                            font-size: 16px;
+                            height: 16px;
+                            width: 16px;
+                            top: -3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cart-content {
+        #block-fee-summary {
+            margin-top: 10px;
+            .lib-vendor-prefix-order(3);
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cart-content {
+        #block-fee-summary {
+            margin-top: 10px;
+            .lib-vendor-prefix-order(3);
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .cart-content {
+        #block-fee-summary {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 0;
+            .lib-vendor-prefix-order(2);
+        }
+    }
+}

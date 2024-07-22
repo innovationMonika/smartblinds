@@ -27,7 +27,7 @@
 
     <dataSource name="smartblinds_system_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">GoMage\Ui\Model\DataProvider</argument>
+            <argument name="class" xsi:type="string">Smartblinds\System\Ui\DataProvider\System\Form\DataProvider</argument>
             <argument name="name" xsi:type="string">smartblinds_system_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
@@ -50,6 +50,22 @@
         <settings>
             <label translate="true">Main Information</label>
         </settings>
+         <field name="storeviews">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Cms\Ui\Component\Listing\Column\Cms\Options</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">block</item>
+                    <item name="dataScope" xsi:type="string">store_id</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
         <field name="id" formElement="input">
             <settings>
                 <dataType>text</dataType>
@@ -322,6 +338,18 @@
                     <rule name="validate-number" xsi:type="boolean">true</rule>
                     <rule name="validate-zero-or-greater" xsi:type="boolean">true</rule>
                 </validation>
+            </settings>
+        </field>
+         <field name="max_width_placeholder" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Min-Max Width Placeholder</label>
+            </settings>
+        </field>
+        <field name="max_height_placeholder" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Min-Max Height Placeholder</label>
             </settings>
         </field>
     </fieldset>

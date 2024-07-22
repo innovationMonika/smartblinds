@@ -48,10 +48,14 @@
                 nullable="false" identity="false" comment="System Control Type"/>
         <column name="fabric_size" xsi:type="int" padding="10" unsigned="true"
                 nullable="true" identity="false" comment="Fabric Size"/>
+        <column xsi:type="varchar" name="storeviews" nullable="false" length="128" comment="Name"/>
+        <column xsi:type="varchar" name="max_width_placeholder" nullable="false" length="128" comment="Width Placeholder"/>
+        <column xsi:type="varchar" name="max_height_placeholder" nullable="false" length="128" comment="Height Placeholder"/>
+
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
-        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_SYSTEM_TYPE_SYSTEM_SIZE" disabled="true">
+       <!-- <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_SYSTEM_TYPE_SYSTEM_SIZE" disabled="true">
             <column name="system_type"/>
             <column name="system_size"/>
         </constraint>
@@ -86,7 +90,7 @@
             <column name="system_category"/>
             <column name="control_type"/>
             <column name="fabric_size"/>
-        </constraint>
+        </constraint> -->
         <index referenceId="SMARTBLINDS_SYSTEM_CODE" indexType="btree">
             <column name="code"/>
         </index>

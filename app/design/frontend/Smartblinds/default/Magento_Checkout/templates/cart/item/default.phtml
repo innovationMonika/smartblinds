@@ -153,8 +153,11 @@ $cartItemHelper = $this->helper(\Smartblinds\Checkout\Helper\CartItem::class);
                         </div>
                     </div>
                 </div>
+                <?php $addInfoBlock2 = $this->getLayout()->getBlock('additional.product.info.second'); ?>
+                <?php if ($addInfoBlock2) : ?>
+                    <?= $addInfoBlock2->setItem($_item)->toHtml() ?>
+                <?php endif; ?>
                 <div class="cart-item-price-block">
-
                     <?php if ($canApplyMsrp) : ?>
                         <div class="col msrp">
                         <span class="pricing msrp">

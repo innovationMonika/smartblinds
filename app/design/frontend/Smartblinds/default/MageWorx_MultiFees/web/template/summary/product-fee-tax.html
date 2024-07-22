@@ -1,0 +1,26 @@
+<!--
+/**
+ * Copyright © MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+-->
+
+<!-- ko if: isDisplayed() -->
+    <tr class="totals-mageworx-product-fee-details-tax">
+        <th class="mark" scope="row">
+            <span class="title" data-bind="i18n: title"></span>
+            <div class="subtitle">
+                <!-- ko if: (getDetails().length === 1) -->
+                - <span data-bind="text: $t('Selected for %s product').replace('%s', getDetails().length)"></span>
+                <!-- /ko -->
+                <!-- ko if: (getDetails().length > 1) -->
+                - <span data-bind="text: $t('Selected for %s products').replace('%s', getDetails().length)"></span>
+                <!-- /ko -->
+            </div>
+        </th>
+        <td data-bind="attr: {'data-th': title }" class="amount">
+                    <span class="price"
+                          data-bind="text: getValue()"></span>
+        </td>
+    </tr>
+<!-- /ko -->

@@ -1,0 +1,1 @@
+define(["Magento_Ui/js/form/element/checkbox-set","uiRegistry"],function(t,n){"use strict";return t.extend({onUpdate:function(){this._super();var e;try{e=this.containers[0].containers[0]?this.containers[0].containers[0]:n.get("index = mageworx-fee-form-container")}catch{e=n.get("index = mageworx-fee-form-container")}this.applyOnClick&&e.onSubmit()}})});

@@ -1,0 +1,1 @@
+define(["Magento_Checkout/js/view/summary/abstract-total"],function(t){"use strict";return t.extend({defaults:{displayArea:"after_details",template:"Magento_Checkout/summary/item/details/subtotal"},getValue:function(e){return this.getFormattedPrice(e.row_total_incl_tax)}})});

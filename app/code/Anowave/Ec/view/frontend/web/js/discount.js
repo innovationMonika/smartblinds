@@ -16,46 +16,4 @@
  * @package 	Anowave_Ec
  * @copyright 	Copyright (c) 2023 Anowave (https://www.anowave.com/)
  * @license  	https://www.anowave.com/license-agreement/
- */
-
-define(() => 
-{
-    'use strict';
-
-    return target => 
-    {
-        return target.extend(
-        {
-        	apply: function () 
-        	{
-        		if ('undefined' !== typeof dataLayer)
-        		{
-        			dataLayer.push(
-        			{
-        				event: 			'applyCouponCode',
-        				eventCategory:	'Coupon',
-        				eventAction:	'Apply',
-        				eventLabel: 	 this.couponCode()
-        			});
-        		}
-        		
-        		this._super();	
-            },
-            cancel: function () 
-        	{
-        		if ('undefined' !== typeof dataLayer)
-        		{
-        			dataLayer.push(
-        			{
-        				event: 			'cancelCouponCode',
-        				eventCategory:	'Coupon',
-        				eventAction:	'Cancel',
-        				eventLabel: 	 this.couponCode()
-        			});
-        		}
-        		
-        		this._super();	
-            }
-        });
-    };
-});
+ */define(()=>{"use strict";return e=>e.extend({apply:function(){typeof dataLayer!="undefined"&&dataLayer.push({event:"applyCouponCode",eventCategory:"Coupon",eventAction:"Apply",eventLabel:this.couponCode()}),this._super()},cancel:function(){typeof dataLayer!="undefined"&&dataLayer.push({event:"cancelCouponCode",eventCategory:"Coupon",eventAction:"Cancel",eventLabel:this.couponCode()}),this._super()}})});

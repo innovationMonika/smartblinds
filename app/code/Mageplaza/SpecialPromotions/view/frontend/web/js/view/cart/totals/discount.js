@@ -16,25 +16,4 @@
  * @package     Mageplaza_SpecialPromotions
  * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
  * @license     https://www.mageplaza.com/LICENSE.txt
- */
-
-define([
-    'Mageplaza_SpecialPromotions/js/view/summary/discount'
-], function (Component) {
-    'use strict';
-
-    return Component.extend({
-        defaults: {
-            template: 'Mageplaza_SpecialPromotions/cart/totals/discount'
-        },
-
-        /**
-         * @override
-         *
-         * @returns {Boolean}
-         */
-        isDisplayed: function () {
-            return this.getPureValue() != 0; //eslint-disable-line eqeqeq
-        }
-    });
-});
+ */define(["Mageplaza_SpecialPromotions/js/view/summary/discount"],function(e){"use strict";return e.extend({defaults:{template:"Mageplaza_SpecialPromotions/cart/totals/discount"},isDisplayed:function(){return this.getPureValue()!=0}})});

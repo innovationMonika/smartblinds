@@ -1,7 +1,7 @@
 <script>
     require(['jquery','domReady!'], function ($) {
 
-        $('.pdp-options-save-button, .mageworx-swatch-option').on('click', function(event) {
+        $('.mageworx-swatch-option').on('click', function(event) {
             let target = $(this).parents('.product-option.field');
             if (target.length) {
                 event.preventDefault();
@@ -11,13 +11,41 @@
             }
         });
 
+        $('.pdp-options-save-button > div').on('click', function(event) {
+            if ($(this).parents('.width-height-option').find('.control .product-custom-option').hasClass('selected')) {
+                let target = $(this).parents('.product-option.field');
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top + target.height() + 25
+                    }, 1000);
+                }
+            }
+        });
+
+        function getSubmitBlockHeight(){
+            let blockHight = 0;
+            if ($('body').width() < 768) {
+                blockHight = $('.price-addtocart-block').outerHeight(true) + $('.product-addtocart-top-block .sample-block').innerHeight() + $('.product-addtocart-top-block .measurement-message').outerHeight(true);
+            }
+            return blockHight;
+        }
+        var submitBlockHeight = getSubmitBlockHeight();
+
+        $(window).resize(function(){
+            submitBlockHeight = getSubmitBlockHeight();
+        });
+
+
         $('[data-role=progress-button]').on('click', function(event) {
-            let target =  $('.product-options-wrapper');
-            if (target.length) {
-                event.preventDefault();
-                $('html, body').stop().animate({
-                    scrollTop: target.offset().top + 25
-                }, 1000);
+            if (!$(this).hasClass('progress-btn')) {
+                let target =  $('.product-options-wrapper');
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top + 25 - submitBlockHeight
+                    }, 1000);
+                }
             }
         });
 

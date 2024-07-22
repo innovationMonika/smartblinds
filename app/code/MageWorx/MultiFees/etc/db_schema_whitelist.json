@@ -1,0 +1,175 @@
+{
+    "mageworx_multifees_fee": {
+        "column": {
+            "fee_id": true,
+            "type": true,
+            "input_type": true,
+            "is_onetime": true,
+            "required": true,
+            "sales_methods": true,
+            "applied_totals": true,
+            "tax_class_id": true,
+            "conditions_serialized": true,
+            "enable_customer_message": true,
+            "enable_date_field": true,
+            "total_ordered": true,
+            "total_base_amount": true,
+            "sort_order": true,
+            "status": true,
+            "shipping_methods": true,
+            "payment_methods": true,
+            "apply_per": true,
+            "unit_count": true,
+            "count_percent_from": true,
+            "actions_serialized": true,
+            "use_bundle_qty": true,
+            "min_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "mageworx_multifees_fee_language": {
+        "column": {
+            "fee_lang_id": true,
+            "fee_id": true,
+            "store_id": true,
+            "title": true,
+            "description": true,
+            "customer_message_title": true,
+            "date_field_title": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_8901B0FF3EDF889EAC8F29136422FF51": true,
+            "MAGEWORX_MULTIFEES_FEE_LANGUAGE_STORE_ID_STORE_STORE_ID": true,
+            "MAGEWORX_MULTIFEES_FEE_LANGUAGE_FEE_ID_STORE_ID": true
+        }
+    },
+    "mageworx_multifees_fee_store": {
+        "column": {
+            "fee_id": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_569DD5C8DF7F6598981CFC0BE21415AC": true,
+            "MAGEWORX_MULTIFEES_FEE_STORE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "mageworx_multifees_fee_option": {
+        "column": {
+            "fee_option_id": true,
+            "fee_id": true,
+            "price": true,
+            "price_type": true,
+            "is_default": true,
+            "position": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MAGEWORX_MULTIFEES_FEE_OPT_FEE_ID_MAGEWORX_MULTIFEES_FEE_FEE_ID": true
+        }
+    },
+    "mageworx_multifees_fee_option_language": {
+        "column": {
+            "fee_option_lang_id": true,
+            "fee_option_id": true,
+            "store_id": true,
+            "title": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_0261293F9C49FE98777C3114F1F090EA": true,
+            "MAGEWORX_MULTIFEES_FEE_OPTION_LANGUAGE_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "mageworx_multifees_fee_customer_group": {
+        "column": {
+            "fee_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "MAGEWORX_MULTIFEES_FEE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_29A725258338896822DE68357C47F58D": true,
+            "FK_5A989B84B90DD79E2C05F529DC894C98": true
+        }
+    },
+    "quote": {
+        "column": {
+            "applied_mageworx_fee_ids": true,
+            "applied_mageworx_product_fee_ids": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "mageworx_fee_amount": true,
+            "base_mageworx_fee_amount": true,
+            "mageworx_fee_tax_amount": true,
+            "base_mageworx_fee_tax_amount": true,
+            "mageworx_fee_details": true,
+            "mageworx_product_fee_amount": true,
+            "base_mageworx_product_fee_amount": true,
+            "mageworx_product_fee_tax_amount": true,
+            "base_mageworx_product_fee_tax_amount": true,
+            "mageworx_product_fee_details": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "mageworx_fee_amount": true,
+            "base_mageworx_fee_amount": true,
+            "mageworx_fee_tax_amount": true,
+            "base_mageworx_fee_tax_amount": true,
+            "mageworx_fee_details": true,
+            "mageworx_fee_invoiced": true,
+            "base_mageworx_fee_invoiced": true,
+            "mageworx_fee_refunded": true,
+            "base_mageworx_fee_refunded": true,
+            "mageworx_fee_cancelled": true,
+            "base_mageworx_fee_cancelled": true,
+            "mageworx_product_fee_amount": true,
+            "base_mageworx_product_fee_amount": true,
+            "mageworx_product_fee_tax_amount": true,
+            "base_mageworx_product_fee_tax_amount": true,
+            "mageworx_product_fee_details": true,
+            "mageworx_product_fee_invoiced": true,
+            "base_mageworx_product_fee_invoiced": true,
+            "mageworx_product_fee_refunded": true,
+            "base_mageworx_product_fee_refunded": true,
+            "mageworx_product_fee_cancelled": true,
+            "base_mageworx_product_fee_cancelled": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "mageworx_fee_amount": true,
+            "base_mageworx_fee_amount": true,
+            "mageworx_fee_tax_amount": true,
+            "base_mageworx_fee_tax_amount": true,
+            "mageworx_fee_details": true,
+            "mageworx_product_fee_amount": true,
+            "base_mageworx_product_fee_amount": true,
+            "mageworx_product_fee_tax_amount": true,
+            "base_mageworx_product_fee_tax_amount": true,
+            "mageworx_product_fee_details": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "mageworx_fee_amount": true,
+            "base_mageworx_fee_amount": true,
+            "mageworx_fee_tax_amount": true,
+            "base_mageworx_fee_tax_amount": true,
+            "mageworx_fee_details": true,
+            "mageworx_product_fee_amount": true,
+            "base_mageworx_product_fee_amount": true,
+            "mageworx_product_fee_tax_amount": true,
+            "base_mageworx_product_fee_tax_amount": true,
+            "mageworx_product_fee_details": true
+        }
+    }
+}

@@ -1,11 +1,1 @@
-define([
-    'jquery',
-    'underscore',
-    'mage/url'
-], function ($, _, urlBuilder) {
-    'use strict';
-
-    return function (productSku, salesChannel, salesChannelCode) {
-        // do nothing
-    };
-});
+define(["jquery","underscore","mage/url"],function(e,n,r){"use strict";return function(u,t,c){}});

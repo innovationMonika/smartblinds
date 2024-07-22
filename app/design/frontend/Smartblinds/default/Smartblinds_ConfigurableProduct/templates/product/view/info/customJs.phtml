@@ -1,0 +1,23 @@
+<script>
+    require(['jquery', 'mage/utils/wrapper'], function ($, wrapper) {
+    $(document).ready(function () {
+        function moveCrosssellOnMobile() {
+            if ($(window).width() <= 767) {
+                var $crosssell = $('.block.crosssell');
+                var $cartSummary = $('.cart-summary-inner');
+
+                if ($crosssell.length && $cartSummary.length) {
+                    $crosssell.insertAfter($cartSummary);
+                }
+            }
+        }
+
+        // Initial check
+        moveCrosssellOnMobile();
+
+        // Check on window resize
+        $(window).resize(wrapper.debounce(moveCrosssellOnMobile, 300));
+    });
+});
+
+</script>

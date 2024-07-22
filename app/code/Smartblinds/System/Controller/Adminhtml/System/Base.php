@@ -17,7 +17,7 @@ abstract class Base extends Action
 
     protected SystemResource $systemResource;
 
-    private SystemFactory $systemFactory;
+    protected SystemFactory $systemFactory;
     private EntityRegistry $entityRegistry;
 
     public function __construct(

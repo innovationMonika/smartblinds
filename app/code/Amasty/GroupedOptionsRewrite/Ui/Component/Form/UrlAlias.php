@@ -46,13 +46,13 @@ class UrlAlias extends \Magento\Ui\Component\Form\Field
         $options = [];
 
         foreach ($storeManagerDataList as $key => $value) {
-        // if($value['name'] !== 'Admin'){
+         if($value['name'] !== 'Admin'){
             $options[] = [
                 'index' => $key,
                 'label' => $value['name'],
                 'value' => ''
             ];
-       //  }
+         }
         }
 
         return $options;

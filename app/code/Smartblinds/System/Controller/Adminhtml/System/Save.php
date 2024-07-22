@@ -17,6 +17,8 @@ class Save extends Base
         $system = $this->initSystem();
 
         $data = $this->getRequest()->getPostValue();
+        $data['storeviews'] = implode(",", $data['store_id']);
+
         if (!is_array($data)) {
             return $resultRedirect->setPath('*/*');
         }

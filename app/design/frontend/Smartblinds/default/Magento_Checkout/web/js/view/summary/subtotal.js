@@ -1,0 +1,1 @@
+define(["Magento_Checkout/js/view/summary/abstract-total","Magento_Checkout/js/model/quote"],function(u,t){"use strict";return u.extend({defaults:{template:"Magento_Checkout/summary/subtotal"},getPureValue:function(){var e=t.getTotals()();return e?e.subtotal_incl_tax:t.subtotal_incl_tax},getValue:function(){return this.getFormattedPrice(this.getPureValue())}})});

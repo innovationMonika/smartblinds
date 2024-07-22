@@ -1,16 +1,1 @@
-define([
-    'underscore'
-], function (
-    _
-) {
-    'use strict';
-
-    return function (mappedAttributes, selectedAttributes) {
-        return _.filter(selectedAttributes, function (optionId, attributeCode) {
-            var attribute =  _.findWhere(mappedAttributes, {code: attributeCode}),
-                option = attribute ? _.findWhere(attribute.options, {id: optionId}) : undefined;
-            return !_.isUndefined(option);
-        }).length;
-    };
-
-});
+define(["underscore"],function(n){"use strict";return function(i,r){return n.filter(r,function(t,d){var e=n.findWhere(i,{code:d}),f=e?n.findWhere(e.options,{id:t}):void 0;return!n.isUndefined(f)}).length}});

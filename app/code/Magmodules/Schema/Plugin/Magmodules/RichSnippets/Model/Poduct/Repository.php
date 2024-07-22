@@ -14,6 +14,8 @@ class Repository
         \Magmodules\RichSnippets\Model\Poduct\Repository $subject,
         \Closure $proceed
     ) {
+        $result['offers']['hasMerchantRetunPolicy'] = "Monika";
+        //Your plugin code
         $result = $proceed();
         return $result;
     }
