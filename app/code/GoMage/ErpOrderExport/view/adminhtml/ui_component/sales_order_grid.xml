@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="mark_to_export">
+                <settings>
+                    <url path="sales/order/massMarkToExport"/>
+                    <type>mark_to_export</type>
+                    <label translate="true">Mark To Export</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+
+    <columns name="sales_order_columns">
+        <column name="smartblinds_registration_status"
+                component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Export Status</label>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <options class="GoMage\ErpOrderExport\Model\Source\Status"/>
+            </settings>
+        </column>
+    </columns>
+
+</listing>

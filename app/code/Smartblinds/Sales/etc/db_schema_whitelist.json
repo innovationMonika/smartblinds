@@ -1,0 +1,44 @@
+{
+    "sales_order_item": {
+        "column": {
+            "system_type": true,
+            "system_size": true,
+            "fabric_size": true,
+            "system_color": true,
+            "control_type": true,
+            "width": true,
+            "height": true,
+            "mounting_height": true,
+            "software": true,
+            "montage": true,
+            "motor_side": true,
+            "motor": true,
+            "system_name": true,
+            "reference": true,
+            "system_category": true,
+            "smartblinds_registration_id": true,
+            "curtain_tracks_width": true,
+            "curtain_and_motor_position": true,
+            "wall_or_celling_fitting": true,
+            "motion_blinds_wifi_bridge": true,
+            "wall_or_ceiling_fitting": true,
+            "remote_control": true,
+            "curtain_type": true,
+            "bottombar": true,
+            "side_span": true,
+            "clamp": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "smartblinds_registration_id": true,
+            "smartblinds_registration_status": true,
+            "smartblinds_registration_error": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "smartblinds_registration_status": true
+        }
+    }
+}

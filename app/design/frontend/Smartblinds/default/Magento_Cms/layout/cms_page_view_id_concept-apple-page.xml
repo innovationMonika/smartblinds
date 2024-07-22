@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="apple-homekit-page" />
+        <referenceContainer name="header.panel.wrapper" remove="true" />
+        <referenceContainer name="breadcrumbs.container" remove="true" />
+        <referenceContainer name="before.footer.container" remove="true" />
+        <referenceContainer name="footer-container" remove="true" />
+        <referenceBlock name="sm.floating.button" remove="true" />
+    </body>
+</page>

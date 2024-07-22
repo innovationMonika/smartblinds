@@ -1,0 +1,72 @@
+@import 'extend/_home.less';
+@import 'module/_concept-apple-page.less';
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .video-container {
+        iframe {
+            max-width: 100%;
+        }
+    }
+
+    .cms-page-view {
+        &.page-layout-cms-full-width {
+            .page-main {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+
+        .page-title {
+            text-align: left;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cms-page-view {
+        .page-title {
+            text-align: left;
+        }
+
+        .page-main {
+            padding-top: 20px;
+        }
+    }
+
+    .page-main-full-width {
+        .page-title-wrapper {
+            padding-left: @layout__width-xs-indent;
+            padding-right: @layout__width-xs-indent;
+        }
+    }
+
+    .hide-on-mobile {
+        display: none !important;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .hide-on-desktop {
+        display: none !important;
+    }
+
+    .page-main-full-width {
+        .page-title-wrapper {
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: @layout__max-width;
+            padding-left: @layout-indent__width;
+            padding-right: @layout-indent__width;
+            width: auto;
+        }
+    }
+}

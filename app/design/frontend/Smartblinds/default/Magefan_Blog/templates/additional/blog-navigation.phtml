@@ -1,0 +1,45 @@
+<?php
+/**
+ * Blog sidebar categories template
+ *
+ * @var $block \Magefan\Blog\Block\Sidebar\Categories
+ */
+?>
+<?php $items = $block->getGroupedChilds(); ?>
+<?php if (count($items)) { ?>
+    <div class="blog-navigation">
+        <ul>
+            <li><a href="/stories/"><?= __('All'); ?></a></li>
+            <?php
+            $level = 0;
+            $first = true;
+            foreach ($items as $item) {
+            $newLevel = $item->getLevel();
+
+            if ($level == $newLevel && !$first) {
+                echo '</li>';
+            }
+
+            if ($level < $newLevel) {
+                echo '<ul>';
+            }
+
+            if ($level > $newLevel) {
+                for ($i = $level; $i > $newLevel; $i--) {
+                    echo '</ul></li>';
+                }
+            }
+
+            ?>
+            <li>
+                <a href="<?= $block->escapeUrl($item->getCategoryUrl()) ?>">
+                    <?= $block->escapeHtml($item->getTitle()) ?>
+                </a>
+                <?php
+                $level = $newLevel;
+                $first = false;
+                }
+                ?>
+        </ul>
+    </div>
+<?php } ?>

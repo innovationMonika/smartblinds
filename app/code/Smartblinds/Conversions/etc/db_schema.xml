@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order">
+        <column name="gclid" xsi:type="varchar" length="255" nullable="true" comment="Google Click ID" />
+        <column name="fbc" xsi:type="varchar" length="255" nullable="true" comment="_fbc" />
+        <column name="fbp" xsi:type="varchar" length="255" nullable="true" comment="_fbp" />
+    </table>
+    <table name="quote">
+        <column name="gclid" xsi:type="varchar" length="255" nullable="true" comment="Google Click ID" />
+        <column name="fbc" xsi:type="varchar" length="255" nullable="true" comment="_fbc" />
+        <column name="fbp" xsi:type="varchar" length="255" nullable="true" comment="_fbp" />
+    </table>
+</schema>

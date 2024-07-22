@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_image_import" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Image Import</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_Catalog::config</resource>
+            <group id="system" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>System</label>
+                <field id="system_type" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Type</label>
+                    <frontend_model>Smartblinds\ImageImport\Block\System\Config\Form\Field\SystemType</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+                <field id="system_size" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Size</label>
+                    <frontend_model>Smartblinds\ImageImport\Block\System\Config\Form\Field\SystemSize</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+                <field id="system_color" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Color</label>
+                    <frontend_model>Smartblinds\ImageImport\Block\System\Config\Form\Field\SystemColor</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="images" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Images</label>
+                <field id="config" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Config</label>
+                    <frontend_model>Smartblinds\ImageImport\Block\System\Config\Form\Field\Images</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

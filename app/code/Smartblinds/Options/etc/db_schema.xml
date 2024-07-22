@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="catalog_product_option">
+        <column xsi:type="smallint" name="move_to_top" unsigned="true" nullable="true" identity="false" default="0"
+                comment="Move To Top"/>
+    </table>
+    <table name="catalog_product_option_type_value">
+        <column xsi:type="varchar" name="value_code" nullable="true" length="255" comment="Value Code"/>
+    </table>
+</schema>

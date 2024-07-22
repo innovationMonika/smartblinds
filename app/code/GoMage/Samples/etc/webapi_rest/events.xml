@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="sales_order_payment_place_end">
+        <observer name="gomage_samples_order_payment_place_change_order_status"
+                  instance="GoMage\Samples\Observer\OrderPaymentPlace\ChangeOrderStatus" />
+    </event>
+
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="gomage_samples_quote_submit_set_samples_order"
+                  instance="GoMage\Samples\Observer\QuoteSubmit\SetSamplesOrder" />
+    </event>
+
+    <event name="sales_model_service_quote_submit_success">
+        <observer name="gomage_samples_quote_submit_send_email"
+                  instance="GoMage\Samples\Observer\QuoteSubmit\SendSamplesEmail" />
+    </event>
+
+</config>

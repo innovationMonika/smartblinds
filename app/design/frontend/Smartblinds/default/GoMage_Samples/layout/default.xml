@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="header-wrapper">
+            <block name="header.sample.basket"
+                   template="GoMage_Samples::html/header/basket.phtml"
+                   after="search-toggle" />
+        </referenceContainer>
+
+        <referenceContainer name="main.menu.additional">
+            <block name="main.menu.sample.basket"
+                   template="GoMage_Samples::html/header/basket.phtml"
+                   before="-">
+                <arguments>
+                    <argument name="wrapper" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="footer">
+            <block name="sample.basket.modal"
+                   template="GoMage_Samples::modal/basket.phtml"
+                   before="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GoMage\Samples\ViewModel\Claim</argument>
+                </arguments>
+
+                <block class="Magento\Cms\Block\Block"
+                       name="sample.empty.basket.modal.info"
+                       as="empty.sample.basket.message">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">msg-empty-sample-basket</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Cms\Block\Block"
+                       name="sample.empty.basket.modal.info.text"
+                       as="empty.sample.basket.message.text">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">text-msg-empty-sample-basket</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Cms\Block\Block"
+                       name="sample.basket.message"
+                       as="sample.basket.message">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">sample-basket-message</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

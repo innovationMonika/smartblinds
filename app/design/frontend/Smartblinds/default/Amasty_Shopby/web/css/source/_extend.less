@@ -1,0 +1,270 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .am_shopby_apply_filters {
+        .amshopby-button {
+            background: @primary__color;
+            border-color: @primary__color;
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: 17px;
+            border-radius: 0;
+            padding: 0 20px;
+        }
+    }
+
+    .filter-options {
+        .filter-options-content {
+            input[type='checkbox'],
+            input[type='radio'] {
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                margin: 0;
+                padding: 0;
+                width: 0;
+                height: 0;
+                border: 0;
+                opacity: 0;
+                position: absolute;
+            }
+
+            .amshopby-choice {
+                display: none !important;
+            }
+
+            .am-ranges {
+                .items {
+                    &.-am-multiselect {
+                        .item {
+                            [class*='am-filter-item'] {
+                                padding-left: 0 !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .item {
+                a {
+                    &:hover {
+                        color: @primary__color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .filter-options-content {
+        .am-ranges,
+        .am-labels-folding,
+        .am-labels-folding.-am-singleselect {
+            .items {
+                max-width: 100%;
+            }
+
+            .item {
+                position: relative;
+                padding-right: 35px;
+                margin-bottom: 15px;
+                padding-left: 0;
+
+                > a {
+                    .lib-vendor-prefix-display(flex);
+                    .lib-css(justify-content, space-between, 1);
+                    color: @primary__color;
+                }
+
+                .label {
+                    font-weight: normal;
+
+                    &::before {
+                        content: '';
+                        box-sizing: border-box;
+                        height: 25px;
+                        width: 25px;
+                        border: 1px solid @smartblinds-color-gray;
+                        position: absolute;
+                        right: 0;
+                        top: 5px;
+                    }
+                }
+
+                .count {
+                    font-weight: normal;
+                }
+            }
+        }
+
+        .am_shopby_link_selected,
+        .amshopby-link-selected {
+            .label {
+                &::after {
+                    content: "\f14a";
+                    font-family: 'Font Awesome 5 Pro';
+                    font-weight: 900;
+                    -moz-osx-font-smoothing: grayscale;
+                    -webkit-font-smoothing: antialiased;
+                    display: inline-block;
+                    font-style: normal;
+                    font-variant: normal;
+                    text-rendering: auto;
+                    line-height: 1;
+                    position: absolute;
+                    right: 4px;
+                    top: 9px;
+                    font-size: 18px;
+                }
+            }
+        }
+
+        .input {
+            &:checked ~ .am-swatch-link {
+                .label {
+                    &::after {
+                        content: "\f14a";
+                        font-family: 'Font Awesome 5 Pro';
+                        font-weight: 900;
+                        -moz-osx-font-smoothing: grayscale;
+                        -webkit-font-smoothing: antialiased;
+                        display: inline-block;
+                        font-style: normal;
+                        font-variant: normal;
+                        text-rendering: auto;
+                        line-height: 1;
+                        position: absolute;
+                        right: 4px;
+                        top: 9px;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        .count {
+            &::after,
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+    .am_shopby_apply_filters {
+        &.visible,
+        &.-fixed {
+            bottom: 0 !important;
+            top: inherit !important;
+            left: 0 !important;
+            right: inherit !important;
+            width: 100% !important;
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .filter-content
+    .filter-options-content {
+        .am-ranges,
+        .am-labels-folding,
+        .am-labels-folding.-am-singleselect {
+            .item {
+                position: relative;
+                padding-left: 50px;
+                margin-bottom: 20px;
+
+                .label {
+                    font-weight: normal;
+
+                    &::before {
+                        content: '';
+                        box-sizing: border-box;
+                        height: 32px;
+                        width: 32px;
+                        border: 1px solid @smartblinds-color-gray;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+                }
+            }
+        }
+
+        .items,
+        .items.-am-singleselect {
+            .item {
+                .am_shopby_link_selected,
+                .amshopby-link-selected {
+                    color: @primary__color;
+
+                    .label {
+                        &::after {
+                            content: "\f14a";
+                            font-family: 'Font Awesome 5 Pro';
+                            font-weight: 900;
+                            -moz-osx-font-smoothing: grayscale;
+                            -webkit-font-smoothing: antialiased;
+                            display: inline-block;
+                            font-style: normal;
+                            font-variant: normal;
+                            text-rendering: auto;
+                            line-height: 1;
+                            position: absolute;
+                            left: 6px;
+                            top: 5px;
+                            font-size: 23px;
+                        }
+                    }
+                }
+
+                .input {
+                    &:checked ~ .am-swatch-link {
+                        color: @primary__color;
+
+                        .label {
+                            &::after {
+                                content: "\f14a";
+                                font-family: 'Font Awesome 5 Pro';
+                                font-weight: 900;
+                                -moz-osx-font-smoothing: grayscale;
+                                -webkit-font-smoothing: antialiased;
+                                display: inline-block;
+                                font-style: normal;
+                                font-variant: normal;
+                                text-rendering: auto;
+                                line-height: 1;
+                                position: absolute;
+                                left: 6px;
+                                top: 5px;
+                                font-size: 23px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.-am-multiselect [class*='am-filter-item']:hover {
+                color: @primary__color;
+            }
+        }
+
+        .count {
+            display: none;
+        }
+    }
+
+    .catalog-topnav {
+        display: none;
+    }
+}

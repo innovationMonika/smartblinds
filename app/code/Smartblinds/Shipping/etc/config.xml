@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <shipping>
+            <shipment_options>
+                <checked_email_copy_of_shipment_for_orders_with_statuses><![CDATA[pending,processing]]></checked_email_copy_of_shipment_for_orders_with_statuses>
+            </shipment_options>
+        </shipping>
+    </default>
+</config>

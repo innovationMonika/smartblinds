@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orderRegistrationResponse status="rejected" requestId="190a6927-3348-4935-aebd-ae0f421703d4">
+    <rejectionReason code="R0001">Invalid API key</rejectionReason>
+    <details/>
+</orderRegistrationResponse>

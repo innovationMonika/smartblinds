@@ -1,0 +1,95 @@
+<?php
+
+/** @var Plumrocket\Search\Block\Tooltip $block*/
+
+/** @var Plumrocket\Search\Helper\Data $helper */
+$helper = $this->helper(Plumrocket\Search\Helper\Data::class);
+/** @var Plumrocket\Search\Helper\Config $config */
+$config = $this->helper(Plumrocket\Search\Helper\Config::class);
+/** @var Magento\CatalogSearch\Helper\Data $catalogSearchHelper */
+$catalogSearchHelper = $this->helper(Magento\CatalogSearch\Helper\Data::class);
+$resultUrl = $catalogSearchHelper->getResultUrl();
+$notFound = true;
+?>
+<div class="psearch-suggestions-title"><?= __('Suggestions'); ?></div>
+<?php if ($config->enabledProductSuggestion() && ($products = $block->getProducts()) && $products->getSize() > 0) : ?>
+    <?php $notFound = false; ?>
+    <div id="pas-psearch-products">
+        <?php foreach ($products as $product) : ?>
+            <div class="pas-tooltip-pr-item<?= $this->getProductCssClass(); ?>">
+                <a href="<?= $product->getProductUrl(); ?>" class="pas-clear">
+                    <?php if ($config->showPSThumbs()) : ?>
+                        <div class="pac-tooltip-image">
+                            <img src="<?= $block->getImageUrl($product, 'product_base_image') ?>" />
+                        </div>
+                    <?php endif; ?>
+                    <div class="pac-tooltip-right">
+                        <div class="pac-tooltip-descr">
+                            <div class="pac-tooltip-name"><?= $this->tipsWords($product->getName()); ?></div>
+
+                            <?php if ($config->showPSShortDescription()) :
+                                $truncateDescription = $block->getTruncate(strip_tags($product->getDescription()), $config->getPSShortDescriptionLenght(), '...', '', false); ?>
+                                <div class="pac-tooltip-short-des"><?= $this->tipsWords($truncateDescription); ?></div>
+                            <?php endif; ?>
+                        </div>
+                        <div class="pac-tooltip-price-block">
+                            <?php if ($config->showPSPrice()) : ?>
+                                <div class="pac-price-val"><?=
+                                    $block->getHtmlPrice($product);
+                                    ?></div>
+                            <?php endif; ?>
+                            <?php if ($config->showPSRating() && $ratingSummary = $product->getRatingSummary()) : ?>
+                                <div class="pac-rating-box">
+                                    <div class="pac-rating" style="width:<?= $ratingSummary->getRatingSummary(); ?>%"></div>
+
+                                </div>
+                                <span><?= '(' . $ratingSummary->getReviewsCount() . ')'; ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($config->enabledCategorySuggestion() && ($categories = $this->getCategories()) && !empty($categories)) : ?>
+    <?php $notFound = false; ?>
+    <div id="pac-psearch-categories">
+        <?php foreach ($categories as $category) : ?>
+            <div class="pac-ps-category">
+                <a href="<?= $helper->getResultUrl(null, $category->getId()); ?>">
+                    <?= __('Found in'); ?>
+                    <span>
+                        <?= (($parent = $this->getParentCategory($category)) ? $this->tipsWords($parent->getName()) .' > ' : '') . $this->tipsWords($category->getName()); ?>
+                    </span>
+                    <?= '(' . $this->getProductCount($category) . ')'; ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<?php if ($config->enabledTermsSuggestion() && ($terms = $block->getTerms()) && ($terms->getSize() > 0)) : ?>
+    <?php $notFound = false; ?>
+    <div id="pac-psearch-terms">
+        <?php foreach ($terms as $term) : ?>
+            <div class="pac-ps-term">
+                <a href="<?= $helper->getResultUrl($term->getQueryText()); ?>">
+                    <span><?= $this->tipsWords($term->getQueryText()); ?></span>
+                    <?= '(' . $term->getNumResults() . ')'; ?>
+                </a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<div id="pac-psearch-all-results">
+    <?php if ($notFound) : ?>
+        <p class="pac-no-results"><?= __('No results found'); ?></p>
+    <?php else : ?>
+        <a href="<?= $helper->getResultUrl(); ?>" class="pac-show-result">
+            <span><?= __('Show All Results'); ?> →</span>
+        </a>
+    <?php endif; ?>
+</div>

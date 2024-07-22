@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smartblinds_preload_links>
+            <general>
+                <render_enabled>1</render_enabled>
+            </general>
+            <category>
+                <collect_enabled>1</collect_enabled>
+                <image_display_areas><![CDATA[category_page_grid
+category_page_list]]></image_display_areas>
+            </category>
+            <product>
+                <collect_enabled>1</collect_enabled>
+                <main_image_key>medium_image_url</main_image_key>
+            </product>
+        </smartblinds_preload_links>
+    </default>
+</config>

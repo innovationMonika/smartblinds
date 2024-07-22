@@ -1,0 +1,82 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="swiper-container product-media-swiper js-product-media-swiper">
+    <div class="swiper-wrapper" data-role="mobile-gallery">
+        <div class="swiper-slide" style="margin-right: 20px">
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/product-mobile-gallery-placeholder.png')) ?>"
+                 alt="product mobile gallery placeholder"
+                 width="220"
+                 height="220">
+        </div>
+        <div class="swiper-slide" style="margin-right: 20px">
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/product-mobile-gallery-placeholder.png')) ?>"
+                 alt="product mobile gallery placeholder"
+                 width="220"
+                 height="220">
+        </div>
+        <div class="swiper-slide" style="margin-right: 20px">
+            <img src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/product-mobile-gallery-placeholder.png')) ?>"
+                 alt="product mobile gallery placeholder"
+                 width="220"
+                 height="220">
+        </div>
+    </div>
+    <div class="swiper-pagination js-swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'swiper',
+        'matchMedia'
+    ],function($, Swiper, mediaCheck) {
+        const productMediaSwiper = new Swiper(".js-product-media-swiper", {
+            slidesPerView: 1,
+            observer: true,
+            spaceBetween: 20,
+            pagination: {
+                el: ".js-swiper-pagination",
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                560: {
+                    slidesPerView: 'auto',
+                }
+            },
+        });
+
+        mediaCheck({
+            media: '(min-width: 768px)',
+            // Switch to Desktop Version
+            entry: function () {
+
+            },
+            // Switch to Mobile Version
+            exit: function () {
+                productMediaSwiper.update();
+            }
+        });
+
+        $('.js-product-media-swiper').on('click','.swiper-slide', function (){
+            $('.fotorama__stage__frame').click();
+        });
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Smartblinds_ConfigurableProduct/js/view/gallery": {
+                "selectors": {
+                    "choicesGallery": "[data-role=mobile-gallery]"
+                }
+            }
+        }
+    }
+</script>

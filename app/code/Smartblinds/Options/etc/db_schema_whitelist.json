@@ -1,0 +1,12 @@
+{
+    "catalog_product_option": {
+        "column": {
+            "move_to_top": true
+        }
+    },
+    "catalog_product_option_type_value": {
+        "column": {
+            "value_code": true
+        }
+    }
+}

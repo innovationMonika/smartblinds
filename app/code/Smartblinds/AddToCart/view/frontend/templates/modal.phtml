@@ -1,0 +1,20 @@
+<?php
+/** @var $block \Smartblinds\AddToCart\Block\Product\View */
+?>
+<script type="text/javascript">
+    window.jsonATCCustomWidgetConfig = <?= /* @noEscape */ $block->getProductDataForATCWidget() ?>;
+</script>
+<script id="smartblindsAddToCartWidget" type="text/x-magento-template">
+    <div class="add-to-cart__content">
+        <div class="add-to-cart__content-inner">
+            <div class="add-to-cart__content-image">
+                <img src="<%- data.product_image %>" alt="<?= __('Product image') ?>">
+            </div>
+            <div class="add-to-cart__content-text">
+                <div class="add-to-cart__content-title"><?= __('Added to your shopping cart') ?></div>
+                <div class="add-to-cart__content-product-info"><%- data.product_qty %> <?= $block->getProduct()->getName() ?> - <%- data.product_price %></div>
+                <div class="add-to-cart__content-block"><?= $block->getBlockContent() ?></div>
+            </div>
+        </div>
+    </div>
+</script>

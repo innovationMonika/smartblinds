@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="smartblinds_bundling_process_preload_asset"
+                type="Smartblinds\Bundling\Plugin\View\Page\Config\ProcessPayloadAsset" />
+    </type>
+
+</config>

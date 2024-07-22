@@ -1,0 +1,33 @@
+<!-- ko foreach: { data: chunks, as: 'chunk' } -->
+<div class="post-chunk">
+    <!-- ko foreach: { data: chunk, as: 'slide' } -->
+    <div class="swiper-slide">
+        <div class="post-holder-slide">
+            <a class="post-background-link" data-bind="attr: {'href': slide.url}"></a>
+            <div class="post-content">
+                <div class="category-name" data-bind="if: slide.categories.length">
+                    <!-- ko foreach: { data: slide.categories, as: 'category' } -->
+                    <a data-bind="attr: {'title': category.title, 'href': category.url}, text: category.title">
+                    </a><span data-bind="if: !category.isLast">
+                        <!-- ko text: ',' --><!-- /ko -->
+                    </span>
+                    <!-- /ko -->
+                </div>
+                <div class="post-title">
+                    <a class="post-item-link" data-bind="attr: {'href': slide.url}, text: slide.title">
+                    </a>
+                </div>
+            </div>
+            <div class="post-content-image"
+                 data-bind="if: slide.imageUrl, style: {'background-image': 'url(\'' + slide.imageUrl + '\')'}">
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+<!-- ko if: steps().length -->
+<div style="text-align: center">
+    <button data-bind="click: showMore">show more</button>
+</div>
+<!-- /ko -->

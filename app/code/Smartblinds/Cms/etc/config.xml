@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smartblinds_cms>
+            <system_control_type_notice>
+                <notice_label_default><![CDATA[With smart engine]]></notice_label_default>
+                <notice_default><![CDATA[pdp-engine-notice-info-block]]></notice_default>
+                <notices><![CDATA[{"1":{"control_type":"307","cms_block":"pdp-chain-notice-info-block", "label": "Manually operated"}}]]></notices>
+            </system_control_type_notice>
+        </smartblinds_cms>
+    </default>
+</config>

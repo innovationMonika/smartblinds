@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="smartblinds_preload_links_add"
+                type="Smartblinds\PreloadLinks\Plugin\Catalog\Block\Product\ListProduct\AddLinks" />
+    </type>
+
+
+    <type name="Magento\Framework\View\Result\Layout">
+        <plugin name="smartblinds_preload_links_render"
+                type="Smartblinds\PreloadLinks\Plugin\Framework\View\Result\Layout\RenderPreload"
+                sortOrder="-10" />
+    </type>
+
+</config>

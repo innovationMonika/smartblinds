@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\View\Result\Layout">
+        <plugin name="asyncCssLoad" sortOrder="-10" />
+    </type>
+
+    <type name="Magento\Theme\Block\Html\Header\CriticalCss">
+        <plugin name="smartblinds_theme_critical_css_override"
+                type="Smartblinds\Theme\Plugin\Block\Html\Header\CriticalCss\OverrideCss" />
+    </type>
+
+    <type name="Smartblinds\Theme\Helper\Critical">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="cms_index_index" xsi:type="string">css/main-critical.css</item>
+                <item name="catalog_category_view" xsi:type="string">css/category-critical.css</item>
+                <item name="catalogsearch_result_index" xsi:type="string">css/category-critical.css</item>
+                <item name="catalog_product_view" xsi:type="string">css/product-critical.css</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Theme\Controller\Result\AsyncCssPlugin">
+        <plugin name="smartblinds_async_css_prevent_noncritical"
+                type="Smartblinds\Theme\Plugin\Controller\Result\AsyncCssPlugin\PreventNonCritical" />
+    </type>
+
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="smartblinds_theme_handle_styles_asset"
+                type="Smartblinds\Theme\Plugin\View\Page\Config\HandleStylesAsset" />
+    </type>
+
+</config>

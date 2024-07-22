@@ -1,0 +1,17 @@
+<?php
+/** @var \Magento\Catalog\Pricing\Render\FinalPriceBox $block */
+
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $smartblindsPriceModel */
+$smartblindsPriceModel = $block->getPriceType('smartblinds_price');
+
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
+$priceModel = $block->getPriceType('regular_price');
+
+$priceModel = $smartblindsPriceModel->getAmount()->getValue() !== false ? $smartblindsPriceModel : $priceModel;
+
+/* @noEscape */ echo $block->renderAmount($priceModel->getAmount(), [
+    'price_id'          => $block->getPriceId('product-price-'),
+    'include_container' => true,
+    'display_label' => __('from'),
+]);
+?>

@@ -1,0 +1,36 @@
+{
+    "name": "gomage/module-erp-order-export",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.4.0",
+        "ext-curl": "*",
+        "magento/framework": ">=103.0.2",
+        "magento/module-config": ">=101.2.2",
+        "magento/module-sales": ">=103.0.2",
+        "gomage/module-erp": ">=1.0.0",
+        "gomage/module-xsl": ">=1.0.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GoMage\\ErpOrderExport\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "GoMage",
+            "email": "support@gomage.com",
+            "homepage": "https://www.gomage.com/"
+        }
+    ]
+}

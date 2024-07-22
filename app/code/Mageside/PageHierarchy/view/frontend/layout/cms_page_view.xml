@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Mageside\PageHierarchy\Block\Breadcrumbs"
+                   name="ms_cms_hierarchy_breadcrumbs">
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional">
+            <container name="ms_cms_left_hierarchy_container" htmlTag="div" htmlClass="block block-page-hierarchy">
+                <block class="Mageside\PageHierarchy\Block\PageHierarchy"
+                       name="ms_cms_left_hierarchy"
+                       template="Mageside_PageHierarchy::left/hierarchy.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>
+

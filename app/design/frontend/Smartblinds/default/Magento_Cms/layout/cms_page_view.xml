@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="cms-head-canonical" template="Magento_Cms::canonical.phtml" />
+        </referenceBlock>
+        <referenceContainer name="page.top">
+            <container name="breadcrumbs.container" htmlTag="div" htmlClass="breadcrumbs-container">
+                <container name="breadcrumbs.container.inner" htmlTag="div" htmlClass="breadcrumbs-container-inner"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="sm.floating.button"
+                   template="Magento_Theme::html/floating-button.phtml"
+            />
+        </referenceContainer>
+        <move element="breadcrumbs" destination="breadcrumbs.container.inner" before="-" />
+    </body>
+</page>

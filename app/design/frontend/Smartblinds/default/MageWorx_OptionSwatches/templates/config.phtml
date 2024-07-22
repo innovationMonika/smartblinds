@@ -1,0 +1,12 @@
+<?php
+/** @var \MageWorx\OptionSwatches\Block\Swatches $block */
+?>
+<script type="text/x-magento-init">
+   {
+       "*": {
+            "MageWorx_OptionSwatches/js/swatches-init": {
+                "jsonData": <?= /* @noEscape */ $block->getJsonData();?>
+            }
+       }
+   }
+</script>

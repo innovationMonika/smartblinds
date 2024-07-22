@@ -1,0 +1,60 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+?>
+<?php if ($block->getChildHtml('pdp.func_systeem') || $block->getChildHtml('pdp.func_stof') || $block->getChildHtml('pdp.func_garantie')): ?>
+<div class="sb-collapsible-block-item">
+    <div data-role="collapsible">
+        <div data-role="trigger">
+            <h4 class="sb-collapsible-block-item-title" style="text-transform: uppercase">
+                <?= __('Features and Specifications'); ?>
+            </h4>
+        </div>
+    </div>
+    <div data-role="content" class="sb-collapsible-block-item-content">
+
+        <div class="pdp-details-tabs items"
+             data-mage-init='{"mage/tabs": {"openedState": "active", "animate": {"duration": 100} }}'>
+            <div class="pdp-details-tabs__titles">
+                <?php if ($block->getChildHtml('pdp.func_systeem')) : ?>
+                    <div class="item title" data-role="collapsible">
+                        <a class="switch" data-toggle="trigger" href="#tab-1"><?= __('System'); ?></a>
+                    </div>
+                <?php endif ?>
+
+                <?php if ($block->getChildHtml('pdp.func_stof')) : ?>
+                    <div class="item title" data-role="collapsible">
+                        <a class="switch" data-toggle="trigger" href="#tab-2"><?= __('Fabric'); ?></a>
+                    </div>
+                <?php endif ?>
+
+                <?php if ($block->getChildHtml('pdp.func_garantie')) : ?>
+                    <div class="item title" data-role="collapsible">
+                        <a class="switch" data-toggle="trigger" href="#tab-3"><?= __('Guarantee'); ?></a>
+                    </div>
+                <?php endif; ?>
+
+            </div>
+            <div class="pdp-details-tabs__contents">
+                <div id="tab-1" class="item content" data-role="content">
+                    <div class="pdp-tab-content-grid">
+                        <?= $block->getChildHtml('pdp.func_systeem') ?>
+                    </div>
+                </div>
+
+                <div id="tab-2" class="item content" data-role="content">
+                    <div class="pdp-tab-content-grid">
+                        <?= $block->getChildHtml('pdp.func_stof') ?>
+                    </div>
+                </div>
+
+                <div id="tab-3" class="item content" data-role="content">
+                    <div class="pdp-tab-content-grid">
+                        <?= $block->getChildHtml('pdp.func_garantie') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<?php endif; ?>

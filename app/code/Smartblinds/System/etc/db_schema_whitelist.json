@@ -1,0 +1,43 @@
+{
+    "smartblinds_system": {
+        "column": {
+            "id": true,
+            "name": true,
+            "system_type": true,
+            "system_size": true,
+            "system_category": true,
+            "price_coefficient": true,
+            "system_diameter": true,
+            "bottom_bar_weight": true,
+            "tube_diameter": true,
+            "tube_weight": true,
+            "tube_384_ei": true,
+            "torque": true,
+            "bending": true,
+            "operating_force": true,
+            "operating_ratio": true,
+            "base_price": true,
+            "meter_price": true,
+            "min_width": true,
+            "min_height": true,
+            "max_width": true,
+            "max_height": true,
+            "control_type": true,
+            "fabric_size": true,
+            "code": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "SMARTBLINDS_SYSTEM_SYSTEM_TYPE_SYSTEM_SIZE": true,
+            "SMARTBLINDS_SYSTEM_SYSTEM_TYPE_SYSTEM_SIZE_SYSTEM_CATEGORY": true,
+            "SMARTBLINDS_SYSTEM_TYPE_SIZE_CATEGORY_CONTROL_TYPE": true,
+            "SMARTBLINDS_SYSTEM_TYPE_SIZE_CATEGORY_CONTROL_TYPE_FABRIC_SIZE": true,
+            "UNQ_CA31C3A528D0E7407E517CEACF4B30D2": true,
+            "UNQ_0A1637E5AEA0EAA8F36F9705EDB2CD2A": true,
+            "UNQ_7B86AF4FDEB2DF135B9B0CE574FC32FD": true
+        },
+        "index": {
+            "SMARTBLINDS_SYSTEM_CODE": true
+        }
+    }
+}

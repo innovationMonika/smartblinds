@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gomage_samples" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Samples</label>
+            <tab>gomage</tab>
+            <resource>GoMage_Samples::config</resource>
+            <group id="sample" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Sample</label>
+                <field id="product_image_attribute" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Product Image</label>
+                    <source_model>GoMage\Samples\Model\Source\MediaImageAttribute</source_model>
+                </field>
+            </group>
+            <group id="order" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order</label>
+                <field id="status" translate="label comment" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                    <comment>This status will be assigned to order with samples</comment>
+                </field>
+            </group>
+            <group id="order_email" translate="label" type="text" sortOrder="200"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Order Email</label>
+                <field id="enabled" translate="label" type="select"
+                       sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="identity" translate="label" type="select" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>New Order Confirmation Email SamplesOrderSender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="template" translate="label comment" type="select" sortOrder="2"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>New Order Confirmation Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="guest_template" translate="label comment" type="select" sortOrder="3"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>New Order Confirmation Template for Guest</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="copy_to" translate="label comment" type="text" sortOrder="4"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Order Email Copy To</label>
+                    <comment>Comma-separated.</comment>
+                    <validate>validate-emails</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="copy_method" translate="label" type="select" sortOrder="5"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Order Email Copy Method</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Method</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

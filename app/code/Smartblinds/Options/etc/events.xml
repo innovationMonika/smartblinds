@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="model_save_before">
+        <observer name="smartblinds_options_encode_array_values"
+                  instance="Smartblinds\Options\Observer\Quote\Item\Option\EncodeArrayFields"/>
+    </event>
+
+</config>

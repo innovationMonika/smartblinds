@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="pdp.static.blocks" htmlTag="div" htmlClass="static-blocks-container">
+                <block class="Magento\Cms\Block\Block" name="pdp.text.image.left">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                            <param name="blockIdentifier">text_image_left</param>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="pdp.product.features">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getConfigurableAdditionalBlocksData">
+                            <param name="blockIdentifier">cms_block_product_features</param>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="pdp.two.columns">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                            <param name="blockIdentifier">two_columns</param>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="pdp.three.columns">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                            <param name="blockIdentifier">three_columns</param>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="pdp.text.image.right">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                            <param name="blockIdentifier">text_image_right</param>
+                        </argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="pdp.static.category.blocks" htmlTag="div" htmlClass="static-category-blocks-container bbb" after="-">
+                <block class="Magento\Framework\View\Element\Template"
+                       name="sb.pdp.details"
+                       template="GoMage_CatalogBlocks::pdp-details.phtml">
+                    <block class="Magento\Cms\Block\Block" name="pdp.meten">
+                        <arguments>
+                            <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getConfigurableAdditionalBlocksData">
+                                <param name="blockIdentifier">meten</param>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="pdp.monteren">
+                        <arguments>
+                            <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getConfigurableAdditionalBlocksData">
+                                <param name="blockIdentifier">monteren</param>
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="pdp.vragen">
+                        <arguments>
+                            <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getConfigurableAdditionalBlocksData">
+                                <param name="blockIdentifier">vragen</param>
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

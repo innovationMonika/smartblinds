@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2018 Mageside. All rights reserved.
+ * See MS-LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mageside_all" translate="label" sortOrder="50">
+            <label>Mageside</label>
+        </tab>
+        <section id="mageside_page_hierarchy" translate="label" type="text" sortOrder="10" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>CMS Page Hierarchy</label>
+            <tab>mageside_all</tab>
+            <resource>Mageside_PageHierarchy::config_mageside_page_hierarchy</resource>
+            <group id="hint" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <frontend_model>Mageside\PageHierarchy\Block\Adminhtml\System\Config\Fieldset\Hint</frontend_model>
+            </group>
+            <group id="general" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CMS Page Hierarchy</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tree_source" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Tree Source</label>
+                    <source_model>Mageside\PageHierarchy\Model\Config\TreeSourceOptionsSelect</source_model>
+                </field>
+                <field id="tree_depth" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Tree Depth</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="breadcrumbs" translate="label" type="select" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Breadcrumbs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="hierarchy_path" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Hierarchy Path In Page Url</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="default_route_behavior" translate="label comment" type="select" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Route Behavior</label>
+                    <source_model>Mageside\PageHierarchy\Model\Config\DefaultRouteBehavior</source_model>
+                    <comment>Choose a behavior for CMS pages opened by default route. E.g. yourdomain.com/page_url_key</comment>
+                    <depends>
+                        <field id="hierarchy_path">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

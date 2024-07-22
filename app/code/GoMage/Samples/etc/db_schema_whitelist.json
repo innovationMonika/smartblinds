@@ -1,0 +1,19 @@
+{
+    "quote_address": {
+        "column": {
+            "gender": true,
+            "samples_form_id": true
+        }
+    },
+    "sales_order_address": {
+        "column": {
+            "gender": true,
+            "samples_form_id": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "is_samples_order": true
+        }
+    }
+}

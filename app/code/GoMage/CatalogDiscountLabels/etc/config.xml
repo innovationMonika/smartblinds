@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gomage_discount_labels>
+            <general>
+                <enabled>1</enabled>
+                <block><![CDATA[Koop de rolgordijn alleen vandaag met <span><%DISCOUNT%> korting</span>. Beperkte voorraad beschikbaar.]]></block>
+            </general>
+        </gomage_discount_labels>
+    </default>
+</config>

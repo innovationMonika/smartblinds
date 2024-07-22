@@ -1,0 +1,9 @@
+<?php
+/** @var $block \Magento\Catalog\Block\Product\View */
+$_product = $block->getProduct();
+$categories = $_product->getCategoryIds();
+?>
+
+<?php if (!in_array(48, $categories)): ?>
+    <?= $block->getChildHtml() ?>
+<?php endif;?>

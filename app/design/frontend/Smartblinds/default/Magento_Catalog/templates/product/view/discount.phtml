@@ -1,0 +1,14 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \GoMage\CatalogDiscountLabels\Helper\Data $discountHelper */
+$discountHelper = $this->helper(GoMage\CatalogDiscountLabels\Helper\Data::class);
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get(Magento\Framework\Registry::class)->registry('current_product');
+$discount = $discountHelper->displayDiscountLabel($product);
+?>
+<?php if ($discount) : ?>
+<div class="discount-badge">
+	<?= $escaper->escapeHtml($discount) ?>
+</div>
+<?php endif ?>

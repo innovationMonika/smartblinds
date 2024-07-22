@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_system" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>System</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_System::system</resource>
+            <group id="type" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Type</label>
+                <field id="customer_group" translate="label" type="multiselect"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group for Manual Control Type of System</label>
+                    <source_model>Magento\Customer\Model\Customer\Source\Group</source_model>
+                </field>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Type Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternateTypeConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="color" translate="label" type="text" sortOrder="200"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Color</label>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Color Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternateColorConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="size" translate="label" type="text" sortOrder="300"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Size</label>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Size Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternateSizeConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="base_price" translate="label" type="text" sortOrder="300"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Base Price</label>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Base Price Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternatePriceConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="meter_price" translate="label" type="text" sortOrder="300"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Meter Price</label>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Meter Price Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternatePriceConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="max_width" translate="label" type="text" sortOrder="600"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Max Width</label>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Max Width Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternateDimensionConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="max_height" translate="label" type="text" sortOrder="700"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Max Height</label>
+                <field id="alternate" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate Max Height Configuration</label>
+                    <frontend_model>Smartblinds\System\Block\System\Config\Form\Field\AlternateDimensionConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

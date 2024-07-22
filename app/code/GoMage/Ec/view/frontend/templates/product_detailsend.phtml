@@ -1,0 +1,28 @@
+<?php if (false !== $data = $block->getProductDetailPush()): ?>
+    <script data-ommit="true">
+        if ('undefined' !== typeof dataLayer && typeof AEC !== 'undefined')
+        {
+            (function(callback)
+            {
+                if (AEC.Const.COOKIE_DIRECTIVE)
+                {
+                    AEC.CookieConsent.queue(callback);
+                }
+                else
+                {
+                    callback.apply(window,[]);
+                }
+            })
+            (
+                (function(dataLayer, data)
+                {
+                    return function()
+                    {
+                        dataLayer.push(data);
+                    }
+                })(dataLayer, <?php echo $data ?>)
+            );
+        }
+
+    </script>
+<?php endif; ?>

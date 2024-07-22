@@ -1,0 +1,87 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .home-assistants-wrap {
+        background-color: #e8eff7;
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        margin-bottom: 40px;
+    }
+
+    .home-assistants {
+        padding-top: 35px;
+        padding-bottom: 268px;
+    }
+
+    .home-assistants-title {
+        font-size: 21px;
+        line-height: 1.238;
+        letter-spacing: .7px;
+        margin: 0 0 16px;
+        font-family: @font-family__heading;
+    }
+
+    .home-assistants-text {
+        margin: 0 0 16px;
+    }
+
+    .home-assistants-link {
+
+        a {
+            .abs-link-border-alt();
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .home-assistants-wrap {
+        background-position: 100% 100%;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        min-height: 721px;
+        margin-bottom: 94px;
+    }
+
+    .home-assistants {
+        width: 100%;
+        padding-bottom: 35px;
+    }
+
+    .home-assistants-content {
+        max-width: 530px;
+    }
+
+    .home-assistants-title {
+        font-size: 54px;
+        line-height: 1.1851;
+        margin-bottom: 25px;
+        letter-spacing: 1.45px;
+    }
+
+    .home-assistants-text {
+        margin-bottom: 31px;
+        font-size: 21px;
+        line-height: 1.5238;
+    }
+
+    .home-assistants-link {
+        font-size: 21px;
+    }
+
+}

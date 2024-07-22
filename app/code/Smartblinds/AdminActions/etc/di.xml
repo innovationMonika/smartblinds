@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Backend\Block\Menu">
+        <plugin name="smartblinds_adminactions_hide_menu_item"
+                type="Smartblinds\AdminActions\Plugin\Backend\Block\Menu\HideItem" />
+    </type>
+
+    <type name="Smartblinds\Config\ViewModel\Tabs">
+        <arguments>
+            <argument name="invisibleSections" xsi:type="array">
+                <item name="amaudit" xsi:type="string">amaudit</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\AdminActionsLog\Block\Adminhtml\Buttons\Grid\ClearLogging">
+        <plugin name="smartblinds_adminactions_hide_clear_button"
+                type="Smartblinds\AdminActions\Plugin\AdminActionsLog\Block\Adminhtml\Buttons\Grid\ClearLogging\HideButton" />
+    </type>
+
+</config>

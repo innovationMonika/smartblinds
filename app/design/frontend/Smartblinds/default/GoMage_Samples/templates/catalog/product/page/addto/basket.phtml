@@ -1,0 +1,23 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getParentBlock()->getProduct();
+
+/** @var \GoMage\Samples\ViewModel\Product $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+
+<script>
+    require([
+        'GoMage_Samples/js/view/catalog/product/page/add'
+    ], function(
+        addToBasket
+    ) {
+        addToBasket({
+            items: <?= $viewModel->getProductSampleItemsJson($product) ?>,
+            addToCartIcon: "<?= $block->escapeJs($viewModel->getAddToCartIcon()) ?>",
+            addedToCartIcon: "<?= $block->escapeJs($viewModel->getAddedToCartIcon()) ?>"
+        });
+    });
+</script>

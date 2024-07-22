@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_cms" translate="label" type="text" sortOrder="200"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>CMS</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_Cms::config</resource>
+            <group id="system_control_type_notice" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product "System Control Type" Notice</label>
+                <field id="notice_label_default" translate="label comment" type="text"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Notice Label</label>
+                </field>
+                <field id="notice_default" translate="label comment" type="select"
+                       sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Notice Block</label>
+                    <source_model>Smartblinds\Cms\Model\Config\Source\CmsBlocks</source_model>
+                </field>
+                <field id="notices" translate="label" type="select"
+                       sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notice</label>
+                    <frontend_model>Smartblinds\Cms\Block\System\Config\Form\Field\NoticeConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

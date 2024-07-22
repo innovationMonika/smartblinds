@@ -1,0 +1,433 @@
+@import 'module/_details-block';
+@import 'module/_gallery';
+@import 'module/_information-popup';
+@import 'module/_related';
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .column {
+        &.main {
+            .page-title {
+                text-align: left;
+            }
+        }
+    }
+    .breadcrumbs-container-inner {
+        .lib-vendor-prefix-display(flex);
+        .lib-css(justify-content, space-between, 1);
+        .lib-vendor-box-align(center);
+    }
+
+    .breadcrumbs-container {
+        padding: 20px 0;
+        border-bottom: 1px solid @smartblinds-color-gray;
+
+        .breadcrumbs {
+            margin: 0;
+            padding: 0;
+
+
+            .items {
+                color: @primary__color;
+                text-transform: uppercase;
+                font-size: 16px;
+                letter-spacing: 0.56px;
+
+                strong {
+                    font-weight: bold;
+                }
+            }
+
+            .item:not(:last-child) {
+                &::after {
+                    content: '';
+                    background-color: @primary__color;
+                    margin: 0 15px;
+                    vertical-align: middle;
+                    height: 2px;
+                    width: 22px;
+                    .lib-css(transform, scaleX(-1), 1);
+                }
+            }
+        }
+    }
+    .category-info-block {
+        .lib-vendor-prefix-display(flex);
+
+        .category-info-price {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0;
+            line-height: 1;
+            padding: 15px;
+            background-color: @primary__color;
+        }
+
+        .category-info-discount {
+            color: #FFFFFF;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0;
+            line-height: 1;
+            padding: 15px;
+            background-color: @smartblinds-color-red;
+        }
+    }
+    .product.media {
+        position: relative;
+        .discount-badge {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            background-color: #FF665E;
+            color: #FFFFFF;
+            font-weight: bold;
+            text-align: center;
+            z-index: 30;
+            height: 35px;
+            width: 70px;
+            font-size: 16px;
+            line-height: 35px;
+        }
+    }
+    .product-info-main {
+        .trustpilot-widget {
+            float: left;
+            margin-top: 20px;
+        }
+
+        .product-addtocart-top-block,
+        > .product-info-price,
+        .product-options-bottom {
+            .price-box {
+                &.price-final_price {
+                    .price-label {
+                        &::after {
+                            display: none !important;
+                        }
+                    }
+                }
+
+                > .old-price {
+                    text-decoration: none;
+
+                    .price-label {
+                        display: none !important;
+                    }
+
+                    .price {
+                        color: #787575;
+                        text-decoration: none;
+                        font-family: @font-family__base;
+                        font-weight: 300;
+                        font-size: 16px;
+                        position: relative;
+                        color: #787575;
+
+                        &::before {
+                            content: '';
+                            height: 1px;
+                            width: 100%;
+                            position: absolute;
+                            left: 0;
+                            top: 45%;
+                            display: block;
+                            background: #787575;
+                            z-index: 2;
+                            transform: rotateZ(350deg);
+                        }
+                    }
+                }
+
+                > .special-price {
+                    margin: 0;
+                    .price-label {
+                        display: block;
+                        text-transform: capitalize;
+                        margin-bottom: 5px;
+                    }
+
+                    .price {
+                        color: @smartblinds-color-orange;
+                        font-weight: 900;
+                        display: inline-block;
+                        margin-bottom: 5px;
+                    }
+                }
+
+                .normal-price {
+                    .price-wrapper {
+                        .old-price {
+                            color: #787575;
+                            text-decoration: none;
+                            font-family: @font-family__base;
+                            font-weight: 300;
+                            font-size: 16px;
+                            position: relative;
+                            color: #787575;
+
+                            &::before {
+                                content: '';
+                                height: 1px;
+                                width: 100%;
+                                position: absolute;
+                                left: 0;
+                                top: 45%;
+                                display: block;
+                                background: #787575;
+                                z-index: 2;
+                                transform: rotateZ(350deg);
+                            }
+                        }
+
+                        .price {
+                            color: @smartblinds-color-orange;
+                            font-weight: 900;
+                            display: inline-block;
+                            margin-bottom: 5px;
+                        }
+
+                        span:last-child {
+                            &.price {
+                                color: @smartblinds-color-dark;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &.progress {
+                .normal-price {
+                    .price-wrapper {
+                        .lib-vendor-prefix-display(flex);
+                        .lib-vendor-box-align(center);
+
+                        .price {
+                            margin: 0 5px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .option-description-text {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 1;
+            margin: 5px 0 0 0;
+
+            strong {
+                color: #2d2926;
+            }
+        }
+    }
+
+    .product-item-name {
+        &.saving-energy-icon {
+            .product-item-link {
+                position: relative;
+                box-sizing: border-box;
+                display: inline-block;
+
+                &::after {
+                    content: '';
+                    display: inline-block;
+                    position: absolute;
+                    right: 0;
+                    line-height: 1;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: contain;
+                    background-image: url(../images/chain-icon.svg);
+                }
+            }
+        }
+    }
+
+
+    .all-payment-options {
+        .lib-vendor-prefix-display(flex);
+        .lib-vendor-box-align(center);
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .all-payment-options__text {
+        max-width: 220px;
+        font-size: 12px;
+
+        strong {
+            font-weight: 900;
+            color: #cc0000;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .breadcrumbs-container {
+        display: none !important;
+    }
+
+    .catalog-product-view {
+        .breadcrumbs-container {
+            display: block !important;
+            padding: 10px 0 !important;
+
+            &-inner {
+                min-height: 24px;
+            }
+
+            .items {
+                .item {
+                    &:not(.category) {
+                        display: none;
+                    }
+
+                    &.category {
+                        text-transform: lowercase;
+                        font-weight: bold;
+
+                        &::after {
+                            display: none;
+                        }
+
+                        a {
+                            &::before {
+                                content: attr(data-before) ' ';
+                                text-transform: capitalize;
+                            }
+                        }
+
+                        &::before {
+                            content: "\f104";
+                            font-family: 'Font Awesome 5 Pro';
+                            font-weight: 300;
+                            -moz-osx-font-smoothing: grayscale;
+                            -webkit-font-smoothing: antialiased;
+                            display: inline-block;
+                            font-style: normal;
+                            font-variant: normal;
+                            text-rendering: auto;
+                            line-height: 0;
+                            font-size: 24px;
+                            position: relative;
+                            top: 3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .breadcrumbs-container-inner {
+        padding-left: @layout__width-xs-indent;
+        padding-right: @layout__width-xs-indent;
+    }
+
+    .catalog-category-view {
+        .zendesk-help,
+        #launcher {
+            bottom: 75px !important;
+        }
+    }
+
+    .product-item-name {
+        &.saving-energy-icon {
+            .product-item-link {
+                padding-right: 30px;
+
+                &::after {
+                    top: -4px;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .catalog-category-view {
+        .page-title {
+            font-size: 42px;
+            line-height: 52px;
+        }
+        .toolbar-products .modes {
+            display: none;
+        }
+        .toolbar-products {
+            justify-content: flex-end;
+        }
+    }
+
+    .breadcrumbs-container-inner {
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: @layout__max-width;
+        padding-left: @layout-indent__width;
+        padding-right: @layout-indent__width;
+        width: auto;
+        .catalog-product-view & {
+            height: 24px;
+        }
+    }
+
+    .product-info-main {
+        .price-addtocart-block {
+            .product-info-price {
+                min-width: auto;
+            }
+        }
+    }
+
+    .product-item-name {
+        &.saving-energy-icon {
+            .product-item-link {
+                padding-right: 30px;
+
+                &::after {
+                    top: -4px;
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+        }
+    }
+
+    .product.media {
+        min-height: 620px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .product-item-name {
+        &.saving-energy-icon {
+            .product-item-link {
+                padding-right: 40px;
+
+                &::after {
+                    top: -3px;
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    .all-payment-options {
+        margin-bottom: 0 !important;
+    }
+}

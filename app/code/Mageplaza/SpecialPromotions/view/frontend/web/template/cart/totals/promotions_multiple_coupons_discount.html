@@ -1,0 +1,66 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_SpecialPromotions
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!-- ko if: isDisplayed() -->
+    <!-- ko if: !ifShowDetails() -->
+        <tr class="totals-mpmultiplecoupons-summary"
+            data-bind="mageInit: {'toggleAdvanced':{'baseToggleClass': 'expanded', 'toggleContainers': '.totals-mpmultiplecoupons-details'}},
+                            css: {'totals-tax-summary': getCoupons().length}">
+            <th class="mark" scope="row" colspan="1">
+                <span class="detailed" data-bind="text: getTitle()"></span>
+            </th>
+            <td data-bind="attr: {'data-th': getTitle()}" class="amount">
+                <span class="price" data-bind="text: getValue()"></span>
+            </td>
+        </tr>
+        <!-- ko foreach: { data: getCoupons(), as: 'coupon' } -->
+        <tr class="totals-mpmultiplecoupons-details">
+            <th class="mark" scope="row" colspan="1">
+                <span data-bind="text: coupon.label"></span>
+            </th>
+            <td class="amount" rowspan="1">
+                <span class="price" data-bind="text: coupon.amount, attr: {'data-th': coupon.code}"></span>
+            </td>
+        </tr>
+        <!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: ifShowDetails() -->
+    <tr class="totals-discount-summary"
+        data-bind="mageInit: {'toggleAdvanced':{'selectorsToggleClass': 'shown', 'baseToggleClass': 'expanded', 'toggleContainers': '.totals-discount-details'}}">
+        <th colspan="1" class="mark" scope="row">
+            <span class="detailed" data-bind="text: getTitle()"></span>
+        </th>
+        <td class="amount">
+            <span class="price" data-bind="text: getValue()"></span>
+        </td>
+    </tr>
+        <!-- ko foreach: getDetails() -->
+        <tr class="totals-discount-details">
+            <th colspan="1" class="mark" scope="row" data-bind="text: $parent.ruleTitle($data)"></th>
+            <td class="amount">
+                        <span class="price"
+                              data-bind="text: $parents[0].formatPrice(amount), attr: {'data-th': title}"></span>
+            </td>
+        </tr>
+        <!-- /ko -->
+    <!-- /ko -->
+<!-- /ko -->

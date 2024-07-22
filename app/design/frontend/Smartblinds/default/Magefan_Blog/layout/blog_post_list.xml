@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magefan\Blog\Block\Sidebar\Categories" name="blog.list.navigation" template="additional/blog-navigation.phtml" before="blog.posts.list">
+                <action method="setCacheLifetime">
+                    <argument name="time" xsi:type="string">86400</argument>
+                </action>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="page.bottom.container">
+            <block class="Magento\Cms\Block\Block" name="seo.blog.text" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">seo-blog-text</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <move element="blog.posts.info" destination="content" before="blog.list.navigation" />
+    </body>
+</page>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_options" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Options</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_Options::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="system_type_tdbu" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select System Type Top Down &amp; Bottom Up</label>
+                    <source_model>Smartblinds\Options\Model\System\Config\Source\SystemType</source_model>
+                </field>
+                <field id="bediening_option_code" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Bediening Option Code</label>
+                </field>
+            </group>
+            <group id="messages" translate="label" type="text" sortOrder="200"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Messages</label>
+                <field id="measurement" type="text" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Measurement</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

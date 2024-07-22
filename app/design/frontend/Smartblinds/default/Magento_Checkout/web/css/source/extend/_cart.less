@@ -1,0 +1,612 @@
+@cart-green-color: #019B77;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .cart.table-wrapper {
+        .items {
+            > .item {
+                border: none;
+                margin-bottom: 40px;
+
+                .item-info {
+                    .lib-vendor-prefix-display(flex);
+                }
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .actions-toolbar {
+            .action-delete {
+                font-size: 0;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                position: absolute;
+                right: 0;
+                top: 0;
+                line-height: 1;
+
+                &:hover {
+                    background: none;
+                    border: none;
+                }
+
+                &::after {
+                    content: '';
+                    width: 18px;
+                    height: 18px;
+                    display: block;
+                    .lib-css(background-image, url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg width='18px' height='18px' viewBox='0 0 18 18' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle%3EC3C57607-53FB-4202-806E-BFE7A9CF171B%3C/title%3E%3Cg id='Desktop' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg id='SMARTBLINDS---SHOPPINGCART---DESKTOP' transform='translate(-924.000000, -350.000000)' fill='%232D2926' fill-rule='nonzero'%3E%3Cg id='Group-4' transform='translate(162.000000, 335.000000)'%3E%3Cpath d='M778.526234,32.7738653 L779.793955,31.5075752 C779.968682,31.3330464 779.968682,31.0493415 779.793955,30.874758 L772.864048,23.9526747 L779.793955,17.0305913 C779.968682,16.8560078 779.968682,16.5723029 779.793955,16.3977741 L778.526234,15.131484 C778.351508,14.9569552 778.067482,14.9569552 777.892702,15.131484 L770.962794,22.0535674 L764.032886,15.1309376 C763.858106,14.9563541 763.57408,14.9563541 763.399354,15.1309376 L762.131086,16.397173 C761.956305,16.5717565 761.956305,16.8554614 762.131086,17.0300448 L769.06154,23.9526747 L762.131086,30.874758 C761.956305,31.0493415 761.956305,31.3330464 762.131086,31.5075752 L763.398752,32.7738653 C763.573533,32.9483941 763.857559,32.9483941 764.032339,32.7738653 L770.962794,25.8517819 L777.892702,32.7738653 C778.067482,32.9483941 778.351508,32.9483941 778.526234,32.7738653 Z' id='close_menu_mobile'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E"));
+                }
+            }
+
+            .action-edit {
+                font-size: 16px;
+                line-height: 18px;
+                text-decoration: underline;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-family: @font-family__base;
+                text-transform: none;
+
+                &:hover {
+                    background: none;
+                    border: none;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .item-info-image {
+            min-width: 68px;
+            width: 100%;
+            position: relative;
+
+            .discount-badge {
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-color: @smartblinds-color-orange;
+                color: #FFFFFF;
+                font-weight: bold;
+                text-align: center;
+                z-index: 30;
+                height: 24px;
+                width: 48px;
+                font-size: 12px;
+                line-height: 24px;
+            }
+
+            .product-item-photo {
+                width: 100%;
+                display: block;
+                padding: 0;
+            }
+
+            .product-image-container {
+                width: 100% !important;
+            }
+        }
+
+        .item-info-content {
+            min-width: 170px;
+            width: 100%;
+
+            .product-item-details {
+                .item-options {
+                    margin: 0 0 30px 0;
+                    font-size: 14px;
+                    font-weight: bold;
+                    letter-spacing: 0;
+                    line-height: 26px;
+
+                    dt {
+                        font-weight: normal;
+                    }
+
+                    dd {
+                        font-weight: bold;
+                    }
+                    + .delivery-message {
+                        margin: -25px 0 30px;
+                        font-weight: bold;
+                        line-height: 21px;
+                        color: #019b77;
+                    }
+                }
+            }
+        }
+
+        .cart-discount-info {
+            color: @smartblinds-color-red;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .product-item-name {
+            margin: 0 30px 20px 0;
+            line-height: 1.1;
+        }
+
+        .cart-group-price-qty {
+            margin-bottom: 20px;
+
+            .lib-vendor-prefix-display(flex);
+            .lib-css(justify-content, space-between, 1);
+            .lib-vendor-box-align(center);
+
+            > .qty {
+                .lib-vendor-prefix-order(1);
+            }
+
+            .price {
+                font-size: 18px;
+                line-height: 1;
+                font-weight: bold;
+            }
+
+            .input-text.qty {
+                text-align: center;
+                box-sizing: border-box;
+                height: 46px;
+                max-width: 203px;
+                width: 100%;
+                border: 1px solid @smartblinds-color-gray;
+                background-color: #FFFFFF;
+                padding: 0 44px;
+            }
+
+            .control.qty {
+                position: relative;
+            }
+
+            .qty-btn {
+                font-size: 14px;
+                position: absolute;
+                top: 1px;
+                border: none;
+                width: 44px;
+                height: 44px;
+
+                &.decrease-qty {
+                    left: 1px;
+                }
+
+                &.increase-qty {
+                    right: 1px;
+                }
+            }
+        }
+
+        .cart-item-price-block {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-direction(column);
+            text-align: right;
+
+            .old-price {
+                text-decoration: none;
+                .lib-vendor-prefix-order(2);
+
+                .price {
+                    font-family: @font-family__base;
+                    font-weight: 300;
+                    font-size: 14px;
+                    position: relative;
+                    color: #787575;
+
+                    &::before {
+                        content: '';
+                        height: 1px;
+                        width: 100%;
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        display: block;
+                        background: #787575;
+                        z-index: 2;
+                        transform: rotateZ(350deg);
+                    }
+                }
+            }
+
+            .old-price + .price {
+                font-size: 16px;
+                line-height: 1.125;
+                font-weight: 400;
+                font-family: @font-family__heading;
+                white-space: nowrap;
+                color: @smartblinds-color-orange;
+                .lib-vendor-prefix-order(1);
+            }
+        }
+    }
+
+    .cart-container {
+        .checkout-methods-items {
+            .item {
+                + .item {
+                    display: none;
+                }
+            }
+
+            .action.primary{
+                background:#019B77;
+                border-color: #019B77;
+            }
+        }
+
+
+        .trustpilot-widget.mf-initial{
+            display: none;
+        }
+
+        .cart-summary-inner {
+            padding: 20px;
+            background: @smartblinds-color-white;
+
+            > .title {
+                display: block;
+                font-family: @font-family__heading;
+                font-size: 21px;
+                letter-spacing: 0.7px;
+                margin-bottom: 0;
+                padding-bottom: 25px;
+                margin-top: 20px;
+                line-height: 1;
+                border-bottom: 1px solid @smartblinds-color-gray;
+            }
+        }
+
+        .cart-summary {
+            padding: 0;
+            background: none;
+            position: sticky;
+            top: 90px;
+            overflow: hidden;
+            z-index: 2;
+
+            .block {
+                > .title {
+                    line-height: 30px;
+                    padding-top: 10px;
+
+                     &::after {
+                         position: relative;
+                         line-height: 1;
+                         top: -4px;
+                         font-size: 40px;
+                     }
+                }
+
+                &.shipping {
+                    display: none;
+                }
+            }
+
+            .cart-totals {
+                border: none;
+
+                .amount {
+                    .free {
+                        color: @cart-green-color;
+                        font-size: 14px;
+                        font-weight: bold;
+                    }
+                }
+                .totals.shipping.incl {
+                    display: none;
+                }
+            }
+            .trustpilot-widget {
+                float: left;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    .cart-continue-shopping-block {
+        padding: 20px 0;
+        margin-bottom: 15px;
+
+        .continue {
+            color: @primary__color;
+            text-transform: uppercase;
+            font-size: 16px;
+            letter-spacing: 0.56px;
+            text-decoration: none;
+            font-weight: bold;
+
+            span {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    .cart-insurance {
+        border: 1px solid @smartblinds-color-gray;
+        padding: 25px;
+        position: relative;
+        margin-top: 40px;
+
+        .cart-insurance-title {
+            color: @cart-green-color;
+            font-size: 21px;
+            letter-spacing: 0.73px;
+            line-height: 1;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .cart-insurance-description {
+            font-size: 16px;
+            line-height: 21px;
+            margin-bottom: 20px;
+        }
+
+        .cart-insurance-info {
+            font-size: 16px;
+            line-height: 21px;
+        }
+
+        &__tip-content {
+            padding: 20px;
+            margin-top: 20px;
+            background: @smartblinds-color-white;
+        }
+    }
+
+    .cart-insurance-checkbox {
+        position: absolute;
+        display: inline-block;
+        width: 71px;
+        height: 34px;
+        right: 20px;
+        top: 25px;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+            &:checked {
+                + .slider-checkbox {
+                    background-color: @cart-green-color;
+
+                    &::before {
+                        .lib-css(transform, translateX(36px) , 1);
+                    }
+                }
+            }
+
+            &:focus {
+                + .slider-checkbox {
+                    box-shadow: 0 0 1px @cart-green-color;
+                }
+            }
+        }
+
+        .slider-checkbox {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: @smartblinds-color-gray;
+            border-radius: 34px;
+            .lib-css(transition, .4s, 1);
+
+            .far {
+                color: #ffffff;
+                position: relative;
+                line-height: 34px;
+                left: 10px;
+                font-size: 16px;
+            }
+
+            &::before {
+                position: absolute;
+                content: "";
+                height: 26px;
+                width: 26px;
+                left: 4px;
+                bottom: 4px;
+                background-color: #ffffff;
+                .lib-css(transition, .4s, 1);
+                border-radius: 100%;
+            }
+        }
+    }
+
+    .custom-benefits-list {
+        margin: 30px 0 0 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+            font-size: 16px;
+            line-height: 21px;
+            padding-left: 25px;
+            position: relative;
+
+            &:nth-child(3),&:nth-child(1) {
+                display: none;
+            }
+
+            &::before {
+                content: "\f00c";
+                font-family: 'Font Awesome 5 Pro';
+                font-weight: 400;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                line-height: 1;
+                font-size: 16px;
+                letter-spacing: 0.69px;
+                color: @cart-green-color;
+                position: absolute;
+                left: 0;
+                top: 2px;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cart-continue-shopping-block-inner {
+        padding-left: @layout__width-xs-indent;
+        padding-right: @layout__width-xs-indent;
+    }
+
+    .cart.table-wrapper {
+        .item-info-image {
+            margin-right: 15px;
+            box-sizing: border-box;
+            max-width: 70px;
+        }
+
+        .cart-group-price-qty {
+            .lib-vendor-prefix-flex-wrap(wrap);
+            > .qty {
+                max-width: 120px;
+                margin-right: 15px;
+            }
+        }
+
+        .cart-item-price-block {
+            .lib-vendor-prefix-order(2);
+        }
+    }
+
+    .cart-content {
+        margin-bottom: 20px;
+    }
+
+    .cart-container {
+        .checkout-methods-items {
+            background: #fff;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            z-index: 999999;
+            border-top: 1px solid @smartblinds-color-gray;
+        }
+    }
+
+    .checkout-cart-index {
+        .page-footer {
+            padding-bottom: 80px;
+        }
+
+        button.checkout {
+            background-color: #019B77;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cart-container {
+        .cart-summary {
+            float: right;
+            width: 33%;
+        }
+
+        .cart-content {
+            float: left;
+            width: 63%;
+        }
+    }
+
+    .cart.table-wrapper {
+        .item-info-image {
+            margin-right: 30px;
+            max-width: 315px;
+
+            .discount-badge {
+                height: 35px;
+                width: 70px;
+                font-size: 16px;
+                line-height: 35px;
+            }
+        }
+
+        .cart-group-price-qty {
+            .lib-vendor-prefix-flex-wrap(wrap);
+        }
+
+        .cart-item-price-block {
+            .lib-vendor-prefix-order(2);
+        }
+    }
+
+    .cart-insurance {
+        padding: 25px 100px 25px 25px;
+    }
+
+    .cart-continue-shopping-block {
+        border-bottom: 1px solid @smartblinds-color-gray;
+        margin-bottom: 35px;
+    }
+
+    .cart-continue-shopping-block-inner {
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: @layout__max-width;
+        padding-left: @layout-indent__width;
+        padding-right: @layout-indent__width;
+        width: auto;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .cart.table-wrapper {
+        .cart-group-price-qty {
+            .lib-vendor-prefix-flex-wrap(nowrap);
+
+            .input-text.qty {
+                min-width: 170px;
+            }
+        }
+
+        .cart-item-price-block {
+            .lib-vendor-prefix-order(3);
+        }
+    }
+}

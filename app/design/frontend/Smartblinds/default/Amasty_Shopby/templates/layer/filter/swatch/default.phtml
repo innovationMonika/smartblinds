@@ -1,0 +1,98 @@
+<?php
+/** @var $block SwatchRenderer| \Amasty\Shopby\Block\Navigation\State */
+/** @var \Magento\Framework\Escaper $escaper */
+
+use Amasty\Shopby\Block\Navigation\SwatchRenderer;
+use Amasty\Shopby\Model\Source\DisplayMode;
+use Magento\Swatches\Model\Swatch;
+?>
+<?php
+$swatchData = $block->getSwatchData();
+$isSwatchBlock = $block instanceof \Amasty\Shopby\Block\Navigation\State\Swatch;
+$filterSetting = $block->getFilterSetting();
+$filterCode = $filterSetting ? $escaper->escapeHtml($filterSetting->getFilterCode()) : '';
+$extraClass = $filterSetting ? 'am-filter-items-' . $filterCode : '';
+$attributeCode = $escaper->escapeHtml($swatchData['attribute_code']);
+$attributeFilter = $block->getFilter() ? $block->getFilter()->getRequestVar() : '';
+$displayMode = $filterSetting ? $filterSetting->getDisplayMode() : false;
+$displayMode = $displayMode ?: $block->getDisplayModeByAttributeCode($attributeCode);
+$showImagesLabel = $displayMode == DisplayMode::MODE_IMAGES_LABELS;
+$relNofollow = $filterSetting ? $filterSetting->isAddNofollow() : false;
+?>
+
+<?php if ($filterSetting && $showImagesLabel && $filterSetting->isShowSearchBox(count($swatchData['options']))): ?>
+    <?= /* @noEscape */ $block->getSearchForm() ?>
+<?php endif; ?>
+<form class="am-shopby-form" data-amshopby-filter="<?= /* @noEscape */ $attributeFilter ?>"
+    <?php if ($filterSetting && $block->getEnableOverflowScroll() > 0): ?>
+        style="max-height:<?= /* @noEscape */ $filterSetting->getEnableOverflowScroll() ?>px;"
+    <?php endif; ?>>
+    <div class="items <?= /* @noEscape */ $extraClass ?>  am-labels-folding
+            <?= /* @noEscape */ $attributeCode ?> <?= $showImagesLabel ? 'am-swatch-options' : ''; ?>"
+         data-attribute-code="<?= /* @noEscape */ $attributeCode ?>"
+         data-attribute-id="<?= /* @noEscape */ $swatchData['attribute_id'] ?>"
+         data-am-js="swatch-options">
+        <?php foreach ($swatchData['options'] as $option => $label): ?>
+            <div class="item
+                <?= (array_key_exists(SwatchRenderer::VAR_COUNT, $label)
+                && !$label[SwatchRenderer::VAR_COUNT]) ? '-empty-value' : '' ?>">
+                <?php
+                $filterItem = $label[SwatchRenderer::VAR_FILTER_ITEM] ?? null;
+                $selected = $filterItem ? $block->isFilterItemSelected($filterItem) : false;
+                $extraSwatchClass = $selected ? 'selected' : '';
+                ?>
+                <?php if ($isSwatchBlock): ?>
+                <span class="swatch-option-link-layered am-swatch-link">
+                <?php else: ?>
+                    <?php if ($filterSetting && $filterSetting->isMultiselect()):
+                        $inputType = "checkbox";
+                    elseif ($filterSetting && !in_array($filterCode, ['rating', 'stock'])):
+                        $inputType = "radio";
+                    endif;?>
+                    <?php if (isset($inputType)): ?>
+                        <input  class="input -hidden"
+                                name="amshopby[<?= /* @noEscape */ $block->getFilter()->getRequestVar() ?>][]"
+                                value="<?= /* @noEscape */ $option ?>"
+                                type="<?= /* @noEscape */ $inputType ?>"
+                            <?= /* @noEscape */ $selected ? 'checked' : ''; ?>
+                        />
+                    <?php endif; ?>
+
+                    <a href="<?= $escaper->escapeUrl($label['link']) ?>"
+                        <?= $relNofollow ? ' rel="nofollow"' : '' ?>
+                       data-label="<?= $escaper->escapeHtmlAttr($label['label']) ?>"
+                       class="am-swatch-link">
+                <?php endif; ?>
+
+                        <div class="am-shopby-swatch-label">
+                                <span class="label"><?= $escaper->escapeHtmlAttr($label['label']) ?></span>
+                        </div>
+                        <?php if ($isSwatchBlock): ?>
+                    </span>
+            <?php else: ?>
+                </a>
+            <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "[data-am-js='swatch-item']": {
+            "amShopbySwatchTooltip": {}
+        }
+    }
+    </script>
+<?php if ($filterSetting): ?>
+    <script type="text/x-magento-init">
+    {
+        ".<?= /* @noEscape */ $extraClass; ?>": {
+            "amShopbyFilterSwatch": {
+                "collectFilters": <?= /* @noEscape */ $block->collectFilters();?>,
+                "clearUrl": "<?= $escaper->escapeUrl($block->getClearUrl()); ?>"
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

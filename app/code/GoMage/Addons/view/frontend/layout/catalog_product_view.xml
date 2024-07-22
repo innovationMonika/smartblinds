@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!--<referenceContainer name="pdp.static.blocks">
+            <block class="Magento\Cms\Block\Block" name="pdp.func_systeem" after="pdp.text.image.right">
+                <arguments>
+                    <argument name="block_id" xsi:type="helper"
+                              helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                        <param name="blockIdentifier">func_systeem</param>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="pdp.func_stof" after="pdp.func_systeem">
+                <arguments>
+                    <argument name="block_id" xsi:type="helper"
+                              helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                        <param name="blockIdentifier">func_stof</param>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="pdp.func_garantie" after="pdp.func_stof">
+                <arguments>
+                    <argument name="block_id" xsi:type="helper"
+                              helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalBlocksData">
+                        <param name="blockIdentifier">func_garantie</param>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>-->
+        <referenceBlock name="sb.pdp.details">
+            <block name="pdp.functionality" before="-"  class="Magento\Framework\View\Element\Template"
+                   template="GoMage_Addons::pdp-details.phtml">
+                <block class="GoMage\Addons\Block\Block" name="pdp.func_systeem">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper"
+                                  helper="GoMage\CatalogBlocks\Helper\Data::getFuncProductBlocksData">
+                            <param name="blockIdentifier">func_systeem</param>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="GoMage\Addons\Block\Block" name="pdp.func_stof">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper"
+                                  helper="GoMage\CatalogBlocks\Helper\Data::getFuncProductBlocksData">
+                            <param name="blockIdentifier">func_stof</param>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="GoMage\Addons\Block\Block" name="pdp.func_garantie">
+                    <arguments>
+                        <argument name="block_id" xsi:type="helper"
+                                  helper="GoMage\CatalogBlocks\Helper\Data::getFuncProductBlocksData">
+                            <param name="blockIdentifier">func_garantie</param>
+                        </argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

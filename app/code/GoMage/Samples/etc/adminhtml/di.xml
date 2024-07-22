@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Sales\Block\Adminhtml\Order\View\Info">
+        <plugin name="gomage_samples_add_samples_form_id_to_order_view"
+                type="GoMage\Samples\Plugin\Sales\Block\Adminhtml\Order\View\Info\AddSamplesFormId" />
+    </type>
+
+</config>

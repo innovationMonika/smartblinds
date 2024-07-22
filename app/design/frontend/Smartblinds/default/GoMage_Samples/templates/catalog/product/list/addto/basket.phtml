@@ -1,0 +1,27 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+
+/** @var \Magento\Catalog\Model\Product $product */
+$product = $block->getParentBlock()->getProduct();
+
+/** @var \GoMage\Samples\ViewModel\Product $viewModel */
+$viewModel = $block->getData('view_model');
+
+if ($product->getTypeId() !== 'simple') {
+    return;
+}
+?>
+<?php if ($viewModel->haveSamples($product)): ?>
+    <div class="sample-block-content">
+        <div class="sample-block">
+            <div class="sample-block-inner"
+                 data-role="add_sample_to_basket_id_<?= $product->getId() ?>"
+                 data-bind="scope: 'add_sample_to_basket_id_<?= $product->getId() ?>'">
+                <div class="sample-state notadd"></div>
+                <div class="sample-add" onclick="location.href='<?= $this->getUrl('samples') ?>'">
+                    <?= __('Free sample') ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

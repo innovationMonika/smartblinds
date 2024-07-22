@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="gomage_base_suggestions" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Base Suggestions</label>
+            <tab>gomage</tab>
+            <resource>GoMage_BaseSuggestions::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="suggestions" translate="label comment" sortOrder="1000"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Suggestions</label>
+                    <comment>Use only relative paths in ULRs, like "catalogsearch/result/?q=Hyperion"</comment>
+                    <frontend_model>GoMage\BaseSuggestions\Block\Adminhtml\Form\Field\BaseSuggestions</frontend_model>
+                    <backend_model>GoMage\BaseSuggestions\Model\Config\Backend\Serialized\BaseSuggestions</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

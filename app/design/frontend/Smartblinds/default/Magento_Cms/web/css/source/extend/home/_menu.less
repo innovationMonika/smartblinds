@@ -1,0 +1,84 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .home-navigation-wrap {
+        display: none;
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .home-navigation-wrap {
+        display: block;
+        transition: height .3s ease, padding .3s ease;
+        margin: 0;
+        padding-top: 8px;
+        background: @smartblinds-color-nav;
+    }
+
+    .home-navigation {
+        max-width: @smartblinds-header-width;
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 @layout-indent__width;
+        box-sizing: border-box;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            font-size: 20px;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: .2px;
+            list-style: none;
+            text-transform: uppercase;
+
+            li {
+                margin: 0 15px 7px 0;
+                padding: 0;
+                display: inline-block;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            a {
+                .abs-link-border();
+                color: @primary__color;
+                text-decoration: none;
+            }
+
+        }
+
+        .submenu {
+            display: none;
+        }
+
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .home-navigation {
+        ul {
+            letter-spacing: .4px;
+
+            li {
+                margin: 0 35px 7px 0;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+}

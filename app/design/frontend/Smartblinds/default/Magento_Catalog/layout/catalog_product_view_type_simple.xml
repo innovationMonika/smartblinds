@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block name="product.info.options.modals"
+                   class="Magento\Catalog\Block\Product\View\Options"
+                   template="Magento_Catalog::product/view/options/modals.phtml">
+                <arguments>
+                    <argument name="cms_view_model" xsi:type="object">Smartblinds\Cms\ViewModel\Cms</argument>
+                </arguments>
+            </block>
+            <block name="product.info.messages"
+                   class="Magento\Catalog\Block\Product\View"
+                   template="Magento_Catalog::product/view/info/messages.phtml">
+                <arguments>
+                    <argument name="discount_message"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getDiscountMessage" />
+                    <argument name="measurement_message"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getMeasurementMessage" />
+                </arguments>
+            </block>
+            <block name="product.info.tips"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/tips.phtml"
+                   after="product.info.addtocart.additional">
+                <arguments>
+                    <argument name="tips"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getConfiguratorTips" />
+                    <argument name="row_classes" xsi:type="string">product-info-tip</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

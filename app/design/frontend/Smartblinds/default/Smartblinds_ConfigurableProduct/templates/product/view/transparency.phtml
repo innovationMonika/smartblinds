@@ -1,0 +1,15 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+<div class="product-transparency-group" data-role="product-transparency-container" style="visibility: hidden">
+    <?= $block->getChildHtml('product.info.main.details.product.color') ?>
+    <div class="product-transparency" data-role="product-transparency"></div>
+    <?= $block->getChildHtml('product.info.main.details.engine.notice') ?>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Smartblinds_ConfigurableProduct/js/view/transparency": {}
+        }
+    }
+</script>

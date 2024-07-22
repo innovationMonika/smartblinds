@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/fontawesome/all.css"/>
+        <css src="css/swiper/swiper-bundle.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    </head>
+    <body>
+        <referenceBlock name="cookie-status-check" remove="true" />
+        <referenceBlock name="global_notices" remove="true" />
+    </body>
+</page>

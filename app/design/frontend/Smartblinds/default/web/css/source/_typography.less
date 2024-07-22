@@ -1,0 +1,138 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+//noinspection ALL
+& when (@media-common = true) {
+
+    /* TSTAR PRO */
+
+    .lib-font-face(
+        @family-name: 'TSTAR PRO',
+        @font-path: '@{baseDir}fonts/tstar-pro/regular/T-StarPRO-Regular',
+        @font-weight: 400,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'TSTAR PRO',
+        @font-path: '@{baseDir}fonts/tstar-pro/medium/T-StarPRO-Medium',
+        @font-weight: 500,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'TSTAR PRO',
+        @font-path: '@{baseDir}fonts/tstar-pro/bold/T-StarPRO-Bold',
+        @font-weight: 700,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'TSTAR PRO',
+        @font-path: '@{baseDir}fonts/tstar-pro/light/T-StarPRO-Light',
+        @font-weight: 300,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    .lib-font-face(
+        @family-name: 'TSTAR PRO',
+        @font-path: '@{baseDir}fonts/tstar-pro/heavy/T-StarPRO-Heavy',
+        @font-weight: 900,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    /* TSTAR PRO Headline */
+
+    .lib-font-face(
+        @family-name: 'TSTAR PRO Headline',
+        @font-path: '@{baseDir}fonts/tstar-pro/headline/T-StarPRO-Headline',
+        @font-weight: 400,
+        @font-style: normal,
+        @font-display: swap
+    );
+
+    /* Heading styles */
+
+    h1, .h1 {
+        .lib-heading(h1);
+        letter-spacing: .65px;
+    }
+
+    h2, .h2 {
+        .lib-heading(h2);
+        letter-spacing: .7px;
+    }
+
+    h3, .h3 {
+        .lib-heading(h3);
+        letter-spacing: .7px;
+    }
+
+    .h4, h4 {
+        .lib-heading(h4);
+    }
+
+    .h5, h5 {
+        .lib-heading(h5);
+    }
+
+    .h6, h6 {
+        .lib-heading(h6);
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    h1, .h1 {
+        font-size: 54px;
+        line-height: 68px;
+    }
+
+    h2, .h2 {
+        font-size: 42px;
+        line-height: 52px;
+    }
+
+    h3, .h3 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 28px;
+    }
+}
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .items {
+        .lib-list-reset-styles();
+    }
+}

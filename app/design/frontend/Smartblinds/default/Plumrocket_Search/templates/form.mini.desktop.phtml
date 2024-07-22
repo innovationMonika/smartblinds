@@ -1,0 +1,50 @@
+<?php
+$helper = $this->helper(Plumrocket\Search\Helper\Data::class);
+$config = $this->helper(Plumrocket\Search\Helper\Config::class);
+$catalogSearchHelper = $this->helper(Magento\CatalogSearch\Helper\Data::class);
+?>
+<div class="block-search-wrap-desktop">
+<script type="text/javascript">
+    require(["jquery", "Plumrocket_Search/js/psearch", "domReady!"], function($, plumSearch) {
+        "use strict";
+        var psearch = new plumSearch({
+            path: '<?php echo $block->getUrl("prsearch/ajax", ["_secure" => $helper->isCurrentlySecure()] );?>',
+            delay: <?php echo abs($config->getQueryDelay()); ?>,
+            queryLenghtMin: <?php echo $config->getSearchMinLenght(); ?>,
+            formSelector: '#pas-mini-form-desktop',
+            tooltipSelector: '#pas-tooltip-desktop',
+            overleySelector: '.pas-overley-desktop'
+        });
+
+        psearch.run();
+    });
+</script>
+
+<div class="pas-overley-desktop"></div>
+<form id="pas-mini-form-desktop" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+    <div class="pas-form-search">
+        <div class="pas-nav-center">
+            <div class="pas-search-field">
+                <input id="pas-input"
+                       type="text"
+                       name="<?php echo $catalogSearchHelper->getQueryParamName() ?>"
+                       placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>"
+                       value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>"
+                       class="pas-input-text"
+                       maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>"
+                       autocomplete="off"
+                       tabindex="1" />
+                <img data-lazyload src="<?php echo $block->getViewFileUrl('Plumrocket_Search::images/psearch-loader.gif');?>" width="22"  alt="loader" class="pas-loader" style="visibility: hidden;"/>
+                <button type="submit" title="<?php echo __('Search') ?>" class="pas-button">
+                    <i class="far fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="pas-tooltip-desktop" class="pas-tooltip-wrapper"></div>
+    </div>
+
+    <?= $block->getChildHtml() ?>
+</form>
+
+</div>

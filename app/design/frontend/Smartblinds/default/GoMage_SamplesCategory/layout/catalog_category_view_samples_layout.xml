@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <referenceBlock name="category.products.list">
+                <block class="Magento\Framework\View\Element\Template" name="category.products.list.actions" template="Magento_Theme::html/container.phtml">
+                    <block class="Magento\Framework\View\Element\Template" name="category.products.list.actions.sample_requests"
+                           template="GoMage_SamplesCategory::action/sample_requests.phtml"/>
+                </block>
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">GoMage_SamplesCategory::product/list.phtml</argument>
+                </action>
+                <referenceBlock name="product_list_toolbar">
+                    <action method="setTemplate">
+                        <argument name="template" xsi:type="string">GoMage_SamplesCategory::product/list/toolbar.phtml</argument>
+                    </action>
+                </referenceBlock>
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GoMage\Samples\ViewModel\Product</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceContainer>
+
+        <referenceContainer name="sb.filter.mobile.block.buttons">
+            <block class="Magento\Framework\View\Element\Template" name="sb.filter.mobile.block.buttons.sample_requests"
+                   template="GoMage_SamplesCategory::action/sample_requests.phtml" after="-"/>
+        </referenceContainer>
+
+        <referenceBlock name="category.amshopby.children.list" remove="true" />
+    </body>
+</page>

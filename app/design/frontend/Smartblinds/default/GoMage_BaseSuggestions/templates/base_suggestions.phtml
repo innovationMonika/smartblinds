@@ -1,0 +1,18 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var \GoMage\BaseSuggestions\ViewModel\BaseSuggestions $viewModel */
+$viewModel = $block->getData('view_model');
+$_suggestions = $viewModel->getAll();
+?>
+<?php if (sizeof($_suggestions)): ?>
+<div class="base-suggestions">
+    <div class="base-suggestions-title"><?= $block->escapeHtml(__('Popular search results')) ?></div>
+    <div class="base-suggestions-list">
+        <?php foreach ($_suggestions as $suggestion): ?>
+            <div class="base-suggestions-item">
+                <a href="<?= $block->escapeUrl($suggestion->getUrl()) ?>"><?= $block->escapeHtml($suggestion->getLabel()) ?></a>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<?php endif; ?>

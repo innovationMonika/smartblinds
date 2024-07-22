@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Theme\Block\Html\Breadcrumbs">
+        <plugin
+            name="GoMage_Breadcrumbs_Plugin_Magento_Theme_Block_Html_Breadcrumbs"
+            type="GoMage\Breadcrumbs\Plugin\Magento\Theme\Block\Html\Breadcrumbs"
+            sortOrder="10"
+            disabled="false"/>
+    </type>
+    <preference for="Magento\Catalog\Helper\Data" type="GoMage\Breadcrumbs\Helper\Data" />
+</config>

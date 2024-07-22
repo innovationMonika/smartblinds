@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gomage_cookiebot>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <cookie_consent>
+                <url>https://consent.cookiebot.com/uc.js</url>
+                <id>Cookiebot</id>
+                <cbid>00000000-0000-0000-0000-000000000000</cbid>
+                <blocking_mode>manual</blocking_mode>
+            </cookie_consent>
+            <cookie_declaration>
+                <url>https://consent.cookiebot.com/00000000-0000-0000-0000-000000000000/cd.js</url>
+                <id>CookieDeclaration</id>
+            </cookie_declaration>
+        </gomage_cookiebot>
+    </default>
+</config>

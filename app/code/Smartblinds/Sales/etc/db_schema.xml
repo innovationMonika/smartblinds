@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="sales_order_item">
+        <column xsi:type="varchar" name="system_name" nullable="true" length="255" comment="System Name"/>
+        <column xsi:type="varchar" name="system_type" nullable="true" length="255" comment="System Type"/>
+        <column xsi:type="varchar" name="system_size" nullable="true" length="255" comment="System Size"/>
+        <column xsi:type="varchar" name="fabric_size" nullable="true" length="255" comment="Fabric Size"/>
+        <column xsi:type="varchar" name="system_color" nullable="true" length="255" comment="System Color"/>
+        <column xsi:type="varchar" name="system_category" nullable="true" length="255" comment="System Category"/>
+        <column xsi:type="varchar" name="control_type" nullable="true" length="255" comment="Control Type"/>
+        <column xsi:type="float" name="width" unsigned="true" nullable="true" comment="Width"/>
+        <column xsi:type="float" name="height" unsigned="true" nullable="true" comment="Height"/>
+        <!--<column xsi:type="float" name="mounting_height" unsigned="true" nullable="true" comment="Mounting Height"/>-->
+        <column xsi:type="varchar" name="software" nullable="true" length="255" comment="Software"/>
+        <column xsi:type="varchar" name="montage" nullable="true" length="255" comment="Montage"/>
+        <column xsi:type="varchar" name="motor_side" nullable="true" length="255" comment="Motor Side"/>
+        <column xsi:type="varchar" name="motor" nullable="true" length="255" comment="Motor"/>
+        <column xsi:type="varchar" name="reference" nullable="true" length="255" comment="Reference"/>
+        <column xsi:type="float" name="curtain_tracks_width" unsigned="true" nullable="true" comment="Curtain Tracks Width"/>
+        <column xsi:type="varchar" name="curtain_and_motor_position" nullable="true" length="255" comment="Curtain and motor position"/>
+        <column xsi:type="varchar" name="curtain_type" nullable="true" length="255" comment="Curtain Type"/>
+        <column xsi:type="varchar" name="wall_or_ceiling_fitting" nullable="true" length="255" comment="Wall or ceiling fitting"/>
+        <column xsi:type="varchar" name="motion_blinds_wifi_bridge" nullable="true" length="255" comment="Motion Blinds WiFi Bridge"/>
+        <column xsi:type="varchar" name="remote_control" nullable="true" length="255" comment="Remote Control"/>
+        <column xsi:type="varchar" name="bottombar" nullable="true" length="255" comment="Bottom Bar"/>
+        <column xsi:type="varchar" name="side_span" nullable="true" length="255" comment="Side Span"/>
+        <column xsi:type="varchar" name="clamp" nullable="true" length="255" comment="Clamp"/>
+        <column xsi:type="int" name="smartblinds_registration_id" nullable="true" unsigned="true" padding="10" comment="Smartblinds registration ID"/>
+    </table>
+    <table name="sales_order">
+        <column xsi:type="int" name="smartblinds_registration_id" nullable="true" unsigned="true"
+                padding="10" comment="Smartblinds registration ID"/>
+        <column xsi:type="int" name="smartblinds_registration_status" nullable="true" unsigned="true"
+                default="0" padding="10" comment="Smartblinds registration Status"/>
+        <column xsi:type="text" name="smartblinds_registration_error"
+                comment="Smartblinds registration Error in JSON"/>
+    </table>
+    <table name="sales_order_grid">
+        <column xsi:type="int" name="smartblinds_registration_status" nullable="true" unsigned="true"
+                padding="10" comment="Smartblinds registration Status"/>
+    </table>
+</schema>

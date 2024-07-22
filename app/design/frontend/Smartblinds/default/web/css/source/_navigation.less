@@ -1,0 +1,538 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@active-nav-indent: 54px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .nav-toggle {
+        cursor: pointer;
+        margin-left: 1px;
+        min-width: 21px;
+
+        .toggle-nav-icon {
+            display: block;
+            position: relative;
+            top: 1px;
+
+            svg {
+                display: block;
+                width: 24px;
+                height: 24px;
+
+                &:last-child {
+                    display: none;
+                }
+
+            }
+
+        }
+
+        i {
+            display: block;
+            font-size: 24px;
+        }
+
+        .text {
+            display: none;
+        }
+
+    }
+
+    .main-menu-wrap {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 700;
+        padding: 118px 0 18px;
+        box-sizing: border-box;
+        color: @smartblinds-color-white;
+        background: @primary__color;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        a {
+            color: @smartblinds-color-white;
+            text-decoration: none;
+        }
+
+    }
+
+    .main-menu-wrap-in {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        position: relative;
+        z-index: 20;
+    }
+
+    .navigation-background {
+        display: none;
+    }
+
+    .main-menu-container {
+        width: 100%;
+        max-width: @layout__max-width;
+        padding: 0 @layout-indent__width;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+
+    .navigation-right {
+        display: none;
+    }
+
+    nav.navigation {
+        max-width: none;
+        padding: 0;
+        margin: 0;
+        text-transform: uppercase;
+        font-size: 20px;
+        letter-spacing: .7px;
+
+        ul {
+            padding: 0;
+            margin: 0;
+
+            li {
+                margin: 0 0 10px;
+
+                &:not(.nav-back) {
+
+                    > a {
+                        .abs-link-border();
+                    }
+
+                }
+
+            }
+
+        }
+
+        .submenu {
+            font-size: 16px;
+
+            &:not(._show) {
+                display: none;
+            }
+
+            li {
+                margin-bottom: 16px;
+
+                &.nav-back {
+                    font-size: 20px;
+                    margin-bottom: 19px;
+                    text-transform: uppercase;
+
+                    a {
+                        .abs-link-border-span();
+                        cursor: pointer;
+
+                        &:hover {
+                            text-decoration: none;
+                            font-weight: 400;
+                        }
+
+                    }
+
+                    i {
+                        font-size: 22px;
+                        margin-right: 23px;
+                        position: relative;
+                        top: 2px;
+                    }
+
+                }
+
+            }
+
+        }
+
+        ._hide {
+            display: none !important;
+        }
+
+    }
+
+    html {
+
+        &:not(._main-menu-opened) {
+
+            .nav-toggle {
+
+                .fa-times {
+                    display: none;
+                }
+
+            }
+
+            .main-menu-wrap {
+                display: none;
+            }
+
+        }
+
+        &._has-fixed-header {
+
+            .main-menu-wrap {
+                padding-top: 78px;
+            }
+
+        }
+
+        &._main-menu-opened {
+            overflow: hidden !important;
+
+            body {
+                overflow: hidden !important;
+            }
+
+            .nav-toggle {
+
+                .toggle-nav-icon {
+                    display: none;
+                }
+
+                i {
+                    font-size: 32px;
+                }
+
+            }
+
+            .page-header {
+                border: 0;
+                background: none;
+
+                &._fixed {
+                    box-shadow: none;
+                }
+
+                .nav-toggle,
+                .logo,
+                .block-search-toggle,
+                .sample-basket-link,
+                .minicart-wrapper .action.showcart {
+                    color: @smartblinds-color-white;
+                }
+
+                .sample-basket-link-wrap {
+                    display: none;
+                }
+
+            }
+
+        }
+
+    }
+
+    .main-menu-additional {
+        list-style: none;
+        padding: 32px 0 0;
+        margin: auto 0 0;
+        font-size: 16px;
+        letter-spacing: .7px;
+
+        li {
+            margin: 0 0 12px;
+            padding: 0;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+        }
+
+        a {
+            .abs-link-border-span();
+
+            &:hover {
+                text-decoration: none;
+            }
+
+        }
+
+        .sample-basket-link-menu {
+
+            .sample-basket-link-wrap {
+                .lib-clearfix();
+                margin: 0;
+            }
+
+            .sample-basket-link {
+                font-size: 16px;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                float: left;
+
+                .sample-basket-icon {
+                    display: none;
+                }
+
+                i {
+                    margin-right: 11px;
+
+                    &.fal {
+                        display: block;
+                    }
+
+                }
+
+                .text {
+                    display: block;
+                    margin-right: 6px;
+                }
+
+                .counter.qty {
+                    position: static;
+                    font-weight: 900;
+                }
+
+            }
+
+        }
+
+        .support-link,
+        .authorization-link-menu {
+            .lib-clearfix();
+
+            a {
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                float: left;
+            }
+
+            i {
+                margin-right: 11px;
+            }
+
+        }
+
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .nav-toggle {
+        margin: 0 auto 0 0;
+        display: none;
+
+        .toggle-nav-icon {
+            position: static;
+
+            svg {
+
+                &:first-child {
+                    display: none;
+                }
+
+                &:last-child {
+                    display: block;
+                }
+
+            }
+
+        }
+
+        i {
+            font-size: 26px;
+        }
+
+    }
+
+    .main-menu-wrap {
+        padding: 145px 0 32px;
+
+        &:before {
+            content: '';
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(45, 41, 38, .99);
+            z-index: 10;
+        }
+
+    }
+
+    .navigation-background {
+        display: block;
+        position: fixed;
+        z-index: 5;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        background-size: cover;
+        filter: blur(4px);
+    }
+
+    .navigation-image {
+        display: none;
+
+        &._show {
+            display: block;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+    }
+
+    .navigation-cols {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+    }
+
+    .navigation-left {
+        width: calc(~'41.4705% - 16px');
+    }
+
+    .navigation-right {
+        display: block;
+        width: calc(~'58.5295% - 16px');
+        padding-top: 7px;
+    }
+
+    nav.navigation {
+        font-size: 38px;
+        letter-spacing: 1.06px;
+
+        ul {
+
+            li {
+                margin-bottom: 15px;
+            }
+
+        }
+
+        .submenu {
+            font-size: 30px;
+
+            li {
+
+                &.nav-back {
+                    font-size: 38px;
+                    margin-bottom: 25px;
+
+                    i {
+                        font-size: 40px;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    html {
+
+        &._has-fixed-header {
+
+            .main-menu-wrap {
+                padding-top: 99px;
+            }
+
+        }
+
+        &._main-menu-opened {
+
+            .nav-toggle {
+
+                i {
+                    font-size: 32px;
+                }
+
+            }
+
+        }
+
+    }
+
+    .main-menu-additional {
+        font-size: 20px;
+        letter-spacing: .88px;
+        padding-bottom: 37px;
+
+        li {
+            margin-bottom: 13px;
+        }
+
+        .sample-basket-link-menu {
+
+            .sample-basket-link {
+                font-size: 20px;
+
+                i {
+                    margin-right: 12px;
+                }
+
+                .text {
+                    display: block;
+                    margin-right: 12px;
+                }
+
+            }
+
+        }
+
+        .support-link,
+        .authorization-link-menu {
+
+            i {
+                margin-right: 12px;
+            }
+
+        }
+
+    }
+
+}

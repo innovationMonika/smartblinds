@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_twofactorauth" translate="label" type="text" sortOrder="500" showInDefault="1"
+                 showInWebsite="0" showInStore="0">
+            <class>separator-top</class>
+            <label>2FA</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_TwoFactorAuth::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General</label>
+                <field canRestore="1" id="users_with_disabled_2fa" translate="label" type="multiselect" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Disable 2fa for users</label>
+                    <source_model>Smartblinds\TwoFactorAuth\Model\Source\User</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

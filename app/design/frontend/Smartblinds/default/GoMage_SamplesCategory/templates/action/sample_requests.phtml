@@ -1,0 +1,31 @@
+<?php
+/**
+ * @var $block \Magento\Framework\View\Element\Template
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div data-role="sample-request-link" data-bind="scope: 'basket-link'" class="sticky-action">
+    <button type="button" class="action sample-request secondary" data-bind="click: toggleModal">
+        <span><?= $escaper->escapeHtml(__('Request Samples')) ?></span>
+    </button>
+</div>
+<script type="text/x-magento-init">
+{
+    "[data-role=sample-request-link]": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "basket-link": {
+                    "component": "GoMage_Samples/js/view/basket/link",
+                    "selectors": {
+                        "modal": "[data-role=sample-modal]",
+                        "counter": "[data-role=sample-counter]"
+                    }
+                },
+                "sticky-link": {
+                    "component": "GoMage_SamplesCategory/js/action/stickyStatus"
+                }
+            }
+        }
+    }
+}
+</script>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="product_info_tabs">
+        <fieldset name="func_systeem">
+            <settings>
+                <collapsible>true</collapsible>
+                <opened>true</opened>
+                <label>Systeem</label>
+            </settings>
+            <dynamicRows name="func_systeem">
+                <settings>
+                    <componentType>dynamicRows</componentType>
+                    <addButtonLabel translate="true">Add</addButtonLabel>
+                    <dndConfig>
+                        <param name="enabled" xsi:type="boolean">false</param>
+                    </dndConfig>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">container</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                    <fieldset name="options">
+                        <settings>
+                            <opened>true</opened>
+                            <label />
+                        </settings>
+                        <field name="block" sortOrder="100" formElement="select">
+                            <settings>
+                                <validation>
+                                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                                </validation>
+                                <dataType>text</dataType>
+                                <label translate="true">CMS Block</label>
+                                <dataScope>block</dataScope>
+                            </settings>
+                            <formElements>
+                                <select>
+                                    <settings>
+                                        <options class="GoMage\Addons\Model\Category\Attribute\Source\Page"/>
+                                    </settings>
+                                </select>
+                            </formElements>
+                        </field>
+                    </fieldset>
+                    <actionDelete name="actionDelete" component="Magento_Ui/js/dynamic-rows/action-delete"
+                                  template="ui/dynamic-rows/cells/action-delete">
+                        <settings>
+                            <dataType>text</dataType>
+                            <label>Action</label>
+                            <componentType>actionDelete</componentType>
+                        </settings>
+                    </actionDelete>
+                </container>
+            </dynamicRows>
+        </fieldset>
+        <fieldset name="func_stof">
+            <settings>
+                <collapsible>true</collapsible>
+                <opened>true</opened>
+                <label>Stof</label>
+            </settings>
+            <dynamicRows name="func_stof">
+                <settings>
+                    <componentType>dynamicRows</componentType>
+                    <addButtonLabel translate="true">Add</addButtonLabel>
+                    <dndConfig>
+                        <param name="enabled" xsi:type="boolean">false</param>
+                    </dndConfig>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">container</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                    <fieldset name="options">
+                        <settings>
+                            <opened>true</opened>
+                            <label />
+                        </settings>
+                        <field name="block" sortOrder="100" formElement="select">
+                            <settings>
+                                <validation>
+                                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                                </validation>
+                                <dataType>text</dataType>
+                                <label translate="true">CMS Block</label>
+                                <dataScope>block</dataScope>
+                            </settings>
+                            <formElements>
+                                <select>
+                                    <settings>
+                                        <options class="GoMage\Addons\Model\Category\Attribute\Source\Page"/>
+                                    </settings>
+                                </select>
+                            </formElements>
+                        </field>
+                    </fieldset>
+                    <actionDelete name="actionDelete" component="Magento_Ui/js/dynamic-rows/action-delete"
+                                  template="ui/dynamic-rows/cells/action-delete">
+                        <settings>
+                            <dataType>text</dataType>
+                            <label>Action</label>
+                            <componentType>actionDelete</componentType>
+                        </settings>
+                    </actionDelete>
+                </container>
+            </dynamicRows>
+        </fieldset>
+        <fieldset name="func_garantie">
+            <settings>
+                <collapsible>true</collapsible>
+                <opened>true</opened>
+                <label>Garantie</label>
+            </settings>
+            <dynamicRows name="func_garantie">
+                <settings>
+                    <componentType>dynamicRows</componentType>
+                    <addButtonLabel translate="true">Add</addButtonLabel>
+                    <dndConfig>
+                        <param name="enabled" xsi:type="boolean">false</param>
+                    </dndConfig>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">container</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                    <fieldset name="options">
+                        <settings>
+                            <opened>true</opened>
+                            <label />
+                        </settings>
+                        <field name="block" sortOrder="100" formElement="select">
+                            <settings>
+                                <validation>
+                                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                                </validation>
+                                <dataType>text</dataType>
+                                <label translate="true">CMS Block</label>
+                                <dataScope>block</dataScope>
+                            </settings>
+                            <formElements>
+                                <select>
+                                    <settings>
+                                        <options class="GoMage\Addons\Model\Category\Attribute\Source\Page"/>
+                                    </settings>
+                                </select>
+                            </formElements>
+                        </field>
+                    </fieldset>
+                    <actionDelete name="actionDelete" component="Magento_Ui/js/dynamic-rows/action-delete"
+                                  template="ui/dynamic-rows/cells/action-delete">
+                        <settings>
+                            <dataType>text</dataType>
+                            <label>Action</label>
+                            <componentType>actionDelete</componentType>
+                        </settings>
+                    </actionDelete>
+                </container>
+            </dynamicRows>
+        </fieldset>
+    </fieldset>
+</form>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_checkout" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Checkout</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_Checkout::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="order_type_choosing_emails" type="textarea" translate="label" sortOrder="1000"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Order Type Customer Emails</label>
+                    <comment>For these emails order type field will be available on the checkout page.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

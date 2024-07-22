@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smartblinds_options>
+            <general>
+                <system_type_tdbu>310</system_type_tdbu>
+                <bediening_option_code>motor</bediening_option_code>
+            </general>
+            <messages>
+                <measurement>Wrongly measured? Thanks to our measurement guarantee you will receive a new product for free</measurement>
+            </messages>
+        </smartblinds_options>
+    </default>
+</config>

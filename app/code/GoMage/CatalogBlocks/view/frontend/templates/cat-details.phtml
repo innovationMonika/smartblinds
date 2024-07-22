@@ -1,0 +1,19 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+?>
+<div class="cat-details-container">
+    <div class="sb-collapsible-block" data-mage-init='{
+    "accordion":{
+        "active": false,
+        "collapsible": true,
+        "openedState": "active",
+        "multipleCollapsible": true,
+        "animate":{
+            "duration": 400,
+            "easing": "linear",
+            "height": "toggle"
+        }
+    }}'>
+        <?= $block->getChildHtml() ?>
+    </div>
+</div>

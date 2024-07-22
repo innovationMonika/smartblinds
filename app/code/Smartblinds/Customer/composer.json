@@ -1,0 +1,30 @@
+{
+    "name": "smartblinds/module-customer",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.4.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Smartblinds\\Customer\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "GoMage",
+            "email": "support@gomage.com",
+            "homepage": "https://www.gomage.com/"
+        }
+    ]
+}

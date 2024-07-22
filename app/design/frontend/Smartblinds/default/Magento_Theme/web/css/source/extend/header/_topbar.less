@@ -1,0 +1,182 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .header-topbar {
+        text-align: center;
+        letter-spacing: .4px;
+        font-size: 12px;
+        line-height: 24px;
+        white-space: nowrap;
+        overflow: hidden;
+
+        i[class^='fa'] {
+            font-size: 21px;
+            margin: 0 8px 0 0;
+            vertical-align: -3px;
+            display: none;
+        }
+
+    }
+
+    .page-header {
+
+        .panel.header {
+
+            .header-topbar {
+
+                a {
+                    text-decoration: underline;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+
+                }
+
+            }
+
+        }
+
+        .header.links,
+        .header-topbar-list {
+            .trustpilot {
+                display: flex;
+                align-items: center;
+
+                .current-rating-trustpilot {
+                    color: @color-white;
+                    font-size: 14px;
+                    line-height: 1.7142;
+                    font-weight: bold;
+                }
+
+                .all-trustpilot-rating {
+                    color: #9E9E9E;
+                    font-size: 13px;
+                }
+
+                .trustpilot-icon {
+                    margin-left: 10px;
+
+                    svg {
+                        width: 80px;
+
+                        .cls-2 {
+                            fill: @color-white;
+                        }
+                    }
+                }
+            }
+        }
+
+        .header-topbar-list {
+            .trustpilot {
+                justify-content: center;
+                line-height: 1;
+            }
+        }
+
+    }
+
+    .header-topbar-list {
+        .lib-vendor-prefix-display(flex);
+
+        .header-topbar-item {
+            &:not(.trustpilot) {
+                padding-left: 25px;
+                position: relative;
+                margin-left: 5px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &::before {
+                    content: "\f00c";
+                    font-family: 'Font Awesome 5 Pro';
+                    font-weight: 400;
+                    -moz-osx-font-smoothing: grayscale;
+                    -webkit-font-smoothing: antialiased;
+                    display: inline-block;
+                    font-style: normal;
+                    font-variant: normal;
+                    text-rendering: auto;
+                    line-height: 1;
+                    font-size: 18px;
+                    letter-spacing: 0.69px;
+                    color: @color-white;
+                    position: absolute;
+                    left: 0;
+                    top: 2px;
+                    text-indent: 0;
+                }
+            }
+
+            &.trustpilot {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .header-topbar-list {
+        .header-topbar-item {
+            display: none;
+            &.trustpilot {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .header-topbar-list {
+        .header-topbar-item {
+            display: none;
+            &.trustpilot {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .header-topbar {
+        margin: 0;
+        font-size: 14px;
+        letter-spacing: .47px;
+
+        i[class^='fa'] {
+            display: inline-block;
+        }
+
+    }
+
+    .header-topbar-list {
+        .lib-css(justify-content, flex-start, 1);
+        gap: 30px;
+        max-width: 750px;
+
+        .header-topbar-item {
+            display: block;
+
+            &.trustpilot {
+                display: none;
+            }
+        }
+    }
+
+}

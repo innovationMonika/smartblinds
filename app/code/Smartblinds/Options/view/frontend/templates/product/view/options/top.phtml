@@ -1,0 +1,9 @@
+<?php
+/* @var $block \Magento\Catalog\Block\Product\View\Options */
+$options = $block->decorateArray($block->getOptions())
+?>
+<?php foreach ($options as $option) :?>
+    <?php if ($option->getData('move_to_top')): ?>
+        <?= $block->getOptionHtml($option) ?>
+    <?php endif; ?>
+<?php endforeach; ?>

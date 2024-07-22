@@ -1,0 +1,91 @@
+//
+//  Variables
+//  ---------------------------------------------
+@sb-collapsible-block__border: 1px solid #d9d8d8;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .sb-service-detail {
+        margin-top: 40px;
+    }
+
+    .sb-collapsible-block {
+
+    }
+
+    .sb-collapsible-block-item-title {
+        position: relative;
+        padding: 25px 25px 25px 15px;
+        margin: 0;
+        font-size: 18px;
+
+        &::after {
+            content: "\f00d";
+            position: absolute;
+            right: 10px;
+            top: 20px;
+            .lib-rotate(45deg);
+            .lib-css(transition, all 0.3s, 1);
+            font-family: 'Font Awesome 5 Pro';
+            -moz-osx-font-smoothing: grayscale;
+            -webkit-font-smoothing: antialiased;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+            font-weight: 300;
+        }
+    }
+
+    .sb-collapsible-block-item-content {
+        padding: 0 25px 25px 15px;
+    }
+
+    .sb-collapsible-block-item {
+
+        .active {
+            .sb-collapsible-block-item-title {
+                &::after {
+                    .lib-rotate(0);
+                }
+            }
+        }
+
+        &:first-child {
+            .lib-css(border-top, @sb-collapsible-block__border);
+        }
+
+        .lib-css(border-bottom, @sb-collapsible-block__border);
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .sb-service-detail {
+        max-width: 65%;
+        .cms-service-meten-en-monteren & {
+            max-width: unset;
+        }
+    }
+
+    .sb-service-detail-content {
+        max-width: 80%;
+        .cms-service-meten-en-monteren & {
+            max-width: unset;
+        }
+    }
+}

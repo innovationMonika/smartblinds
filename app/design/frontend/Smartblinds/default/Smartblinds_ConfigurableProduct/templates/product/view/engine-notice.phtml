@@ -1,0 +1,67 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+
+/** @var \Smartblinds\Cms\ViewModel\Cms $cmsViewModel */
+$cmsViewModel = $block->getData('cms_view_model');
+?>
+<?php if ($productBlockData = $cmsViewModel->getProductBlockData()): ?>
+    <?php $blockTitle = $cmsViewModel->getBlockTitle($productBlockData["blockId"]); ?>
+    <div class="engine-notice">
+        <?php if ($productBlockData["label"]): ?>
+        <span>
+            <?= $escaper->escapeHtml(__($productBlockData["label"])) ?>
+        </span>
+        <?php endif; ?>
+        <span class="engine-notice-info-icon" data-option-modal="engine-notice-info-block">
+            <span class="fas fa-info-circle"></span>
+        </span>
+    </div>
+
+    <div style="display:none;" data-role="engine-notice-info-block">
+        <?php
+        echo $block->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId($productBlockData["blockId"])
+            ->toHtml();
+        ?>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],function($, modal) {
+            var option = 'engine-notice-info-block',
+                optionModalSelector = '<?= $block->escapeJs("[data-role=engine-notice-info-block") ?>',
+                optionModalButtonSelector = '<?= $block->escapeJs("[data-option-modal=engine-notice-info-block]") ?>';
+
+            var options = {
+                type: 'custom',
+                responsive: true,
+                title: '<?= $block->escapeJs($blockTitle) ?>',
+                modalClass: 'pdp-information-popup',
+                buttons: [{
+                    text: $.mage.__('Ok'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            if (!window.hasOwnProperty('optionModals')) {
+                window.$optionModals = {};
+            }
+
+            $(optionModalButtonSelector).click(function() {
+                if (!window.$optionModals.hasOwnProperty(option)) {
+                    var $optionModal = $(optionModalSelector);
+                    modal(options, $optionModal);
+                    window.$optionModals[option] = $optionModal;
+                }
+                window.$optionModals[option].modal('openModal');
+                // fix for lazyload to show images after popup shown
+                window.dispatchEvent(new Event('scroll'));
+            });
+        });
+    </script>
+<?php endif; ?>

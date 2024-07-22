@@ -1,0 +1,15 @@
+<?php
+/**  @var $block \Magento\Checkout\Block\Cart\Grid */
+?>
+<?php if ($block->getContinueShoppingUrl()): ?>
+    <div class="cart-continue-shopping-block">
+        <div class="cart-continue-shopping-block-inner">
+            <a class="action continue"
+               href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+               title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+                <i class="far fa-long-arrow-alt-left"></i> <span><?= $block->escapeHtml(__('Continue Shopping')) ?></span>
+            </a>
+        </div>
+    </div>
+<?php endif; ?>
+

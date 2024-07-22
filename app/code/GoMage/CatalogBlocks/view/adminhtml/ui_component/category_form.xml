@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="product_info_tabs" sortOrder="11">
+        <settings>
+            <collapsible>true</collapsible>
+            <label translate="true">Info tabs</label>
+        </settings>
+        <field name="meten" sortOrder="60" formElement="select">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">METEN</label>
+            </settings>
+        </field>
+        <field name="monteren" sortOrder="70" formElement="select">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">MONTEREN</label>
+            </settings>
+        </field>
+        <field name="vragen" sortOrder="80" formElement="select">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">VEELGESTELDE VRAGEN</label>
+            </settings>
+        </field>
+    </fieldset>
+    <fieldset name="display_settings">
+        <field name="category_sidebar_cms_block" sortOrder="70" formElement="select">
+            <settings>
+                <dataType>string</dataType>
+                <label translate="true">Sidebar CMS Block</label>
+            </settings>
+        </field>
+    </fieldset>
+</form>

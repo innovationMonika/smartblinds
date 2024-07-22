@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gomage_paid_customer_group>
+            <general>
+                <amount>1100</amount>
+            </general>
+        </gomage_paid_customer_group>
+    </default>
+</config>

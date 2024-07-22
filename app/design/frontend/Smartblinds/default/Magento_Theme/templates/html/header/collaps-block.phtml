@@ -1,0 +1,30 @@
+<div class="header-mobile-collapse-block">
+    <div data-mage-init='{
+    "collapsible":{
+        "collapsible": true,
+        "openedState": "active"
+    }}'>
+        <?= $block->getChildHtml('header.mobile.collapse.text.block') ?>
+    </div>
+</div>
+<script>
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            $(document).mouseup(function(e) {
+                var container = $(".header-mobile-collapse-block");
+                if (!container.is(e.target) && container.has(e.target).length === 0 && $('body').hasClass('header-collapse-opened')) {
+                    $('.header-text-block-title-wrapper').click();
+                }
+            });
+
+            $('.header-text-block-title-wrapper').on('click', function (e) {
+                e.preventDefault();
+                $('body').toggleClass('header-collapse-opened');
+            });
+            $('.close-button').on('click', function (e) {
+                e.preventDefault();
+                $('.header-text-block-title-wrapper').click();
+            });
+        });
+    });
+</script>

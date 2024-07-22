@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<orderRegistrationResponse status="accepted" requestId="780c8f15-9331-49b8-bb0a-04f16b82f3c2">
+    <rejectionReason/>
+    <details>
+        <order id="1" type="REGULAR" reference="" referencedOrderId="2" registrationId="4">
+            <deliveryAddress>
+                <countryCode>NL</countryCode>
+                <firstName>Dennis</firstName>
+                <lastName>de Jong</lastName>
+                <email>dennisdejong@gmail.com</email>
+                <company>De Jong Consultancy</company>
+                <street>Acaciastraat 35</street>
+                <postcode>2023PG</postcode>
+                <city>Haarlem</city>
+                <telephone>0688432098</telephone>
+            </deliveryAddress>
+            <items>
+                <item id="1.1" quantity="1" productCategory="roller_blinds" reference="Kitchen window" registrationId="5" model="RC-SA10">
+                    <option name="system_size" value="small"/>
+                    <option name="system_type" value="open"/>
+                    <option name="control_type" value="chain"/>
+                    <option name="width" value="1024"/>
+                    <option name="height" value="1764"/>
+                    <option name="mounting_height" value="2250"/>
+                    <option name="software" value="RF-BERLIN-0100"/>
+                    <option name="mount" value="inside"/>
+                    <option name="system_color" value="white"/>
+                    <option name="operating_side" value="left"/>
+                    <option name="accessories" value="usbc.hon"/>
+                    <option name="motor" value="coulisse-cm-03"/>
+                </item>
+            </items>
+        </order>
+    </details>
+</orderRegistrationResponse>

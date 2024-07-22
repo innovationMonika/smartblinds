@@ -1,0 +1,123 @@
+//
+//  Smartblinds theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+//
+//  Common text
+//  _____________________________________________
+
+@primary__color: #2d2926;
+
+@line-height__base: 1.5;
+
+//
+//  Headings
+//  _____________________________________________
+
+@heading__font-family__base: @font-family__heading;
+@heading__font-weight__base: 400;
+
+@h1__font-size: 2.4rem;
+@h1__line-height: 1.3333;
+
+@h2__font-size: 2.1rem;
+@h2__line-height: 1.238;
+
+@h3__font-size: 1.6rem;
+@h3__line-height: 1.3333;
+
+//
+//  Links
+//  _____________________________________________
+
+@link__color: @primary__color;
+@link__text-decoration: underline;
+@link__visited__color: @link__color;
+@link__visited__text-decoration: @link__text-decoration;
+@link__hover__color: @link__color;
+@link__hover__text-decoration: none;
+@link__active__color: @link__color;
+@link__active__text-decoration: none;
+
+//
+//  Layout
+//  _____________________________________________
+
+@layout__max-width: 1400px;
+@layout-indent__width: 20px;
+@layout__width-xs-indent: @layout-indent__width;
+@layout-column__sidebar-width: 3;
+
+//
+//  Buttons
+//  _____________________________________________
+
+@button__font-family: @font-family__heading;
+@button__font-size: 1.4rem;
+@button__font-weight: 400;
+@button__line-height: 17px;
+@button__padding: 12px;
+@button__border-radius: 0;
+@button__shadow: false;
+@button__disabled__opacity: false;
+
+//
+//  Button Default
+//  ---------------------------------------------
+
+@button__color: @primary__color;
+@button__background: @color-white;
+@button__border: 1px solid @smartblinds-color-gray;
+
+@button__hover__color: @button__color;
+@button__hover__background: @smartblinds-color-white;
+@button__hover__border: @button__border;
+
+@button__active__color: @button__hover__color;
+@button__active__background: @button__hover__background;
+@button__active__border: @button__hover__border;
+
+//
+//  Button Primary
+//  ---------------------------------------------
+
+@button-primary__background: @primary__color;
+@button-primary__border: 1px solid @primary__color;
+@button-primary__color: @smartblinds-color-white;
+
+@button-primary__hover__background: darken(@primary__color, 10%);
+@button-primary__hover__border: 1px solid @primary__color;
+@button-primary__hover__color: @smartblinds-color-white;
+
+@button-primary__active__background: @button-primary__hover__background;
+@button-primary__active__border: @button-primary__hover__border;
+@button-primary__active__color: @button-primary__hover__color;
+
+//
+//  Inputs
+//  _____________________________________________
+
+@focus__box-shadow: false;
+
+@form-element-input__color: black;
+@form-element-input__border: 1px solid @smartblinds-color-dark2;
+@form-element-input-placeholder__color: #aba9a8;
+
+//
+//  Pages
+//  _____________________________________________
+
+@pager__font-size: 12px;
+@pager__font-weight: 700;
+@pager__line-height: 34px;
+@pager-item__margin: 0 11px 0 0;
+@pager-item__padding: 0 4px;
+@pager-current__background: @smartblinds-color-white;
+@pager__hover__background: @smartblinds-color-white;
+@pager-icon__use: false;
+@pager-action__color: @primary__color;
+@pager-action__hover__background: @smartblinds-color-white;

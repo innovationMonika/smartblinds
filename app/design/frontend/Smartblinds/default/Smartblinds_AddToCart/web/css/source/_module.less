@@ -1,0 +1,245 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .add-to-cart__content-inner {
+        .lib-vendor-prefix-display(flex);
+        .lib-vendor-box-align(center);
+    }
+
+    .add-to-cart__content-image {
+        font-size: 0;
+    }
+
+    .add-to-cart__content {
+        padding-bottom: 10px;
+
+        &-text {
+            position: relative;
+
+            &::before {
+                position: absolute;
+                content: "\f00c";
+                font-family: 'Font Awesome 5 Pro';
+                font-weight: 400;
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                display: inline-block;
+                font-style: normal;
+                font-variant: normal;
+                text-rendering: auto;
+                line-height: 1;
+                letter-spacing: 0;
+                color: @color-black;
+                text-indent: 0;
+            }
+        }
+
+        &-title {
+            font-weight: bold;
+        }
+
+        &-product-info {
+            font-weight: 600;
+        }
+
+        &-block {
+            font-weight: 500;
+            color: @smartblinds-color-green;
+        }
+    }
+
+    .modal-popup {
+        &.add-to-cart-popup {
+            .modal-footer {
+                padding: 10px 20px;
+                border-top: 1px solid rgba(29, 41, 38, 0.2);
+                .lib-vendor-prefix-display(flex);
+
+                .continue-shopping {
+                    .lib-button-reset();
+                    .lib-button-icon(
+                        @icon-prev,
+                        @_icon-font-size: 32px,
+                        @_icon-font-line-height: 22px,
+                        @_icon-font-position: before
+                    );
+                }
+
+                .to-shopping-cart {
+                    .lib-button(
+                        @_button-color: @color-white,
+                        @_button-background: @smartblinds-color-green,
+                        @_button-border: 1px solid @smartblinds-color-green,
+                        @_button-color-hover: @color-white,
+                        @_button-background-hover: @smartblinds-color-green,
+                        @_button-border-hover:  1px solid @smartblinds-color-green,
+                        @_button-color-active: @color-white,
+                        @_button-background-active: @smartblinds-color-green,
+                        @_button-border-active:  1px solid @smartblinds-color-green
+                    );
+                    .lib-button-icon(
+                        @icon-next,
+                        @_icon-font-size: 32px,
+                        @_icon-font-line-height: 16px,
+                        @_icon-font-position: after
+                    );
+                }
+            }
+
+            .modal-header {
+                padding: 10px;
+            }
+
+            .modal-content {
+                padding: 0 20px;
+            }
+
+            &._show {
+                .modal-inner-wrap {
+                    -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    top: 50%;
+                    margin: auto;
+                }
+            }
+        }
+    }
+
+    .catalog-product-view {
+        .messages .message-success.success:not(.samples-add) {
+            display: none;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .add-to-cart-popup {
+        .modal-inner-wrap {
+            max-width: 600px;
+            width: 95%;
+        }
+    }
+
+    .add-to-cart__content {
+        &-text {
+            padding-left: 20px;
+
+            &::before {
+                font-size: 18px;
+                left: -5px;
+                top: 3px;
+            }
+        }
+
+        &-title {
+            font-size: 16px;
+        }
+
+        &-product-info {
+            font-size: 13px;
+        }
+
+        &-block {
+            font-size: 12px;
+        }
+    }
+
+    .add-to-cart__content-image {
+        margin-right: 20px;
+        max-width: 100px;
+    }
+
+    .modal-popup {
+        &.add-to-cart-popup {
+            .modal-footer {
+                .lib-vendor-prefix-flex-direction(column);
+
+                .continue-shopping {
+                    margin-bottom: 5px;
+                    padding: 7px;
+                }
+
+                .to-shopping-cart {
+
+                }
+            }
+
+            .modal-header {
+                .action-close {
+                    padding: 0;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .add-to-cart-popup {
+        .modal-inner-wrap {
+            max-width: 700px;
+        }
+    }
+
+    .add-to-cart__content {
+        &-text {
+            padding-left: 30px;
+
+            &::before {
+                font-size: 24px;
+                left: -5px;
+                top: 1px;
+            }
+        }
+
+        &-title {
+            font-size: 20px;
+        }
+
+        &-product-info {
+            font-size: 15px;
+        }
+
+        &-block {
+            margin-top: 5px;
+        }
+    }
+
+    .add-to-cart__content-image {
+        margin-right: 30px;
+        max-width: 120px;
+    }
+
+    .modal-popup {
+        &.add-to-cart-popup {
+            .modal-footer {
+                .lib-css(justify-content, space-between, 1);
+
+                .continue-shopping {
+                    margin-left: -12px;
+                }
+
+                .to-shopping-cart {
+                    padding-right: 0;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}

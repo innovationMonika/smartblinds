@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © 2018 Mageside. All rights reserved.
+ * See MS-LICENSE.txt for license details.
+ */
+?>
+<?php
+/** @var  $block  \Mageside\PageHierarchy\Block\PageHierarchy **/
+$menu = $block->printPageHierarchy();
+if (!empty($menu)) :?>
+    <div class="block-title">
+        <strong role="heading" aria-level="2"><?php echo __('Page Hierarchy') ?></strong>
+    </div>
+    <div class="block-content">
+        <nav>
+            <?php echo /* @noEscape */ $menu ?>
+        </nav>
+    </div>
+<?php else :?>
+    <?php echo /* @noEscape */''; ?>
+<?php endif; ?>
+

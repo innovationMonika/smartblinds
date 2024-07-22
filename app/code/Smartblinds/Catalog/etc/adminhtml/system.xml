@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_catalog" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Catalog</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_Catalog::config</resource>
+            <group id="relative_data" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Relative Data</label>
+                <field id="config" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Config</label>
+                    <frontend_model>Smartblinds\Catalog\Block\System\Config\Form\Field\RelativeDataConfig</frontend_model>
+                    <backend_model>Smartblinds\Catalog\Model\Backend\Serialized\Relative</backend_model>
+                </field>
+            </group>
+            <group id="color_group" translate="label" type="text" sortOrder="110"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Color Group</label>
+                <field id="config" translate="label" type="select"
+                       sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Config</label>
+                    <frontend_model>Smartblinds\Catalog\Block\System\Config\Form\Field\ColorColorGroup</frontend_model>
+                    <backend_model>Smartblinds\Catalog\Model\Backend\Serialized\Relative</backend_model>
+                </field>
+            </group>
+            <group id="texts" translate="label" type="text" sortOrder="120"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Texts</label>
+                <field id="add_to_cart_category_url_keys" translate="label comment" type="textarea" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Add To Cart Category URL keys</label>
+                    <comment><![CDATA[Category URL keys for which should be displayed the 'Add to cart' text instead of 'Assemble']]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

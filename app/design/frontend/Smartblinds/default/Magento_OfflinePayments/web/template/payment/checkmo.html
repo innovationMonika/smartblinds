@@ -1,0 +1,75 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+    </div>
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <!-- ko if: getMailingAddress() || getPayableTo() -->
+        <dl class="items check payable">
+            <!-- ko if: getPayableTo() -->
+            <dt class="title"><!-- ko i18n: 'Make Check payable to:' --><!-- /ko --></dt>
+            <dd class="content"><!-- ko text: getPayableTo() --><!-- /ko --></dd>
+            <!-- /ko -->
+            <!-- ko if: getMailingAddress() -->
+            <dt class="title"><!-- ko i18n: 'Send Check to:' --><!-- /ko --></dt>
+            <dd class="content">
+                <address class="checkmo mailing address" data-bind="html: getMailingAddress()"></address>
+            </dd>
+            <!-- /ko -->
+        </dl>
+        <!-- /ko -->
+        <div class="moved-block">
+            <div class="checkout-agreements-block">
+                <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+            <div class="custom-agreements">
+                <span data-bind="i18n:'By clicking on ’Pay and finalize’ I agree to the '"></span><a data-bind="attr: { href: BASE_URL + 'algemene-voorwaarden/' }" target="_blank"><!-- ko i18n: 'Terms and Conditions'--><!-- /ko --></a><span data-bind="i18n:' and I confirm that I have checked my order and details.'"> </span>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button class="action primary checkout"
+                            type="submit"
+                            data-bind="
+                            click: placeOrder,
+                            attr: {title: $t('Place Order')},
+                            css: {disabled: !isPlaceOrderActionAllowed()},
+                            enable: (getCode() == isChecked())
+                            "
+                            disabled>
+                        <span data-bind="i18n: 'Place Order'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    define([
+   'jquery',
+   'mage/url'
+], function ($,url) {
+
+  var linkUrl = url.build('namespace_module/regions/index');
+  console.log(linkUrl);
+});
+</script>

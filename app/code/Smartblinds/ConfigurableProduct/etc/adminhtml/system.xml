@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_configurable_product" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Configurable Product</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_ConfigurableProduct::config</resource>
+            <group id="configurator" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="title" type="text" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+                </field>
+                <field id="description" type="text" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Description</label>
+                </field>
+                <field id="tips" type="textarea" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Tips</label>
+                </field>
+                <field id="additional_images" type="textarea" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Additional Images</label>
+                </field>
+            </group>
+            <group id="messages" translate="label" type="text" sortOrder="200"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Messages</label>
+                <field id="discount" type="text" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Discount</label>
+                </field>
+                <field id="delivery" type="text" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Delivery</label>
+                </field>
+                <field id="measurement" type="text" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Measurement</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

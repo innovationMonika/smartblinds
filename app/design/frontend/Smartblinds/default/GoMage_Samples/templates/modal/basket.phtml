@@ -1,0 +1,329 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+
+/** @var \GoMage\Samples\ViewModel\Claim $viewModel */
+$viewModel = $block->getData('view_model');
+?>
+
+<div class="samples-modal-wrapper" data-role="sample-modal" style="display: none">
+    <div class="modal-body-content">
+        <div class="basket-items" data-bind="scope: 'basket-items'">
+            <!-- ko if: !items().length && !successMessage() -->
+            <div class="no-sample-message">
+                <?= $block->getChildHtml('empty.sample.basket.message.text') ?>
+            </div>
+            <div class="sample-basket-empty-message">
+                <?= $block->getChildHtml('empty.sample.basket.message') ?>
+            </div>
+            <!-- /ko -->
+            <!-- ko if: items().length && !successMessage() -->
+            <div class="sample-basket-empty-message">
+                <?= $block->getChildHtml('sample.basket.message') ?>
+            </div>
+            <!-- /ko -->
+            <div class="samples-list-wrapper">
+                <!-- ko if: items().length -->
+                <div class="product-samples-list">
+                    <div data-bind="foreach: itemGroups">
+                        <div class="product-samples-wrapper">
+                            <!--<div class="system-category" data-bind="text: label"></div>-->
+                            <!-- ko if: groups.length -->
+                                <div data-bind="foreach: groups">
+                                    <!-- <div class="material-type" data-bind="i18n: label"></div> -->
+                                     <div class="sample-list-item" data-bind="foreach: positions">
+                                         <div class="product-wrapper">
+                                             <a class="image-wrapper" data-bind="attr: {href: url}">
+                                                 <img width="55" height="55" data-bind="attr: {src: image}"/>
+                                             </a>
+                                             <div class="product-details">
+                                                 <div class="g-label"><?= __('Free') ?></div>
+                                                 <a class="product-name" data-bind="attr: {href: url}">
+                                                     <span data-bind="text: name"></span>
+                                                 </a>
+                                                 <a class="sample-list-item-action"
+                                                    data-bind="click: $parents[2].removeItem.bind(id), i18n: 'Delete'"></a>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <!-- /ko -->
+                            <!-- ko if: !groups.length -->
+                            <div class="sample-list-item" data-bind="foreach: positions">
+                                <div class="product-wrapper">
+                                    <a class="image-wrapper" data-bind="attr: {href: url}">
+                                        <img width="55" height="55" data-bind="attr: {src: image}"/>
+                                    </a>
+                                    <div class="product-details">
+                                        <div class="g-label"><?= __('Free') ?></div>
+                                        <a class="product-name" data-bind="attr: {href: url}">
+                                            <span data-bind="text: name"></span>
+                                        </a>
+                                        <a class="sample-list-item-action"
+                                           data-bind="click: $parents[1].removeItem.bind(id), i18n: 'Delete'"></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+        <div class="basket-form" data-bind="scope: 'basket-form'">
+            <div data-bind="afterRender: onRender">
+                <div data-bind="style: {'display': !items().length ? 'none' : 'initial'}">
+                    <p class="form-title"><?= __('Complete application') ?></p>
+                    <form id="sampleFormId" class="sample-form" data-role="sample-form" data-mage-init='{"validation":{}}'>
+                        <div class="sample-form-group">
+                            <!--<h3><?= __('Delivery address') ?></h3>-->
+                            <div class="control">
+                                <?php $firstname = __('Firstname') ?>
+                                <label for="firstname"><?= $firstname ?>*</label>
+                                <div>
+                                    <input id="firstname" name="firstname" type="text" required
+                                           placeholder=""
+                                           data-bind="value: formData.firstname" />
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <?php $lastname = __('Lastname') ?>
+                                <label for="lastname"><?= $lastname ?>*</label>
+                                <div>
+                                    <input id="lastname" name="lastname" type="text" required
+                                           placeholder=""
+                                           data-bind="value: formData.lastname" />
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <?php $email = __('Email') ?>
+                                <label for="email"><?= $email ?>*</label>
+                                <div>
+                                    <input id="email" name="email" type="email" class="validate-email" required
+                                           placeholder=""
+                                           data-bind="value: formData.email" />
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <label for="country_id"><?= __('Country')  ?></label>
+                                <select id="country_id" name="country_id" data-bind="
+                            options: options.countries,
+                            optionsText: 'label',
+                            optionsValue: 'value',
+                            value: country">
+                                </select>
+                            </div>
+                            <div class="sample-form-group-line">
+                                <div class="control">
+                                    <?php $postcode = __('Postcode') ?>
+                                    <label for="postcode"><?= $postcode ?>*</label>
+                                    <div>
+                                        <input id="postcode" name="postcode" type="text" required
+                                               placeholder=""
+                                               data-bind="value: formData.postcode" />
+                                        <span class="icon"></span>
+                                    </div>
+                                </div>
+                                <div class="control">
+                                    <?php $house = __('House') ?>
+                                    <label for="house"><?= $house ?>*</label>
+                                    <div>
+                                        <input id="house" name="house" type="text" required
+                                               placeholder=""
+                                               data-bind="value: formData.house"/>
+                                        <span class="icon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="control">
+                                <?php $apartment = __('Apartment') ?>
+                                <input id="apartment" name="apartment" type="text"
+                                       placeholder="<?= $apartment ?>"
+                                       data-bind="value: formData.apartment" />
+                            </div>-->
+                            <div class="control">
+                                <?php $apartment = __('Street') ?>
+                                <label for="street"><?= $apartment ?>*</label>
+                                <div>
+                                    <input id="street" name="street" type="text" required
+                                           placeholder=""
+                                           data-bind="value: formData.street" />
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <?php $city = __('City') ?>
+                                <label for="city"><?= $city ?>*</label>
+                                <div>
+                                    <input id="city" name="city" type="text" required
+                                           placeholder=""
+                                           data-bind="value: formData.city" />
+                                    <span class="icon"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sample-form-group">
+                            <!--<h3><?= __('Personal data') ?></h3>-->
+                            <?php /*
+                            <div class="control radio-select">
+                                <?php $options = $viewModel->getPrefixOptions() ?>
+                                <?php foreach ($options as $option): ?>
+                                    <div class="radio-wrapper">
+                                        <input name="prefix" type="radio"
+                                               data-bind="
+                                   checkedValue: '<?= $block->escapeHtml($option) ?>',
+                                   checked: prefix"
+                                        />
+                                        <span><?= $block->escapeHtml($option) ?></span>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            */ ?>
+
+                            <!--<div class="control">
+                                <?php $middlename = __('Middlename') . ' (' . __('optional') . ')' ?>
+                                <input id="middlename" name="middlename" type="text"
+                                       placeholder="<?= $middlename ?>"
+                                       data-bind="value: formData.middlename" />
+                            </div>-->
+
+
+                            <div class="control">
+                                <?php $telephone = __('Telephone'); ?>
+                                <label for="telephone"><?= $telephone ?></label>
+                                <div>
+                                    <input id="telephone" name="telephone" type="number"
+                                           placeholder=""
+                                           data-bind="value: formData.telephone"
+                                           inputmode="numeric" />
+                                </div>
+                            </div>
+                            <?= $block->getChildHtml('sample.basket.modal.additional.fields') ?>
+                        </div>
+
+                        <div class="checkbox-control checkout-custom-checkbox">
+                            <input id="is_subscribed" class="custom-checkbox" name="is_subscribed" type="checkbox" data-bind="checked: isSubscribed" />
+                            <label for="is_subscribed" class="custom-checkbox-label">
+                                <?= __('I would like to be the first to receive special discounts and updates about Smartblinds (products).') ?>
+                            </label>
+                        </div>
+
+                        <!--<div data-bind="style: {'display': !customerEmail() || (customerEmail() && customerEmail() !== formData.email()) ? 'initial' : 'none'}">
+                            <div class="checkbox-control">
+                                <span><input id="create_account" name="create_account" type="checkbox" data-bind="checked: createAccount" /></span>
+                                <label for="create_account"><?= __('Create Smartblinds account') ?></label>
+                            </div>
+
+                            <div data-bind="style: {'display': createAccount() ? 'initial' : 'none'}">
+                                <div class="field password required" data-role="sample-form-password">
+                                    <label class="label" for="password"></label>
+                                    <div class="control">
+                                        <input type="password" class="input-text validate-customer-password"
+                                               placeholder="<?= __('Password') ?>"
+                                               name="password"
+                                               id="password"
+                                               autocomplete="off"
+                                               data-bind="attr: { 'data-password-min-length': settings.passwordMinLength, 'data-password-min-character-sets': settings.passwordMinCharacterSets }"
+                                               required>
+                                        <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                                            <div id="password-strength-meter" class="password-strength-meter">
+                                                <?= __('Password Strength') ?>
+                                                <span id="password-strength-meter-label" data-role="password-strength-meter-label"
+                                                      data-bind="i18n: 'No Password'">
+                                            </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field confirmation required">
+                                    <label class="label" for="password-confirmation"></label>
+                                    <div class="control">
+                                        <input type="password"
+                                               placeholder="<?= __('Confirm password') ?>"
+                                               class="input-text"
+                                               name="password_confirmation"
+                                               id="password-confirmation"
+                                               autocomplete="off"
+                                               equalTo="#password"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+                        <div>
+                            <?= __('By clicking send request I agree to the') ?>
+                            <a data-bind="attr: {href: urls.termsConditions}" target="_blank"><?= __('Terms and Conditions') ?></a>.
+                        </div>
+
+                        <button class="action-send" type="button" data-bind="click: onSubmit">
+                            <?= __('Send Request') ?>
+                        </button>
+
+
+                        <!-- ko if: isLoading -->
+                        <img data-bind="attr:{src: urls.spinner}">
+                        <!-- /ko -->
+
+                        <!-- ko if: errorMessage -->
+                        <div class="error-message" data-bind="text: errorMessage"></div>
+                        <!-- /ko -->
+                    </form>
+                </div>
+
+                <!-- ko if: successMessage && !items().length -->
+                <div class="success-message" data-bind="text: successMessage"></div>
+                <!-- /ko -->
+
+            </div>
+        </div>
+
+        <ul class="checkmark-list">
+            <li><?= __('Free in your letterbox') ?></li>
+            <li><?= __('Within 5 working days') ?></li>
+            <li><?= __('Including easy measuring instructions') ?></li>
+        </ul>
+    </div>
+</div>
+
+    <script type="text/x-magento-init">
+{
+    "[data-role=basket-link]": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "basket-items": {
+                    "component": "GoMage_Samples/js/view/basket/items"
+                },
+                "basket-form": {
+                    "component": "GoMage_Samples/js/view/basket/form",
+                    "selectors": {
+                        "form": "[data-role=sample-form]",
+                        "password": "[data-role=sample-form-password]"
+                    },
+                    "settings": {
+                        "passwordMinLength": "<?= $block->escapeJs($viewModel->getMinimumPasswordLength()) ?>",
+                        "passwordMinCharacterSets": "<?= $block->escapeJs($viewModel->getRequiredCharacterClassesNumber()) ?>"
+                    },
+                    "urls": {
+                        "placeOrder": "<?= $block->escapeJs($viewModel->getPlaceOrderUrl()) ?>",
+                        "spinner": "<?= $block->escapeJs($block->getViewFileUrl('images/loader-1.gif')) ?>",
+                        "privacyPolicy": "<?= $block->escapeJs($viewModel->getPrivacyUrl()) ?>",
+                        "termsConditions": "<?= $block->escapeJs($viewModel->getTermsConditionsUrl()) ?>"
+                    },
+                    "defaults": {
+                        "countryId": "<?= $block->escapeJs($viewModel->getCurrentCountryCode()) ?>"
+                        <?php /* "prefix": "<?= $block->escapeJs($viewModel->getDefaultPrefix()) ?>" */ ?>
+                    },
+                    "options": {
+                        "countries": <?= $viewModel->getCountriesJson() ?>
+                    }
+                }
+            }
+        }
+    }
+}
+</script>
+

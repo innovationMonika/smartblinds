@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="consent.cookiebot" type="host">https://consent.cookiebot.com</value>
+                <value id="widget.trustpilot" type="host">http://widget.trustpilot.com</value>
+                <value id="invitejs.trustpilot" type="host">https://invitejs.trustpilot.com</value>
+                <value id="static.zdassets" type="host">https://static.zdassets.com</value>
+                <value id="ipify" type="host">https://api.ipify.org</value>
+                <value id="omappapi" type="host">https://a.omappapi.com</value>
+                <value id="pinimg" type="host">https://s.pinimg.com</value>
+                <value id="newrelic" type="host">https://js-agent.newrelic.com</value>
+                <value id="widget-mediator" type="host">https://widget-mediator.zopim.com</value>
+                <value id="newrelic.data" type="host">https://bam.eu01.nr-data.net</value>
+                <value id="pagead2.googlesyndication" type="host">https://pagead2.googlesyndication.com</value>
+                <value id="consentcdn.cookiebot" type="host">https://consentcdn.cookiebot.com</value>
+                <value id="calendly" type="host">https://assets.calendly.com</value>
+                <value id="hotjar" type="host">https://*.hotjar.com</value>
+                <value id="visualwebsiteoptimizer" type="host">https://*.visualwebsiteoptimizer.com</value>
+                <value id="self" type="host">self</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="vwo-app" type="host">app.vwo.com</value>
+                <!-- Add 'unsafe-inline' only if absolutely necessary -->
+                <value id="unsafe-inline" type="host">'unsafe-inline'</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="pinterest" type="host">https://ct.pinterest.com</value>
+                <value id="google-pagead" type="host">https://www.google.co.id</value>
+                <value id="zopim" type="host">https://v2assets.zopim.io</value>
+                <value id="a.omappapi" type="host">https://a.omappapi.com</value>
+                <value id="googletagmanager" type="host">https://www.googletagmanager.com</value>
+                <value id="calendly" type="host">https://assets.calendly.com</value>
+                <value id="cdninstagram" type="host">*.cdninstagram.com</value>
+                <value id="hotjar.com" type="host">https://*.hotjar.com</value>
+                <value id="support.smartblinds.com" type="host">https://support.smartblinds.com</value>
+                <value id="app-rsrc.getbee.io" type="host">https://app-rsrc.getbee.io</value>
+                <value id="gifcdn" type="host">https://gifcdn.com</value>
+                <value id="visualwebsiteoptimizer_src" type="host">https://*.visualwebsiteoptimizer.com</value>
+                <value id="cookiebot" type="host">*.cookiebot.com</value>
+                <value id="google-co" type="host">*.google.co.in</value>
+                <value id="google-nl" type="host">*.google.nl</value>
+                <value id="google-co-uk" type="host">*.google.co.uk</value>
+                <value id="google-be" type="host">*.google.be</value>
+                <value id="google-de" type="host">*.google.de</value>
+                <value id="google-at" type="host">*.google.at</value>
+                 <value id="self" type="host">self</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="googleapis" type="host">chart.googleapis.com</value>
+                <value id="vwo-app" type="host">app.vwo.com</value>
+            </values>
+        </policy>
+        <policy id="media-src">
+            <values>
+                <value id="zdassets" type="host">https://static.zdassets.com</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="a.omappapi" type="host">https://a.omappapi.com</value>
+                <value id="calendly" type="host">https://assets.calendly.com</value>
+                <value id="hotjar.com" type="host">https://*.hotjar.com</value>
+                 <value id="self" type="host">self</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="vwo-app" type="host">app.vwo.com</value>
+                <!-- Add 'unsafe-inline' only if absolutely necessary -->
+                <value id="unsafe-inline" type="host">'unsafe-inline'</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="trustpilot" type="host">https://widget.trustpilot.com</value>
+                <value id="pinterest" type="host">https://ct.pinterest.com</value>
+                <value id="youtube-nocookie" type="host">https://www.youtube-nocookie.com</value>
+                <value id="consentcdn.cookiebot" type="host">https://consentcdn.cookiebot.com</value>
+                <value id="calendly" type="host">https://assets.calendly.com</value>
+                <value id="calendly" type="host">https://calendly.com</value>
+                 <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="vwo-app" type="host">app.vwo.com</value>
+                <value id="googletagmanager" type="host">https://www.googletagmanager.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="api.omappapi" type="host">https://api.omappapi.com</value>
+                <value id="pinterest" type="host">https://ct.pinterest.com</value>
+                <value id="ekr.zdassets" type="host">https://ekr.zdassets.com</value>
+                <value id="smartblinds.zendesk" type="host">https://smartblinds.zendesk.com</value>
+                <value id="widget-mediator" type="host">wss://widget-mediator.zopim.com</value>
+                <value id="pagead2.googlesyndication" type="host">https://pagead2.googlesyndication.com</value>
+                <value id="eu01" type="host">https://bam.eu01.nr-data.net</value>
+                <value id="stats.g.doubleclick" type="host">https://stats.g.doubleclick.net</value>
+                <value id="a.omappapi.com" type="host">https://a.omappapi.com</value>
+                <value id="z.omappapi.com" type="host">https://z.omappapi.com</value>
+                <value id="google" type="host">https://www.google.com</value>
+                <value id="consentcdn.cookiebot" type="host">https://consentcdn.cookiebot.com</value>
+                <value id="googleads.g.doubleclick.net" type="host">https://googleads.g.doubleclick.net</value>
+                <value id="analytics.google.com" type="host">https://analytics.google.com</value>
+                <value id="region1.analytics.google.com" type="host">https://region1.analytics.google.com</value>
+                <value id="hotjar.com" type="host">https://*.hotjar.com</value>
+                <value id="hotjar.io" type="host">https://*.hotjar.io</value>
+                <value id="hotjar.wss" type="host">wss://*.hotjar.com</value>
+                <value id="visualwebsiteoptimizer.connect" type="host">https://*.visualwebsiteoptimizer.com</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="vwo-app" type="host">app.vwo.com</value>
+                <value id="region1.google-analytics.com" type="host">https://region1.google-analytics.com</value>
+                <value id="region1.analytics.google.com" type="host">https://region1.analytics.google.com</value>
+            </values>
+        </policy>
+        <policy id="form-action">
+            <values>
+                <value id="facebook" type="host">https://www.facebook.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="a.omappapi.com" type="host">https://a.omappapi.com</value>
+                <value id="hotjar.com" type="host">https://*.hotjar.com</value>
+            </values>
+        </policy>
+         <policy id="worker-src">
+            <values>
+                <value id="worker-blob" type="host">blob:</value>
+                <value id="visualwebsiteoptimizer.connect" type="host">https://*.visualwebsiteoptimizer.com</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="vwo-app" type="host">app.vwo.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

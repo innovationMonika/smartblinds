@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+
+<div class="navigation-cols">
+
+    <div class="navigation-left">
+        <nav class="navigation" data-action="navigation" data-mage-init='{"Magento_Theme/js/topmenu": {}}'>
+            <ul>
+                <?= /* @noEscape */ $_menuHtml?>
+                <?= $block->getChildHtml() ?>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="navigation-right">
+        <?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('navigation-images')->toHtml(); ?>
+    </div>
+
+
+</div>

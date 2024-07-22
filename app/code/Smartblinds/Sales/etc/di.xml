@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="smartblinds_quote_to_order_item_set_additional_fields"
+                type="Smartblinds\Sales\Plugin\Quote\Model\Quote\Item\ToOrderItem\SetAdditionalFields" />
+    </type>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid"
+                 type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="smartblinds_registration_status"
+                      xsi:type="string">sales_order.smartblinds_registration_status</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="Magento\Sales\Model\ResourceModel\Order\Handler\State"
+                type="Smartblinds\Sales\Model\ResourceModel\Order\Handler\State" />
+
+</config>

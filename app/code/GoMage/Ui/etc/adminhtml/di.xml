@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+    <virtualType name="GoMageUiRedirectButton" type="GoMage\Ui\Control\ButtonProvider\RedirectButton" />
+    <virtualType name="GoMageUiBackButton" type="GoMageUiRedirectButton">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="label" xsi:type="string">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GoMageUiBackIndexButton" type="GoMageUiBackButton">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">*/*/index</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="GoMageUiBackGridButton" type="GoMageUiBackButton">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">*/*/grid</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GoMageUiDeleteButton" type="GoMage\Ui\Control\ButtonProvider\DeleteButton">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="label" xsi:type="string">Delete</item>
+                <item name="class" xsi:type="string">delete</item>
+                <item name="sortOrder" xsi:type="number">30</item>
+                <item name="urlPath" xsi:type="string">*/*/delete</item>
+                <item name="requestFieldName" xsi:type="string">id</item>
+                <item name="urlParams" xsi:type="array">
+                    <item name="request" xsi:type="array">
+                        <item name="id" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GoMageUiSaveButton" type="GoMage\Ui\Control\ButtonProvider\BaseButton">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="label" xsi:type="string">Save</item>
+                <item name="class" xsi:type="string">save primary</item>
+                <item name="data-attribute" xsi:type="array">
+                    <item name="mage-init" xsi:type="array">
+                        <item name="button" xsi:type="array">
+                            <item name="event" xsi:type="string">save</item>
+                        </item>
+                    </item>
+                    <item name="form-role" xsi:type="string">save</item>
+                </item>
+                <item name="sortOrder" xsi:type="number">100</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="GoMageUiSaveAndContinueButton" type="GoMage\Ui\Control\ButtonProvider\BaseButton">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="label" xsi:type="string">Save and Continue Edit</item>
+                <item name="class" xsi:type="string">save</item>
+                <item name="data-attribute" xsi:type="array">
+                    <item name="mage-init" xsi:type="array">
+                        <item name="button" xsi:type="array">
+                            <item name="event" xsi:type="string">saveAndContinueEdit</item>
+                        </item>
+                    </item>
+                </item>
+                <item name="sortOrder" xsi:type="number">70</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <preference for="GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\CollectorPoolInterface"
+                type="GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\CollectorPool" />
+
+    <preference for="GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\Collector\CollectorInterface"
+                type="GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\Collector\Composite" />
+
+    <type name="GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\CollectorPool">
+        <arguments>
+            <argument name="collectors" xsi:type="array">
+                <item name="request"
+                      xsi:type="object">GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\Collector\Request</item>
+                <item name="registry"
+                      xsi:type="object">GoMage\Ui\Control\ButtonProvider\UrlBuilder\Params\Collector\Registry</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

@@ -1,0 +1,87 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .cms-page-view,
+    .catalog-product-view {
+        .breadcrumbs-container {
+            margin-bottom: 30px;
+            + #top-notification-bar {
+                margin-top: -30px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .breadcrumbs-container-inner {
+        .lib-vendor-prefix-display(flex);
+        .lib-css(justify-content, space-between, 1);
+        .lib-vendor-box-align(center);
+    }
+
+    .breadcrumbs-container {
+        padding: 20px 0;
+        border-bottom: 1px solid @smartblinds-color-gray;
+
+        .breadcrumbs {
+            margin: 0;
+            padding: 0;
+
+
+            .items {
+                color: @primary__color;
+                text-transform: uppercase;
+                font-size: 16px;
+                letter-spacing: 0.56px;
+
+                strong {
+                    font-weight: bold;
+                }
+            }
+
+            .item:not(:last-child) {
+                &::after {
+                    content: '';
+                    background-color: @primary__color;
+                    margin: 0 15px;
+                    vertical-align: middle;
+                    height: 2px;
+                    width: 22px;
+                    .lib-css(transform, scaleX(-1), 1);
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .breadcrumbs-container {
+        display: none !important;
+    }
+
+    .breadcrumbs-container-inner {
+        padding-left: @layout__width-xs-indent;
+        padding-right: @layout__width-xs-indent;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .breadcrumbs-container-inner {
+        box-sizing: border-box;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: @layout__max-width;
+        padding-left: @layout-indent__width;
+        padding-right: @layout-indent__width;
+        width: auto;
+    }
+}

@@ -1,0 +1,236 @@
+<?php
+
+use Magento\Framework\App\Action\Action;
+
+/**
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ */
+
+$_productCollection = $block->getLoadedProductCollection();
+
+/** @var \Magento\Catalog\Helper\Output $_helper */
+$_helper = $block->getData('outputHelper');
+$discountHelper = $this->helper(GoMage\CatalogDiscountLabels\Helper\Data::class);
+
+/** @var Smartblinds\Catalog\ViewModel\ProductList $viewModel */
+$viewModel = $block->getData('viewModel');
+$category = $block->getLayer()->getCurrentCategory();
+$hideToolbar = $category->getData('hide_toolbar');
+$hideCategoryColorSwatch = (bool)$category->getData('hide_category_color_swatch');
+$hideCategoryViewMode = (bool)$category->getData('hide_category_view_mode');
+$addToCartText = __('Assemble');
+if ($viewModel && $category)
+$addToCartText = $viewModel->getAddToCartText($category);
+
+/** @var \Smartblinds\ConfigurableSimple\ViewModel\ColorsInfo $colorsInfoViewModel */
+$colorsInfoViewModel = $block->getData('colorsInfoViewModel');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty">
+        <div><?= $escaper->escapeHtml(__('We can\'t find products matching the selection.')) ?></div>
+    </div>
+<?php else: ?>
+    <?php if(!$hideToolbar): ?>
+        <?= $block->getChildBlock('toolbar')->setData('hide_viewmode', $hideCategoryViewMode)->toHtml(); ?>
+    <?php endif; ?>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() === 'grid') {
+        $viewMode = 'grid';
+        $imageDisplayArea = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $imageDisplayArea = 'category_page_list';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?= /* @noEscape */ $viewMode ?> products-<?= /* @noEscape */ $viewMode ?>">
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                <li class="item product product-item">
+                    <div class="product-item-info"
+                         id="product-item-info_<?= /* @noEscape */ $_product->getId() ?>"
+                         data-container="product-<?= /* @noEscape */ $viewMode ?>">
+                        <?php
+                        $productImage = $block->getImage($_product, $imageDisplayArea);
+                        if ($pos != null) {
+                            $position = 'left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;';
+                        }
+                        ?>
+                        <div class="product details product-item-details">
+                            <?php if ($label = $discountHelper->displayDiscountLabel($_product)): ?>
+                            <div class="discount-badge">
+                                <?= $label ?>
+                            </div>
+                            <?php endif; ?>
+                            <?php // Product Image ?>
+                            <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+                               class="product photo product-item-photo"
+                               tabindex="-1">
+                                <?php $discountPercent = $this->helper(\Smartblinds\Catalog\Helper\Data::class)->getDiscountPercent($_product); ?>
+                                <?php if ($discountPercent): ?>
+                                    <div class="discount-badge">
+                                        <span>
+                                            <?= $discountPercent ?>
+                                        </span>
+                                    </div>
+                                <?php endif; ?>
+                                <?php if ($viewMode == 'grid'): ?>
+                                    <?= $productImage->toHtml() ?>
+                                    <?php if (!$hideCategoryColorSwatch): ?>
+                                        <?php if ($_product->getData('swatch_image') !== 'no_selection'): ?>
+                                        <span class="category-swatch">
+                                            <?= $block->getImage($_product, 'category_swatch')->toHtml() ?>
+                                        </span>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                    <?= $block->getImage($_product, 'category_swatch')->toHtml() ?>
+                                <?php endif; ?>
+                            </a>
+                            <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
+                            <strong class="product name product-item-name <?= $_product->getData('saving_energy') ? 'saving-energy-icon' : '';?>">
+                                <a class="product-item-link"
+                                   href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
+                                    <?=/* @noEscape */ $_helper->productAttribute($_product, $_product->getName(), 'name')?>
+                                </a>
+                            </strong>
+                            <?php
+                                $transparencyIconClass = '';
+                                if ($_product->getData('transparency') == 212) {
+                                    $transparencyIconClass = 'lightfiltering';
+                                }
+                                if ($_product->getData('transparency') == 213) {
+                                    $transparencyIconClass = 'blackout';
+                                }
+                                if ($_product->getData('transparency') == 256) {
+                                    $transparencyIconClass = 'sheer';
+                                }
+                            ?>
+                            <div class="product-subtitle <?= $transparencyIconClass?>"><?= $_product->getAttributeText('transparency') ?></div>
+                            <?php $colorsUrls = $colorsInfoViewModel->getColorsUrls($_product); ?>
+                            <?php if ($colorsUrls): ?>
+                            <div class="product-colors">
+                                <div class="product-colors-items">
+                                    <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
+                                        <?php foreach ($colorsUrls as $colorUrl): ?>
+                                            <img src="<?= $escaper->escapeHtmlAttr($colorUrl) ?>"
+                                                 alt="<?= $escaper->escapeHtmlAttr($colorUrl) ?>"
+                                                 width="10" height="10" />
+                                        <?php endforeach; ?>
+                                        <?php $colorsLeft = $colorsInfoViewModel->getColorsLeftCount($_product); ?>
+                                        <?php if ($colorsLeft > 0): ?>
+                                            <span class="product-colors-additional">+<?= $colorsLeft ?> <?= __('colors') ?></span>
+                                        <?php endif; ?>
+                                    </a>
+                                </div>
+                            </div>
+                            <?php endif; ?>
+
+                            <?= $block->getProductDetailsHtml($_product) ?>
+
+                            <div class="product-item-price-group">
+                                <?= /* @noEscape */ $block->getProductPrice($_product) ?>
+
+                                <div class="product-item-inner">
+                                    <div class="product actions product-item-actions">
+                                        <div class="actions-primary">
+                                            <?php if ($_product->isSaleable()):?>
+                                                <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                <form data-role="tocart-form"
+                                                      data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
+                                                      action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                                      method="post">
+                                                    <input type="hidden"
+                                                           name="product"
+                                                           value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
+                                                    <input type="hidden"
+                                                           name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
+                                                           value="<?=
+                                                           /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
+                                                           ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
+                                                        <button type="button"
+                                                                title="<?= $escaper->escapeHtmlAttr($addToCartText) ?>"
+                                                                class="action tocart secondary"
+                                                                disabled>
+                                                            <span><?= $escaper->escapeHtml($addToCartText) ?></span>
+                                                        </button>
+                                                    </a>
+                                                </form>
+                                            <?php else:?>
+                                                <?php if ($_product->isAvailable()):?>
+                                                    <div class="stock available">
+                                                        <span><?= $escaper->escapeHtml(__('In stock')) ?></span></div>
+                                                <?php else:?>
+                                                    <div class="stock unavailable">
+                                                        <span><?= $escaper->escapeHtml(__('Out of stock')) ?></span></div>
+                                                <?php endif; ?>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?= ($pos && strpos($pos, $viewMode . '-primary')) ?
+                                            /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                                                $position,
+                                                'product-item-info_' . $_product->getId() . ' div.actions-primary'
+                                            ) : '' ?>
+                                        <div data-role="add-to-links" class="actions-secondary">
+                                            <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                                <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?= ($pos && strpos($pos, $viewMode . '-secondary')) ?
+                                            /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                                                $position,
+                                                'product-item-info_' . $_product->getId() . ' div.actions-secondary'
+                                            ) : '' ?>
+                                    </div>
+                                    <?php if ($showDescription): ?>
+                                        <div class="product description product-item-description">
+                                            <?= /* @noEscape */ $_helper->productAttribute(
+                                                $_product,
+                                                $_product->getShortDescription(),
+                                                'short_description'
+                                            ) ?>
+                                            <a href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>"
+                                               title="<?= /* @noEscape */ $_productNameStripped ?>"
+                                               class="action more"><?= $escaper->escapeHtml(__('Learn More')) ?></a>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <?= ($pos && strpos($pos, $viewMode . '-actions')) ?
+                        /* @noEscape */ $secureRenderer->renderStyleAsTag(
+                            $position,
+                            'product-item-info_' . $_product->getId() . ' div.product-item-actions'
+                        ) : '' ?>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?= $block->getToolbarHtml() ?>
+    <?php if (!$block->isRedirectToCartEnabled()): ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= $escaper->escapeJs($_product->getSku()) ?>"
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

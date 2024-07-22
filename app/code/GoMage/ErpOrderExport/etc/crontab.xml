@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="erp">
+        <job name="erp_order_export"
+             instance="GoMage\ErpOrderExport\Cron\ExportOrders" method="execute">
+            <config_path>erp/order_export/cron_schedule</config_path>
+        </job>
+        <job name="erp_order_check_status"
+             instance="GoMage\ErpOrderExport\Cron\StatusOrders" method="execute">
+            <config_path>erp/order_export/check_status_cron_schedule</config_path>
+        </job>
+    </group>
+</config>

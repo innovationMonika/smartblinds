@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magefan\Blog\Model\Category"
+                type="Smartblinds\Blog\Model\Category" />
+
+    <preference for="Magefan\Blog\Model\Post"
+                type="Smartblinds\Blog\Model\Post" />
+
+    <preference for="Magefan\Blog\Model\Url"
+                type="Smartblinds\Blog\Model\Url" />
+
+</config>

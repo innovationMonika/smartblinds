@@ -1,0 +1,1 @@
+# Smartblinds_ConfigurableProduct

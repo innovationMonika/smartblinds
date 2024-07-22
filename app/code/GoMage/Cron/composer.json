@@ -1,0 +1,33 @@
+{
+    "name": "gomage/module-cron",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.4.0",
+        "symfony/console": "*",
+        "magento/framework": ">=103.0.2",
+        "magento/module-cron": ">=100.4.2"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GoMage\\Cron\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "GoMage",
+            "email": "support@gomage.com",
+            "homepage": "https://www.gomage.com/"
+        }
+    ]
+}

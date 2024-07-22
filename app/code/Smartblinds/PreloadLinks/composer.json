@@ -1,0 +1,21 @@
+{
+    "name": "smartblinds/module-preload-links",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "version": "1.0.0",
+    "require": {
+        "php": ">=7.4.0",
+        "smartblinds/module-config": ">=1.0.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Smartblinds\\PreloadLinks\\": ""
+        }
+    }
+}

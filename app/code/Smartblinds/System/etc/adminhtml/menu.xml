@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Smartblinds_System::systems"
+             title="Systems"
+             module="Smartblinds_System"
+             sortOrder="100"
+             action="smartblinds/system/index"
+             resource="Smartblinds_System::system"
+             parent="Magento_Catalog::catalog"/>
+    </menu>
+</config>

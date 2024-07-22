@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="cms_page_columns">
+        <column name="parent_page_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Mageside\PageHierarchy\Model\OptionsSelect"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Show Menu Hierarchy</label>
+            </settings>
+        </column>
+        <column name="show_menu_hierarchy" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Cms\Model\Page\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Show Menu Hierarchy</label>
+            </settings>
+        </column>
+        <column name="include_in_menu_hierarchy" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Cms\Model\Page\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Include In Menu Hierarchy</label>
+            </settings>
+        </column>
+        <column name="include_in_menu_hierarchy" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Cms\Model\Page\Source\IsActive"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Include In Menu Hierarchy</label>
+            </settings>
+        </column>
+        <column name="hr_sort_order">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Hierarchy Sort Order</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

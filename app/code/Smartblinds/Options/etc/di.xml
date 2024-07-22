@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+    <type name="MageWorx\OptionBase\Model\Product\Option\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="move_to_top" xsi:type="object">Smartblinds\Options\Model\Attribute\Option\MoveToTop</item>
+                <item name="option_code" xsi:type="object">Smartblinds\Options\Model\Attribute\Option\OptionCode</item>
+                <item name="modal_code" xsi:type="object">Smartblinds\Options\Model\Attribute\Option\ModalCode</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product\Option">
+        <plugin name="smartblinds_options_product_option_return_width_height_group"
+                type="Smartblinds\Options\Plugin\Catalog\Model\Product\Option\HandleWidthHeightType" />
+        <plugin name="smartblinds_options_product_option_return_curtain_tracls_group"
+                type="Smartblinds\Options\Plugin\Catalog\Model\Product\Option\HandleCurtainTracksType" />
+    </type>
+
+    <type name="MageWorx\OptionBase\Block\Product\View\Options">
+        <plugin name="smartblinds_options_add_smartblinds_price_to_json_config"
+                type="Smartblinds\Options\Plugin\MageWorx\OptionBase\Block\Product\View\Options\AddSmartblindsPrice"
+                sortOrder="10"
+                disabled="false"
+        />
+    </type>
+
+    <type name="Magento\Catalog\Block\Product\View\Options\Type\Select">
+        <plugin name="aroundGetValuesHtml" disabled="true" />
+        <plugin name="smartblindsOptionsAroundGetValuesHtml"
+                type="Smartblinds\Options\Plugin\MageWorx\OptionSwatches\Plugin\Product\View\Options\Type\Select\ModifyHtml"/>
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="smartblinds_options_product_view_type_configurable_add_tax_rate"
+                type="Smartblinds\Options\Plugin\Catalog\Block\Product\View\Type\Configurable\AddTaxRate" />
+        <plugin name="smartblinds_options_product_view_type_configurable_add_data"
+                type="Smartblinds\Options\Plugin\Catalog\Block\Product\View\Type\Configurable\AddData" />
+    </type>
+
+    <type name="MageWorx\OptionFeatures\Plugin\AroundGetOptionPrice">
+        <plugin name="smartblinds_options_prevent_add_quantities_to_editable_value"
+                type="Smartblinds\Options\Plugin\MageWorx\OptionFeatures\Plugin\AroundGetOptionPrice\PreventQtys" />
+    </type>
+
+    <type name="MageWorx\OptionBase\Plugin\AroundOptionsHtml">
+        <plugin name="smartblinds_options_ignore_curtain_tracks_width"
+                type="Smartblinds\Options\Plugin\MageWorx\OptionBase\Plugin\AroundOptionsHtml\IgnoreCurtainsTrackWidth" />
+    </type>
+
+    <type name="MageWorx\OptionBase\Model\Product\Option\Value\Attributes">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="value_code" xsi:type="object">Smartblinds\Options\Model\Attribute\OptionValue\ValueCode</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\Total\Subtotal">
+        <plugin name="smartblinds_option_subtotal_set_quote"
+                type="Smartblinds\Options\Plugin\Quote\Model\Quote\Address\Total\Subtotal\QuoteStorage" />
+    </type>
+
+    <preference for="MageWorx\OptionTemplates\Model\OptionSaver"
+                type="Smartblinds\Options\Model\OptionSaver" />
+
+    <preference for="Magento\Catalog\Block\Product\View\Options"
+                type="Smartblinds\Options\Block\Product\View\Options" />
+
+    <preference for="MageWorx\OptionBase\Block\Product\View\Options"
+                type="Smartblinds\Options\Block\Product\View\Options" />
+
+    <preference for="MageWorx\OptionFeatures\Plugin\AroundGetOptionPrice"
+                type="Smartblinds\Options\Plugin\AroundGetOptionPrice"/>
+
+    <preference for="MageWorx\OptionFeatures\Model\Price"
+                type="Smartblinds\Options\Model\Price" />
+
+    <preference for="MageWorx\OptionBase\Helper\Price"
+                type="Smartblinds\Options\Helper\Price" />
+
+</config>

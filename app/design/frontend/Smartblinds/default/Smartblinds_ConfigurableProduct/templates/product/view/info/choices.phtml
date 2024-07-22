@@ -1,0 +1,25 @@
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<div class="product-info-choices" data-role="choices" style="display:none;">
+    <h3 class="choices-label"><?= $block->escapeHtml(__('Your choices')) ?></h3>
+    <div class="swiper-container choices-swiper" style="display:none;">
+        <div class="choices-gallery swiper-wrapper" data-role="choices-gallery">
+
+        </div>
+    </div>
+    <div class="choices-items" data-role="choices-items">
+
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Smartblinds_ConfigurableProduct/js/view/gallery": {
+                "selectors": {
+                    "choicesGallery": "[data-role=choices-gallery]"
+                },
+                "isChoices": true
+            },
+            "Smartblinds_ConfigurableProduct/js/view/choices": {}
+        }
+    }
+</script>

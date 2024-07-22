@@ -1,0 +1,50 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Store\Block\Switcher $block */
+?>
+<div class="switcher language" id="lang-switcher">
+    <div class="options">
+        <div class="action toggle switcher-trigger" data-mage-init='{"dropdown":{}}' data-toggle="dropdown" data-trigger-keypress-button="true">
+            <i class="fal fa-globe"></i>
+            <strong class="text">
+                <span class="store-val"><?= $block->escapeHtml($block->getStoreName()) ?></span>
+            </strong>
+        </div>
+        <ul class="dropdown switcher-dropdown" data-target="dropdown">
+            <li class="view-ned">
+                <a href="">
+                    Netherlands
+                </a>
+            </li>
+            <li class="view-bel">
+                <a href="">
+                    Belgium
+                </a>
+            </li>
+            <li class="view-uk">
+                <a href="">
+                    United Kingdom
+                </a>
+            </li>
+            <li class="view-com">
+                <a href="">
+                    Europe
+                </a>
+            </li>
+            <li class="view-de">
+                <a href="">
+                    Germany
+                </a>
+            </li>
+            <li class="view-at">
+                <a href="">
+                    Austria
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

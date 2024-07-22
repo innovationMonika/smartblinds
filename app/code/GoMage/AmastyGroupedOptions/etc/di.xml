@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\Api\Search\SearchInterface">
+        <plugin name="Amasty_GroupedOptions::AdaptQuery" disabled="true" />
+        <plugin name="GoMage_AmastyGroupedOptions::AdaptQuery" type="GoMage\AmastyGroupedOptions\Plugin\Framework\Api\Search\AdaptGroupValue" sortOrder="999" />
+    </type>
+</config>

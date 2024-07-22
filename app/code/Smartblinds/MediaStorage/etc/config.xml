@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <system>
+            <media_storage_configuration>
+                <allowed_resources>
+                    <media_gallery_image_folders>
+                        <amasty>amasty</amasty>
+                        <blog>blog</blog>
+                        <custom_options>custom_options</custom_options>
+                        <downloadable>downloadable</downloadable>
+                        <email>email</email>
+                        <favicon>favicon</favicon>
+                        <installation>installation</installation>
+                        <instructievel>instructievel</instructievel>
+                        <pdf>pdf</pdf>
+                        <sales>sales</sales>
+                        <theme>theme</theme>
+                        <theme_customization>theme_customization</theme_customization>
+                    </media_gallery_image_folders>
+                </allowed_resources>
+            </media_storage_configuration>
+        </system>
+    </default>
+</config>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="MageWorx\OptionBase\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smartblinds_option_swatches" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier\Top</item>
+                    <item name="sortOrder" xsi:type="number">99</item>
+                </item>
+                <item name="smartblinds_option_code" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier\Code</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+                <item name="smartblinds_modal_code" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier\ModalCode</item>
+                    <item name="sortOrder" xsi:type="number">101</item>
+                </item>
+                <item name="smartblinds_value_code" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier\ValueCode</item>
+                    <item name="sortOrder" xsi:type="number">102</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magento\CatalogStaging\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smartnlinds-new-modifier-all" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smartnlinds-new-modifier-all" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier\Pool"
+                 type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="width_height" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">Smartblinds\Options\Ui\DataProvider\Product\Form\Modifier\WidthHeight</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+</config>

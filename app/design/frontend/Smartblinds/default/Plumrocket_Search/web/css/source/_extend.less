@@ -1,0 +1,301 @@
+//
+//  variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .page-wrapper {
+        #pas-mini-form {
+            display: block;
+            float: none;
+            margin: 0 auto;
+            padding: 0 20px;
+            max-width: 1400px;
+            width: 100%;
+            box-sizing: border-box;
+
+            .pas-nav-left {
+                display: none;
+            }
+
+            .pas-nav-right {
+                position: absolute;
+                left: 10px;
+                top: 13px;
+                z-index: 10;
+                line-height: inherit;
+                height: inherit;
+
+                .pas-button {
+                    background: transparent;
+                    color: @primary__color;
+                    font-size: 13px;
+                    width: inherit;
+                    height: inherit;
+                    line-height: inherit;
+                    float: none;
+
+                    &:hover {
+                        background: transparent;
+                    }
+                }
+            }
+
+            .pas-nav-center {
+                height: 48px;
+                line-height: 48px;
+
+                #pas-input {
+                    height: 47px;
+                    font-size: 16px;
+                    letter-spacing: .7px;
+                    padding: 0 28px;
+                    border: 0;
+                    color: @primary__color;
+                    font-family: 'TSTAR PRO', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                }
+
+                .pas-search-field {
+                    height: 47px;
+                    border: 0;
+                    background: transparent;
+                    border-bottom: 1px solid @primary__color;
+                }
+            }
+
+            .psearch-suggestions-title {
+                font-size: 16px;
+                text-transform: uppercase;
+                letter-spacing: .7px;
+                font-family: @font-family__heading;
+                margin: 0 0 15px;
+            }
+
+            #pas-tooltip {
+                box-shadow: none;
+                border: none;
+                max-width: 1360px;
+                width: 100%;
+                background-color: @smartblinds-color-white;
+                padding-top: 30px;
+
+                #pac-psearch-terms {
+                    font-size: 16px;
+                    border: none;
+                    font-weight: 300;
+                    padding: 0;
+
+                    .pac-ps-term {
+                        margin-bottom: 12px;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        font-size: 0;
+
+                        span {
+                            font-size: 16px;
+                            letter-spacing: .7px;
+                            color: @primary__color;
+                            text-decoration: none;
+                        }
+
+                        > span {
+                            position: relative;
+
+                            &::after {
+                                content: '';
+                                position: absolute;
+                                bottom: 0;
+                                left: 50%;
+                                .lib-css(transform, translateX(-50%) scaleX(0), 1);
+                                .lib-css(transition, transform 0.3s cubic-bezier(0.645, 0.045, 0.345, 1), 1);
+                                width: 100%;
+                                height: 0;
+                                overflow: hidden;
+                                border-bottom: 1px solid;
+                            }
+                        }
+
+                        &:hover {
+                            > span {
+                                &::after {
+                                    .lib-css(transform, translateX(-50%) scaleX(1), 1);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                #pac-psearch-categories {
+                    border: none;
+                }
+
+                #pas-psearch-products {
+                    .pas-tooltip-pr-item {
+                        border: 0;
+                        margin-bottom: 12px;
+                        line-height: 1;
+                        background: none;
+
+                        > a {
+                            padding: 0;
+                            text-decoration: none;
+                            line-height: 0;
+                            color: @primary__color;
+
+                            .pac-tooltip-right {
+                                .pac-tooltip-descr {
+                                    .pac-tooltip-name {
+                                        position: relative;
+                                        text-decoration: none;
+                                        font-size: 16px;
+                                        letter-spacing: .7px;
+                                        line-height: 1.5;
+                                        padding: 0;
+                                        margin: 0;
+                                        color: @primary__color;
+                                        display: inline-block;
+
+                                        &::after {
+                                            content: '';
+                                            position: absolute;
+                                            bottom: 0;
+                                            left: 50%;
+                                            .lib-css(transform, translateX(-50%) scaleX(0), 1);
+                                            .lib-css(transition, transform 0.3s cubic-bezier(0.645, 0.045, 0.345, 1), 1);
+                                            width: 100%;
+                                            height: 0;
+                                            overflow: hidden;
+                                            border-bottom: 1px solid;
+                                        }
+                                    }
+                                }
+
+                                &:hover {
+                                    .pac-tooltip-descr {
+                                        .pac-tooltip-name {
+                                            &::after {
+                                                .lib-css(transform, translateX(-50%) scaleX(1), 1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &:hover {
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #pac-psearch-all-results {
+                font-size: 16px;
+                display: none;
+
+                a {
+                    color: @primary__color;
+                }
+            }
+        }
+
+        .pas-overley {
+            display: none;
+        }
+    }
+
+    .pas-form-search {
+        margin: 0 0 33px;
+        position: relative;
+    }
+
+    .pas-active {
+        .base-suggestions {
+            display: none;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .pas-form-search {
+        margin: 0 0 33px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .pas-form-search {
+        margin-bottom: 43px;
+    }
+
+    .page-wrapper {
+        #pas-mini-form {
+            .psearch-suggestions-title {
+                font-size: 21px;
+                letter-spacing: .73px;
+                margin-bottom: 25px;
+                line-height: 31px;
+            }
+
+            .pas-nav-center {
+                height: 75px;
+                line-height: 75px;
+
+                #pas-input {
+                    height: 74px;
+                    font-size: 28px;
+                    letter-spacing: 1.23px;
+                    padding: 0 47px;
+                }
+
+                .pas-search-field {
+                    height: 74px;
+                }
+            }
+
+            .pas-nav-right {
+                top: 20px;
+
+                .pas-button {
+                    font-size: 25px;
+                }
+            }
+
+            #pas-tooltip {
+              /*  #pac-psearch-terms {
+                    font-size: 20px;
+                    letter-spacing: .78px;
+
+                    .pac-ps-term {
+                        a {
+                            span {
+                                font-size: 20px;
+                                letter-spacing: .78px;
+                            }
+                        }
+
+                        .psearch-tips {
+                            font-weight: bold;
+                        }
+                    }
+                }*/
+            }
+        }
+    }
+}

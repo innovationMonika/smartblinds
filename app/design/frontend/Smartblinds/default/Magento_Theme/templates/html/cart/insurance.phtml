@@ -1,0 +1,23 @@
+<?php
+/** @var $block \Magento\Framework\View\Element\Template */
+?>
+<div class="cart-insurance">
+    <div class="cart-insurance-title"><?= __('Free measuring insurance') ?></div>
+    <div class="cart-insurance-description"><?= __('Wrong measurement? Then you will receive a new product at home for free.') ?></div>
+    <div data-mage-init='{
+            "collapsible":{
+                "animate":{ "duration" :1000, "easing":"easeOutCubic"}
+            }}'>
+        <div data-role="title" class="cart-insurance-info"><i class="far fa-info-circle"></i> <a href="#"><?= __('What does the measuring insurance include?') ?></a></div>
+        <div data-role="content">
+            <div class="cart-insurance__tip-content">
+                <?= $block->getChildHtml() ?>
+            </div>
+        </div>
+    </div>
+    <!--<label class="cart-insurance-checkbox">
+        <input type="checkbox" checked disabled>
+        <span class="slider-checkbox"><i class="far fa-check"></i></span>
+    </label>-->
+</div>
+

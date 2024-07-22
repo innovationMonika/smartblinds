@@ -1,0 +1,13 @@
+{
+    "sales_order": {
+        "column": {
+            "order_type": true,
+            "base_increment_id": true
+        }
+    },
+    "sales_order_grid": {
+        "column": {
+            "order_type": true
+        }
+    }
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="smartblinds_system" resource="default" engine="innodb" comment="Smartblinds System">
+        <column name="id" xsi:type="int" padding="10" unsigned="true"
+                nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="128" comment="Name"/>
+        <column xsi:type="varchar" name="code" nullable="true" length="128" comment="Code"/>
+        <column name="system_type" xsi:type="int" padding="10" unsigned="true"
+                nullable="false" identity="false" comment="System Type"/>
+        <column name="system_size" xsi:type="int" padding="10" unsigned="true"
+                nullable="true" identity="false" comment="System Size"/>
+        <column name="system_category" xsi:type="varchar" nullable="false"
+                length="128" comment="System Category"/>
+        <column name="price_coefficient" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false"  default="1" comment="Price Coefficient"/>
+        <column name="system_diameter" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="System Diameter"/>
+        <column name="bottom_bar_weight" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Bottom Bar Weight"/>
+        <column name="tube_diameter" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Tube Diameter"/>
+        <column name="tube_weight" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Tube Weight"/>
+        <column name="tube_384_ei" xsi:type="decimal" scale="4" precision="22" unsigned="true"
+                nullable="false" comment="Tube 384 Ei"/>
+        <column name="torque" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Torque"/>
+        <column name="bending" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Bending"/>
+        <column name="operating_force" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Operating Force"/>
+        <column name="operating_ratio" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Operating Ratio"/>
+        <column name="base_price" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Base Price"/>
+        <column name="meter_price" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Meter Price"/>
+        <column name="min_width" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Min Width"/>
+        <column name="min_height" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Min Height"/>
+        <column name="max_width" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Max Width"/>
+        <column name="max_height" xsi:type="decimal" scale="4" precision="20" unsigned="true"
+                nullable="false" comment="Max Height"/>
+        <column name="control_type" xsi:type="int" padding="10" unsigned="true"
+                nullable="false" identity="false" comment="System Control Type"/>
+        <column name="fabric_size" xsi:type="int" padding="10" unsigned="true"
+                nullable="true" identity="false" comment="Fabric Size"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_SYSTEM_TYPE_SYSTEM_SIZE" disabled="true">
+            <column name="system_type"/>
+            <column name="system_size"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_SYSTEM_TYPE_SYSTEM_SIZE_SYSTEM_CATEGORY" disabled="true">
+            <column name="system_type"/>
+            <column name="system_size"/>
+            <column name="system_category"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_TYPE_SIZE_CATEGORY_CONTROL_TYPE" disabled="true">
+            <column name="system_type"/>
+            <column name="system_size"/>
+            <column name="system_category"/>
+            <column name="control_type"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_TYPE_SIZE_CATEGORY_CONTROL_TYPE_FABRIC_SIZE" disabled="true">
+            <column name="system_type"/>
+            <column name="system_size"/>
+            <column name="system_category"/>
+            <column name="control_type"/>
+            <column name="fabric_size"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_TYPE_SIZE_CATEGORY_CONTROL_TYPE_FABRIC_SIZE_CODE" disabled="true">
+            <column name="system_type"/>
+            <column name="system_size"/>
+            <column name="system_category"/>
+            <column name="control_type"/>
+            <column name="code"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="SMARTBLINDS_SYSTEM_TYPE_SIZE_CATEGORY_CONTROL_TYPE_FABRIC_SIZE_1">
+            <column name="system_type"/>
+            <column name="system_size"/>
+            <column name="system_category"/>
+            <column name="control_type"/>
+            <column name="fabric_size"/>
+        </constraint>
+        <index referenceId="SMARTBLINDS_SYSTEM_CODE" indexType="btree">
+            <column name="code"/>
+        </index>
+    </table>
+</schema>

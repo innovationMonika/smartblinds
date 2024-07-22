@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smartblinds_catalog_search>
+            <general>
+                <product_types_to_exclude_from_layer>configurable</product_types_to_exclude_from_layer>
+            </general>
+        </smartblinds_catalog_search>
+    </default>
+</config>

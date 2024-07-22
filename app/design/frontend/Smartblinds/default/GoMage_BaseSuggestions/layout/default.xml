@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="top.search">
+            <block name="top.search.base_suggestions" as="base_suggestions"
+                   template="GoMage_BaseSuggestions::base_suggestions.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GoMage\BaseSuggestions\ViewModel\BaseSuggestions</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

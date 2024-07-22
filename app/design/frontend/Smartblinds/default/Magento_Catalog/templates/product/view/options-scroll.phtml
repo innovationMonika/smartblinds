@@ -1,0 +1,35 @@
+<script>
+    require(['jquery','domReady!'], function ($) {
+
+        $('.pdp-options-save-button, .mageworx-swatch-option').on('click', function(event) {
+            let target = $(this).parents('.product-option.field');
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top + target.height() + 25
+                }, 1000);
+            }
+        });
+
+        $('[data-role=progress-button]').on('click', function(event) {
+            let target =  $('.product-options-wrapper');
+            if (target.length) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top + 25
+                }, 1000);
+            }
+        });
+
+        $('.swatch-opt').on('click', '.swatch-option', function (event){
+            let target = $(this).parents('.swatch-attribute');
+
+            if (target.length && parseInt($(this).height()) > 0 ) {
+                event.preventDefault();
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top + target.height() + 25
+                }, 1000);
+            }
+        });
+    });
+</script>

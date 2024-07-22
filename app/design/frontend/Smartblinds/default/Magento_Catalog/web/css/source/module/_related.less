@@ -1,0 +1,65 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .block-content {
+        .products-grid-view {
+            .primary {
+                text-align: center;
+            }
+
+            .product-item-price-group {
+                margin-top: auto;
+            }
+        }
+    }
+
+    .crosssell,
+    .upsell,
+    .related {
+        .block-content {
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block-content {
+        .products-grid-view {
+            .product-item.item {
+                width: calc(~"100%/3");
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .block-content {
+        .products-grid-view {
+            .product-item.item {
+                width: calc(~"100%/4");
+            }
+        }
+    }
+
+    .crosssell,
+    .upsell,
+    .related {
+        .product-items {
+            margin: 0 -15px;
+        }
+    }
+}

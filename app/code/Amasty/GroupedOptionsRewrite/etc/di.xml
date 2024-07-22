@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\GroupedOptions\Model\SeoOptionsModifier\GroupAliases" type="Amasty\GroupedOptionsRewrite\Model\SeoOptionsModifier\GroupAliases" />
+</config>

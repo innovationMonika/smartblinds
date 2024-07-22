@@ -1,0 +1,52 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_SpecialPromotions
+ * @copyright   Copyright (c) Mageplaza (http://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+?>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            var simpleAction = $('[name="simple_action"]');
+
+            switchProductActions(simpleAction.val());
+            simpleAction.change(function () {
+                switchProductActions(this.value)
+            });
+        });
+
+        function switchProductActions (value) {
+            var productXActions = $('[data-index="product_x_actions"]'),
+                productYActions = $('[data-index="product_y_actions"]'),
+                itemActionQty   = $('[data-index="item_action_qty"]');
+
+            if (value === 'buy_x_item_get_y_item') {
+                productXActions.show();
+                productYActions.show();
+                itemActionQty.hide();
+            } else {
+                productXActions.hide();
+                productYActions.hide();
+                if($('[data-index="item_action"] option:selected').val() !== 'none') {
+                    itemActionQty.show();
+                }
+            }
+        }
+    });
+</script>

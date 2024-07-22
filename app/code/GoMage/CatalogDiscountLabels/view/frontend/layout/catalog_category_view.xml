@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <container name="breadcrumbs.container" htmlTag="div" htmlClass="breadcrumbs-container">
+                <container name="breadcrumbs.container.inner" htmlTag="div" htmlClass="breadcrumbs-container-inner">
+                    <block class="Magento\Catalog\Block\Product\ListProduct"
+                           name="sb.category.info"
+                           after="-"
+                           template="GoMage_CatalogDiscountLabels::catalog/category/view/category-info-block.phtml"
+                           ifconfig="gomage_discount_labels/general/enabled"
+                    />
+                </container>
+            </container>
+        </referenceContainer>
+
+        <move element="breadcrumbs" destination="breadcrumbs.container.inner" before="-" />
+
+        <referenceContainer name="category.view.container">
+            <block class="Magento\Catalog\Block\Product\ListProduct"
+                   name="sb.discount.main"
+                   after="-"
+                   template="GoMage_CatalogDiscountLabels::catalog/category/view/discount-sidebar.phtml"
+                   ifconfig="gomage_discount_labels/general/enabled"
+            />
+            <block class="Magento\Cms\Block\Block" name="discount.sidebar.boxx" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">discount-sidebar</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="div.sidebar.main">
+            <block class="Magento\Catalog\Block\Product\ListProduct"
+                   name="sb.discount.sidebar"
+                   before="-"
+                   template="GoMage_CatalogDiscountLabels::catalog/category/view/discount-sidebar.phtml"
+                   ifconfig="gomage_discount_labels/general/enabled"
+            />
+            <block class="Magento\Cms\Block\Block" name="discount.sidebar.box" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">discount-sidebar</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

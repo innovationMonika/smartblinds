@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link rel="preload"
+              src="images/product-list-placeholder.png"
+              as="image" />
+    </head>
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="sb.category.line"
+                   before="page.bottom.container"
+                   template="Magento_Theme::html/catalog/category-line.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="main">
+
+        </referenceContainer>
+        <referenceContainer name="category.view.container">
+            <container name="group.filter.amshopby.category" htmlTag="div" htmlClass="group-category-filter-container" after="-">
+                <block class="Magento\Framework\View\Element\Template"
+                       name="sb.filter.mobile.block"
+                       before="-"
+                       template="Magento_Theme::html/catalog/mobile-filter-block.phtml">
+                    <container name="sb.filter.mobile.block.buttons" htmlTag="div" htmlClass="block-fly-filter-button">
+                        <block class="Magento\Framework\View\Element\Template"
+                               name="sb.filter.mobile.block.buttons.fly_filter"
+                               before="-"
+                               template="Magento_Theme::html/catalog/buttons/fly-filter-button.phtml" />
+                    </container>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="sm.floating.button"
+                   template="Magento_Theme::html/floating-button.phtml"
+            />
+        </referenceContainer>
+        <referenceContainer name="div.sidebar.main">
+            <block class="Magento\Cms\Block\Block" name="category.sidebar.cms_block" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="helper" helper="GoMage\CatalogBlocks\Helper\Data::getAdditionalCategoryBlocksData">
+                        <param name="blockIdentifier">category_sidebar_cms_block</param>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Template"
+                   name="sb.close.filter.btn.sidebar"
+                   before="-"
+                   template="Magento_Theme::html/catalog/close-filter-button.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="page.bottom">
+            <block class="Magento\Cms\Block\Block" name="category.usps">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">home-usps</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <move element="page.main.title" destination="main" before="-"/>
+        <move element="category.view.container" destination="main" after="page.main.title"/>
+        <move element="category.cms" destination="page.bottom" before="category.usps"/>
+        <move element="category.amshopby.children.list" destination="group.filter.amshopby.category" after="sb.filter.mobile.block"/>
+        <referenceBlock name="category.product.addto.compare" remove="true"/>
+
+        <referenceBlock name="category.products.list">
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Smartblinds\Catalog\ViewModel\ProductList</argument>
+                <argument name="colorsInfoViewModel" xsi:type="object">Smartblinds\ConfigurableSimple\ViewModel\ColorsInfo</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

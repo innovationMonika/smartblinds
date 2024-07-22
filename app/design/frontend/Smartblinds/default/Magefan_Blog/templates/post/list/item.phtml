@@ -1,0 +1,42 @@
+<?php
+/**
+ * Blog post list item template
+ *
+ * @var $block \Magefan\Blog\Block\Post\AbstractPost
+ */
+?>
+<?php
+$_post = $block->getPost();
+$_postUrl = $block->escapeUrl($_post->getPostUrl());
+$_postName = $block->escapeHtml($_post->getTitle());
+?>
+
+<li class="post-holder post-holder-<?= (int)$_post->getId() ?>">
+    <a class="post-background-link"
+       href="<?= /*@noEscape*/ $_postUrl ?>">
+    </a>
+    <div class="post-content">
+        <?php if ($_categoriesCount = $_post->getCategoriesCount()): ?>
+            <div class="category-name">
+                <?php $n = 0; ?>
+                <?php foreach ($_post->getParentCategories() as $ct) { ?>
+                    <?php $n++; ?>
+                    <a title="<?= $block->escapeHtml($ct->getTitle()) ?>"
+                       href="<?= $block->escapeUrl($ct->getCategoryUrl()) ?>"
+                    ><?= $block->escapeHtml($ct->getTitle()) ?></a><?= /*@noEscape*/ ($n != $_categoriesCount) ? ',' : '' ?>
+                <?php } ?>
+            </div>
+        <?php endif; ?>
+        <h2 class="post-title">
+            <a class="post-item-link"
+               href="<?= /*@noEscape*/ $_postUrl ?>">
+                <?= /*@noEscape*/ $_postName ?>
+            </a>
+        </h2>
+    </div>
+    <?php $featuredImage = $_post->getFeaturedListImage() ?: $_post->getFeaturedImage(); ?>
+    <?php if ($featuredImage) { ?>
+        <div class="post-content-image" style="background-image: url('<?= $block->escapeUrl($featuredImage) ?>');">
+        </div>
+    <?php } ?>
+</li>

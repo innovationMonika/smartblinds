@@ -1,0 +1,32 @@
+{
+    "name": "gomage/module-erp",
+    "description": "N/A",
+    "type": "magento2-module",
+    "license": [
+        "proprietary"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.4.0",
+        "magento/module-backend": ">=102.0.2",
+        "magento/module-config": ">=101.2.2"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "GoMage\\Erp\\": ""
+        }
+    },
+    "authors": [
+        {
+            "name": "GoMage",
+            "email": "support@gomage.com",
+            "homepage": "https://www.gomage.com/"
+        }
+    ]
+}

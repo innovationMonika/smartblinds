@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <gomage_samples>
+            <sample>
+                <product_image_attribute>thumbnail</product_image_attribute>
+            </sample>
+            <order>
+                <status>samples</status>
+            </order>
+            <order_email>
+                <enabled>1</enabled>
+                <template>gomage_samples_order_email_template</template>
+                <guest_template>gomage_samples_order_email_guest_template</guest_template>
+                <identity>sales</identity>
+                <copy_method>bcc</copy_method>
+            </order_email>
+        </gomage_samples>
+    </default>
+</config>

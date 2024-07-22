@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<orders>
+    <order id="31000000105" registrationId="2" registrationDate="2020-12-03T07:41:49.281" status="IN_PROGRESS" statusDate="2021-05-10T14:55:42.011" type="REGULAR" reference="">
+        <items>
+            <item id="2.1" registrationId="2" quantity="1" productCategory="roller_blinds" model="RC-SB10" reference="Kitchen window" status="IN_TRANSIT" statusDate="2021-05-10T14:55:42.007" trackingCode="1ZFA40186838512937" carrier="UPS" upsStatus="Pickup Scan (P:PU)"/>
+            <item id="2.2" registrationId="3" quantity="2" productCategory="roller_blinds" model="RC-SA10" reference="Living room" status="IN_TRANSIT" statusDate="2021-05-10T14:55:42.009" trackingCode="1ZFA40186838512937" carrier="UPS" upsStatus="Pickup Scan (P:PU)"/>
+        </items>
+    </order>
+    <order id="31000000131" registrationId="3" registrationDate="2020-12-03T07:45:03.337" status="COMPLETED" statusDate="2021-05-10T14:55:42.461" type="REGULAR">
+        <items>
+            <item id="3.1" registrationId="4" quantity="2" productCategory="roller_blinds" model="RC-SA20" reference="Living room" status="DELIVERED" statusDate="2021-05-10T14:55:42.460" trackingCode="1ZFA40186834565101" carrier="UPS" upsStatus="Delivered (D:9E)"/>
+        </items>
+    </order>
+</orders>

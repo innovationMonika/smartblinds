@@ -1,0 +1,168 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Zendesk\Zendesk\Helper\Config $configHelper */
+$configHelper = $this->helper(\Zendesk\Zendesk\Helper\Config::class);
+if (!$configHelper->getWebWidgetEnabled()) {
+    return;
+}
+?>
+<style>
+    .zendesk-help {
+        width: 45px;
+        height: 50px;
+        padding: 0;
+        right: 0;
+        margin: 10px 20px;
+        position: fixed;
+        bottom: 0;
+        overflow: visible;
+        opacity: 1;
+        border: 0;
+        z-index: 999998;
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+        transition-property: opacity, top, bottom;
+    }
+    .zendesk-help button {
+        border-radius: 999rem;
+        bottom: 0;
+        letter-spacing: 0.6;
+        font-size: 1.07143rem;
+        background-color: #2d2926;
+        color: #FFFFFF;
+        fill: #FFFFFF;
+        font-weight: 700;
+        box-sizing: border-box;
+        table-layout: auto;
+        white-space: nowrap;
+        cursor: pointer;
+        max-width: 100%;
+        min-width: 100%;
+        margin: 0;
+        border: 0;
+        display: flex;
+        align-items: center;
+        height: 46px;
+        padding: 12px;
+    }
+    .zendesk-help button span {
+        vertical-align: middle;
+        font-size: 15.5px;
+        font-feature-settings: "kern", "kern";
+        -webkit-font-kerning: normal;
+        font-kerning: normal;
+        font-family: system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,Arial,sans-serif;
+    }
+    .zendesk-help button span svg {
+        text-align: center;
+        vertical-align: middle;
+    }
+    .zendesk-help-text {
+        display: none;
+    }
+    .zendesk-help-icon img {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .zendesk-help {
+            width: 140px;
+        }
+        .zendesk-help-text {
+            display: inherit;
+        }
+        .zendesk-help button {
+            padding: .92857rem 1.57143rem;
+        }
+        .zendesk-help button span {
+            margin-left: 7px;
+        }
+    }
+
+    .zendesk-help-loading.zendesk-help {
+        width: 45px;
+    }
+    .zendesk-help-loading .zendesk-help-text {
+        display: none;
+    }
+    .zendesk-help-loading.zendesk-help button {
+        padding: 8px;
+    }
+    .zendesk-help-loading.zendesk-help button span {
+        margin-left: 0;
+    }
+    .zendesk-help-loading .zendesk-help-icon {
+        display: flex;
+    }
+    .zendesk-help-loading .zendesk-help-icon svg {
+        display: none;
+    }
+    @media (max-width: 768px) {
+        .zendesk-help-loading .zendesk-help-icon img {
+            display: inherit;
+        }
+    }
+    @media (min-width: 768px) {
+        .zendesk-help-loading.zendesk-help {
+            animation-name: zendesk-help-move;
+            animation-duration: 1s;
+        }
+    }
+    @keyframes zendesk-help-move {
+        0% {
+            width: 140px;
+        }
+        100% {
+            width: 45px;
+        }
+    }
+</style>
+<div class="zendesk-help js-zendesk-help"
+     tabindex="0">
+    <button>
+        <span class="zendesk-help-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><g id="Layer_4"><path d="M11,12.3V13c0,0-1.8,0-2,0v-0.6c0-0.6,0.1-1.4,0.8-2.1c0.7-0.7,1.6-1.2,1.6-2.1c0-0.9-0.7-1.4-1.4-1.4 c-1.3,0-1.4,1.4-1.5,1.7H6.6C6.6,7.1,7.2,5,10,5c2.4,0,3.4,1.6,3.4,3C13.4,10.4,11,10.8,11,12.3z"></path><circle cx="10" cy="15" r="1"></circle><path d="M10,2c4.4,0,8,3.6,8,8s-3.6,8-8,8s-8-3.6-8-8S5.6,2,10,2 M10,0C4.5,0,0,4.5,0,10s4.5,10,10,10s10-4.5,10-10S15.5,0,10,0 L10,0z"></path></g></svg>
+            <img class="js-zendesk-help-icon-img"
+                 src="<?= $escaper->escapeUrl($block->getViewFileUrl('images/white-dots-loader.gif'));?>" alt="zendesk help icon"/>
+        </span>
+        <span class="zendesk-help-text"><?= __('Help') ?></span>
+    </button>
+</div>
+<script>
+    require(['jquery'], function ($) {
+        const $help = $('.js-zendesk-help');
+        let isLoaded = false;
+        const zeSettings = {
+            webWidget: {
+                chat: {
+                    departments: {
+                        enabled: []
+                    }
+                }
+            }
+        };
+        $help.click(zenDeskClick);
+        function zenDeskClick() {
+            if (isLoaded) {
+                return;
+            }
+            isLoaded = true;
+            $help.addClass('zendesk-help-loading');
+            $help.on('animationend', () => {
+                $('.js-zendesk-help-icon-img').fadeIn(300);
+            });
+            window.zESettings = zeSettings;
+            let script = document.createElement('script');
+            script.id = 'ze-snippet';
+            script.src = 'https://static.zdassets.com/ekr/snippet.js?key=4d23700c-d5fc-4eab-8130-3438b293ec39';
+            script.onload = function() {
+                zE(function() {
+                    zE.activate();
+                    $help.fadeOut(500);
+                });
+            }
+            document.body.append(script);
+        }
+    })
+</script>

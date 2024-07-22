@@ -1,0 +1,265 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_SpecialPromotions
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+#mp-special-promotions-popup {
+    text-align: center;
+    background-image: none;
+    background: #ffffff;
+    border: 1px solid #1979c3;
+    color: #1979c3;
+    cursor: pointer;
+    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    padding: 7px 15px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.modal-popup .promotions-coupon-popup .modal-popup .action-close:before, .modal-slide .action-close:before {
+    font-size: 16px;
+    line-height: 50px;
+    color: #ffffff;
+}
+
+.promotions-coupon-popup .modal-header {
+    color: #ffffff;
+    background: #006bb4;
+    text-align: center;
+}
+
+.coupon-code .coupon-code-label {
+    color: #ffffff;
+}
+
+.promotions-coupon-popup .modal-header .modal-title {
+    border-bottom: unset;
+}
+
+.mp-special-promotions-modal .discount-box {
+    background: #e6e6e6;
+    margin: 20px 20px 20px 0;
+}
+
+.mp-special-promotions-modal .discount-box .label {
+    text-align: center;
+    font-size: 1.6em;
+}
+
+.mp-special-promotions-modal .discount-box .coupon-box {
+    margin: 10px 0;
+}
+
+.discount-box .coupon-box .input-text, #special-discount-mpmultiplecoupons-form button {
+    height: 40px;
+}
+
+#special-discount-mpmultiplecoupons-form .actions-toolbar button.action{
+    padding: 1px 7px;
+}
+
+.coupon-list-box {
+    border-top: 1px solid #bfbfbf;
+}
+
+.coupon-list-title {
+    font-size: 1.5em;
+}
+
+.coupon-list-information .coupon-rule {
+    width: 90%;
+    margin: 10px 0;
+    border: 1px solid #bfbfbf;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coupon-list-information .coupon-rule .coupon-code {
+    font-size: 1.2em;
+    float: left;
+    background: #006bb4;
+    text-align: center;
+    border: 1px solid black;
+}
+
+.coupon-list-information .rule-information {
+    float: left;
+    padding: 10px;
+}
+
+.rule-information .expired-date {
+    font-weight: lighter;
+    font-style: italic;
+}
+
+.coupon-rule .auto-generation-coupons {
+    width: 80%;
+    float: left;
+    margin-top: 15px;
+}
+
+.auto-generation-coupons .coupon-checkbox {
+    display: flex;
+    margin: 5px;
+}
+
+.coupon-rule .not-auto-generation {
+    margin: 16px;
+}
+
+.coupon-rule .rule-information .action-toggle:after {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    line-height: 16px;
+    color: #757575;
+    content: '\e622';
+    font-family: 'luma-icons';
+    margin: 0 0 0 10px;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+    font-style: normal;
+}
+
+.coupon-rule .rule-information._active .action-toggle:after {
+    content: '\e621';
+}
+
+.coupon-rule .rule-information .title {
+    margin-top: 10px;
+    font-style: oblique;
+}
+
+.auto-generation-coupons .coupon-checkbox .checkbox {
+    width: fit-content;
+}
+
+.mp-special-promotions-modal .cancel button {
+    float: right;
+}
+
+.mp-special-promotions-modal .button {
+    margin: 10px 0;
+}
+
+.coupon-rule.not-auto-generation .coupon-code, .coupon-rule .rule-information .title {
+    cursor: pointer;
+}
+
+.mp-special-promotions-modal .discount-box, .mp-special-promotions-modal .discount-box,
+.coupon-list-information .coupon-rule .coupon-code, .coupon-list-information .coupon-rule .input-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mp-special-promotions-modal #discount-form {
+    display: contents;
+}
+
+.mp-special-promotions-modal #discount-form button {
+    display: none;
+}
+
+.mp-special-promotions-modal .loading-mask {
+    position: fixed !important;
+}
+
+@media (max-width: 480px) {
+    .coupon-list-information .coupon-rule .coupon-code {
+        width: 100%;
+    }
+
+    .coupon-list-information .coupon-rule {
+        display: block;
+    }
+
+    .mp-special-promotions-modal .cancel button {
+        float: left;
+    }
+
+    .mp-special-promotions-modal .discount-box {
+        display: block;
+    }
+}
+@media (min-width: 1200px) {
+    .modal-popup.promotions-coupon-popup {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
+.mp-tooltipped {
+    position: relative;
+}
+
+.mp-tooltipped:before {
+    position: absolute;
+    z-index: 1000001;
+    display: none;
+    width: 0;
+    height: 0;
+    color: rgba(0, 0, 0, .8);
+    pointer-events: none;
+    content: "";
+    border: 5px solid transparent;
+    top: auto;
+    right: 50%;
+    bottom: -5px;
+    margin-right: -5px;
+    border-bottom-color: rgba(0, 0, 0, .8)
+}
+
+.mp-tooltipped:after {
+    position: absolute;
+    z-index: 1000000;
+    display: none;
+    padding: 5px 8px;
+    font: normal normal 11px/1.5 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: break-word;
+    white-space: pre;
+    pointer-events: none;
+    content: attr(aria-label);
+    background: rgba(0, 0, 0, .8);
+    border-radius: 3px;
+    -webkit-font-smoothing: subpixel-antialiased;
+    top: 100%;
+    right: 50%;
+    margin-top: 5px;
+    -webkit-transform: translateX(50%);
+    -ms-transform: translateX(50%);
+    transform: translateX(50%)
+}
+
+.mp-tooltipped:hover:before, .mp-tooltipped:active:before, .mp-tooltipped:focus:before,
+.mp-tooltipped:hover:after, .mp-tooltipped:active:after, .mp-tooltipped:focus:after {
+    display: inline-block;
+    text-decoration: none
+}

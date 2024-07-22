@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/product_options.xsd">
+    <option name="width_height"
+            label="Width &amp; Height"
+            renderer="Smartblinds\Options\Block\Catalog\Product\View\Options\Type\WidthHeight">
+        <inputType name="width_height" label="Width &amp; Height"/>
+    </option>
+    <option name="curtain_tracks_width"
+            label="Curtain Tracks Width"
+            renderer="Smartblinds\Options\Block\Catalog\Product\View\Options\Type\CurtainTracksWidth">
+        <inputType name="curtain_tracks_width" label="Curtain Tracks Width"/>
+    </option>
+</config>

@@ -1,0 +1,133 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .home-before-tabs-wrap {
+        background: @smartblinds-color-white;
+        position: relative;
+        z-index: 10;
+    }
+
+    .home-before-tabs-content {
+        padding: 34px 0 0;
+        margin: 0 0 -52px;
+    }
+
+    .home-before-tabs-img-wrap {
+        margin: 0 -20px 0;
+        overflow: hidden;
+        position: relative;
+        bottom: -28px;
+        pointer-events: none;
+    }
+
+    .home-before-tabs-img {
+
+        img {
+            width: 100%;
+            display: block;
+
+            &.home-before-tabs-img-desktop {
+                display: none;
+            }
+
+        }
+
+    }
+
+    .home-before-tabs-title {
+        text-transform: uppercase;
+        font-size: 24px;
+        line-height: 1.3333;
+        letter-spacing: .65px;
+        margin: 0 0 16px;
+        font-family: @font-family__heading;
+    }
+
+    .home-before-tabs-text {
+        margin: 0 0 18px;
+    }
+
+    .home-before-tabs-link {
+
+        a {
+            .abs-link-border-alt();
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .home-before-tabs-wrap {
+
+    }
+
+    .home-before-tabs {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+        min-height: 537px;
+    }
+
+    .home-before-tabs-content {
+        padding: 34px 0;
+        margin: 0;
+        max-width: 665px;
+        width: 48.897%;
+    }
+
+    .home-before-tabs-img-wrap {
+        margin: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: -177px;
+    }
+
+    .home-before-tabs-img {
+
+        img {
+
+            &.home-before-tabs-img-mobile {
+                display: none;
+            }
+
+            &.home-before-tabs-img-desktop {
+                display: block;
+            }
+
+        }
+
+    }
+
+    .home-before-tabs-title {
+        font-size: 54px;
+        line-height: 1.1851;
+        letter-spacing: 1.45px;
+        margin-bottom: 25px;
+    }
+
+    .home-before-tabs-text {
+        font-size: 21px;
+        line-height: 1.5238;
+        margin-bottom: 24px;
+    }
+
+    .home-before-tabs-link {
+        font-size: 21px;
+    }
+
+}

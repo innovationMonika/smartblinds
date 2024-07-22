@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="GoMage\Samples\Api\Data\Claim\Info\ItemInterface"
+                type="GoMage\Samples\Model\Data\Claim\Info\Item" />
+    <preference for="GoMage\Samples\Api\Data\Claim\InfoInterface"
+                type="GoMage\Samples\Model\Data\Claim\Info" />
+    <preference for="GoMage\Samples\Api\Data\Claim\ResultInterface"
+                type="GoMage\Samples\Model\Data\Claim\Result" />
+    <preference for="GoMage\Samples\Api\Claim\PlaceOrderInterface"
+                type="GoMage\Samples\Model\Claim\PlaceOrder" />
+
+    <preference for="GoMage\Samples\Model\Claim\PlaceOrder\Validator\ValidatorInterface"
+                type="GoMage\Samples\Model\Claim\PlaceOrder\Validator\CompositeValidator" />
+    <type name="GoMage\Samples\Model\Claim\PlaceOrder\Validator\CompositeValidator">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="info"
+                      xsi:type="object">GoMage\Samples\Model\Claim\PlaceOrder\Validator\Info</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\InventorySales\Model\PlaceReservationsForSalesEvent">
+        <plugin name="gomage_samples_prevent_reservations_for_samples_orders"
+                type="GoMage\Samples\Plugin\InventorySales\Model\PlaceReservationsForSalesEvent\PreventReservationsForSamples" />
+    </type>
+
+    <type name="Magento\Customer\CustomerData\Customer">
+        <plugin name="gomage_samples_customer_data_customer_add_email"
+                type="GoMage\Samples\Plugin\Customer\CustomerData\Customer\AddEmail" />
+        <plugin name="gomage_samples_customer_data_customer_add_samples_form_data"
+                type="GoMage\Samples\Plugin\Customer\CustomerData\Customer\AddSamplesFormData" />
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="gomage_samples_configurable_json_config_add_additional_html"
+                type="GoMage\Samples\Plugin\ConfigurableProduct\Block\Product\View\Type\Configurable\AddAdditionalHtml" />
+    </type>
+
+    <type name="Magento\Customer\Model\Address\Validator\General">
+        <plugin name="gomage_samples_customer_address_general_validator_change"
+                type="GoMage\Samples\Plugin\Customer\Model\Address\Validator\General\ChangeValidator" />
+    </type>
+
+    <type name="Trustpilot\Reviews\Observer\OrderSaveObserver">
+        <plugin name="gomage_samples_prevent_invitation_for_samples_orders"
+                type="GoMage\Samples\Plugin\Trustpilot\Reviews\Observer\OrderSaveObserver" />
+    </type>
+
+    <type name="Magento\Quote\Model\ChangeQuoteControl">
+        <plugin name="gomage_samples_quote_control_allow_samples"
+                type="GoMage\Samples\Plugin\Quote\Model\ChangeQuoteControl\AllowSamplesOrders" />
+    </type>
+
+</config>

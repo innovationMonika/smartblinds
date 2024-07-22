@@ -1,0 +1,23 @@
+<?php
+/* @var $block \Magento\Catalog\Block\Product\View\Options */
+$options = $block->decorateArray($block->getOptions());
+$productId = $block->getProduct()->getId()
+?>
+<?php if (count($options)) :?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "priceOptions": {
+                "optionConfig": <?= /* @noEscape */ $block->getJsonConfig() ?>,
+                "controlContainer": ".field",
+                "priceHolderSelector": "[data-product-id='<?= $block->escapeHtml($productId) ?>'][data-role=priceBox]"
+            }
+        }
+    }
+</script>
+    <?php foreach ($options as $option) :?>
+        <?php if (!$option->getData('move_to_top')): ?>
+            <?= $block->getOptionHtml($option) ?>
+        <?php endif ?>
+    <?php endforeach; ?>
+<?php endif; ?>

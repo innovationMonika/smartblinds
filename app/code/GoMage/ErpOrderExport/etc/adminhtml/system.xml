@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="erp">
+            <group id="order_export" translate="label" type="text" sortOrder="1"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Export</label>
+                <field id="enabled" translate="label" type="select" sortOrder="5"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_query_url" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order Query API</label>
+                </field>
+                <field id="api_url" translate="label" type="text" sortOrder="11"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Order Registration API</label>
+                </field>
+                <field id="cron_schedule" translate="label" type="text" sortOrder="50"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Schedule for Export</label>
+                </field>
+                <field id="check_status_cron_schedule" translate="label" type="text" sortOrder="60"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Cron Schedule for Updating Order Status</label>
+                </field>
+                <field id="reverse_street" translate="label" type="select" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reverse Street</label>
+                    <comment>Reverse street before exporting. Some contries like UK have different format to pass addresses.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,23 @@
+<!-- ko if: (visible)-->
+<div class="field addresses">
+    <div class="control">
+        <div class="shipping-address-items">
+            <!-- ko foreach: { data: elems, as: 'element' } -->
+            <!-- ko template: element.getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+
+            <!-- Address form pop up -->
+            <if args="!$parent.isFormInline">
+                <div class="new-address-popup">
+                    <button type="button"
+                            class="action action-show-popup"
+                            click="$parent.showFormPopUp"
+                            visible="!$parent.isNewAddressAdded()">
+                        <span translate="'Add new address'"></span>
+                    </button>
+                </div>
+            </if>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

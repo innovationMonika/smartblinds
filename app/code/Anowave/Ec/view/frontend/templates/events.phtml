@@ -1,0 +1,63 @@
+<script data-ommit="true">
+
+    document.addEventListener("DOMContentLoaded", () => 
+    {
+    	let bind = () => 
+    	{
+    		Object.entries(
+	    	{
+	    		<?php echo \Anowave\Ec\Helper\Constants::EVENT_ADD_TO_CART ?>: event => 
+	    		{
+	    			AEC.add(event.currentTarget, dataLayer);
+	    		},
+	    		<?php echo \Anowave\Ec\Helper\Constants::EVENT_REMOVE_FROM_CART ?>:event => 
+	    		{
+	    			AEC.remove(event.currentTarget, dataLayer);
+	    		},
+	    		<?php echo \Anowave\Ec\Helper\Constants::EVENT_PRODUCT_CLICK ?>:event => 
+	    		{
+	    			AEC.click(event.currentTarget, dataLayer);	
+	    		},
+	    		<?php echo \Anowave\Ec\Helper\Constants::EVENT_ADD_TO_WISHLIST ?>:event => 
+	    		{
+	    			AEC.wishlist(event.currentTarget, dataLayer);
+	    		},
+	    		<?php echo \Anowave\Ec\Helper\Constants::EVENT_ADD_TO_COMPARE ?>:event => 
+	    		{
+	    			AEC.compare(event.currentTarget, dataLayer);
+	    		},
+	    		<?php echo \Anowave\Ec\Helper\Constants::EVENT_ADD_TO_CART_SWATCH ?>:event => 
+	    		{
+	    			AEC.addSwatch(event.currentTarget, dataLayer);
+	    		}
+	        }).forEach(([event, callback]) => 
+	    	{
+	    	    [...document.querySelectorAll('[data-event]:not([data-bound])')].filter(element => { return element.dataset.event === event; }).forEach(element => 
+	        	{
+	            	element.addEventListener('click', callback);
+
+	            	element.dataset.bound = true;
+	        	});
+		  	});
+        };
+
+        bind();
+
+        if("PerformanceObserver" in window)
+        {
+        	const observer = new PerformanceObserver((items) => 
+        	{
+                items.getEntries().filter(({ initiatorType }) => initiatorType === "xmlhttprequest").forEach((entry) => 
+                {
+                    bind();
+                });
+      		});
+
+      		observer.observe(
+      		{
+          		entryTypes: ["resource"]
+      		});
+        }
+    });
+    
+</script>

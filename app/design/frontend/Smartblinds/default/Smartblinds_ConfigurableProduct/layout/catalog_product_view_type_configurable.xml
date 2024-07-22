@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link rel="preload"
+              media="screen and (max-width: 768px)"
+              src="images/product-mobile-gallery-placeholder.png"
+              as="image" />
+    </head>
+    <body>
+        <referenceContainer name="product.info.form.options">
+            <container name="product.info.main.addtocart.top" htmlTag="div" htmlClass="product-addtocart-top-block" before="-">
+
+                <block name="product.info.messages.delivery"
+                       template="Smartblinds_ConfigurableProduct::product/view/info/messages/delivery.phtml"
+                       before="product.info.messages.discount" />
+                <block name="product.info.messages.discount"
+                       template="Smartblinds_ConfigurableProduct::product/view/info/messages/discount.phtml"
+                       before="product.info.main.addtocart.with.price">
+                    <arguments>
+                        <argument name="discount_message"
+                                  xsi:type="helper"
+                                  helper="Smartblinds\ConfigurableProduct\Model\Config::getDiscountMessage" />
+                    </arguments>
+                </block>
+
+                <block name="product.info.messages.measurement"
+                       template="Smartblinds_ConfigurableProduct::product/view/info/messages/measurement.phtml"
+                       after="product.info.sample.top">
+                    <arguments>
+                        <argument name="measurement_message"
+                                  xsi:type="helper"
+                                  helper="Smartblinds\ConfigurableProduct\Model\Config::getMeasurementMessage" />
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="product.info.media.mobile.gallery"
+                   before="-"
+                   template="Smartblinds_ConfigurableProduct::product/view/mobile-gallery.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.media.image">
+            <block name="product.info.sample.media"
+                   template="GoMage_Samples::catalog/product/page/addto/default.phtml" />
+        </referenceContainer>
+
+        <referenceContainer name="product.info.main.details">
+            <block name="product.info.main.details.transparency"
+                   after="page.main.title"
+                   template="Smartblinds_ConfigurableProduct::product/view/transparency.phtml">
+                <block name="product.info.main.details.product.color"
+                       template="Smartblinds_ConfigurableProduct::product/view/product-color.phtml"/>
+                <block name="product.info.main.details.engine.notice"
+                       template="Smartblinds_ConfigurableProduct::product/view/engine-notice.phtml">
+                    <arguments>
+                        <argument name="cms_view_model" xsi:type="object">Smartblinds\Cms\ViewModel\Cms</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.options.wrapper.bottom">
+            <block name="product.info.choices"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/choices.phtml"
+                   before="product.info.messages" />
+            <block name="product.info.messages"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/messages.phtml"
+                   before="product.info.addtocart.additional">
+                <arguments>
+                    <argument name="discount_message"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getDiscountMessage" />
+                    <argument name="measurement_message"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getMeasurementMessage" />
+                </arguments>
+            </block>
+            <block name="product.info.messages.measurement.bottom"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/messages/measurement.phtml"
+                   before="product.info.all.payment.options.info">
+                <arguments>
+                    <argument name="measurement_message"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getMeasurementMessage" />
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="product.info.all.payment.options"
+                   before="product.info.tips">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">all-payment-options</argument>
+                </arguments>
+            </block>
+
+            <block name="product.info.tips"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/tips.phtml"
+                   after="product.info.addtocart.additional">
+                <arguments>
+                    <argument name="tips"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getConfiguratorTips" />
+                    <argument name="row_classes" xsi:type="string">product-info-tip</argument>
+                </arguments>
+            </block>
+            <block name="product.info.sample.info"
+                   template="GoMage_Samples::catalog/product/page/addto/default.phtml" />
+        </referenceBlock>
+
+        <referenceContainer name="product.info.main">
+            <block name="product.info.options.modals"
+                   class="Magento\Catalog\Block\Product\View\Options"
+                   template="Smartblinds_ConfigurableProduct::product/view/options/modals.phtml">
+                <arguments>
+                    <argument name="swatch_options" xsi:type="array">
+                        <item name="transparency" xsi:type="string">product_option_modal_transparency</item>
+                        <item name="color" xsi:type="string">product_option_modal_color</item>
+                        <item name="system_size" xsi:type="string">product_option_modal_system_size</item>
+                        <item name="system_type" xsi:type="string">product_option_modal_system_type</item>
+                        <item name="system_color" xsi:type="string">product_option_modal_system_color</item>
+                        <item name="fabric_size" xsi:type="string">product_option_modal_fabric_size</item>
+                    </argument>
+                    <argument name="cms_view_model" xsi:type="object">Smartblinds\Cms\ViewModel\Cms</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="before.body.end">
+            <block name="measurement.insurance"
+                   class="Magento\Framework\View\Element\Template"
+                   template="Magento_Theme::html/catalog/product/measurement_insurance.phtml"
+                   after="-">
+                <block class="Magento\Cms\Block\Block" name="measurement.insurance.tip" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">measurement_insurance_tip</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

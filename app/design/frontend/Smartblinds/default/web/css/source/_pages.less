@@ -1,0 +1,35 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .pages {
+        .lib-pager();
+
+        a.page,
+        strong.page {
+            border: 2px solid @smartblinds-color-gray;
+            min-width: 38px;
+            box-sizing: border-box;
+        }
+
+        .item {
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+        }
+
+        .action {
+            width: 38px;
+            box-sizing: border-box;
+            border: 2px solid @smartblinds-color-gray;
+        }
+    }
+}

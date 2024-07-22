@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="quote_address">
+        <column xsi:type="smallint" name="gender" unsigned="true" nullable="true" identity="false"
+                comment="Gender"/>
+        <column xsi:type="varchar" name="samples_form_id" length="255"  nullable="true" comment="Form ID"/>
+    </table>
+
+    <table name="sales_order_address">
+        <column xsi:type="smallint" name="gender" unsigned="true" nullable="true" identity="false"
+                comment="Gender"/>
+        <column xsi:type="varchar" name="samples_form_id" length="255"  nullable="true" comment="Form ID"/>
+    </table>
+
+    <table name="sales_order">
+        <column xsi:type="smallint" name="is_samples_order" nullable="true" unsigned="true"
+                comment="Is Samples Order"/>
+    </table>
+
+</schema>

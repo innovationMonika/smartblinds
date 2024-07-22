@@ -1,0 +1,22 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \GoMage\CatalogDiscountLabels\Helper\Data $breadcrumbHelper */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+$breadcrumbHelper = $this->helper(GoMage\Breadcrumbs\Helper\Data::class);
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get(Magento\Framework\Registry::class)->registry('current_category');
+?>
+<?php
+$category = $breadcrumbHelper->getCategoryForBreadcrumb($category);
+/**
+ * @var \Magento\Catalog\Model\Category $category
+ */
+if ($category) : ?>
+<?php
+    $scriptString = <<<script
+        window.breadcrumbsCategoryUrl = "{$category->getUrl()}";
+script;
+    ?>
+    <?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+<?php endif ?>

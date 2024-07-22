@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="sample.basket.modal">
+            <block name="main-menu-sample-basket-link.info.tips"
+                   as="sample.basket.link.info.tips"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/tips.phtml">
+                <arguments>
+                    <argument name="tips"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getConfiguratorTips" />
+                    <argument name="container_element" xsi:type="string">ul</argument>
+                    <argument name="container_classes" xsi:type="string">checkmark-list</argument>
+                    <argument name="row_element" xsi:type="string">li</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+    </body>
+</page>

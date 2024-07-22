@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="related.product.addto.compare" remove="true"/>
+        <referenceBlock name="upsell.product.addto.compare" remove="true"/>
+        <referenceBlock name="product.info.stock.sku" remove="true"/>
+        <referenceBlock name="product.info.review" remove="true"/>
+        <referenceBlock name="product.info.details" remove="true"/>
+        <move element="product.info.overview" destination="product.info.main.details" />
+
+        <move element="page.main.title" destination="product.info.main.details" before="-"/>
+
+        <referenceContainer name="page.top">
+            <block name="pdp.breadcrumbs.category" class="Magento\Framework\View\Element\Template" template="Magento_Catalog::product/view/breadcrumbs_category.phtml" after="-" />
+            <container name="breadcrumbs.container" htmlTag="div" htmlClass="breadcrumbs-container">
+                <container name="breadcrumbs.container.inner" htmlTag="div" htmlClass="breadcrumbs-container-inner"/>
+            </container>
+        </referenceContainer>
+
+        <move element="breadcrumbs" destination="breadcrumbs.container.inner" before="-" />
+
+        <referenceContainer name="product.info.media.image">
+            <block name="pdp.discount.block" as="pdp.discount.block" class="Magento\Framework\View\Element\Template" template="Magento_Catalog::product/view/discount.phtml" after="-" />
+        </referenceContainer>
+        <referenceContainer name="product.info.main">
+            <container name="product.info.main.details" before="-" />
+            <block class="Magento\Cms\Block\Block" name="pdp.review.block" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">review-block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.addtocart.additional">
+            <block class="Magento\Catalog\Pricing\Render" name="product.price.final.additional">
+                <arguments>
+                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                    <argument name="price_type_code" xsi:type="string">final_price</argument>
+                    <argument name="zone" xsi:type="string">item_view</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <move element="product.info.media" destination="content" before="product.info.main" />
+
+        <!--<referenceContainer name="product.info.form.options">
+            <container name="product.info.main.addtocart.top" htmlTag="div" before="-">
+                <block
+                    class="Magento\Catalog\Block\Product\View"
+                    name="product.info.main.addtocart"
+                    template="Magento_Catalog::product/view/addtocart_top.phtml"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block name="pdp.options.scroll"
+                   class="Magento\Framework\View\Element\Template"
+                   template="Magento_Catalog::product/view/options-scroll.phtml"
+                   after="-" />
+        </referenceContainer>-->
+    </body>
+</page>

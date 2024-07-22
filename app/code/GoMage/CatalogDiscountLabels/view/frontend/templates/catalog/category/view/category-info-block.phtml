@@ -1,0 +1,25 @@
+<?php
+/**
+ * @var \Magento\Catalog\Block\Product\ListProduct $block
+ * @var \GoMage\CatalogDiscountLabels\Helper\Data $discountHelper
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Magento\Catalog\Model\Category $currentCategory
+ */
+$discountHelper = $this->helper(\GoMage\CatalogDiscountLabels\Helper\Data::class);
+$currentCategory = $block->getLayer()->getCurrentCategory();
+?>
+<div class="category-info-block">
+    <?php if ($text = $currentCategory->getData('top_discount_block_text')):?>
+    <div class="category-info-discount">
+        <?= $text ?>
+    </div>
+    <?php else: ?>
+    <div class="category-info-price">
+        <?php if ($currentCategory->getIsSamplesCategory()): ?>
+            <?= __("Free"); ?>
+        <?php else: ?>
+            <?= __("price from %1", $discountHelper->getPriceFrom($currentCategory)); ?>
+        <?php endif; ?>
+    </div>
+    <?php endif; ?>
+</div>

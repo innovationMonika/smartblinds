@@ -1,0 +1,115 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .home-trustpilot-wrap {
+        margin: 0 0 37px;
+    }
+
+    .home-trustpilot-title {
+        text-align: center;
+        text-transform: uppercase;
+        margin: 0 0 15px;
+        padding: 2px 0 0;
+        font-size: 16px;
+        line-height: 1.3125;
+        letter-spacing: .7px;
+        font-family: @font-family__heading;
+    }
+
+    .home-trustpilot-left {
+        text-align: center;
+    }
+
+    .home-trustpilot-text {
+        display: none;
+    }
+
+    .home-trustpilot-rating {
+        margin: 0 0 34px;
+
+        img {
+            vertical-align: top;
+        }
+
+    }
+
+    .home-trustpilot-link {
+
+        a {
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+    }
+
+    .home-trustpilot-right {
+        display: none;
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .home-trustpilot-wrap {
+        margin-bottom: 100px;
+    }
+
+    .home-trustpilot-title {
+        text-align: left;
+        font-size: 42px;
+        line-height: 1.0952;
+        letter-spacing: 1.13px;
+        padding-top: 12px;
+        margin-bottom: 30px;
+    }
+
+    .home-trustpilot-content {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-pack: justify;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+    }
+
+    .home-trustpilot-left {
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        width: 434px;
+        border: 1px solid rgba(151, 151, 151, .5);
+        box-sizing: border-box;
+        min-height: 419px;
+        padding: 30px;
+    }
+
+    .home-trustpilot-text {
+        display: block;
+        font-size: 21px;
+        line-height: 1.619;
+        margin-bottom: 51px;
+    }
+
+    .home-trustpilot-rating {
+        margin-bottom: 32px;
+    }
+
+    .home-trustpilot-right {
+        display: block;
+        width: calc(~'100% - 464px');
+    }
+
+}

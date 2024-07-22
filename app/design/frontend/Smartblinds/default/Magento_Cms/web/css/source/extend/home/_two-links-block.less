@@ -1,0 +1,235 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .two-links__item-description {
+        .lib-vendor-prefix-display(flex);
+
+        i {
+            font-weight: 400;
+            line-height: 1;
+            margin-left: 10px;
+        }
+    }
+
+    .two-links__item {
+        width: calc(~'50% - 4px');
+        text-align: right;
+        text-decoration: none;
+        position: relative;
+        min-width: calc(~'50% - 4px');
+        box-sizing: border-box;
+
+        .two-links__item-icon {
+            margin-right: auto;
+            border-radius: 100%;
+            line-height: 1;
+        }
+
+        &.free-samples-item {
+            background-color: #000000;
+            color: @color-white;
+            margin-right: 4px;
+
+            .two-links__item-icon {
+                border: 2px solid @color-white;
+
+                &::before {
+                    background-image: url("data:image/svg+xml,%3Csvg width='27' height='27' viewBox='0 0 27 27' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.822 26.2c.877 0 1.588-.677 1.588-1.512v-7.563c0-.835-.711-1.512-1.588-1.512h-4.844l3.425-3.263c.62-.59.62-1.548 0-2.139l-5.615-5.347a1.624 1.624 0 00-1.123-.443c-.407 0-.813.147-1.123.443l-3.425 3.262V3.513c0-.836-.711-1.513-1.588-1.513h-7.94C.71 2 0 2.677 0 3.512v17.394C0 23.83 2.488 26.2 5.558 26.2h18.264zM8.735 8.05H2.382V4.269h6.353V8.05zm2.382 11.84v-8.556l4.548-4.331 4.492 4.278-9.04 8.61zM8.735 14.1H2.382v-3.781h6.353V14.1zm-3.177 9.83c-1.751 0-3.176-1.356-3.176-3.024v-4.538h6.353v4.538c0 .845-.368 1.609-.957 2.158a3.057 3.057 0 01-.595.428c-.042.024-.087.045-.13.067-.223.11-.453.204-.697.264-.17.042-.345.076-.524.094l-.274.014zm17.47.001H10.243l6.352-6.05h6.433v6.05zm-17.47-1.89c.658 0 1.192-.508 1.192-1.135 0-.626-.534-1.134-1.192-1.134-.657 0-1.19.508-1.19 1.134 0 .627.533 1.135 1.19 1.135z' fill='%23FFF' fill-rule='nonzero'%3E%3C/path%3E%3C/svg%3E");
+                    content: '';
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    margin: 0;
+                    display: block;
+                    position: relative;
+                    top: -1px;
+                    right: -1px;
+                }
+            }
+        }
+
+        &.free-advice-item {
+            background-color: #e8eff7;
+            color: #000000;
+            margin-left: 4px;
+
+            .two-links__item-icon {
+                border: 2px solid #000000;
+
+                i {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .home-two-links {
+        .lib-vendor-prefix-display(flex);
+        .lib-css(justify-content, space-between, 1);
+        max-width: 1360px;
+        padding: 0;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .two-links__item {
+        padding: 15px;
+        position: relative;
+
+        .two-links__item-icon {
+            min-width: 35px;
+            padding: 7px;
+        }
+
+        &.free-samples-item {
+            .two-links__item-icon {
+                &::before {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        }
+
+        &.free-advice-item {
+            .two-links__item-icon {
+                font-size: 35px;
+            }
+        }
+    }
+
+    .two-links__item-icon {
+        position: absolute;
+        left: 15px;
+        top: 15px;
+    }
+
+    .two-links__item-title {
+        padding-left: 60px;
+        margin: 0;
+        min-height: 57px;
+        .lib-vendor-prefix-display(flex);
+        .lib-css(justify-content, flex-end, 1);
+        .lib-vendor-box-align(center);
+        font-size: 15px;
+    }
+
+    .two-links__item-description {
+        .lib-vendor-prefix-display(flex);
+        .lib-css(justify-content, space-between, 1);
+        .lib-vendor-box-align(center);
+        padding-top: 10px;
+        text-align: left;
+        font-size: 13px;
+
+        i {
+            font-size: 33px;
+        }
+    }
+
+    .home-two-links {
+        margin-bottom: 10px;
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .two-links__item-description {
+        font-size: 12px;
+    }
+
+    .two-links__item-title {
+        font-size: 14px;
+    }
+
+    .two-links__item {
+        padding: 10px;
+
+        .two-links__item-icon {
+            min-width: 20px;
+            left: 10px;
+        }
+
+        &.free-advice-item {
+            .two-links__item-icon {
+                font-size: 20px;
+                min-width: 20px;
+            }
+        }
+
+        &.free-samples-item {
+            .two-links__item-icon {
+                &:before {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .two-links__item {
+        padding: 10px 20px;
+        .lib-vendor-prefix-display(flex);
+        .lib-vendor-box-align(center);
+    }
+
+    .home-two-links {
+        margin-bottom: 10px;
+    }
+
+    .two-links__item-icon {
+        margin-right: auto;
+        min-width: 70px;
+    }
+
+    .two-links__item-title {
+        display: block;
+        margin: 0 0 5px 0;
+    }
+
+    .two-links__item-description {
+        font-size: 18px;
+        line-height: 28px;
+
+        i {
+            position: relative;
+            bottom: -2px;
+            font-size: 23px;
+        }
+    }
+
+    .two-links__item {
+        .two-links__item-icon {
+            min-width: 50px;
+            padding: 12px;
+        }
+
+        &.free-samples-item {
+            .two-links__item-icon {
+                &::before {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+        }
+
+        &.free-advice-item {
+            .two-links__item-icon {
+                font-size: 50px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .home-two-links {
+        margin-bottom: 30px;
+    }
+}

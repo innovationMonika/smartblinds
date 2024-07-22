@@ -1,0 +1,90 @@
+<?php
+/**
+ * Plumrocket Inc.
+ * NOTICE OF LICENSE
+ * This source file is subject to the End-user License Agreement
+ * that is available through the world-wide-web at this URL:
+ * http://wiki.plumrocket.net/wiki/EULA
+ * If you are unable to obtain it through the world-wide-web, please
+ * send an email to support@plumrocket.com so we can send you a copy immediately.
+ *
+ * @package     Plumrocket Search Autocomplete & Suggest
+ * @copyright   Copyright (c) 2019 Plumrocket Inc. (http://www.plumrocket.com)
+ * @license     http://wiki.plumrocket.net/wiki/EULA  End-user License Agreement
+ */
+
+$helper = $this->helper(Plumrocket\Search\Helper\Data::class);
+$config = $this->helper(Plumrocket\Search\Helper\Config::class);
+$catalogSearchHelper = $this->helper(Magento\CatalogSearch\Helper\Data::class);
+?>
+<div class="block-search-wrap">
+
+<?= '<?xml version="1.0" encoding="UTF-8"?>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="search" viewBox="0 0 512 512">
+        <title id="search-title">Search</title>
+        <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+      </symbol>
+    </svg>';
+?>
+
+<script type="text/javascript">
+    require(["jquery", "Plumrocket_Search/js/psearch", "domReady!"], function($, plumSearch) {
+        "use strict";
+        var psearch = new plumSearch({
+            path: '<?php echo $block->getUrl("prsearch/ajax", ["_secure" => $helper->isCurrentlySecure()] );?>',
+            delay: <?php echo abs($config->getQueryDelay()); ?>,
+            queryLenghtMin: <?php echo $config->getSearchMinLenght(); ?>
+        });
+
+        psearch.run();
+    });
+</script>
+
+<div class="pas-overley"></div>
+<form id="pas-mini-form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+    <div class="pas-form-search">
+        <?php if ($config->enabledFilterCategories() && $categoryTree = $helper->getCategoryTree()) : ?>
+            <div class="pas-nav-left">
+                <div class="pas-search-facade">
+                    <span class="pas-search-label">
+                        <?php echo $this->escapeHtml(str_replace('&nbsp;', '', isset($categoryTree[$helper->getQueryCategory()])? $categoryTree[$helper->getQueryCategory()] : $categoryTree[0])); ?>
+                    </span>
+                    <i class="pas-search-icon"></i>
+                </div>
+                <select name="cat" class="pas-search-dropdown">
+                    <?php foreach ($categoryTree as $value => $label) : ?>
+                        <option value="<?php echo $this->escapeHtml($value); ?>" <?php echo $value == $helper->getQueryCategory()? 'selected' : ''; ?>><?php echo $this->escapeHtml($label); ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        <?php endif; ?>
+
+        <div class="pas-nav-right">
+            <button type="submit" title="<?php echo __('Search') ?>" class="pas-button">
+                <i class="far fa-search"></i>
+            </button>
+        </div>
+
+        <div class="pas-nav-center">
+            <div class="pas-search-field">
+                <input id="pas-input"
+                       type="text"
+                       name="<?php echo $catalogSearchHelper->getQueryParamName() ?>"
+                       placeholder="<?= $block->escapeHtmlAttr(__('Search entire store here...')) ?>"
+                       value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>"
+                       class="pas-input-text"
+                       maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>"
+                       autocomplete="off"
+                       tabindex="1" />
+                <img src="<?php echo $block->getViewFileUrl('Plumrocket_Search::images/psearch-loader.gif');?>" width="22"  alt="loader" class="pas-loader" />
+            </div>
+        </div>
+
+        <div id="pas-tooltip"></div>
+    </div>
+
+    <?= $block->getChildHtml() ?>
+</form>
+
+</div>

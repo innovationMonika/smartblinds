@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalogsearch.product.addto">
+            <block name="catalogsearch.product.addto.sample.basket"
+                   template="GoMage_Samples::catalog/product/list/addto/basket.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">GoMage\Samples\ViewModel\Product</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

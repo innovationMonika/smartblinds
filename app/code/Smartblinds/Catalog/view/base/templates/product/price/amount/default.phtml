@@ -1,0 +1,25 @@
+<?php
+/** @var $block \Magento\Framework\Pricing\Render\Amount */
+/** @var \Smartblinds\Catalog\Helper\Amount $smartblindsPriceHelper */
+$amountHelper = $this->helper(\Smartblinds\Catalog\Helper\Amount::class);
+?>
+
+<span class="price-container <?= $block->escapeHtmlAttr($block->getAdjustmentCssClasses()) ?>"
+        <?= $block->getSchema() ? ' itemprop="offers" itemscope itemtype="http://schema.org/Offer"' : '' ?>>
+    <?php if ($block->getDisplayLabel()) :?>
+        <span class="price-label"><?= $block->escapeHtml($block->getDisplayLabel()) ?></span>
+    <?php endif; ?>
+    <span <?php if ($block->getPriceId()) :?> id="<?= $block->escapeHtmlAttr($block->getPriceId()) ?>"<?php endif;?>
+        <?= ($block->getPriceDisplayLabel()) ? 'data-label="' . $block->escapeHtmlAttr($block->getPriceDisplayLabel() . $block->getPriceDisplayInclExclTaxes()) . '"' : '' ?>
+        data-price-amount="<?= $block->escapeHtmlAttr($block->getDisplayValue()) ?>"
+        data-price-type="<?= $block->escapeHtmlAttr($block->getPriceType()) ?>"
+        class="price-wrapper <?= $block->escapeHtmlAttr($block->getPriceWrapperCss()) ?>"
+    ><?= $block->escapeHtml($amountHelper->formatCurrency($block->getDisplayValue(), (bool)$block->getIncludeContainer()), ['span']) ?></span>
+    <?php if ($block->hasAdjustmentsHtml()) :?>
+        <?= $block->getAdjustmentsHtml() ?>
+    <?php endif; ?>
+    <?php if ($block->getSchema()) :?>
+        <meta itemprop="price" content="<?= $block->escapeHtmlAttr($amountHelper->formatCurrencyWithoutCode($block->getDisplayValue(), false)) ?>" />
+        <meta itemprop="priceCurrency" content="<?= $block->escapeHtmlAttr($block->getDisplayCurrencyCode()) ?>" />
+    <?php endif; ?>
+</span>

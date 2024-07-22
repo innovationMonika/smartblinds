@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2018 Mageside. All rights reserved.
+ * See MS-LICENSE.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mageside_page_hierarchy>
+            <general>
+                <enabled>0</enabled>
+                <module_name>CMS Page Hierarchy</module_name>
+                <module_page_link>https://mageside.com/cms-page-hierarchy.html</module_page_link>
+                <tree_depth>0</tree_depth>
+            </general>
+        </mageside_page_hierarchy>
+    </default>
+</config>

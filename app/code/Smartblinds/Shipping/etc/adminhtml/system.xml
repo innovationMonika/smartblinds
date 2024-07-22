@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="shipping">
+            <group id="origin" showInStore="1">
+                <field id="country_id" showInStore="1" />
+                <field id="region_id" showInStore="1" />
+                <field id="postcode" showInStore="1" />
+                <field id="city" showInStore="1" />
+                <field id="street_line1" showInStore="1" />
+                <field id="street_line2" showInStore="1" />
+            </group>
+            <group id="shipment_options" translate="label" type="text" sortOrder="220" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Shipment Options</label>
+                <field id="checked_email_copy_of_shipment_for_orders_with_statuses" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label><![CDATA[Checked "Email Copy of Shipment" for the Orders with Statuses]]></label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

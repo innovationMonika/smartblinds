@@ -1,0 +1,97 @@
+<?php /* @var $block \Smartblinds\Options\Block\Catalog\Product\View\Options\Type\CurtainTracksWidth */
+
+use Smartblinds\Options\Model\Product\Option\Type\CurtainTracksWidth; ?>
+<?php
+$_option = $block->getOption();
+$class = ($_option->getIsRequire()) ? ' required' : '';
+$class = $_option->getMoveToTop() ? $class . ' top' : $class . ' bottom';
+$optionalText = $_option->getIsRequire() ? '' : ' (' . __('optional') . ')';
+$optionCode = $_option->getOptionCode();
+$modalCode = $_option->getModalCode();
+?>
+
+<script data-skip="1">window.curtainTracks = <?= $block->getJson() ?>;</script>
+
+<div data-mage-init='{"Smartblinds_Options/js/price-option/curtain-tracks-width":{}}'
+    class="product-option textual field<?php if ($_option->getType() == \Magento\Catalog\Api\Data\ProductCustomOptionInterface::OPTION_TYPE_AREA) {
+    echo ' textarea';
+} ?><?= /* @noEscape */ $class ?>">
+
+    <div class="product-option-header">
+        <label class="label" for="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>_text">
+            <span><?= $block->escapeHtml($_option->getTitle()) ?><?= $optionalText ?></span>
+            <?= /* @noEscape */ $block->getFormattedPrice() ?>
+        </label>
+        <div class="product-option-info-icon"
+             data-option-modal="<?= $block->escapeHtmlAttr($modalCode) ?>"><span class="fas fa-info-circle"></span></div>
+    </div>
+
+    <div class="control">
+        <?php if ($_option->getType() == CurtainTracksWidth::TYPE_CODE) :?>
+            <?php $_textValidate = null;
+            if ($_option->getIsRequire()) {
+                $_textValidate['required'] = true;
+            }
+            if ($_option->getMaxCharacters()) {
+                $_textValidate['maxlength'] = $_option->getMaxCharacters();
+            }
+            $_textValidate['validate-no-utf8mb4-characters'] = true;
+            $_textValidate['curtain-tracks'] = true;
+            ?>
+            <input data-role="curtain_tracks_width"
+                    type="text"
+                   id="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>_text"
+                   placeholder="50 <?= __('toto')?> 580"
+                   class="input-text product-custom-option"
+                <?php if (!empty($_textValidate)) {?>
+                    data-validate="<?= $block->escapeHtml(json_encode($_textValidate)) ?>"
+                <?php } ?>
+                   name="options[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                   data-selector="options[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                   data-value="<?= $block->escapeHtml($block->getDefaultValue()) ?>"
+                   value="<?= $block->escapeHtml($block->getDefaultValue()) ?>"/>
+        <?php elseif ($_option->getType() == \Magento\Catalog\Api\Data\ProductCustomOptionInterface::OPTION_TYPE_AREA) :?>
+            <?php $_textAreaValidate = null;
+            if ($_option->getIsRequire()) {
+                $_textAreaValidate['required'] = true;
+            }
+            if ($_option->getMaxCharacters()) {
+                $_textAreaValidate['maxlength'] = $_option->getMaxCharacters();
+            }
+            $_textAreaValidate['validate-no-utf8mb4-characters'] = true;
+            ?>
+            <textarea id="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>_text"
+                      class="product-custom-option"
+                    <?php if (!empty($_textAreaValidate)) {?>
+                        data-validate="<?= $block->escapeHtml(json_encode($_textAreaValidate)) ?>"
+                    <?php } ?>
+                      name="options[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                      data-selector="options[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                      rows="5"
+                      cols="25"><?= $block->escapeHtml($block->getDefaultValue()) ?></textarea>
+        <?php endif; ?>
+        <?php if ($_option->getMaxCharacters()) :?>
+            <p class="note note_<?= $block->escapeHtmlAttr($_option->getId()) ?>">
+                <?= $block->escapeHtml(__('Maximum %1 characters', $_option->getMaxCharacters())) ?>
+                <span class="character-counter no-display"></span>
+            </p>
+        <?php endif; ?>
+    </div>
+    <div id="error-placement-element"><?php echo ' '; // space here is important because for some reason magento or custom code removes closing tag and markup will be broken, so keep it ?></div>
+    <div class="pdp-options-save-button">
+        <div class="btn"><?= $block->escapeHtml(__('Save')) ?></div>
+    </div>
+    <?php if ($_option->getMaxCharacters()) :?>
+        <script type="text/x-magento-init">
+        {
+            "[data-selector='options[<?= $block->escapeJs($_option->getId()) ?>]']": {
+                "Magento_Catalog/js/product/remaining-characters": {
+                    "maxLength":  "<?= (int)$_option->getMaxCharacters() ?>",
+                    "noteSelector": ".note_<?= $block->escapeJs($_option->getId()) ?>",
+                    "counterSelector": ".note_<?= $block->escapeJs($_option->getId()) ?> .character-counter"
+                }
+            }
+        }
+    </script>
+    <?php endif; ?>
+</div>

@@ -1,0 +1,84 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .home-promotion-wrap.container {
+        margin-bottom: 33px;
+        padding: 0;
+        max-width: @layout__max-width - 40px;
+    }
+
+    .home-promotion {
+        background: @primary__color;
+        color: @smartblinds-color-white;
+        padding: 34px 20px;
+
+        a {
+            color: @smartblinds-color-white;
+        }
+
+    }
+
+    .home-promotion-title {
+        text-transform: uppercase;
+        font-size: 24px;
+        line-height: 1.33;
+        letter-spacing: .65px;
+        color: @smartblinds-color-gold;
+        font-family: @font-family__heading;
+        margin: 0 0 15px;
+    }
+
+    .home-promotion-text {
+        margin: 0 0 20px;
+    }
+
+    .home-promotion-link {
+
+        a {
+            .abs-link-border-alt();
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .home-promotion-wrap.container {
+        margin-bottom: 100px;
+    }
+
+    .home-promotion {
+        padding: 7.4264% 8.5294% 8.6029%;
+    }
+
+    .home-promotion-title {
+        font-size: 54px;
+        line-height: 1.18518;
+        letter-spacing: 1.45px;
+        margin-bottom: 25px;
+        max-width: 880px;
+    }
+
+    .home-promotion-text {
+        font-size: 21px;
+        line-height: 1.5238;
+        letter-spacing: .92px;
+        margin-bottom: 31px;
+        max-width: 780px;
+    }
+
+    .home-promotion-link {
+        font-size: 21px;
+    }
+
+}

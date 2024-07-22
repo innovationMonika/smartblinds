@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="GoMage\Samples\Model\Claim\PlaceOrder\CartCollector">
+        <plugin name="smartblinds_conversions_samples_place_order_cart_collector"
+                type="Smartblinds\Conversions\Plugin\Samples\Model\Claim\PlaceOrder\CartCollector" sortOrder="10" />
+    </type>
+</config>

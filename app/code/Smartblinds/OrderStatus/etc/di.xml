@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="smartblinds_order_status_log_set"
+                type="Smartblinds\OrderStatus\Plugin\Sales\Model\Order\Log\Set" />
+    </type>
+
+    <virtualType name="OrderStatusLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/order_status.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="OrderStatusLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">order_status</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="all" xsi:type="object">OrderStatusLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Smartblinds\OrderStatus\Model\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">OrderStatusLogger</argument>
+        </arguments>
+    </type>
+
+</config>

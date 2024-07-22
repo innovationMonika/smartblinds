@@ -1,0 +1,136 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .minicart-wrapper {
+        margin: 0 -3px 0 14px;
+
+        .action.showcart {
+            display: block;
+            position: relative;
+            text-decoration: none;
+
+            &:before {
+                display: none;
+            }
+
+            .icon {
+                display: block;
+
+                svg {
+                    display: block;
+                    width: 30px;
+                    height: auto;
+
+                    .cls-1 {
+                        fill: #1d1d1b;
+                    }
+                }
+
+            }
+
+            .counter.qty {
+                background: #019B77;
+                color: @smartblinds-color-white;
+                border-radius: 17px;
+                line-height: 1;
+                letter-spacing: .53px;
+                font-size: 9px;
+                min-width: 17px;
+                text-align: center;
+                margin: 0;
+                padding: 0 3px;
+                height: 17px;
+                position: absolute;
+                right: -10px;
+                top: -1px;
+                display: -webkit-flex;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                box-sizing: border-box;
+                font-weight: 900;
+
+                .counter-label {
+                    display: none;
+                }
+
+                .loader {
+
+                    & > img {
+                        max-width: 19px;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    ._main-menu-opened {
+        .minicart-wrapper {
+            .action.showcart {
+                .icon {
+                    svg {
+                        .cls-1 {
+                            fill: @color-white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .minicart-wrapper {
+        margin-left: 14px;
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .minicart-wrapper {
+        margin-left: 30px;
+        top: -4px;
+
+        .action.showcart {
+
+            .icon {
+
+                svg {
+                    width: 30px;
+                }
+
+            }
+
+            .counter.qty {
+                border-radius: 19px;
+                line-height: 19px;
+                font-size: 11px;
+                min-width: 19px;
+                height: 19px;
+                right: -8px;
+                top: 1px;
+            }
+
+        }
+
+    }
+
+}

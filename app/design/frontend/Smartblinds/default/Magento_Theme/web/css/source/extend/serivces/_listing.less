@@ -1,0 +1,123 @@
+//
+//  Variables
+//  ---------------------------------------------
+@service-item__shadow: 0 0 15px -7px #000;
+@service-item__hover__color: @smartblinds-color-blue1;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .sb-service-listing {
+        .lib-vendor-prefix-display(flex);
+        .lib-vendor-prefix-flex-wrap(wrap);
+        margin: 0 -10px;
+    }
+
+    .sb-service-item {
+        text-align: center;
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+
+        &::after {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+
+        .sb-service-item-link {
+            margin: auto;
+            height: 90%;
+            width: 90%;
+            border: 1px solid transparent;
+            text-decoration: none;
+            background: #ffffff;
+            .lib-vendor-prefix-display(flex);
+            .lib-css(border-radius, 15px, 1);
+            .lib-css(box-shadow, @service-item__shadow, 1);
+            .lib-css(transition, all 0.3s, 1);
+            .lib-css(box-sizing, border-box, 1);
+
+            &:hover {
+                border: 1px solid @service-item__hover__color;
+                color: @service-item__hover__color;
+            }
+        }
+    }
+
+    .sb-service-item-content {
+        margin: auto;
+    }
+
+    .sb-service-item-inner {
+        position: absolute;
+        left: 0;
+        top: 0;
+        .lib-vendor-prefix-display(flex);
+        height: 100%;
+        width: 100%;
+    }
+
+    .sb-service-item-icon {
+        display: block;
+        font-size: 40px;
+        margin-bottom: 15px;
+    }
+
+    .sb-service-item-text {
+        display: block;
+        font-size: 16px;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .sb-service-item {
+        width: 33.333%;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .sb-service-item {
+        width: 50%;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .sb-service-item {
+        .sb-service-item-icon {
+            font-size: 35px;
+            margin-bottom: 0;
+        }
+
+        .sb-service-item-text {
+            font-size: 14px;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .sb-service-item {
+        width: 25%;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .sb-service-item {
+        width: 20%;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .sb-service-item {
+        width: 16.66%;
+    }
+}

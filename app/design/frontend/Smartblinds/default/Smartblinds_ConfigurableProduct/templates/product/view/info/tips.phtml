@@ -1,0 +1,14 @@
+<?php /** @var \Magento\Framework\View\Element\Template $block */
+$tips = $block->getData('tips');
+$containerElem = $block->getData('container_element') ?? 'div';
+$containerClasses = $block->getData('container_classes') ?? 'product-info-tips';
+$rowElement = $block->getData('row_element') ?? 'div';
+$rowClasses = $block->getData('row_classes') ?: '';
+?>
+<<?= $block->escapeHtml($containerElem) ?> class="<?= $block->escapeHtml($containerClasses) ?>">
+    <?php foreach ($tips as $tip): ?>
+        <<?= $block->escapeHtml($rowElement) ?> class="<?= $block->escapeHtml($rowClasses) ?>">
+        <?= /* @noEscape */ $tip ?>
+        </<?= $block->escapeHtml($rowElement) ?>>
+    <?php endforeach; ?>
+</<?= $block->escapeHtml($containerElem) ?>>

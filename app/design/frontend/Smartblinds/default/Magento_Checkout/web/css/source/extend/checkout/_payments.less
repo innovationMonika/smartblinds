@@ -1,0 +1,199 @@
+//
+//  Variables
+//  _____________________________________________
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .checkout-index-index {
+        .checkout-payment-method {
+            position: relative;
+            .payment-methods {
+                margin: 0;
+                .step-title {
+                    padding: 0;
+                    margin-bottom: 15px;
+                }
+            }
+            .payment-method {
+                padding: 20px;
+                border: 1px solid @smartblinds-color-gray;
+                margin-bottom: 10px;
+
+
+                .payment-method-title {
+                    border: none;
+                    padding: 0;
+
+                    > input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+
+                    > input:checked ~ .label {
+                        &::before {
+                            content: "\f192";
+                        }
+                    }
+
+                    .label {
+                        padding-left: 36px;
+                        position: relative;
+                        display: block;
+
+                        &::before {
+                            content: "\f111";
+                            font-family: 'Font Awesome 5 Pro';
+                            font-weight: 400;
+                            display: block;
+                            font-size: 16px;
+                            height: 16px;
+                            line-height: 1;
+                            width: 16px;
+                            position: absolute;
+                            left: 10px;
+                            top: 1px;
+                        }
+                    }
+                }
+
+                .payment-method-content {
+                    padding: 0;
+                    .checkout-billing-address .billing-address-details {
+                        display: none;
+                    }
+                }
+
+                &._active {
+                    .payment-method-title {
+                        padding: 0 0 20px 0;
+                        margin-bottom: 15px;
+                        border-bottom: 1px solid rgba(45,41,38,0.2);
+                    }
+                }
+
+                .payment-method-billing-address {
+                    .field {
+                        > .label {
+                            position: relative;
+
+                            &::after {
+                                position: absolute;
+                                right: 5px;
+                            }
+                        }
+                    }
+
+                    .action-cancel {
+                        .lib-button();
+                        margin-right: 6px;
+                        text-decoration: none;
+                    }
+                }
+                .moved-block {
+                    left: 0;
+                    width: 100%;
+                    box-sizing: border-box;
+                    .actions-toolbar {
+                        margin: 0;
+                        float: none;
+                        width: 100%;
+                        .primary {
+                            float: none;
+                            width: 100%;
+                        }
+                        .action.primary {
+                            width: 100%;
+                            background: @smartblinds-color-green;
+                            border-color: @smartblinds-color-green;
+                            float: none;
+                            &:hover {
+                                background: #333;
+                            }
+                        }
+                    }
+                    .checkout-agreement {
+                        button {
+                            font-family: 'TSTAR PRO', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                        }
+                    }
+                    .custom-agreements {
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+
+        &.third-step {
+
+            .custom-benefits-list {
+                li {
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                    &:nth-child(3) {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        .checkout-payment-method .payment-method .moved-block {
+            position: fixed;
+            bottom: 0;
+            background: white;
+            border-top: 1px solid @smartblinds-color-gray;
+            padding: 20px;
+            z-index: 999;
+        }
+        .cart-summary {
+            margin: 0 -20px;
+        }
+        &.third-step {
+
+            .cart-summary-inner {
+                border-top: 0;
+            }
+
+            .custom-benefits-list {
+                padding: 0 20px;
+                li {
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                    &:nth-child(3) {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .cart-summary-inner > .title {
+            padding-top: 0;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .checkout-index-index .checkout-payment-method .payment-method .moved-block {
+        position: absolute;
+        top: 100%;
+    }
+}

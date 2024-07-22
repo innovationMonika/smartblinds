@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="GoMage\ErpOrderExport\Model\OrderData\DataProviderInterface"
+                type="GoMage\ErpOrderExport\Model\OrderData\Composite" />
+
+    <type name="GoMage\ErpOrderExport\Model\OrderData\Composite">
+        <arguments>
+            <argument name="dataProviders" xsi:type="array">
+                <item name="common"
+                      xsi:type="object">GoMage\ErpOrderExport\Model\OrderData\Common</item>
+                <item name="items"
+                      xsi:type="object">GoMage\ErpOrderExport\Model\OrderData\Items</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="GoMage\ErpOrderExport\Model\Transport">
+        <arguments>
+            <argument name="moduleName" xsi:type="string">GoMage_ErpOrderExport</argument>
+            <argument name="fileName" xsi:type="string">request.xsl</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="ErpOrderExportLoggerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/erp_order_export.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ErpOrderExportLogger" type="Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">erp_order_export</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="all" xsi:type="object">ErpOrderExportLoggerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="GoMage\ErpOrderExport\Model\Logger">
+        <arguments>
+            <argument name="logger" xsi:type="object">ErpOrderExportLogger</argument>
+        </arguments>
+    </type>
+
+    <type name="GoMage\ErpOrderExport\Model\OrderExport\Response\Handler\HandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="accepted"
+                      xsi:type="object">GoMage\ErpOrderExport\Model\OrderExport\Response\Handler\AcceptedHandler</item>
+                <item name="rejected"
+                      xsi:type="object">GoMage\ErpOrderExport\Model\OrderExport\Response\Handler\RejectedHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="erp_order_export"
+                      xsi:type="object">GoMage\ErpOrderExport\Console\Command\ExportOrders</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

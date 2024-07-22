@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="smartblinds_catalog_search" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Catalog Search</label>
+            <tab>smartblinds</tab>
+            <resource>Smartblinds_CatalogSearch::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="product_types_to_exclude_from_layer" type="multiselect" translate="label" sortOrder="1000"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Product Types To Exclude From Layer</label>
+                    <source_model>Smartblinds\Catalog\Model\Config\Source\ProductType</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,29 @@
+<?php /* @var $block \Magento\Catalog\Block\Product\View\Options\Type\Select */ ?>
+<?php
+$needHideOptions = $block->getProduct()->getSku() !== 'curtain_tracks';
+$_option = $block->getOption();
+$class = ($_option->getIsRequire()) ? ' required' : '';
+$class = $_option->getMoveToTop() ? $class . ' top' : $class . ' bottom';
+$dataRoleStep = $_option->getIsRequire() ? ' data-role="step"' : '';
+$optionCode = $_option->getOptionCode();
+$modalCode = $_option->getModalCode();
+?>
+<div class="product-option field<?= /* @noEscape */ $class ?>"
+    <?= $dataRoleStep ?>
+     <?= $needHideOptions ? 'style="display:none;"' : '' ?>>
+    <div class="product-option-header">
+        <label class="label" for="select_<?= $block->escapeHtmlAttr($_option->getId()) ?>">
+            <span><?= $block->escapeHtml($_option->getTitle()) ?>:</span>
+        </label>
+        <span class="product-option-info-icon"
+              data-option-modal="<?= $block->escapeHtmlAttr($modalCode) ?>"><span class="fas fa-info-circle"></span></span>
+    </div>
+    <div class="control">
+        <?= $block->getValuesHtml() ?>
+        <?php if ($_option->getIsRequire()) :?>
+            <?php if ($_option->getType() == \Magento\Catalog\Api\Data\ProductCustomOptionInterface::OPTION_TYPE_RADIO || $_option->getType() == \Magento\Catalog\Api\Data\ProductCustomOptionInterface::OPTION_TYPE_CHECKBOX) :?>
+                <span id="options-<?= $block->escapeHtmlAttr($_option->getId()) ?>-container"></span>
+            <?php endif; ?>
+        <?php endif;?>
+    </div>
+</div>

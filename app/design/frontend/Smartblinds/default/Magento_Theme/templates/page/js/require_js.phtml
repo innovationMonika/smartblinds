@@ -1,0 +1,18 @@
+<?php
+
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \Smartblinds\Theme\ViewModel\Theme\Theme $viewModel */
+$viewModel = $block->getData('viewModel');
+$headContent = $viewModel ? $viewModel->getHeadContent(): '';
+
+$scriptString = '
+    var BASE_URL = \'' . /* @noEscape */ $block->escapeJs($block->getBaseUrl()) .'\';
+    var require = {
+        \'baseUrl\': \'' . /* @noEscape */ $block->escapeJs($block->getViewFileUrl('/')) . '\'
+    };';
+?>
+<?= /* @noEscape */ $headContent ?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+

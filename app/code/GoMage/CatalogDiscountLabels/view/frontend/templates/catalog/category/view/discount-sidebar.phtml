@@ -1,0 +1,19 @@
+<?php
+    /**
+     * @var $block \Magento\Catalog\Block\Product\ListProduct
+     * @var \GoMage\CatalogDiscountLabels\Helper\Data $discountHelper
+     * @var \Magento\Framework\Escaper $escaper
+     * @var \Magento\Catalog\Model\Category $currentCategory
+     */
+
+    $discountHelper = $this->helper(GoMage\CatalogDiscountLabels\Helper\Data::class);
+    $currentCategory = $block->getLayer()->getCurrentCategory();
+?>
+
+<?php if ($text = $currentCategory->getData('sidebar_discount_block_text')):?>
+    
+    <div class="discount-sidebar-block">
+        <?= $text ?>
+    </div>
+    
+<?php endif; ?>

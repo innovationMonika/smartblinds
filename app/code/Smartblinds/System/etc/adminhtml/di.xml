@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="SystemTypeAttributeOptions" type="GoMage\Ui\Model\Source\AttributeOptions">
+        <arguments>
+            <argument name="entityType"
+                      xsi:type="const">Magento\Catalog\Api\Data\ProductAttributeInterface::ENTITY_TYPE_CODE</argument>
+            <argument name="attributeCode"
+                      xsi:type="string">system_type</argument>
+            <argument name="withEmpty" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SystemControlTypeAttributeOptions" type="GoMage\Ui\Model\Source\AttributeOptions">
+        <arguments>
+            <argument name="entityType"
+                      xsi:type="const">Magento\Catalog\Api\Data\ProductAttributeInterface::ENTITY_TYPE_CODE</argument>
+            <argument name="attributeCode"
+                      xsi:type="string">control_type</argument>
+            <argument name="withEmpty" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SystemSizeAttributeOptions" type="GoMage\Ui\Model\Source\AttributeOptions">
+        <arguments>
+            <argument name="entityType"
+                      xsi:type="const">Magento\Catalog\Api\Data\ProductAttributeInterface::ENTITY_TYPE_CODE</argument>
+            <argument name="attributeCode"
+                      xsi:type="string">system_size</argument>
+            <argument name="withEmpty" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="FabricSizeAttributeOptions" type="GoMage\Ui\Model\Source\AttributeOptions">
+        <arguments>
+            <argument name="entityType"
+                      xsi:type="const">Magento\Catalog\Api\Data\ProductAttributeInterface::ENTITY_TYPE_CODE</argument>
+            <argument name="attributeCode"
+                      xsi:type="string">fabric_size</argument>
+            <argument name="withEmpty" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SystemCategoryAttributeOptions" type="GoMage\Ui\Model\Source\AttributeOptions">
+        <arguments>
+            <argument name="entityType"
+                      xsi:type="const">Magento\Catalog\Api\Data\ProductAttributeInterface::ENTITY_TYPE_CODE</argument>
+            <argument name="attributeCode"
+                      xsi:type="string">system_category</argument>
+            <argument name="withEmpty" xsi:type="boolean">false</argument>
+        </arguments>
+    </virtualType>
+
+</config>

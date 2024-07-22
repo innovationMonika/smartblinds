@@ -1,0 +1,37 @@
+<?php
+/** @var $block \Magefan\Blog\Block\Post\View\RelatedPosts */
+?>
+
+<?php if ($block->displayPosts()): ?>
+    <?php $postCollection = $block->getPostCollection(); ?>
+    <?php if (count($postCollection)): ?>
+        <div class="blog-slider-wrap">
+            <div class="blog-slider container theme-slider-container">
+                <div class="blog-slider-title">
+                    <strong><?= $block->escapeHtml(__('Related Posts')) ?></strong>
+                </div>
+                <div class="theme-slider-content">
+                    <div class="swiper-container theme-slider">
+                        <script type="text/x-magento-init">
+                        {
+                            "*": {
+                                "Magento_Ui/js/core/app": {
+                                    "components": {
+                                        "related-posts": {
+                                            "component": "Magefan_Blog/js/post/view/related",
+                                            "posts": <?php echo $block->getPostsJson() ?>
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        </script>
+                        <div data-bind="scope: 'related-posts'">
+                            <!-- ko template: getTemplate() --><!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

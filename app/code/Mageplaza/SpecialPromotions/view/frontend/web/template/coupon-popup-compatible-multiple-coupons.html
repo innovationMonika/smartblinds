@@ -1,0 +1,145 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_SpecialPromotions
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<!-- ko if: specialPromotionsRules().length -->
+<div class="mp-special-promotions-popup" id="mp-special-promotions-popup">
+    <!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="mp-special-promotions-popup-button" data-bind="text: getPopupButtonLabel(), click: showModal"></div>
+    <div class="mp-special-promotions-modal" data-bind="blockLoader: isLoading, afterRender: setModalElement">
+        <div class="discount-box">
+            <div class="label col-mp mp-3" for="discount-code" data-bind="i18n: 'Voucher'"></div>
+            <div class="coupon-box col-mp mp-9">
+                <!-- ko foreach: getRegion('messages') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+                <form class="form form-discount" id="special-discount-mpmultiplecoupons-form" action="#" method="post">
+                    <div class="payment-option-inner col-mp mp-9">
+                        <div class="field">
+                            <div class="control">
+                                <input type="text" class="input-text" id="mpmultiplecoupons_code"
+                                       name="mpmultiplecoupons_code"
+                                       data-bind="value: inputCode, attr: {placeholder: $t('Enter discount code')}"
+                                       data-validate="{required:true}">
+                                <input type="hidden" class="input-text" data-bind="value: couponCode"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions-toolbar col-mp mp-3">
+                        <div class="primary">
+                            <button class="action" type="submit" data-bind="click: applySingleCoupon">
+                                <span data-bind="i18n: 'Apply Discount'"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payment-option-inner mpmultiplecoupons-applied col-mp mp-12"
+                         data-bind="visible: isApplied()">
+                        <!-- ko foreach: {data: arrayCode, as: 'code'} -->
+                        <div class="mpmultiplecoupons-applied-item">
+                            <a href="javascript:void(0)" class="mpmultiplecoupons-remove-icon"
+                               data-bind="click: function(data, event){$parent.cancelSingleCoupon(data)}, text: 'x'"></a>
+                            <span class="mpmultiplecoupons-item-label" data-bind="text: code"></span>
+                        </div>
+                        <!-- /ko -->
+                    </div>
+                </form>
+                <div class="mp-clear"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="coupon-list-box">
+            <div class="coupon-list-title" data-bind="i18n: 'Select Discount Code'"></div>
+            <div class="coupon-list-information">
+                <!-- ko foreach: {data: specialPromotionsRules(), as: 'rule'} -->
+                <!-- ko ifnot: rule.use_auto_generation -->
+                <div class="coupon-rule not-auto-generation row-mp">
+                    <div class="coupon-code col-mp mp-xs-12 mp-2"
+                         data-bind="click: $parent.copyCoupon.bind($parent, rule.coupons[0].coupon_code), attr: {id: 'coupon-label' + rule.coupons[0].coupon_code }">
+                        <span class="coupon-code-label"
+                              data-bind="text: $parent.getNotAutoGenerationCoupon(rule)"></span>
+                    </div>
+                    <div class="rule-information col-mp mp-xs-12 mp-9">
+                        <div class="label" data-bind="text: $parent.getRuleLabel(rule)"></div>
+                        <div class="description" data-bind="text: rule['description']"></div>
+                        <div class="expired-date" data-bind="text: $parent.getExpiredDate(rule)"></div>
+                    </div>
+                    <div class="input-checkbox col-mp mp-xs-12 mp-1">
+                        <input type="checkbox" class="checkbox not-auto-generation" data-bind="attr: {id: rule.coupons[0].coupon_id + '-' + rule.coupons[0].coupon_code,
+                                                                    value: rule.coupons[0].coupon_code,
+                                                                    title: $t('Coupon Code'),
+                                                                    checked: $parent.isCouponChecked(rule.coupons[0]),
+                                                                    name: 'coupon-checkbox-input'},
+                                                             click: $parent.addCouponCode.bind($parent, rule.coupons[0])">
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: rule.use_auto_generation -->
+                <div class="coupon-rule row-mp">
+                    <div class="coupon-code col-mp mp-xs-12 mp-2"
+                         data-bind="text: $parent.getNotAutoGenerationCoupon(rule)"></div>
+                    <div class="rule-information col-mp mp-xs-12 mp-10"
+                         data-bind="mageInit: {'collapsible':{'openedState': '_active', 'saveState': false}}">
+                        <div data-role="title">
+                            <div class="label" data-bind="text: $parent.getRuleLabel(rule)"></div>
+                            <div class="description" data-bind="text: rule['description']"></div>
+                            <div class="expired-date" data-bind="text: $parent.getExpiredDate(rule)"></div>
+                            <div class="title action action-toggle" data-bind="i18n: 'Show More Coupon'"></div>
+                        </div>
+                        <div class="auto-generation-coupons content" data-role="content">
+                            <!-- ko foreach: {data: rule.coupons, as: 'coupon'} -->
+                            <div class="coupon-checkbox row-mp">
+                                <input type="checkbox" class="checkbox col-mp mp-xs-2" data-bind="attr: {id: coupon.coupon_id + '-' + coupon.coupon_code,
+                                                                           value: coupon.coupon_code,
+                                                                           title: $t('Coupon Code'),
+                                                                           checked: $parents[1].isCouponChecked(coupon),
+                                                                           name: 'coupon-checkbox-input'},
+                                                                    click: $parents[1].addCouponCode.bind($parents[1], coupon)">
+                                <label class="coupon col-mp mp-xs-10"
+                                       data-bind="attr:{for: coupon.coupon_id + '-' + coupon.coupon_code},text: coupon.coupon_code"></label>
+                            </div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!-- /ko -->
+                <!-- /ko -->
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- ko if: errorValidationMessage() -->
+        <div class="message notice">
+            <span><!-- ko i18n: errorValidationMessage()--><!-- /ko --></span>
+        </div>
+        <!-- /ko -->
+        <div class="button cancel  col-mp mp-6 mp-xs-12">
+            <button type="button" class="action primary"
+                    data-bind="i18n: 'CANCEL COUPON', click: cancelCoupon"></button>
+        </div>
+        <div class="button apply  col-mp mp-6 mp-xs-12">
+            <button type="button" class="action primary"
+                    data-bind="i18n: 'COMPLETE', click: completeCoupon"></button>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

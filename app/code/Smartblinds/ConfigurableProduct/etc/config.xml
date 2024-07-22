@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <smartblinds_configurable_product>
+            <configurator>
+                <title>Put together by yourself</title>
+                <description>Configure your installation in a few steps</description>
+                <tips><![CDATA[Free shipping on all orders
+Free samples request
+Free Smartblinds measurement insurance
+Free advice from our advisors]]></tips>
+                <additional_images>Smartblinds_ConfigurableProduct::images/smartblinds_product.jpeg</additional_images>
+            </configurator>
+            <messages>
+                <discount>Discounts are calculated in the shopping cart</discount>
+                <delivery>Delivered within 10 working days</delivery>
+                <measurement>Free measurement guarantee &amp; home delivery</measurement>
+            </messages>
+        </smartblinds_configurable_product>
+    </default>
+</config>

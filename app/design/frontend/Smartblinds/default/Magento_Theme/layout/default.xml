@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="require.js">
+            <arguments>
+                <argument name="viewModel"
+                          xsi:type="object">Smartblinds\Theme\ViewModel\Theme</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Header -->
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_width" xsi:type="number">155</argument>
+                <argument name="logo_height" xsi:type="number">22</argument>
+            </arguments>
+
+            <block class="Magento\Cms\Block\Block" name="header.additional.text.mobile">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-additional-text-mobile</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="header.panel">
+            <block class="Magento\Cms\Block\Block" name="header-topbar" after="top.links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-topbar</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="top.links">
+            <block class="Magento\Cms\Block\Block" name="header-support-link">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-support-link</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Cms\Block\Block" name="header.additional.text" before="logo">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-additional-text</argument>
+                </arguments>
+            </block>
+            <block name="search-toggle" template="Magento_Search::form.mini.toggle.phtml"/>
+            <block class="Magento\Framework\View\Element\Template"
+                   name="top.search.desktop"
+                   template="Plumrocket_Search::form.mini.desktop.phtml"
+                   after="logo">
+                <arguments>
+                    <argument name="configProvider" xsi:type="object">Magento\Search\ViewModel\ConfigProvider</argument>
+                </arguments>
+
+                <block name="top.search.base.suggestions.desktop"
+                       template="GoMage_BaseSuggestions::base_suggestions.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">GoMage\BaseSuggestions\ViewModel\BaseSuggestions</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="page.top">
+            <container name="main.menu.wrap" htmlTag="div" htmlClass="main-menu-wrap" before="top.container">
+                <container name="main.menu.wrap.in" htmlTag="div" htmlClass="main-menu-wrap-in">
+                    <container name="main.menu.container" htmlTag="div" htmlClass="main-menu-container">
+                        <container name="main.menu" htmlTag="div" htmlClass="main-menu"/>
+                        <container name="main.menu.additional" htmlTag="ul" htmlClass="main-menu-additional">
+                            <block class="Magento\Cms\Block\Block" name="main-menu-support-link">
+                                <arguments>
+                                    <argument name="block_id" xsi:type="string">header-support-link</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Customer\Block\Account\AuthorizationLink"
+                                   name="authorization-link-menu"
+                                   template="Magento_Customer::account/link/authorization-menu.phtml"/>
+                        </container>
+                    </container>
+                </container>
+                <block class="Magento\Cms\Block\Block" name="navigation.background">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">navigation-background</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <block class="Magento\Cms\Block\Block" name="top-notification-bar" after="breadcrumbs.container"
+                   ifconfig="gomage_discount_labels/general/enabled">
+                <arguments>
+                    <argument name="block_id" xsi:type="helper"
+                              helper="GoMage\CatalogDiscountLabels\Helper\Data::displayNotificationBlock" />
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <block name="header.padder" template="Magento_Theme::html/header/padder.phtml"/>
+
+        <referenceContainer name="header.container">
+            <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav.home"
+                   template="Magento_Theme::html/topmenu-homepage.phtml" ttl="3600" after="header-wrapper">
+                <block class="Magento\Cms\Block\Block" name="topnav.additional.home">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">topnav-additional</argument>
+                    </arguments>
+                </block>
+            </block>
+            <block name="header.mobile.collapse.block" template="Magento_Theme::html/header/collaps-block.phtml" after="-">
+                <block class="Magento\Cms\Block\Block" name="header.mobile.collapse.text.block">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">header-mobile-collapse-text-block</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+
+        <move element="minicart" destination="header-wrapper" after="-"/>
+        <move element="top.search" destination="page.top" before="top.container"/>
+        <move element="catalog.topnav" destination="main.menu" before="top.container"/>
+        <move element="header.padder" destination="page.wrapper" before="header.container"/>
+
+        <referenceBlock name="header" remove="true"/>
+        <referenceBlock name="wish-list-link" remove="true"/>
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="my-account-link" remove="true"/>
+        <referenceBlock name="register-link" remove="true"/>
+        <referenceBlock name="advanced-search-link" remove="true"/>
+        <referenceBlock name="navigation.sections" remove="true"/>
+
+        <referenceBlock name="catalog.topnav">
+            <block class="Magento\Cms\Block\Block" name="topnav.additional">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">topnav-additional</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <!-- Content -->
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+
+        <!-- Footer -->
+        <container name="before.footer.container" htmlTag="div" htmlClass="before-footer-container">
+            <block class="Magento\Cms\Block\Block" name="before.footer">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">before-footer</argument>
+                </arguments>
+            </block>
+        </container>
+
+        <referenceContainer name="footer">
+            <container name="footer.top" htmlTag="div" htmlClass="footer-top">
+                <container name="footer.top.left" htmlTag="div" htmlClass="footer-top-left">
+                    <block class="Magento\Cms\Block\Block" name="footer.links.left">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-links-left</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="footer.top.right" htmlTag="div" htmlClass="footer-top-right">
+                    <block class="Magento\Cms\Block\Block" name="footer.links.right">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-links-right</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+            <container name="footer.bottom" htmlTag="div" htmlClass="footer-bottom">
+                <container name="footer.bottom.left" htmlTag="div" htmlClass="footer-bottom-left">
+                    <block class="Magento\Theme\Block\Html\Header\Logo" name="footer.logo"
+                           template="Magento_Theme::html/footer/logo.phtml" before="-">
+                        <arguments>
+                            <argument name="logo_file" xsi:type="string">images/logo-white.svg</argument>
+                            <argument name="logo_width" xsi:type="number">149</argument>
+                            <argument name="logo_height" xsi:type="number">21</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Cms\Block\Block" name="footer.bottom.links">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-bottom-links</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <container name="footer.bottom.right" htmlTag="div" htmlClass="footer-bottom-right">
+                    <block class="Magento\Cms\Block\Block" name="footer.social">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer-social</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <move element="before.footer.container" destination="page.wrapper" before="footer-container"/>
+        <move element="store_language" destination="footer.bottom.left" after="footer.logo"/>
+        <move element="copyright" destination="footer.bottom.left" after="store_language"/>
+
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="store_switcher" remove="true"/>
+
+    </body>
+</page>

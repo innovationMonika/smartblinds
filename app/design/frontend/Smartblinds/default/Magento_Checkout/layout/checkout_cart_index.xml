@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <block class="Magento\Checkout\Block\Cart"
+                   name="continue.shopping.url"
+                   after="-"
+                   template="Magento_Theme::html/cart/continue-shopping-url.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="checkout.cart.container">
+            <container name="checkout.cart.items.container" htmlTag="div" htmlClass="cart-content" after="cart.summary" />
+            <!-- TODO COULISSE-619 temporarily disabled -->
+            <!--<block class="Magento\Framework\View\Element\Template"
+                   name="insurance.block"
+                   after="-"
+                   template="Magento_Theme::html/cart/insurance.phtml">
+               <block class="Magento\Cms\Block\Block" name="insurance.cart.tip" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">insurance_cart_tip</argument>
+                    </arguments>
+               </block>
+            </block>-->
+        </referenceContainer>
+        <referenceContainer name="cart.summary">
+            <container name="cart.summary.inner" htmlTag="div" htmlClass="cart-summary-inner" before="-" />
+            <referenceBlock name="checkout.cart.summary.title">
+                <arguments>
+                    <argument translate="true" name="text" xsi:type="string">Order summary</argument>
+                </arguments>
+            </referenceBlock>
+            <block class="Magento\Framework\View\Element\Template"
+                   name="benefits.list.block"
+                   after="-"
+                   template="Smartblinds_ConfigurableProduct::product/view/info/tips.phtml">
+                <arguments>
+                    <argument name="tips"
+                              xsi:type="helper"
+                              helper="Smartblinds\ConfigurableProduct\Model\Config::getConfiguratorTips" />
+                    <argument name="container_element" xsi:type="string">ul</argument>
+                    <argument name="container_classes" xsi:type="string">custom-benefits-list</argument>
+                    <argument name="row_element" xsi:type="string">li</argument>
+                </arguments>
+            </block>
+
+            <block class="Magento\Cms\Block\Block" name="checkout.review.block" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">review-block-checkout</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <move element="page.main.title" destination="checkout.cart.items.container" before="-" />
+        <move element="checkout.cart.form" destination="checkout.cart.items.container" after="-" />
+        <move element="insurance.block" destination="checkout.cart.items.container" after="checkout.cart.form" />
+        <move element="cart.summary" destination="checkout.cart.container" after="checkout.cart.items.container" />
+
+        <!-- for Summary -->
+        <move element="checkout.cart.summary.title" destination="cart.summary.inner" before="-" />
+        <move element="checkout.cart.shipping" destination="cart.summary.inner" after="checkout.cart.summary.title" />
+        <move element="checkout.cart.totals.container" destination="cart.summary.inner" after="checkout.cart.shipping" />
+        <move element="checkout.cart.coupon" destination="cart.summary.inner" after="checkout.cart.totals.container" />
+        <move element="checkout.cart.methods.bottom" destination="cart.summary.inner" after="checkout.cart.coupon" />
+        <referenceBlock name="top-notification-bar" remove="true"/>
+    </body>
+</page>

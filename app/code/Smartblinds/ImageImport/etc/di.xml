@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <virtualType name="SmartblindsImageImportClearImages"
+                 type="Smartblinds\ImageImport\Console\Command\Clear">
+        <arguments>
+            <argument name="executor"
+                      xsi:type="object">Smartblinds\ImageImport\Model\ResourceModel\Images\DropValues\Images</argument>
+            <argument name="name"
+                      xsi:type="string">smartblinds:image-import:clear-images</argument>
+            <argument name="description"
+                      xsi:type="string">Clear images by skus from import file except swatches</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="SmartblindsImageImportClearSwatches"
+                 type="Smartblinds\ImageImport\Console\Command\Clear">
+        <arguments>
+            <argument name="executor"
+                      xsi:type="object">Smartblinds\ImageImport\Model\ResourceModel\Images\DropValues\Swatches</argument>
+            <argument name="name"
+                      xsi:type="string">smartblinds:image-import:clear-swatches</argument>
+            <argument name="description"
+                      xsi:type="string">Clear swatches by skus from import file</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PrepareImagesCsvFile"
+                 type="Smartblinds\ImageImport\Console\Command\PrepareCsvFile">
+        <arguments>
+            <argument name="preparer"
+                      xsi:type="object">Smartblinds\ImageImport\Model\Csv\Preparer\Images</argument>
+            <argument name="name"
+                      xsi:type="string">smartblinds:image-import:prepare-images-file</argument>
+            <argument name="description"
+                      xsi:type="string">Prepares images CSV file</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="PrepareSwatchesCsvFile"
+                 type="Smartblinds\ImageImport\Console\Command\PrepareCsvFile">
+        <arguments>
+            <argument name="preparer"
+                      xsi:type="object">Smartblinds\ImageImport\Model\Csv\Preparer\Swatches</argument>
+            <argument name="name"
+                      xsi:type="string">smartblinds:image-import:prepare-swatches-file</argument>
+            <argument name="description"
+                      xsi:type="string">Prepares swatches CSV file</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="smartblinds_image_import_prepare_images_file"
+                      xsi:type="object">PrepareImagesCsvFile</item>
+                <item name="smartblinds_image_import_prepare_swatches_file"
+                      xsi:type="object">PrepareSwatchesCsvFile</item>
+                <item name="smartblinds_image_import_clear_images"
+                      xsi:type="object">SmartblindsImageImportClearImages</item>
+                <item name="smartblinds_image_import_clear_swatches"
+                      xsi:type="object">SmartblindsImageImportClearSwatches</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
