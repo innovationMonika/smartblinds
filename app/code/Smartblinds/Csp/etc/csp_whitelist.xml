@@ -43,6 +43,10 @@
                 <value id="cookiebot" type="host">*.cookiebot.com</value>
                 <value id="google-co" type="host">*.google.co.in</value>
                 <value id="google-nl" type="host">*.google.nl</value>
+                <value id="google-co-uk" type="host">*.google.co.uk</value>
+                <value id="google-be" type="host">*.google.be</value>
+                <value id="google-de" type="host">*.google.de</value>
+                <value id="google-at" type="host">*.google.at</value>
                  <value id="self" type="host">self</value>
                 <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
                 <value id="googleapis" type="host">chart.googleapis.com</value>
@@ -100,8 +104,10 @@
                 <value id="hotjar.io" type="host">https://*.hotjar.io</value>
                 <value id="hotjar.wss" type="host">wss://*.hotjar.com</value>
                 <value id="visualwebsiteoptimizer.connect" type="host">https://*.visualwebsiteoptimizer.com</value>
-                 <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
                 <value id="vwo-app" type="host">app.vwo.com</value>
+                <value id="region1.google-analytics.com" type="host">https://region1.google-analytics.com</value>
+                <value id="region1.analytics.google.com" type="host">https://region1.analytics.google.com</value>
             </values>
         </policy>
         <policy id="form-action">
@@ -117,7 +123,9 @@
         </policy>
          <policy id="worker-src">
             <values>
-                 <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
+                <value id="worker-blob" type="host">blob:</value>
+                <value id="visualwebsiteoptimizer.connect" type="host">https://*.visualwebsiteoptimizer.com</value>
+                <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
                 <value id="vwo-app" type="host">app.vwo.com</value>
             </values>
         </policy>
