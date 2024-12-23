@@ -92,7 +92,7 @@ class AroundGetOptionPrice extends \MageWorx\OptionFeatures\Plugin\AroundGetOpti
 
     private function getFinalPrice($option, $_result)
     {
-        $product = $option->getProduct();
+        $product = $this->getProduct();
         $price = $this->advancedPricingPrice->getPrice($option, $_result);
         $discount = 1;
         if ($product && !$this->subject->getData('original_price')) {
@@ -102,6 +102,21 @@ class AroundGetOptionPrice extends \MageWorx\OptionFeatures\Plugin\AroundGetOpti
         }
         $price *= $discount;
         return $price;
+    }
+
+    private function getProduct()
+    {
+        $confOption = $this->subject->getConfigurationItemOption();
+        if (!$confOption) {
+            return null;
+        }
+        if (!$confOption->getItem()) {
+            return null;
+        }
+        if (!empty($confOption->getItem()->getChildren())) {
+            return $confOption->getItem()->getChildren()[0]->getProduct();
+        }
+        return null;
     }
 
     protected function getOptionQty($optionsQty, $option, $optionValue)

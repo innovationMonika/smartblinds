@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Awin\AdvertiserTracking\Block\Success" template="Awin_AdvertiserTracking::awin_checkout.phtml"
+                name="checkout.awin.tracking" as="checkout_awin_tracking"  after="-" />
+        </referenceContainer>
+    </body>

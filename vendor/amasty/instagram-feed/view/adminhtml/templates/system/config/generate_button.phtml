@@ -1,0 +1,17 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Instagram Feed for Magento 2
+*/
+?>
+<?php /** @var \Amasty\InstagramFeed\Block\Adminhtml\System\Config\GenerateImages $block */ ?>
+
+<button id="<?= $block->getHtmlId() ?>"
+        type="button"
+        onclick="window.location.href='<?= $block->escapeUrl($block->getGenerateUrl()) ?>'"
+        <?php if ($block->getIsDisabled()): ?>
+            disabled
+        <?php endif; ?>>
+    <?= $block->escapeHtml($block->getButtonLabel()) ?>
+</button>

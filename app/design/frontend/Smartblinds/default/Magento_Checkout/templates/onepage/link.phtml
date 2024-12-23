@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Checkout\Block\Onepage\Link;
+use Magento\Framework\Escaper;
+
+/**
+ * @var Link $block
+ * @var Escaper $escaper
+ */
+?>
+<?php $buttonTitle = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/settings/cart_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE) ?: __('Proceed to Checkout'); ?>
+<?php if ($block->isPossibleOnepageCheckout()): ?>
+    <button type="button"
+            data-role="proceed-to-checkout"
+            title="<?= $escaper->escapeHtmlAttr($buttonTitle) ?>"
+            data-mage-init='{
+                "Magento_Checkout/js/proceed-to-checkout":{
+                    "checkoutUrl":"<?= $escaper->escapeJs($block->getCheckoutUrl()) ?>"
+                }
+            }'
+            class="4 action primary checkout<?= ($block->isDisabled()) ? ' disabled' : '' ?>"
+            <?php if ($block->isDisabled()): ?>
+                disabled="disabled"
+            <?php endif; ?>>
+        <span><?= $escaper->escapeHtml($buttonTitle) ?></span>
+    </button>
+<?php endif?>

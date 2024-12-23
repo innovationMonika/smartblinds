@@ -7,7 +7,7 @@
                 <value id="consent.cookiebot" type="host">https://consent.cookiebot.com</value>
                 <value id="widget.trustpilot" type="host">http://widget.trustpilot.com</value>
                 <value id="invitejs.trustpilot" type="host">https://invitejs.trustpilot.com</value>
-                <value id="static.zdassets" type="host">https://static.zdassets.com</value>
+                <value id="static.zdassapp/code/Smartblinds/ConfigurableProduct/etc/adminhtml/system.xmlets" type="host">https://static.zdassets.com</value>
                 <value id="ipify" type="host">https://api.ipify.org</value>
                 <value id="omappapi" type="host">https://a.omappapi.com</value>
                 <value id="pinimg" type="host">https://s.pinimg.com</value>
@@ -51,6 +51,7 @@
                 <value id="vwo" type="host">*.visualwebsiteoptimizer.com</value>
                 <value id="googleapis" type="host">chart.googleapis.com</value>
                 <value id="vwo-app" type="host">app.vwo.com</value>
+                <value id="d3k81ch9hvuctc.cloudfront.net" type="host">https://d3k81ch9hvuctc.cloudfront.net</value>
             </values>
         </policy>
         <policy id="media-src">
@@ -119,6 +120,7 @@
             <values>
                 <value id="a.omappapi.com" type="host">https://a.omappapi.com</value>
                 <value id="hotjar.com" type="host">https://*.hotjar.com</value>
+                <value id="static.klaviyo.com" type="host">https://static.klaviyo.com</value>
             </values>
         </policy>
          <policy id="worker-src">

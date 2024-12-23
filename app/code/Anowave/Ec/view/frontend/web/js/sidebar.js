@@ -16,36 +16,4 @@
  * @package 	Anowave_Ec
  * @copyright 	Copyright (c) 2023 Anowave (https://www.anowave.com/)
  * @license  	https://www.anowave.com/license-agreement/
- */
-
-define(['jquery'], function ($) 
-{
-    'use strict';
-    
-    return function (widget) 
-    {
-    	$.widget('mage.sidebar', widget, 
-    	{
-    		_removeItemAfter:function (elem, response) 
-        	{
-        		if (response.hasOwnProperty('dataLayer') && 'undefined' !== typeof dataLayer)
-        		{
-        			AEC.Cookie.remove(response.dataLayer).push(dataLayer);
-        		}
-        		
-        		return this._super(elem);
-            },
-            _updateItemQtyAfter: function (elem, response) 
-            {
-            	if (response.hasOwnProperty('dataLayer') && 'undefined' !== typeof dataLayer)
-        		{
-            		AEC.Cookie.update(response.dataLayer).push(dataLayer);
-        		}
-            	
-            	return this._super(elem);
-            }
-        });
-    	
-    	return $.mage.sidebar;
-    }
-});
+ */define(["jquery"],function(t){"use strict";return function(r){return t.widget("mage.sidebar",r,{_removeItemAfter:function(a,e){return e.hasOwnProperty("dataLayer")&&typeof dataLayer!="undefined"&&AEC.Cookie.remove(e.dataLayer).push(dataLayer),this._super(a)},_updateItemQtyAfter:function(a,e){return e.hasOwnProperty("dataLayer")&&typeof dataLayer!="undefined"&&AEC.Cookie.update(e.dataLayer).push(dataLayer),this._super(a)}}),t.mage.sidebar}});

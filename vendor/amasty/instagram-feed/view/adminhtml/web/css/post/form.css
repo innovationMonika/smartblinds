@@ -1,0 +1,10 @@
+.aminstafeed-post-wrapper {
+    display: inline-block;
+    width: 30%;
+}
+
+.aminstagramfeed-product-wrapper {
+    display: inline-block;
+    width: 69%;
+    vertical-align: top;
+}

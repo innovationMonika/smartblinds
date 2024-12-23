@@ -2,7 +2,9 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<?php $buttonTitle = __('Add to Cart'); ?>
+<?php $buttonTitle = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/settings/add_to_cart_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE) ?: __('Add to Cart'); ?>
 <?php if ($_product->isSaleable()) :?>
     <div class="box-tocart">
         <div class="fieldset">
@@ -15,6 +17,12 @@
                         disabled>
                     <span><?= $block->escapeHtml($buttonTitle) ?></span>
                 </button>
+                 <p style="margin-top: 10px; z-index: 50 ">
+                 <?php
+                echo $productText = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/pages/producttext', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+                ?></p>
                 <?= $block->getChildHtml('', true) ?>
             </div>
         </div>

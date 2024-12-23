@@ -1,0 +1,39 @@
+//
+//  Single Post Grid
+//  _________________________
+
+//
+//  Common
+//  --------------------------
+
+& when (@media-common = true) {
+    .aminst-feed-single-post {
+        & {
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .aminst-feed-posts {
+            .am-flex(center, center, wrap);
+
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .aminst-feed-post {
+            .am-flex(center, center);
+
+            width: 100%;
+            flex-direction: column;
+        }
+
+        .aminst-feed-post .aminst-relation-wrap .aminst-relation-link {
+            min-height: 40px;
+            background: @aminst__color__primary;
+        }
+
+        .aminst-feed-post .aminst-relation-wrap .aminst-relation-link .aminst-title {
+            .am-clamp(2);
+        }
+    }
+}

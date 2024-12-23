@@ -68,11 +68,12 @@
                 </div>
                 <div class="actions-toolbar" id="shipping-method-buttons-container">
                     <div class="primary">
-                        <button data-role="opc-continue" type="submit" class="button action continue primary">
-                            <span translate="'Next'"></span>
+                        <button data-role="opc-continue" type="submit" class="2 button action continue primary">
+                            <span data-bind="text: window.checkoutConfig.customCheckoutButton"></span>
                         </button>
                     </div>
                 </div>
+                <ul class="checkout methods items checkout-methods-items" id="checkoutpage" data-bind="html: window.checkoutConfig.customShippingConfig"></ul>
             </form>
             <div class="no-quotes-block"
                  ifnot="rates().length > 0"

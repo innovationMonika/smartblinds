@@ -1,0 +1,86 @@
+//
+//  PopUp's Styles
+//  _________________________
+
+//
+//  Common
+//  -------------------------
+
+& when (@media-common = true) {
+    .aminst-feed-wrapper {
+        .fancyambox-bg {
+            background: fade(#fff, 80%);
+            opacity: 1;
+        }
+        
+        .fancyambox-close-small {
+            & {
+                .am-flex(center, center);
+            }
+            
+            &:after {
+                content: none;
+            }
+            
+            &:before {
+                top: @aminst__indent__l;
+                right: @aminst__indent__l;
+                width: @aminst__indent__l;
+                height: @aminst__indent__l;
+                
+                .transition();
+                .icon(@aminst-close-icon__background);
+            }
+        }
+        
+        .fancyambox-close-small:hover {
+            & {
+                border: none;
+                background: none;
+                box-shadow: none;
+            }
+            
+            &:before {
+                background-color: transparent;
+                filter: contrast(5);
+            }
+        }
+        
+        .fancyambox-inner {
+            .aminst-feed-post {
+                .am-flex();
+
+                border: none;
+            }
+            
+            .instagram-media {
+                min-width: auto;
+                max-width: 100%;
+            }
+            
+            .aminst-feed-single-post {
+                padding: @aminst__indent__xxl 30px;
+                max-width: 420px;
+                border: none;
+                border-radius: 6px;
+                box-shadow: 0 5px 16px rgba(18, 36, 50, .2);
+            }
+            
+            .aminst-feed-single-post .aminst-feed-post {
+                margin: 0;
+            }
+        }
+    }
+}
+
+//
+// Desktop
+// --------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .aminst-feed-wrapper .fancyambox-inner {
+        .aminst-feed-single-post {
+            padding: 50px 60px;
+        }
+    }
+}

@@ -1,0 +1,102 @@
+//
+//  Mixins
+//  _________________________
+
+.am-flex(
+    @horiz-pos: none,
+    @vert-pos: none,
+    @wrap: none,
+    @inline: none
+) {
+
+    & when (@inline = none) {
+        display: flex;
+    }
+
+    & when not (@inline = none) {
+        display: @inline;
+    }
+
+    & when not (@horiz-pos = none) {
+        justify-content: @horiz-pos;
+    }
+
+    & when not (@vert-pos = none) {
+        align-items: @vert-pos;
+    }
+
+    & when not (@wrap = none) {
+        flex-wrap: @wrap;
+    }
+}
+
+.am-clamp(
+    @rows: 1,
+    @height-per-row: 14
+) {
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(~'@{height-per-row}px * @{rows}');
+    -webkit-line-clamp: @rows;
+}
+
+.transition(@del: .3) {
+    transition: ~'@{del}s all ease-in';
+}
+
+.scrollbar(@primary_color: grey, @width: 5, @secondary_color: #FFFFFF) {
+    & {
+        border-radius: 4px;
+        cursor: pointer;
+        scrollbar-color: @primary_color @secondary_color;
+    }
+
+    &::-webkit-scrollbar {
+        width: ~'@{width}px';
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        width: ~'@{width}px';
+        border-radius: 4px;
+        background: @primary_color;
+        cursor: pointer;
+    }
+
+    ::-webkit-scrollbar-track {
+        width: ~'@{width}px';
+        box-shadow: inset 0 0 5px grey;
+    }
+}
+
+.blur(@val: 1) {
+    -webkit-filter: blur(~'@{val}px');
+    filter: blur(~'@{val}px');
+}
+
+.icon(@icon-url: none) {
+    .am-flex(center, center);
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: @icon-url;
+    content: '';
+}
+
+.aminst-button-arrow {
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: inherit;
+    bottom: initial;
+    background-size: contain;
+    white-space: nowrap;
+    position: absolute;
+    right: 15px;
+    font-size: 0;
+    width: 30px;
+    height: 15px;
+    background-image: @aminst-arrow-small-icon__background;
+}

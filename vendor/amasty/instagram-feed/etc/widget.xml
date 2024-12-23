@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Instagram Feed for Magento 2
+*/-->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="aminstagramfeed_feed" class="Amasty\InstagramFeed\Block\Widget\Feed\Wrapper" is_email_compatible="true"
+            placeholder_image="Magento_Cms::images/widget_block.png" ttl="86400">
+        <label translate="true">Amasty Instagram Feed</label>
+        <description translate="true" />
+        <parameters>
+            <parameter name="template" xsi:type="select" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="widget/feed/content/grid.phtml" selected="true">
+                        <label translate="true">Amasty Instagram Feed Template</label>
+                    </option>
+                </options>
+            </parameter>
+
+            <parameter name="title" xsi:type="text" visible="true" sort_order="10">
+                <label translate="true">Title</label>
+                <description translate="true">Leave empty if you don’t need title for widget</description>
+            </parameter>
+
+            <parameter name="feed_type" xsi:type="select" required="false" visible="true" sort_order="20" source_model="Amasty\InstagramFeed\Model\Config\Source\Type">
+                <label translate="true">Widget Type</label>
+            </parameter>
+
+            <parameter name="collage_size" xsi:type="select" required="false" visible="true" sort_order="24" source_model="Amasty\InstagramFeed\Model\Config\Source\CollageSize">
+                <label translate="true">Collage Size</label>
+                <depends>
+                    <parameter name="feed_type" value="3" />
+                </depends>
+            </parameter>
+
+            <parameter name="posts_limit" xsi:type="text" visible="true" required="true" sort_order="25">
+                <label translate="true">Posts Limit</label>
+                <description translate="true">Specify the number of posts to display in widget on the storefront. Please note: plugin loads 180 recent posts per account and updates them every hour by cron.</description>
+                <depends>
+                    <parameter name="feed_type" value="am_array:0,1" />
+                </depends>
+                <value>20</value>
+            </parameter>
+
+            <parameter name="sort" xsi:type="select" required="false" visible="true" sort_order="30" source_model="Amasty\InstagramFeed\Model\Config\Source\Sorting">
+                <label translate="true">Sort Posts By</label>
+                <description translate="true">Sorting is applied to all 180 loaded posts (regardless of the value inserted in Posts Limit setting).</description>
+                <depends>
+                    <parameter name="feed_type" value="am_array:0,1" />
+                </depends>
+            </parameter>
+
+            <parameter name="columns_count" xsi:type="text" required="true" visible="true" sort_order="31">
+                <label translate="true">Number of Columns</label>
+                <depends>
+                    <parameter name="feed_type" value="1" />
+                </depends>
+                <value>4</value>
+            </parameter>
+
+            <parameter name="rows_count" xsi:type="text" required="true" visible="true" sort_order="32">
+                <label translate="true">Number of Rows</label>
+                <depends>
+                    <parameter name="feed_type" value="1" />
+                </depends>
+                <value>1</value>
+            </parameter>
+
+            <parameter name="autoplay" xsi:type="select" visible="true" sort_order="33" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Enable Autoplay</label>
+                <depends>
+                    <parameter name="feed_type" value="1" />
+                </depends>
+            </parameter>
+
+            <parameter name="autoplay_delay" xsi:type="text" visible="true" sort_order="34" >
+                <label translate="true">Autoplay Delay (milliseconds)</label>
+                <description translate="true">Leave blank to use the default value (2000).</description>
+                <depends>
+                    <parameter name="autoplay" value="1"/>
+                    <parameter name="feed_type" value="1" />
+                </depends>
+                <value>2000</value>
+            </parameter>
+
+            <parameter name="enable_load_more" xsi:type="select" sort_order="50" required="false" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true"><![CDATA[Enable "Load More"]]></label>
+                <depends>
+                    <parameter name="feed_type" value="0" />
+                </depends>
+            </parameter>
+
+            <parameter name="posts_per_page" xsi:type="text" visible="true" required="true" sort_order="51">
+                <label translate="true">Number of Posts per Page</label>
+                <depends>
+                    <parameter name="feed_type" value="0" />
+                    <parameter name="enable_load_more" value="1" />
+                </depends>
+                <value>4</value>
+            </parameter>
+
+            <parameter name="post_size" xsi:type="select" visible="true" sort_order="55" source_model="Amasty\InstagramFeed\Model\Config\Source\PostSize">
+                <label translate="true">Max Width</label>
+                <depends>
+                    <parameter name="feed_type" value="am_array:0,1,3" />
+                </depends>
+            </parameter>
+
+            <parameter name="click" xsi:type="select" required="false" visible="true" sort_order="60" source_model="Amasty\InstagramFeed\Model\Config\Source\Click">
+                <label translate="true">Mouse Click Action on Posts</label>
+                <depends>
+                    <parameter name="feed_type" value="am_array:0,1,3" />
+                </depends>
+            </parameter>
+
+            <parameter name="show_description" xsi:type="select" sort_order="70" required="false" visible="true" source_model="Amasty\InstagramFeed\Model\Config\Source\Hover">
+                <label translate="true">Mouse On Hover Action on Posts</label>
+                <depends>
+                    <parameter name="feed_type" value="am_array:0,1,3" />
+                </depends>
+            </parameter>
+
+            <parameter name="padding" xsi:type="text" required="false" visible="true" sort_order="80">
+                <label translate="true">Posts Padding, px</label>
+                <description translate="true">Leave empty if you don't want to use a padding between posts.</description>
+                <depends>
+                    <parameter name="feed_type" value="am_array:0,1,3" />
+                </depends>
+                <value>10</value>
+            </parameter>
+
+            <parameter name="post_url" xsi:type="text" required="true" visible="true" sort_order="30">
+                <label translate="true">Post URL</label>
+                <depends>
+                    <parameter name="feed_type" value="2" />
+                </depends>
+            </parameter>
+
+            <parameter name="max_width" xsi:type="select" visible="true" sort_order="31" source_model="Amasty\InstagramFeed\Model\Config\Source\MaxWidth">
+                <label translate="true">Max Width</label>
+                <depends>
+                    <parameter name="feed_type" value="2" />
+                </depends>
+            </parameter>
+
+            <parameter name="hide_caption" xsi:type="select" visible="true" sort_order="32" source_model="Magento\Config\Model\Config\Source\Yesno">
+                <label translate="true">Hide Caption</label>
+                <depends>
+                    <parameter name="feed_type" value="2" />
+                </depends>
+            </parameter>
+
+            <parameter name="cache_lifetime" xsi:type="text" visible="true" sort_order="99">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">
+                    <![CDATA[Cron for posts updates is running every hour by default. That’s why we recommend to insert 3600 here for timely updates on the storefront. (If the default cron job configuration is overwritten, please insert the corresponding value).]]>
+                </description>
+                <value>600</value>
+            </parameter>
+        </parameters>
+
+        <containers>
+            <container name="page.top">
+                <template name="default" value="default" />
+            </container>
+            <container name="top.container">
+                <template name="default" value="default" />
+            </container>
+            <container name="columns.top">
+                <template name="default" value="default" />
+            </container>
+            <container name="page.bottom">
+                <template name="default" value="default" />
+            </container>
+            <container name="page.bottom.container">
+                <template name="default" value="default" />
+            </container>
+            <container name="content">
+                <template name="default" value="default" />
+            </container>
+            <container name="content.aside">
+                <template name="default" value="default" />
+            </container>
+            <container name="content.bottom">
+                <template name="default" value="default" />
+            </container>
+            <container name="main">
+                <template name="default" value="default" />
+            </container>
+            <container name="content.top">
+                <template name="default" value="default" />
+            </container>
+            <container name="before.body.end">
+                <template name="default" value="default" />
+            </container>
+            <container name="footer">
+                <template name="default" value="default" />
+            </container>
+            <container name="footer-container">
+                <template name="default" value="default" />
+            </container>
+            <container name="after.body.start">
+                <template name="default" value="default" />
+            </container>
+            <container name="sidebar.main">
+                <template name="default" value="default" />
+            </container>
+            <container name="sidebar.additional">
+                <template name="default" value="default" />
+            </container>
+            <container name="sidebar.main">
+                <template name="default" value="default" />
+            </container>
+            <container name="product.info.price">
+                <template name="default" value="default" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

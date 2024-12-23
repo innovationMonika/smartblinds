@@ -4,14 +4,18 @@ namespace Smartblinds\ConfigurableProduct\Model;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\RequestInterface;
 
 class Config
 {
     private ScopeConfigInterface $scopeConfig;
+    private RequestInterface $request;
 
-    public function __construct(ScopeConfigInterface $scopeConfig)
+
+    public function __construct(ScopeConfigInterface $scopeConfig, RequestInterface $request)
     {
         $this->scopeConfig = $scopeConfig;
+        $this->request = $request;
     }
 
     public function getConfiguratorTitle(): string
@@ -26,7 +30,14 @@ class Config
 
     public function getConfiguratorTips(): array
     {
-        return array_filter(explode(PHP_EOL, $this->getValue('configurator/tips')));
+        if ($this->request->getFullActionName() === 'checkout_cart_index') {
+             return array_filter(explode(PHP_EOL, $this->getValue('configurator/carttips') ?? ''));
+        }
+        else if($this->request->getFullActionName() === 'checkout_index_index'){
+             return array_filter(explode(PHP_EOL, $this->getValue('configurator/checkouttips') ?? ''));
+        }
+
+        return array_filter(explode(PHP_EOL, $this->getValue('configurator/tips') ?? ''));
     }
 
     public function getDiscountMessage(): string

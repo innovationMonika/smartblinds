@@ -31,5 +31,6 @@
 
     <preference for="Magento\Catalog\Model\Product\Attribute\Backend\Price"
                 type="Smartblinds\Catalog\Model\Product\Attribute\Backend\Price" />
-
+     <preference for="Meetanshi\Totalsaving\Model\Total\TotalSaving"
+                type="Smartblinds\Catalog\Meetanshi\Totalsaving\Model\Total\TotalSaving" />
 </config>

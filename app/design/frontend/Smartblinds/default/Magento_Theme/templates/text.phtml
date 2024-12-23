@@ -1,0 +1,18 @@
+<?php if ($block->getText()): ?>
+    <<?= $block->getTag() ?> class="<?= $block->getCssClass() ?>">
+        <?= $block->escapeHtml(__('Order summary')) ?>
+        <!-- Add the link here -->
+         <br/>
+        <a href="<?= $block->getUrl('checkout/cart') ?>" class="view-config-link"><?= $block->escapeHtml(__('View or change configuration')) ?></a>
+    </<?= $block->getTag() ?>>
+<?php endif; ?>
+<style>
+ .view-config-link {
+    padding-top: 15px;
+    display: none;
+    }
+/* Show the link only on the checkout page */
+body.checkout-index-index .view-config-link {
+    display: block;
+}
+</style>

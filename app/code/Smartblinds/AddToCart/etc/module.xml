@@ -4,6 +4,7 @@
     <module name="Smartblinds_AddToCart">
         <sequence>
             <module name="Magento_Checkout"/>
+            <module name="Magento_Cart"/>
         </sequence>
     </module>
 </config>

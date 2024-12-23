@@ -301,11 +301,17 @@ $_item = null;
             </div>
         </div>
         <?php if (!$block->isRedirectToCartEnabled() && $_item):?>
+            <?php $buttonTitle = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/settings/add_to_cart_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE) ?: __('Add to Cart');
+            ?>
             <script type="text/x-magento-init">
             {
                 "[data-role=tocart-form], .form.map.checkout": {
                     "catalogAddToCart": {
-                        "product_sku": "<?= $block->escapeJs($_item->getSku()) ?>"
+                        "product_sku": "<?= $block->escapeJs($_item->getSku()) ?>",
+                        "addToCartButtonTextDefault" : "<?php /* @escapeNotVerified */ echo $buttonTitle;  ?>"
+
                     }
                 }
             }

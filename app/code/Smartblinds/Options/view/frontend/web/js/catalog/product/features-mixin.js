@@ -1,200 +1,116 @@
-define([
-    'jquery',
-    'underscore',
-    'Magento_Catalog/js/price-utils',
-    'getSwatchSelectedProductId',
-    'priceUtils'
-], function (
-    $,
-    _,
-    utils,
-    getSwatchSelectedProductId,
-    priceUtils
-) {
-    'use strict';
-
-    var mixin = {
-        calculateSelectedOptionsPrice: function () {
+define(["jquery", "underscore", "Magento_Catalog/js/price-utils", "getSwatchSelectedProductId", "priceUtils"], function(t, y, O, w, C) {
+    "use strict";
+    var E = {
+        calculateSelectedOptionsPrice: function() {
             this._super();
-
-            var self = this,
-                form = this.base.getFormElement(),
-                config = this.base.options,
-                options = $(config.optionsSelector, form);
-
-            options.filter('input[type="hidden"]').each(function (index, element) {
-                var $element = $(element),
-                    optionId = utils.findOptionId($element),
-                    optionConfig = config.optionConfig && config.optionConfig[optionId],
-                    value = $element.val();
-
-                if ($element.closest('.field').css('display') === 'none') {
-                    $element.val('');
-                    return;
+            var e = this,
+                p = this.base.getFormElement(),
+                c = this.base.options,
+                n = t(c.optionsSelector, p);
+            n.filter('input[type="hidden"]').each(function(h, r) {
+                var i = t(r),
+                    o = O.findOptionId(i),
+                    d = c.optionConfig && c.optionConfig[o],
+                    m = i.val();
+                if (i.closest(".field").css("display") === "none") {
+                    i.val("");
+                    return
                 }
-
-                var productQty = $(config.productQtySelector).val();
-
-                var form = $element.closest('#product_addtocart_form'),
-                    handlerId = $element.data('role'),
-                    handler = form.data('mage-priceOptions').options.optionHandlers[handlerId],
-                    handlerOptionPrices = {}
-
-                if (handler) {
-                    var handlerOptionConfig = {};
-                    handlerOptionConfig[optionId] = optionConfig;
-                    handlerOptionPrices = handler($element, handlerOptionConfig);
+                var s = t(c.productQtySelector).val(),
+                    f = i.closest("#product_addtocart_form"),
+                    u = i.data("role"),
+                    x = f.data("mage-priceOptions").options.optionHandlers[u],
+                    _ = {};
+                if (x) {
+                    var g = {};
+                    g[o] = d, _ = x(i, g)
                 }
-
-                var handlerPrices = handlerOptionPrices.hasOwnProperty($element.data('role')) ?
-                    handlerOptionPrices[$element.data('role')] : null;
-                var prices = handlerPrices ? handlerPrices : optionConfig.prices;
-
-                var basePrice = prices.basePrice.amount;
-                var finalPrice = prices.finalPrice.amount;
-
-                self.optionFinalPrice += parseFloat(finalPrice) * productQty;
-                self.optionOldPriceInclTax += parseFloat(prices.oldPrice.amount_incl_tax) * productQty;
-                self.optionBasePrice += parseFloat(basePrice) * productQty;
-                self.optionOldPriceExclTax += parseFloat(prices.oldPrice.amount_excl_tax) * productQty;
-
-                self.optionFinalPricePerItem += parseFloat(finalPrice);
-                self.optionOldPricePerItemInclTax += parseFloat(prices.oldPrice.amount_incl_tax);
-                self.optionBasePricePerItem += parseFloat(basePrice);
-                self.optionOldPricePerItemExclTax += parseFloat(prices.oldPrice.amount_excl_tax);
-            });
+                var P = _.hasOwnProperty(i.data("role")) ? _[i.data("role")] : null,
+                    a = P || d.prices,
+                    T = a.basePrice.amount,
+                    b = a.finalPrice.amount;
+                e.optionFinalPrice += parseFloat(b) * s, e.optionOldPriceInclTax += parseFloat(a.oldPrice.amount_incl_tax) * s, e.optionBasePrice += parseFloat(T) * s, e.optionOldPriceExclTax += parseFloat(a.oldPrice.amount_excl_tax) * s, e.optionFinalPricePerItem += parseFloat(b), e.optionOldPricePerItemInclTax += parseFloat(a.oldPrice.amount_incl_tax), e.optionBasePricePerItem += parseFloat(T), e.optionOldPricePerItemExclTax += parseFloat(a.oldPrice.amount_excl_tax)
+            })
         },
-
-        collectOptionPriceAndQty: function calculateOptionsPrice(optionConfigCurrent, optionId, valueId)
-        {
-            this.actualPriceInclTax = 0;
-            this.actualPriceExclTax = 0;
-
-            var config = this.base.options,
-                isOneTime = this.base.isOneTimeOption(optionId),
-                productQty = $(config.productQtySelector).val(),
-                qty = !_.isUndefined(optionConfigCurrent['qty']) ? optionConfigCurrent['qty'] : 1;
-            this.getActualPrice(optionId, valueId, qty);
-            if (productQty == 0) {
-                productQty = 1;
+        collectOptionPriceAndQty: function(e, p, c) {
+            var n;
+            this.actualPriceInclTax = 0, this.actualPriceExclTax = 0;
+            var h = this.base.options,
+                r = this.base.isOneTimeOption(p),
+                i = t(h.productQtySelector).val(),
+                o = y.isUndefined(e.qty) ? 1 : e.qty;
+            this.getActualPrice(p, c, o), i == 0 && (i = 1);
+            var d = this.actualPriceInclTax ? this.actualPriceInclTax : parseFloat(e.prices.finalPrice.amount),
+                m = this.actualPriceExclTax ? this.actualPriceExclTax : parseFloat(e.prices.basePrice.amount),
+                s = parseFloat(e.prices.oldPrice.amount_incl_tax),
+                f = parseFloat(e.prices.oldPrice.amount_excl_tax),
+                u = this.actualPriceInclTax ? this.actualPriceInclTax : parseFloat(e.prices.finalPrice.amount),
+                x = this.actualPriceExclTax ? this.actualPriceExclTax : parseFloat(e.prices.basePrice.amount),
+                _ = parseFloat(e.prices.oldPrice.amount_incl_tax),
+                g = parseFloat(e.prices.oldPrice.amount_excl_tax);
+            const P = jsonConfig.optionPrices[w()];
+            if (P && P.oldPrice.amount > 0) {
+                const l = P.finalPrice.amount / P.oldPrice.amount;
+                u *= l, x *= l, d *= l, m *= l
+            }!r && (this.options.product_price_display_mode === "final_price" || this.options.additional_product_price_display_mode === "final_price") && (d *= i, m *= i, s *= i, f *= i);
+            const a = t('.mageworx-swatch-option.selected[data-option-id="' + p + '"][data-option-type-id="' + c + '"]').first(),
+             T = a.closest(".product-option").find("span#doubletext");
+         if (t(".selection_bottombar .mageworx-swatch-option.image.selected") && t(".width-height-option .input-text.product-custom-option").hasClass('selected')) {
+           t(".selection_clamp").show();
+         }
+            if (t(".selection_bottombar").css("display") !== "none" && t("body").hasClass("smallsystem")) {
+              t(".selection_clamp").show();
             }
-
-            var actualFinalPrice = this.actualPriceInclTax
-                ? this.actualPriceInclTax
-                : parseFloat(optionConfigCurrent.prices.finalPrice.amount),
-                actualBasePrice = this.actualPriceExclTax
-                    ? this.actualPriceExclTax
-                    : parseFloat(optionConfigCurrent.prices.basePrice.amount),
-                oldPriceInclTax = parseFloat(optionConfigCurrent.prices.oldPrice.amount_incl_tax),
-                oldPriceExclTax = parseFloat(optionConfigCurrent.prices.oldPrice.amount_excl_tax),
-                actualFinalPricePerItem = this.actualPriceInclTax
-                    ? this.actualPriceInclTax
-                    : parseFloat(optionConfigCurrent.prices.finalPrice.amount),
-                actualBasePricePerItem = this.actualPriceExclTax
-                    ? this.actualPriceExclTax
-                    : parseFloat(optionConfigCurrent.prices.basePrice.amount),
-                oldPricePerItemInclTax = parseFloat(optionConfigCurrent.prices.oldPrice.amount_incl_tax),
-                oldPricePerItemExclTax = parseFloat(optionConfigCurrent.prices.oldPrice.amount_excl_tax);
-
-            const optionPrices = jsonConfig.optionPrices[getSwatchSelectedProductId()];
-            if (optionPrices && optionPrices.oldPrice.amount > 0) {
-                const discount = optionPrices.finalPrice.amount / optionPrices.oldPrice.amount;
-                actualFinalPricePerItem *= discount;
-                actualBasePricePerItem *= discount;
-                actualFinalPrice *= discount;
-                actualBasePrice *= discount;
+            if (a.parents(".product-option").hasClass("selection_bottombar") && t("body").hasClass("smallsystem") && t(".width-height-option .input-text.product-custom-option").hasClass('selected')) {
+                var b = t(".selection_side_span"),
+                    F = t(".selection_side_span .options-list .radio"),
+                    j = a.parent().data("value");
+                j == "rc3032" ? (b.hide(), F.prop("disabled", !0).hide()) : (b.show(), F.prop("disabled", !1).show());
+                var I = t(".selection_clamp"),
+                    v = t(".selection_clamp .options-list .radio"),
+                    S = a.parent().data("value");
+                 I.show();
             }
-
-            if (!isOneTime
-                && (this.options.product_price_display_mode === 'final_price'
-                    || this.options.additional_product_price_display_mode === 'final_price'
-                )
-            ) {
-                actualFinalPrice *= productQty;
-                actualBasePrice *= productQty;
-                oldPriceInclTax *= productQty;
-                oldPriceExclTax *= productQty;
-            }
-
-            const $option = $('.mageworx-swatch-option.selected[data-option-id="' + optionId + '"][data-option-type-id="' + valueId + '"]').first();
-            const $doubleText = $option.closest('.product-option').find('span#doubletext');
-            $option.closest('.product-option').find('span#value').removeClass('with-doubletext');
-            if ($doubleText.length) {
-                $doubleText.remove();
-            }
-            const isBedieningOption = $option.data('option-code') === window.jsonConfig.bedieningOptionCode;
-            const systemTypeAttributeId = Object.values(window.jsonConfig.attributes).find(item => item.code === 'system_type')?.id;
-            const isTdbuSelected = $('.swatch-attribute[data-attribute-id="' + systemTypeAttributeId + '"]').find('.swatch-option.selected[data-option-id="' + window.jsonConfig.systemTypeTdbuOptionId + '"]').length > 0;
-            if (isBedieningOption && isTdbuSelected) {
-                actualFinalPricePerItem *= 2;
-                actualBasePricePerItem *= 2;
-                oldPricePerItemInclTax *= 2;
-                oldPricePerItemExclTax *= 2;
-                actualFinalPrice *= 2;
-                actualBasePrice *= 2;
-                oldPriceInclTax *= 2;
-                oldPriceExclTax *= 2;
-                const valueSpanElement = $option.closest('.product-option').find('span#value');
-                if (valueSpanElement.length && actualFinalPricePerItem > 0) {
-                    const actualFinalPricePerItemFormatted = priceUtils.formatPrice(actualFinalPricePerItem, window.jsonConfig.currencyFormat);
-                    let optionLabel = $option.data('option-label');
-                    valueSpanElement.addClass('with-doubletext').append('<span id="doubletext">' + optionLabel + ' +' + actualFinalPricePerItemFormatted + '</span>');
+         if (a.parents(".product-option").hasClass("selection_bottombar") && !t("body").hasClass("smallsystem")) {
+          var b = t(".selection_side_span"), I = t(".selection_clamp");
+          b.hide();
+          I.hide();
+         }
+         else if(!t("body").hasClass("smallsystem")) {
+          var b = t(".selection_side_span"), I = t(".selection_clamp");
+          b.hide();
+          I.hide();
+         }
+            a.closest(".product-option").find("span#value").removeClass("with-doubletext"), T.length && T.remove();
+            const R = a.data("option-code") === window.jsonConfig.bedieningOptionCode,
+                B = (n = Object.values(window.jsonConfig.attributes).find(l => l.code === "system_type")) == null ? void 0 : n.id,
+                D = t('.swatch-attribute[data-attribute-id="' + B + '"]').find('.swatch-option.selected[data-option-id="' + window.jsonConfig.systemTypeTdbuOptionId + '"]').length > 0;
+            if (R && D) {
+                u *= 2, x *= 2, _ *= 2, g *= 2, d *= 2, m *= 2, s *= 2, f *= 2;
+                const l = a.closest(".product-option").find("span#value");
+                if (l.length && u > 0) {
+                    const q = C.formatPrice(u, window.jsonConfig.currencyFormat);
+                    let Q = a.data("option-label");
+                    l.addClass("with-doubletext").append('<span id="doubletext">' + Q + " +" + q + "</span>")
                 }
             }
-
-            this.optionFinalPricePerItem += actualFinalPricePerItem * qty;
-            this.optionBasePricePerItem += actualBasePricePerItem * qty;
-            this.optionOldPricePerItemInclTax += oldPricePerItemInclTax * qty;
-            this.optionOldPricePerItemExclTax += oldPricePerItemExclTax * qty;
-
-            this.optionFinalPrice += actualFinalPrice * qty;
-            this.optionBasePrice += actualBasePrice * qty;
-            this.optionOldPriceInclTax += oldPriceInclTax * qty;
-            this.optionOldPriceExclTax += oldPriceExclTax * qty;
+            this.optionFinalPricePerItem += u * o, this.optionBasePricePerItem += x * o, this.optionOldPricePerItemInclTax += _ * o, this.optionOldPricePerItemExclTax += g * o, this.optionFinalPrice += d * o, this.optionBasePrice += m * o, this.optionOldPriceInclTax += s * o, this.optionOldPriceExclTax += f * o
         },
-
-        initProductPrice: function (productConfig)
-        {
+        initProductPrice: function(e) {
             if (!this.swatchesNotSubscribed) {
-                var $swatchOptions = $('div[data-role="swatch-options"]');
-                $swatchOptions.on('swatch.initialized', () => {
-                    $(window).trigger('swatches-click');
-                });
-                this.swatchesNotSubscribed = true;
+                var p = t('div[data-role="swatch-options"]');
+                p.on("swatch.initialized", () => {
+                    t(window).trigger("swatches-click")
+                }), this.swatchesNotSubscribed = !0
             }
-
-            let productId = getSwatchSelectedProductId(),
-                swatchConfig = window.jsonConfig,
-                optionPrices = swatchConfig?.optionPrices ? swatchConfig.optionPrices : {},
-                optionPricesRow = optionPrices.hasOwnProperty(productId) ?
-                    optionPrices[productId] : null;
-
-            if (optionPricesRow) {
-                productConfig.regular_price_excl_tax = optionPricesRow.baseOldPrice.amount;
-                productConfig.regular_price_incl_tax = optionPricesRow.oldPrice.amount;
-                productConfig.final_price_excl_tax = optionPricesRow.basePrice.amount;
-                productConfig.final_price_incl_tax = optionPricesRow.finalPrice.amount;
-            }
-
-            this.productDefaultRegularPriceExclTax = productConfig.regular_price_excl_tax;
-            this.productDefaultRegularPriceInclTax = productConfig.regular_price_incl_tax;
-            this.productDefaultFinalPriceExclTax = productConfig.final_price_excl_tax;
-            this.productDefaultFinalPriceInclTax = productConfig.final_price_incl_tax;
-
-            this.productPerItemRegularPriceExclTax = productConfig.regular_price_excl_tax;
-            this.productPerItemRegularPriceInclTax = productConfig.regular_price_incl_tax;
-            this.productPerItemFinalPriceExclTax = productConfig.final_price_excl_tax;
-            this.productPerItemFinalPriceInclTax = productConfig.final_price_incl_tax;
-
-            this.productTotalRegularPriceExclTax = productConfig.regular_price_excl_tax;
-            this.productTotalRegularPriceInclTax = productConfig.regular_price_incl_tax;
-            this.productTotalFinalPriceExclTax = productConfig.final_price_excl_tax;
-            this.productTotalFinalPriceInclTax = productConfig.final_price_incl_tax;
+            let c = w(),
+                n = window.jsonConfig,
+                h = (n == null ? void 0 : n.optionPrices) ? n.optionPrices : {},
+                r = h.hasOwnProperty(c) ? h[c] : null;
+            r && (e.regular_price_excl_tax = r.baseOldPrice.amount, e.regular_price_incl_tax = r.oldPrice.amount, e.final_price_excl_tax = r.basePrice.amount, e.final_price_incl_tax = r.finalPrice.amount), this.productDefaultRegularPriceExclTax = e.regular_price_excl_tax, this.productDefaultRegularPriceInclTax = e.regular_price_incl_tax, this.productDefaultFinalPriceExclTax = e.final_price_excl_tax, this.productDefaultFinalPriceInclTax = e.final_price_incl_tax, this.productPerItemRegularPriceExclTax = e.regular_price_excl_tax, this.productPerItemRegularPriceInclTax = e.regular_price_incl_tax, this.productPerItemFinalPriceExclTax = e.final_price_excl_tax, this.productPerItemFinalPriceInclTax = e.final_price_incl_tax, this.productTotalRegularPriceExclTax = e.regular_price_excl_tax, this.productTotalRegularPriceInclTax = e.regular_price_incl_tax, this.productTotalFinalPriceExclTax = e.final_price_excl_tax, this.productTotalFinalPriceInclTax = e.final_price_incl_tax
         }
     };
-
-    return function (targetWidget) {
-        $.widget('mageworx.optionFeatures', targetWidget, mixin);
-        return $.mageworx.optionFeatures;
-    };
+    return function(e) {
+        return t.widget("mageworx.optionFeatures", e, E), t.mageworx.optionFeatures
+    }
 });

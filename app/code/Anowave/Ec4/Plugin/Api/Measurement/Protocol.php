@@ -25,31 +25,31 @@ use Magento\Framework\App\Response\Http;
 
 class Protocol
 {
-    
+
     /**
      * @var \Anowave\Ec4\Helper\Data
      */
     protected $helper = null;
-    
+
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
     protected $messageManager = null;
-    
+
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $scopeConfig;
-    
+
     /**
      * @var \Magento\Framework\App\State
      */
     protected $state;
-    
-    
+
+
     /**
-     * Constructor 
-     * 
+     * Constructor
+     *
      * @param \Anowave\Ec4\Helper\Data $helper
      * @param \Magento\Framework\Message\ManagerInterface $messageManager
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
@@ -69,32 +69,32 @@ class Protocol
          * @var \Anowave\Ec4\Helper\Data $_helper
          */
         $this->helper = $helper;
-        
+
         /**
          * Set message manager
          *
          * @var \Magento\Framework\Message\ManagerInterface $_messageManager
          */
         $this->messageManager = $messageManager;
-        
+
         /**
-         * Set scope config 
-         * 
+         * Set scope config
+         *
          * @var \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
          */
         $this->scopeConfig = $scopeConfig;
-        
+
         /**
          * Set state
-         * 
+         *
          * @var \Magento\Framework\App\State $state
          */
         $this->state = $state;
     }
-    
+
     /**
-     * After purchase 
-     * 
+     * After purchase
+     *
      * @param \Anowave\Ec\Model\Api\Measurement\Protocol $interceptor
      * @param callable $proceed
      * @param \Magento\Sales\Model\Order $order
@@ -105,14 +105,14 @@ class Protocol
     {
         $measurement_id         = $this->getOrderMeasurementId($order);
         $measurement_api_secret = $this->getOrderMeasurementApiSecret($order);
-        
+
         /**
-         * Get client id 
-         * 
+         * Get client id
+         *
          * @var Ambiguous $cid
          */
         $cid = $interceptor->getCID();
-        
+
         $payload = function(array $events = []) use ($measurement_id, $measurement_api_secret, $reverse, $cid)
         {
             return
@@ -125,20 +125,20 @@ class Protocol
         if ($measurement_id && $measurement_api_secret)
         {
             $items = [];
-            
+
             /**
              * Default start position
              *
              * @var int
              */
             $index = 1;
-            
+
             /**
              * Loop products
              */
             foreach ($interceptor->getProducts($order) as $product)
             {
-                $item = 
+                $item =
                 [
                     'index'         =>          $index,
                     'item_id'       => (string) @$product['id'],
@@ -147,48 +147,49 @@ class Protocol
                     'price'         => (float)  @$product['price'],
                     'quantity'      => (int)    @$product['quantity']
                 ];
-                
+
                 /**
                  * Check if reverse and reverse quantity
                  */
-                
+
                 if ($reverse)
                 {
                     $item['quantity'] *= -1;
                     $item['price'] *= -1;
                 }
-                
+
                 $categories = explode(chr(47), (string) @$product['category']);
-                
+
                 if ($categories)
                 {
                     $category = array_shift($categories);
-                    
+
                     if ($category)
                     {
                         $item['item_category'] = $category;
                     }
-                    
+
                     foreach ($categories as $index => $category)
                     {
                         $key = $index + 2;
-                        
+
                         $item["item_category{$index}"] = $category;
                     }
                 }
-                
-                
+
+
                 $items[] = $item;
-                
+
                 $index++;
             }
+
 
             $data = $payload
             (
                 [
                     [
                         'name' => 'purchase',
-                        'params' => 
+                        'params' =>
                         [
                             'currency'       => $this->helper->getBaseHelper()->getCurrency(),
                             'transaction_id' => $order->getIncrementId(),
@@ -214,7 +215,7 @@ class Protocol
             }
 
             $analytics = curl_init("https://www.google-analytics.com/mp/collect?measurement_id={$measurement_id}&api_secret={$measurement_api_secret}");
-            
+
             curl_setopt($analytics, CURLOPT_HEADER, 		0);
             curl_setopt($analytics, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($analytics, CURLOPT_POST, 			1);
@@ -225,11 +226,11 @@ class Protocol
             (
                 json_encode($data)
             ));
-            
+
             try
             {
                 $response = curl_exec($analytics);
-                
+
                 if ($this->helper->getBaseHelper()->useDebugMode())
                 {
                     $this->messageManager->addNoticeMessage(json_encode($data, JSON_PRETTY_PRINT));
@@ -245,7 +246,7 @@ class Protocol
 
         return $proceed($order, $reverse);
     }
-    
+
     /**
      * Get UA-ID
      *
@@ -261,7 +262,7 @@ class Protocol
                 (string) $this->scopeConfig->getValue($this->helper->getMeasurementIdConfig(), \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $order->getStore())
             );
         }
-        
+
         return trim
         (
             $this->helper->getConfig
@@ -270,7 +271,7 @@ class Protocol
             )
         );
     }
-    
+
     /**
      * Get measurement ID from order
      *
@@ -284,7 +285,7 @@ class Protocol
             (string) $this->scopeConfig->getValue($this->helper->getMeasurementIdConfig(), \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $order->getStore())
         );
     }
-    
+
     /**
      * Get measurement secret from order
      *

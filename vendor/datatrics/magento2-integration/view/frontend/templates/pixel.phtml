@@ -1,0 +1,26 @@
+<!-- Datatrics Pixel -->
+<?php
+
+$viewModel = $block->getViewModel();
+// phpcs:ignore
+print /* @noEscape */ $viewModel->getTrack(
+    $block->getScriptTemplate(),
+    $block->getVariableCollector()
+);
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "queuedevents": {
+                        "component": "Datatrics_Connect/js/push",
+                        "queuedevents": {
+                            "url": "<?= /* @noEscape */ $viewModel->getAjaxUrl(); ?>"
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>

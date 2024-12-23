@@ -1,0 +1,24 @@
+{
+    "name": "amasty/instagram-feed",
+    "description": "Instagram Feed By Amasty",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": ">=1.13.6"
+    },
+    "suggest": {
+        "amasty/module-instagram-feed-graphql": "Install amasty/module-instagram-feed-graphql module to activate Graphql and Instagram Feed integration."
+    },
+    "type": "magento2-module",
+    "version": "2.2.2",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\InstagramFeed\\": ""
+        }
+    }
+}

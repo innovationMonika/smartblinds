@@ -1,0 +1,110 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Instagram Feed for Magento 2
+*/
+?>
+<?php
+/**
+ * @var \Amasty\InstagramFeed\Block\Widget\Feed\Grid $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$posts = $block->getPosts();
+$rand = random_int(1, 10000);
+$postsIndent = (int)$block->getPadding();
+?>
+
+<style>
+    .aminst-wrapper-<?= (int)$rand ?> .aminst-feed-posts {
+        margin: -<?= (int)$postsIndent; ?>px 0;
+    }
+
+    .aminst-wrapper-<?= (int)$rand ?> .aminst-feed-post {
+        margin: <?= (int)$postsIndent; ?>px;
+    }
+</style>
+
+<?php if (count($posts)): ?>
+    <section class="aminst-feed-grid-container aminst-feed-wrapper aminst-wrapper-<?= (int)$rand ?>" data-aminst-js="posts-<?= (int)$rand ?>">
+        <?php if ($block->getTitle()): ?>
+            <h4 class="aminst-feed-title">
+                <?= $escaper->escapeHtml($block->getTitle()) ?>
+            </h4>
+        <?php endif;?>
+        <article class="aminst-feed-posts"
+                 data-aminst-js="post-items"
+                 data-mage-init='{"amInstHover":{}}'>
+            <?php /** @var \Amasty\InstagramFeed\Api\Data\PostInterface $post */ ?>
+            <?php foreach ($posts as $post): ?>
+                <?php $relationLinkHtml = $block->getRelationLinkHtml($post) ?>
+                <figure class="aminst-feed-post
+                        -<?= $escaper->escapeHtml($block->getPostSize()) ?>"
+                        data-aminst-js="post-item"
+                        <?php if ($relationLinkHtml): ?>
+                            data-aminst-hover="true"
+                        <?php endif; ?>>
+                    <?php $caption = $post->getCaption() ?>
+
+                    <a class="aminst-feed-link -<?= /* @noEscape */ $block->isShowDescription() ? 'en-desc' : 'dis-desc' ?>"
+                       href="<?= $escaper->escapeUrl($post->getPermalink()) ?>"
+                       target="_blank"
+                       data-aminst-js="feed-link"
+                        <?php if ($block->isShowDescription()): ?>
+                            title="<?= $escaper->escapeHtml($caption) ?>"
+                        <?php endif; ?>>
+                        <img class="aminst-feed-img"
+                             src="<?= $escaper->escapeUrl($post->getMediaUrl()) ?>"
+                             alt="<?= $escaper->escapeHtml(__('Instagram Image')) ?>"
+                        />
+                        <?php if ($block->isShowDescription()): ?>
+                            <figurecaption class="aminst-feed-comment-cont">
+                                <p class="aminst-feed-review">
+                                    <span class="aminst-feed-likes"><?= $escaper->escapeHtml($post->getLikeCount()) ?></span>
+                                    <span class="aminst-feed-comments"><?= $escaper->escapeHtml($post->getCommentsCount()) ?></span>
+                                </p>
+                                <p class="aminst-feed-caption"><?= $escaper->escapeHtml($caption) ?></p>
+                            </figurecaption>
+                        <?php endif; ?>
+                    </a>
+                    <?= /* @noEscape */ $relationLinkHtml ?>
+                </figure>
+            <?php endforeach; ?>
+        </article>
+
+        <?php if ($block->isLoadMoreEnabled()): ?>
+            <button class="aminst-feed-btn aminst-loader-wrapper" type="button"
+                    data-aminst-js="load_button"
+                    title="<?= $escaper->escapeHtml(__('Load More')) ?>">
+                <span class="aminst-feed-btn-text aminst-loader-content"><?= $escaper->escapeHtml(__('Load More')) ?><span>
+            </button>
+
+            <script type="text/x-magento-init">
+            {
+                "[data-aminst-js='posts-<?= (int)$rand ?>']": {
+                    "Amasty_InstagramFeed/js/am-post-scroll": {
+                        "ajaxUrl" : "<?= $escaper->escapeUrl($block->getAjaxUrl()); ?>",
+                        "loaderUrl" : "<?= $escaper->escapeUrl($block->getPopupUrl()) ?>",
+                        "per_page" : <?= (int)$block->getPostsPerPage(); ?>,
+                        "posts_count" : <?= (int)$block->getAllPostsCount(); ?>,
+                        "block_data" : <?=  /* @noEscape */ $block->getJsonData(); ?>,
+                        "all_posts" : <?= /* @noEscape */ $block->getAllPostsJson(); ?>
+                    }
+                }
+            }
+            </script>
+        <?php endif; ?>
+    </section>
+    <?php if ($block->isPopupEnabled()): ?>
+        <script type="text/x-magento-init">
+            {
+                ".aminst-wrapper-<?= (int)$rand ?> [data-aminst-js='post-item']": {
+                    "Amasty_InstagramFeed/js/post/popup": {
+                        "loaderUrl" : "<?= $escaper->escapeUrl($block->getPopupUrl()) ?>"
+                    }
+                }
+            }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

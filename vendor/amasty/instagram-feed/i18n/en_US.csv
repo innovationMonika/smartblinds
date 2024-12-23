@@ -1,0 +1,119 @@
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Unlink,Unlink
+"Re-generate Access Token","Re-generate Access Token"
+button_label,button_label
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"Generate Access Token","Generate Access Token"
+"We can't change item right now. Please review the log and try again.","We can't change item right now. Please review the log and try again."
+"A total of %1 record(s) have been changed.","A total of %1 record(s) have been changed."
+"No records have been changed.","No records have been changed."
+"Edit Post ""%1""","Edit Post ""%1"""
+"This post no longer exists.","This post no longer exists."
+"Post&Product Linking","Post&Product Linking"
+"Post has been saved.","Post has been saved."
+"The wrong item is specified.","The wrong item is specified."
+"You have unlinked the post.","You have unlinked the post."
+"We can't unlink item right now. Please review the log and try again.","We can't unlink item right now. Please review the log and try again."
+"Open Post in Instagram","Open Post in Instagram"
+"Open Post in Pop-up","Open Post in Pop-up"
+"Scale Photo","Scale Photo"
+"Show Photo Description","Show Photo Description"
+320,320
+480,480
+640,640
+"Thumbnail (150x150)","Thumbnail (150x150)"
+"Low Resolution (320x320)","Low Resolution (320x320)"
+"Standard Resolution (640x640)","Standard Resolution (640x640)"
+Newest,Newest
+"Most Liked","Most Liked"
+"Most Commented","Most Commented"
+Random,Random
+Grid,Grid
+Slider,Slider
+"Single Post","Single Post"
+Collage,Collage
+"Error with getting content from Instagram API: %1","Error with getting content from Instagram API: %1"
+"error' 'message","error' 'message"
+"Unable to save post with ID %1. Error: %2","Unable to save post with ID %1. Error: %2"
+"Unable to save new post. Error: %1","Unable to save new post. Error: %1"
+"Post with specified ID ""%1"" not found.","Post with specified ID ""%1"" not found."
+"Unable to remove post with ID %1. Error: %2","Unable to remove post with ID %1. Error: %2"
+"Unable to remove post. Error: %1","Unable to remove post. Error: %1"
+Image,Image
+"Carousel album","Carousel album"
+"Something went wrong while token generation","Something went wrong while token generation"
+"Show more","Show more"
+"Your site is configured to use HTTP connection and Instagram API does not allow it. Please configure HTTPS connection for your site.","Your site is configured to use HTTP connection and Instagram API does not allow it. Please configure HTTPS connection for your site."
+"See Details","See Details"
+"Instagram Image","Instagram Image"
+"Load More","Load More"
+Instagram,Instagram
+"A response from Facebook was not received by the module, probably because the authorization was not completed","A response from Facebook was not received by the module, probably because the authorization was not completed"
+"Amasty InstagramFeed","Amasty InstagramFeed"
+"Instagram Feed","Instagram Feed"
+Information,Information
+General,General
+Enabled,Enabled
+"Instagram Settings","Instagram Settings"
+"User Id","User Id"
+"Access Token","Access Token"
+"Generate Images","Generate Images"
+"By default posts get updated every hour by cron. You can use this button for manual update if necessary (the button is getting active in one hour after the last update).","By default posts get updated every hour by cron. You can use this button for manual update if necessary (the button is getting active in one hour after the last update)."
+"Amasty Instagram Feed","Amasty Instagram Feed"
+Template,Template
+"Amasty Instagram Feed Template","Amasty Instagram Feed Template"
+Title,Title
+"Leave empty if you don’t need title for widget","Leave empty if you don’t need title for widget"
+"Widget Type","Widget Type"
+"Collage Size","Collage Size"
+"Posts Limit","Posts Limit"
+"Specify the number of posts to display in widget on the storefront. Please note: plugin loads 180 recent posts per account and updates them every hour by cron.","Specify the number of posts to display in widget on the storefront. Please note: plugin loads 180 recent posts per account and updates them every hour by cron."
+"Sort Posts By","Sort Posts By"
+"Sorting is applied to all 180 loaded posts (regardless of the value inserted in Posts Limit setting).","Sorting is applied to all 180 loaded posts (regardless of the value inserted in Posts Limit setting)."
+"Number of Columns","Number of Columns"
+"Number of Rows","Number of Rows"
+"Enable Autoplay","Enable Autoplay"
+"Autoplay Delay (milliseconds)","Autoplay Delay (milliseconds)"
+"Leave blank to use the default value (2000).","Leave blank to use the default value (2000)."
+"Enable ""Load More""","Enable ""Load More"""
+"Number of Posts per Page","Number of Posts per Page"
+"Max Width","Max Width"
+"Mouse Click Action on Posts","Mouse Click Action on Posts"
+"Mouse On Hover Action on Posts","Mouse On Hover Action on Posts"
+"Posts Padding, px","Posts Padding, px"
+"Leave empty if you don't want to use a padding between posts.","Leave empty if you don't want to use a padding between posts."
+"Post URL","Post URL"
+"Hide Caption","Hide Caption"
+"Cache Lifetime (Seconds)","Cache Lifetime (Seconds)"
+"
+                    Cron for posts updates is running every hour by default. That’s why we recommend to insert 3600 here for timely updates on the storefront. (If the default cron job configuration is overwritten, please insert the corresponding value).
+                ","
+                    Cron for posts updates is running every hour by default. That’s why we recommend to insert 3600 here for timely updates on the storefront. (If the default cron job configuration is overwritten, please insert the corresponding value).
+                "
+"Edit Post","Edit Post"
+Back,Back
+Save,Save
+"Link To","Link To"
+"Please choose one product for linking.","Please choose one product for linking."
+"Choose Product","Choose Product"
+Cancel,Cancel
+Remove,Remove
+ID,ID
+Thumbnail,Thumbnail
+Name,Name
+Status,Status
+Type,Type
+SKU,SKU
+Price,Price
+Actions,Actions
+"All Store Views","All Store Views"
+"Store View","Store View"
+"Post Image","Post Image"
+"Post Url","Post Url"
+Store,Store
+"Product Id","Product Id"
+"Product Sku","Product Sku"
+"Product Name","Product Name"
+"Media Type","Media Type"
+Edit,Edit
+"Unlink Product","Unlink Product"

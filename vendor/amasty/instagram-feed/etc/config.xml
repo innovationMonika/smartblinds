@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Instagram Feed for Magento 2
+*/-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <aminstagramfeed>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <credentials>
+                <user_id>Generate Token To Get User ID</user_id>
+                <authorize_host><![CDATA[https://amasty.com/]]></authorize_host>
+            </credentials>
+        </aminstagramfeed>
+    </default>
+</config>

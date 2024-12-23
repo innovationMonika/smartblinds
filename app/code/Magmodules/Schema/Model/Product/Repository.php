@@ -721,8 +721,8 @@ class Repository extends \Magmodules\RichSnippets\Model\Product\Repository
 
    private function getdeliveryLeadTime($product)
     {
-        $minValue = $product->getData('deliveryLeadTimeMin') != '' ? $product->getData('deliveryLeadTimeMin') : 10;
-        $maxValue = $product->getData('deliveryLeadTimeMax') != '' ? $product->getData('deliveryLeadTimeMax') : 15;
+        $minValue = $product->getData('deliveryLeadTimeMin') != '' ? $product->getData('deliveryLeadTimeMin') : 2;
+        $maxValue = $product->getData('deliveryLeadTimeMax') != '' ? $product->getData('deliveryLeadTimeMax') : 5;
 
         $getdeliveryLeadTime = [
             '@type' => 'QuantitativeValue',

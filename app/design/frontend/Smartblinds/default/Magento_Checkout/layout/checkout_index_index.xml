@@ -13,6 +13,14 @@
                 </arguments>
             </block>
         </referenceContainer>
+         <referenceContainer name="content">
+            <block class="Meetanshi\Totalsaving\Block\TotalSaving"
+                   name="totalsaving"
+                   before="checkout.root"
+                   ifconfig="total_saving/general/enable"
+                   template="Meetanshi_Totalsaving::totalsaving.phtml"
+           />
+        </referenceContainer>
         <referenceContainer name="content">
             <referenceBlock name="checkout.root">
                 <arguments>
@@ -76,25 +84,7 @@
                                                                             <item name="placeholder" xsi:type="string" translate="true">City</item>
                                                                         </item>
                                                                     </item>
-                                                                    <!--<item name="personal_data_title" xsi:type="array">
-                                                                        <item name="sortOrder" xsi:type="string">10</item>
-                                                                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/text</item>
-                                                                        <item name="config" xsi:type="array">
-                                                                            <item name="value" xsi:type="string" translate="true">Personal data</item>
-                                                                            <item name="inputName" xsi:type="string">personal_data</item>
-                                                                            <item name="template" xsi:type="string">ui/form/element/text</item>
-                                                                        </item>
-                                                                    </item>-->
-                                                                    <!-- commented by COULISSE-220 -->
-<!--                                                                     <item name="prefix" xsi:type="array">
-                                                                        <item name="sortOrder" xsi:type="string">11</item>
-                                                                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/checkbox-set</item>
-                                                                        <item name="config" xsi:type="array">
-                                                                            <item name="multiple" xsi:type="boolean">false</item>
-                                                                            <item name="template" xsi:type="string">ui/form/element/checkbox-set</item>
-                                                                            <item name="additionalClasses" xsi:type="string">personal-data</item>
-                                                                        </item>
-                                                                    </item> -->
+
                                                                     <item name="firstname" xsi:type="array">
                                                                         <item name="validation" xsi:type="array">
                                                                             <item name="required-entry" xsi:type="boolean">false</item>
@@ -185,6 +175,18 @@
                                                         <item name="component" xsi:type="string">uiComponent</item>
                                                         <item name="children" xsi:type="array">
                                                             <!-- merge your components here -->
+                                                        </item>
+                                                    </item>
+                                                    <item name="totals" xsi:type="array">
+                                                        <item name="children" xsi:type="array">
+                                                            <item name="total_saving" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Meetanshi_Totalsaving/js/view/checkout/cart/totals/total_saving</item>
+                                                                <item name="sortOrder" xsi:type="string">10000</item>
+                                                                <item name="config" xsi:type="array">
+                                                                    <item name="template" xsi:type="string">Meetanshi_Totalsaving/checkout/cart/totals/total_saving</item>
+                                                                    <item name="title" xsi:type="string">Total Savings</item>
+                                                                </item>
+                                                            </item>
                                                         </item>
                                                     </item>
                                                     <!-- <item name="cart_items" xsi:type="array">
@@ -400,6 +402,14 @@
                                                             <item name="template" xsi:type="string">Magento_Checkout/cart/totals/shipping</item>
                                                         </item>
                                                     </item>
+                                                     <item name="total_saving" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Meetanshi_Totalsaving/js/view/checkout/cart/totals/total_saving</item>
+                                                            <item name="sortOrder" xsi:type="string">10000</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Meetanshi_Totalsaving/checkout/cart/totals/total_saving</item>
+                                                                <item name="title" xsi:type="string">Total Savings</item>
+                                                            </item>
+                                                        </item>
                                                     <item name="grand-total" xsi:type="array">
                                                         <item name="component" xsi:type="string">Magento_Checkout/js/view/summary/grand-total</item>
                                                         <item name="config" xsi:type="array">
@@ -449,6 +459,14 @@
                                     <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/summary/tax</item>
                                     <item name="config" xsi:type="array">
                                         <item name="title" xsi:type="string" translate="true">Tax</item>
+                                    </item>
+                                </item>
+                                 <item name="total_saving" xsi:type="array">
+                                    <item name="component" xsi:type="string">Meetanshi_Totalsaving/js/view/checkout/cart/totals/total_saving</item>
+                                    <item name="sortOrder" xsi:type="string">49</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Meetanshi_Totalsaving/checkout/cart/totals/total_saving</item>
+                                        <item name="title" xsi:type="string">Total Savings</item>
                                     </item>
                                 </item>
                                 <item name="additional-info" xsi:type="array">

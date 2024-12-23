@@ -8,7 +8,7 @@ $dataRoleStep = $_option->getIsRequire() ? ' data-role="step"' : '';
 $optionCode = $_option->getOptionCode();
 $modalCode = $_option->getModalCode();
 ?>
-<div class="product-option field<?= /* @noEscape */ $class ?>"
+<div class="selection_<?= $block->escapeHtmlAttr(str_replace("product_option_modal_", "", $modalCode) ); ?> product-option field<?= /* @noEscape */ $class ?>"
     <?= $dataRoleStep ?>
      <?= $needHideOptions ? 'style="display:none;"' : '' ?>>
     <div class="product-option-header">
@@ -27,3 +27,15 @@ $modalCode = $_option->getModalCode();
         <?php endif;?>
     </div>
 </div>
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            $('.selection_bottombar .swatch-attribute-options .mageworx-swatch-option').on('click', function() {
+                var selectedValue = $(this).parent().attr('value');
+               // alert('Button clicked!');
+               // alert(selectedValue);
+                // Your custom code here
+            });
+        });
+    });
+</script>

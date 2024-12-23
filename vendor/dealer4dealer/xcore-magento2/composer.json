@@ -1,0 +1,25 @@
+{
+  "name": "dealer4dealer/xcore-magento2",
+  "description": "This module extends the rest api of Magento2 and is needed for the usage of the xCore.",
+  "type": "magento2-module",
+  "license": [
+    "MIT"
+  ],
+  "require": {
+    "magento/module-catalog": "^102.0 || ^103.0 || ^104.0",
+    "magento/module-customer": "^102.0 || ^103.0",
+    "magento/module-sales": "^102.0 || ^103.0",
+    "magento/module-tax": "^100.0",
+    "magento/module-shipping": "^100.0",
+    "magento/module-store": "^100.0 || ^101.0",
+    "magento/module-payment": "^100.0"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Dealer4dealer\\Xcore\\": ""
+    }
+  }
+}

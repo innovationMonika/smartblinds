@@ -1,0 +1,31 @@
+{
+    "amasty_instagramfeed_post": {
+        "column": {
+            "post_id": true,
+            "ig_id": true,
+            "comments_count": true,
+            "like_count": true,
+            "media_url": true,
+            "media_type": true,
+            "permalink": true,
+            "shortcode": true,
+            "caption": true,
+            "timestamp": true,
+            "store_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_INSTAGRAMFEED_POST_IG_ID": true
+        }
+    },
+    "amasty_instagramfeed_post_product": {
+        "column": {
+            "ig_id": true,
+            "product_id": true
+        },
+        "constraint": {
+            "AMASTY_INSTAGRAMFEED_POST_PRD_PRD_ID_CAT_PRD_ENTT_ENTT_ID": true,
+            "AMASTY_INSTAGRAMFEED_POST_PRODUCT_IG_ID_PRODUCT_ID": true
+        }
+    }
+}

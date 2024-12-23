@@ -27,30 +27,30 @@ class OrderService
 	 * @var \Magento\Framework\App\State
 	 */
 	protected $state = null;
-	
+
 	/**
 	 * @var \Anowave\Ec\Model\Api\Measurement\Protocol
 	 */
 	protected $protocol;
-	
+
 	/**
 	 * @var \Anowave\Ec\Helper\Data
 	 */
 	protected $helper;
-	
+
 	/**
 	 * @var \Magento\Framework\Message\ManagerInterface
 	 */
 	protected $messageManager;
-	
+
 	/**
 	 * @var \Anowave\Ec\Model\TransactionFactory
 	 */
 	protected $transactionFactory;
-	
+
 	/**
-	 * Constructor 
-	 * 
+	 * Constructor
+	 *
 	 * @param \Magento\Framework\App\State $state
 	 * @param \Anowave\Ec\Model\Api\Measurement\Protocol $protocol
 	 * @param \Anowave\Ec\Helper\Data $helper
@@ -72,37 +72,37 @@ class OrderService
 		 * @var \Magento\Framework\App\State $state
 		 */
 		$this->state = $state;
-		
+
 		/**
 		 * Set protocol
 		 *
 		 * @var \Anowave\Ec\Model\Api\Measurement\Protocol $protocol
 		 */
 		$this->protocol = $protocol;
-		
+
 		/**
 		 * Set helper
 		 *
 		 * @var \Anowave\Ec\Helper\Data $helper
 		 */
 		$this->helper = $helper;
-		
+
 		/**
-		 * Set message manager 
-		 * 
+		 * Set message manager
+		 *
 		 * @var \Magento\Framework\Message\ManagerInterface $messageManager
 		 */
 		$this->messageManager = $messageManager;
-		
+
 		/**
 		 * @var \Anowave\Ec\Model\TransactionFactory $transactionFactory
 		 */
 		$this->transactionFactory = $transactionFactory;
 	}
-	
+
 	/**
-	 * After place plugin 
-	 * 
+	 * After place plugin
+	 *
 	 * @param \Magento\Sales\Model\Service\OrderService $context
 	 * @param \Magento\Sales\Model\Order $order
 	 * @return \Magento\Sales\Model\Order
@@ -112,16 +112,16 @@ class OrderService
 	    if ($this->state->getAreaCode() === \Magento\Framework\App\Area::AREA_ADMINHTML)
 	    {
 	        $transaction = $this->transactionFactory->create();
-	        
+
 	        $transaction->setEcOrderId($order->getId());
 	        $transaction->setEcOrderType(\Anowave\Ec\Helper\Constants::ORDER_TYPE_BACKEND);
 	        $transaction->setEcTrack(\Anowave\Ec\Helper\Constants::FLAG_PLACED);
-	        
+
 	        if (!(php_sapi_name() == 'cli'))
 	        {
 	            $transaction->setEcUserAgent($_SERVER['HTTP_USER_AGENT']);
 	        }
-	
+
     		if (1 === (int) $this->helper->getConfig('ec/gmp/use_measurement_protocol'))
     		{
     			if (false !== $data = $this->protocol->purchaseById
@@ -132,10 +132,10 @@ class OrderService
     				if (!$data->getErrors())
     				{
     				    $transaction->setEcTrack(\Anowave\Ec\Helper\Constants::FLAG_TRACKED);
-    				    
+
     					$this->messageManager->addNoticeMessage("Transaction data {$order->getIncrementId()} sent successfully to Google Analytics {$data->getUA($order)}");
     				}
-    				else 
+    				else
     				{
     					foreach ($data->getErrors() as $error)
     					{
@@ -144,8 +144,8 @@ class OrderService
     				}
     			}
     		}
-    		
-    		try 
+
+    		try
     		{
     		    $transaction->save();
     		}
@@ -154,7 +154,7 @@ class OrderService
     		    $this->messageManager->addErrorMessage($e->getMessage());
     		}
 	    }
-		
+
 		return $order;
 	}
 }

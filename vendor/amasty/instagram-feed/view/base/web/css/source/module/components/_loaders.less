@@ -1,0 +1,78 @@
+//
+//  Loaders Style
+//  _________________________
+
+//
+//  KeyFrames
+//  -------------------------
+
+@keyframes aminsta-load-1 {
+    0% {
+        transform: scale(0);
+    }
+    
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes aminsta-load-2 {
+    0% {
+        transform: scale(1);
+    }
+    
+    100% {
+        transform: scale(0);
+    }
+}
+
+//
+//  Common
+//  -------------------------
+
+& when (@media-common = true) {
+    .aminst-loader-wrapper {
+        & {
+            display: inline-flex;
+        }
+        
+        &.-progress .aminst-loader-content {
+            ._am-hide;
+        }
+    }
+    
+    .aminst-loader-dot {
+        & {
+            display: inline-block;
+            margin: 5px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: @aminst__color__primary;
+            animation-timing-function: cubic-bezier(0, 2, 2, 0);
+        }
+        
+        &:nth-child(1) {
+            left: -50%;
+            animation: aminsta-load-1 .8s infinite;
+        }
+        
+        &:nth-child(2) {
+            left: -25%;
+            animation: aminsta-load-1 .8s infinite;
+            animation-delay: .1s;
+        }
+        
+        &:nth-child(3) {
+            left: 0;
+            animation: aminsta-load-1 .8s infinite;
+            animation-delay: .2s;
+        }
+        
+        &:nth-child(4) {
+            left: 25%;
+            animation: aminsta-load-1 .8s infinite;
+            animation-delay: .3s;
+        }
+    }
+}

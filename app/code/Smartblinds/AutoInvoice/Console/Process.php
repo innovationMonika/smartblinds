@@ -53,6 +53,7 @@ class Process extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
+
             $this->state->getAreaCode();
         } catch (\Exception $e) {
             $this->state->setAreaCode('adminhtml');

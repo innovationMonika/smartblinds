@@ -1,4 +1,5 @@
 <!--
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -26,18 +27,25 @@
             <strong class="subtitle"><!-- ko i18n: 'Options Details' --><!-- /ko --></strong>
             <dl class="item-options">
                 <!--ko foreach: JSON.parse($parent.options)-->
+                <!-- ko if: (
+                    $data.label.toLowerCase().includes('width') ||
+                    $data.label.toLowerCase().includes('height') ||
+                    $data.label.toLowerCase().includes('breedte') ||
+                    $data.label.toLowerCase().includes('hoogte')
+                )-->
                 <dt class="label" data-bind="text: label"></dt>
-                    <!-- ko if: ($data.full_view)-->
-                    <!-- ko with: {full_viewUnsanitizedHtml: $data.full_view}-->
-                    <dd class="values" data-bind="html: full_viewUnsanitizedHtml"></dd>
-                    <!-- /ko -->
-                    <!-- /ko -->
-                    <!-- ko ifnot: ($data.full_view)-->
-                    <!-- ko with: {valueUnsanitizedHtml: $data.value}-->
-                    <dd class="values" data-bind="html: valueUnsanitizedHtml"></dd>
-                    <!-- /ko -->
-                    <!-- /ko -->
-                    <br />
+                <!-- ko if: ($data.full_view)-->
+                <!-- ko with: {full_viewUnsanitizedHtml: $data.full_view}-->
+                <dd class="values" data-bind="html: full_viewUnsanitizedHtml"></dd>
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko ifnot: ($data.full_view)-->
+                <!-- ko with: {valueUnsanitizedHtml: $data.value}-->
+                <dd class="values" data-bind="html: valueUnsanitizedHtml"></dd>
+                <!-- /ko -->
+                <!-- /ko -->
+                <br />
+                <!-- /ko -->
                 <!-- /ko -->
             </dl>
         </div>

@@ -20,7 +20,15 @@
                 </field>
                 <field id="tips" type="textarea" translate="label" sortOrder="10"
                        showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Tips</label>
+                    <label>Product Page Tips</label>
+                </field>
+                 <field id="carttips" type="textarea" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cart Page Tips</label>
+                </field>
+                 <field id="checkouttips" type="textarea" translate="label" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Checkout Page Tips</label>
                 </field>
                 <field id="additional_images" type="textarea" translate="label" sortOrder="10"
                        showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
@@ -41,6 +49,36 @@
                 <field id="measurement" type="text" translate="label" sortOrder="10"
                        showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Measurement</label>
+                </field>
+            </group>
+             <group id="pages" translate="label" type="text" sortOrder="201" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Text for Pages</label>
+                <field id="producttext" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Page Text</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="carttext" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cart Page Text</label>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="checkouttext" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Checkout Page Text</label>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <group id="settings" translate="label" type="text" sortOrder="202" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Button Text Settings</label>
+                <field id="add_to_cart_text" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Cart Button Text</label>
+                    <comment>Enter the custom text for the Add to Cart button</comment>
+                </field>
+                 <field id="cart_text" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cart Button Text</label>
+                    <comment>Enter the custom text for the Cart button</comment>
+                </field>
+                <field id="checkout_text" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Checkout Button Text</label>
+                    <comment>Enter the custom text for the Checkout button</comment>
                 </field>
             </group>
         </section>

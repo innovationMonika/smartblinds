@@ -12,3 +12,30 @@ $rowClasses = $block->getData('row_classes') ?: '';
         </<?= $block->escapeHtml($rowElement) ?>>
     <?php endforeach; ?>
 </<?= $block->escapeHtml($containerElem) ?>>
+<?php
+ $productText = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/pages/carttext', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+$checkoutText = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/pages/checkouttext', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+
+$checkoutButtonText = \Magento\Framework\App\ObjectManager::getInstance()
+                    ->get(\Magento\Framework\App\Config\ScopeConfigInterface::class)
+                    ->getValue('smartblinds_configurable_product/settings/checkout_text', \Magento\Store\Model\ScopeInterface::SCOPE_STORE) ?: __('Next');
+?>
+<script>
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            // Append new <li> after "Continue to Checkout" button's <>
+            var newLi = '<?php echo $productText ?>';
+            $('ul.checkout.methods.items.checkout-methods-items li:last-child').after(newLi);
+
+             var checkoutText = '<?php echo $checkoutText ?>';
+             window.checkoutConfig = window.checkoutConfig || {};
+            window.checkoutConfig.customShippingConfig = checkoutText;
+            window.checkoutConfig.customCheckoutButton = '<?php echo $checkoutButtonText ?>';
+        });
+    });
+</script>

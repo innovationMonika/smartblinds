@@ -132,6 +132,13 @@
                 <label translate="true">Price Coefficient</label>
             </settings>
         </column>
+        <column name="storeviews" class="Smartblinds\System\Ui\Component\Listing\Columns\System\StoreStatus">
+            <settings>
+                <filter>text</filter>
+                <dataType>text</dataType>
+                <label translate="true">Store Views</label>
+            </settings>
+        </column>
         <actionsColumn name="actions" class="GoMage\Ui\Component\Listing\Column\Actions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -144,6 +151,11 @@
                         <item name="delete" xsi:type="array">
                             <item name="label" xsi:type="string" translate="true">Delete</item>
                             <item name="url_path" xsi:type="string">smartblinds/system/delete</item>
+                            <item name="url_param" xsi:type="string">id</item>
+                        </item>
+                        <item name="copy" xsi:type="array">
+                            <item name="label" xsi:type="string" translate="true">Copy</item>
+                            <item name="url_path" xsi:type="string">smartblinds/system/copy</item>
                             <item name="url_param" xsi:type="string">id</item>
                         </item>
                     </item>

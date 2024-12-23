@@ -17,7 +17,7 @@ $modalCode = $_option->getModalCode();
     echo ' textarea';
 } ?><?= /* @noEscape */ $class ?>">
 
-    <div class="product-option-header">
+    <div class="product-option-header selection_<?= $block->escapeHtmlAttr($modalCode) ?>">
         <label class="label" for="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>_text">
             <span><?= $block->escapeHtml($_option->getTitle()) ?><?= $optionalText ?></span>
             <?= /* @noEscape */ $block->getFormattedPrice() ?>

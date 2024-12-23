@@ -24,7 +24,8 @@
             "max_height": true,
             "control_type": true,
             "fabric_size": true,
-            "code": true
+            "code": true,
+            "storeviews" : true
         },
         "constraint": {
             "PRIMARY": true,

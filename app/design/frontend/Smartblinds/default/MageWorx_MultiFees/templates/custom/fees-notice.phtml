@@ -1,0 +1,47 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var $block \MageWorx\MultiFees\Block\Catalog\Product\Fee */
+?>
+<?php if ($block->isShowProductFee()): ?>
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],function($, modal) {
+            var option = 'multifees-notice-info-block-<?= $block->escapeHtml($block->getCurrentItemId())?>',
+                optionModalSelector = '[data-role=multifees-notice-info-block-<?= $block->escapeHtml($block->getCurrentItemId())?>]',
+                optionModalButtonSelector = '[data-option-modal=multifees-notice-info-block-<?= $block->escapeHtml($block->getCurrentItemId())?>]';
+
+            var options = {
+                type: 'custom',
+                responsive: true,
+                title: '',
+                modalClass: 'pdp-information-popup',
+                buttons: [{
+                    text: $.mage.__('Ok'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            if (!window.hasOwnProperty('optionModals')) {
+                window.$optionModals = {};
+            }
+
+            $(document).on('click', optionModalButtonSelector, function() {
+                options.title = $(this).parents('.field-fees-wrapper').find('.label-text').text();
+                if (!window.$optionModals.hasOwnProperty(option)) {
+                    var $optionModal = $(optionModalSelector);
+                    modal(options, $optionModal);
+                    window.$optionModals[option] = $optionModal;
+                }
+                window.$optionModals[option].modal('openModal');
+                // fix for lazyload to show images after popup shown
+                window.dispatchEvent(new Event('scroll'));
+            });
+        });
+    </script>
+<?php endif; ?>
+

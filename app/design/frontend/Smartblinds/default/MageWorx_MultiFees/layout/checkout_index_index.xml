@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="mageworx_fee" xsi:type="array">
+                                    <item name="sortOrder" xsi:type="string">35</item>
+                                    <item name="component"  xsi:type="string">MageWorx_MultiFees/js/view/summary/fee</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Additional Fees</item>
+                                    </item>
+                                </item>
+                                <item name="mageworx_fee_tax" xsi:type="array">
+                                    <item name="sortOrder" xsi:type="string">36</item>
+                                    <item name="component"  xsi:type="string">MageWorx_MultiFees/js/view/summary/fee-tax</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Additional Fees (Incl. Tax)</item>
+                                    </item>
+                                </item>
+                                <item name="mageworx_product_fee" xsi:type="array">
+                                    <item name="sortOrder" xsi:type="string">37</item>
+                                    <item name="component"  xsi:type="string">MageWorx_MultiFees/js/view/summary/product-fee</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Measurement warranty</item>
+                                    </item>
+                                </item>
+                                <item name="mageworx_product_fee_tax" xsi:type="array">
+                                    <item name="sortOrder" xsi:type="string">38</item>
+                                    <item name="component"  xsi:type="string">MageWorx_MultiFees/js/view/summary/product-fee-tax</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="title" xsi:type="string" translate="true">Measurement warranty</item>
+                                    </item>
+                                </item>
+                                <item name="shipping" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="mageworx_shipping_fee" xsi:type="array">
+                                            <item name="sortOrder" xsi:type="string">35</item>
+                                            <item name="component"  xsi:type="string">MageWorx_MultiFees/js/view/summary/shipping-fee</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Shipping Fees</item>
+                                            </item>
+                                        </item>
+                                        <item name="mageworx_shipping_fee_tax" xsi:type="array">
+                                            <item name="sortOrder" xsi:type="string">36</item>
+                                            <item name="component"  xsi:type="string">MageWorx_MultiFees/js/view/summary/shipping-fee-tax</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Shipping Fees (Incl. Tax)</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

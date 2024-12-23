@@ -1,0 +1,43 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Instagram Feed for Magento 2
+*/
+?>
+<?php
+/** @var \Amasty\InstagramFeed\Block\Widget\Feed\Single $block */
+$customHtml = $block->getCustomHtml();
+$rand = random_int(1, 10000);
+?>
+
+<?php if ($customHtml): ?>
+    <style>
+        /*  Instagram Iframe Styles  */
+        .aminst-wrapper-<?= (int)$rand ?> .instagram-media,
+        .aminst-wrapper-<?= (int)$rand ?> .aminst-relation-wrap {
+            max-width: <?= $block->escapeHtml($block->getMaxWidth()) ?>px !important;
+            max-height: 100% !important;
+            min-width: auto !important;
+        }
+
+        .aminst-wrapper-<?= (int)$rand ?> .aminst-feed-post {
+            margin: 5px;
+        }
+        /*  Instagram Iframe Styles  */
+    </style>
+
+    <div class="aminst-feed-single-post aminst-feed-wrapper aminst-wrapper-<?= (int)$rand ?>">
+        <?php if ($block->getTitle()): ?>
+            <h4 class="aminst-feed-title">
+                <?= $block->escapeHtml($block->getTitle()) ?>
+            </h4>
+        <?php endif;?>
+        <figure class="aminst-feed-post">
+            <?= /* @noEscape */ $customHtml ?>
+            <div class="aminst-relation-wrap">
+                <?= /* @noEscape */ $block->getRelationLinkHtml() ?>
+            </div>
+        </figure>
+    </div>
+<?php endif;?>

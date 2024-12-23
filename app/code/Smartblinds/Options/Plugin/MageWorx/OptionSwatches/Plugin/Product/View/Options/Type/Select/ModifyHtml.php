@@ -122,7 +122,7 @@ class ModifyHtml
             ' data-option-code="' . $option->getOptionCode() . '"' .
             ' data-option-element-type="' . $type . '"';
 
-        $html = '<div class="mageworx-swatch-container"';
+        $html = '<div class="mageworx-swatch-container" data-value="'.$optionValue->getValueCode().'"';
         if (in_array($optionValue->getOptionTypeId(), $hiddenValues)
             || in_array($option->getOptionId(), $hiddenOptions)
         ) {
