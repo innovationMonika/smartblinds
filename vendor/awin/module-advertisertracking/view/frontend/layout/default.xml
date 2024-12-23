@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<page xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <body>
-        <referenceBlock name="before.body.end">
-            <block name="awin.mastertag" as="awin_mastertag" 
-            class="Awin\AdvertiserTracking\Block\AllPageTemplate" template ="Awin_AdvertiserTracking::awin_mastertag.phtml" after="-" />
-        </referenceBlock>
-    </body>
-</page>

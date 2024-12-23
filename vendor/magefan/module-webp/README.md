@@ -1,1 +1,0 @@
-# Magento 2 WebP Image optimization extension by Magefan
