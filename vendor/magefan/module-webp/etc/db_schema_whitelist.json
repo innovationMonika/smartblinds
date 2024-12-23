@@ -1,0 +1,11 @@
+{
+  "magefan_webp_images": {
+    "column": {
+      "image_id": true,
+      "image": true
+    },
+    "constraint": {
+      "PRIMARY": true
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <alternatehreflang>
+            <general>
+                <enabled>0</enabled>
+                <mfmodule>AlternateHreflang</mfmodule>
+                <use_hreflang_tag_for>homepage,product,category,cms,blog_post,blog_category,blog_index,blog_tag,blog_author,secondblog_post,secondblog_category,secondblog_index,secondblog_tag,secondblog_author</use_hreflang_tag_for>
+                <display_for_noindex>0</display_for_noindex>
+            </general>
+            <locale_options>
+                <group>1</group>
+            </locale_options>
+        </alternatehreflang>
+    </default>
+</config>

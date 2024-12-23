@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magefan\AlternateHreflang\Controller\RouterSecondBlog"
+                 type="Magefan\AlternateHreflang\Controller\RouterBlog">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="mfalternatehreflang_cms" xsi:type="array">
+                    <item name="class" xsi:type="string">Magefan\AlternateHreflang\Controller\RouterCms</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">60</item>
+                </item>
+                <item name="mfalternatehreflang_blog" xsi:type="array">
+                    <item name="class" xsi:type="string">Magefan\AlternateHreflang\Controller\RouterBlog</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">61</item>
+                </item>
+                <item name="mfalternatehreflang_secondblog" xsi:type="array">
+                    <item name="class" xsi:type="string">Magefan\AlternateHreflang\Controller\RouterSecondBlog</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">62</item>
+                </item>
+                <item name="mfalternatehreflang_url_rewrite" xsi:type="array">
+                    <item name="class" xsi:type="string">Magefan\AlternateHreflang\Controller\RouterUrlRewrite</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">63</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Page\Config">
+        <plugin name="mfalternatehreflang_magento_framework_view_page_config" type="Magefan\AlternateHreflang\Plugin\Magento\Framework\View\Page\ConfigPlugin" sortOrder="10" disabled="false" />
+    </type>
+    <type name="Magento\UrlRewrite\Model\StoreSwitcher\RewriteUrl">
+        <plugin name="mfalternatehreflang_magento_urlrewrite_model_storeswitcher_rewriteurl" type="Magefan\AlternateHreflang\Plugin\Magento\UrlRewrite\Model\StoreSwitcher\RewriteUrlPlugin" sortOrder="15" disabled="false" />
+    </type>
+
+</config>

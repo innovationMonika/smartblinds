@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+?>
+<?php
+/**
+ * Remove generated webp image (pub/media/mf_webp)
+ *
+ * @var $block \Magefan\WebP\Block\Adminhtml\System\Config\Form\Button
+ */
+?>
+<div class="pp-buttons-container">
+    <button type="button" id="clean_mf_webp">
+        <span><span><span><?= $block->escapeHtml(__('Clean WebP Cache')); ?></span></span></span>
+    </button>
+</div>
+
+<script>
+    require([
+            'jquery',
+            'Magento_Ui/js/modal/confirm'
+        ],
+        function($, confirmation) {
+            $('#clean_mf_webp').on('click', function(event){
+                event.preventDefault;
+                confirmation({
+                    title: '<?= $block->escapeHtml(__('Do you really want to clean all generated webp images?')) ?>',
+                    content: '',
+                    actions: {
+                        confirm: function () {
+                            window.location='<?= $block->escapeUrl($block->getUrl('mfwebp/webp/clean')) ?>';
+                        },
+                    }
+                });
+            });
+        });
+</script>

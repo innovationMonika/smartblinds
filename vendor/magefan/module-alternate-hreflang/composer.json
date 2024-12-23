@@ -1,0 +1,16 @@
+{
+    "name": "magefan/module-alternate-hreflang",
+    "description": "",
+    "require": {
+        "magefan/module-community" : ">=2.1.11"
+    },
+    "type": "magento2-module",
+    "version": "2.2.0",
+    "license": "EULA",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Magefan\\AlternateHreflang\\": ""
+        }
+    }
+}

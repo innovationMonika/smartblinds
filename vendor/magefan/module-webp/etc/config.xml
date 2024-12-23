@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mfwebp>
+            <general>
+                <enabled>0</enabled>
+                <quality>85</quality>
+                <metadata>none</metadata>
+                <mfmodule>WebP</mfmodule>
+                <creation_options>0</creation_options>
+                <skip_by_time></skip_by_time>
+                <skip_media_folders>media/captcha</skip_media_folders>
+            </general>
+            <advanced_settings>
+                <convert_exists_picture>0</convert_exists_picture>
+                <convert_background_images>0</convert_background_images>
+                <convert_images_in_graphql_requests>0</convert_images_in_graphql_requests>
+                <convert_images_in_rest_api_requests>0</convert_images_in_rest_api_requests>
+                <convert_images_inserted_via_page_builder>0</convert_images_inserted_via_page_builder>
+            </advanced_settings>
+        </mfwebp>
+        <system>
+            <media_storage_configuration>
+                <allowed_resources>
+                    <catalog_mfwebp_image_folder>media/mf_webp/</catalog_mfwebp_image_folder>
+                    <catalog_mfwebp_image_folder2>mf_webp/</catalog_mfwebp_image_folder2>
+                </allowed_resources>
+            </media_storage_configuration>
+        </system>
+    </default>
+</config>

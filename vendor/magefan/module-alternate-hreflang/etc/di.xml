@@ -1,0 +1,299 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magefan\AlternateHreflang\Api\AlternateHreflangRepositoryInterface" type="Magefan\AlternateHreflang\Model\AlternateHreflangRepository" />
+    <preference for="Magefan\AlternateHreflang\Api\GetAlternateHreflangInterface" type="Magefan\AlternateHreflang\Model\GetAlternateHreflang" />
+    <preference for="Magefan\AlternateHreflang\Api\BlogFactoryInterface" type="Magefan\AlternateHreflang\Model\BlogFactory" />
+
+    <virtualType name="Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogIndex"
+                 type="Magefan\AlternateHreflang\Model\AlternateHreflang\BlogIndex">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogPost"
+                 type="Magefan\AlternateHreflang\Model\AlternateHreflang\BlogPost">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogCategory"
+                 type="Magefan\AlternateHreflang\Model\AlternateHreflang\BlogCategory">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogTag"
+                 type="Magefan\AlternateHreflang\Model\AlternateHreflang\BlogTag">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogAuthor"
+                 type="Magefan\AlternateHreflang\Model\AlternateHreflang\BlogAuthor">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Model\AutocompleteData\SecondBlogPost"
+                 type="Magefan\AlternateHreflang\Model\AutocompleteData\BlogPost">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AutocompleteData\SecondBlogCategory"
+                 type="Magefan\AlternateHreflang\Model\AutocompleteData\BlogCategory">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AutocompleteData\SecondBlogTag"
+                 type="Magefan\AlternateHreflang\Model\AutocompleteData\BlogTag">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Model\AutocompleteData\SecondBlogAuthor"
+                 type="Magefan\AlternateHreflang\Model\AutocompleteData\BlogAuthor">
+        <arguments>
+            <argument name="blogFactory" xsi:type="object">Magefan\AlternateHreflang\Model\SecondBlogFactory</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormBlogPost"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">1</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\Blog\Model\PostFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormBlogCategory"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">2</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\Blog\Model\CategoryFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormBlogTag"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">6</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\Blog\Model\TagFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormBlogAuthor"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">7</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\Blog\Api\AuthorInterfaceFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormSecondBlogPost"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">8</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\SecondBlog\Model\PostFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormSecondBlogCategory"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">9</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\SecondBlog\Model\CategoryFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormSecondBlogTag"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">10</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\SecondBlog\Model\TagFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormSecondBlogAuthor"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">11</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="objectClass" xsi:type="string">Magefan\SecondBlog\Api\AuthorInterfaceFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormCmsPage"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">page_id</argument>
+            <argument name="type" xsi:type="number">3</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="object" xsi:type="object">Magento\Cms\Model\PageFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\FormCatalogCategory"
+                 type="Magefan\AlternateHreflang\Block\Adminhtml\Rule\Edit\Form">
+        <arguments>
+            <argument name="id" xsi:type="string">id</argument>
+            <argument name="type" xsi:type="number">5</argument>
+            <argument name="factory" xsi:type="array">
+                <item name="object" xsi:type="object">Magento\Catalog\Model\CategoryFactory</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Observer\BlogPostSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">1</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\Blog\Api\PostRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Observer\BlogCategorySaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">2</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\Blog\Api\CategoryRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Observer\BlogTagSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">6</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\Blog\Api\TagRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Observer\BlogAuthorSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">7</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\Blog\Api\AuthorRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Observer\SecondBlogPostSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">8</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\SecondBlog\Api\PostRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Observer\SecondBlogCategorySaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">9</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\SecondBlog\Api\CategoryRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Observer\SecondBlogTagSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">10</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\SecondBlog\Api\TagRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Magefan\AlternateHreflang\Observer\SecondBlogAuthorSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">11</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magefan\SecondBlog\Api\AuthorRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Observer\CmsPageSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">3</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magento\Cms\Api\PageRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Observer\CatalogProductSaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">4</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magento\Catalog\Api\ProductRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Magefan\AlternateHreflang\Observer\CatalogCategorySaveAfter"
+                 type="Magefan\AlternateHreflang\Observer\SaveAfter">
+        <arguments>
+            <argument name="type" xsi:type="number">5</argument>
+            <argument name="repository" xsi:type="array">
+                <item name="object" xsi:type="object">Magento\Catalog\Api\CategoryRepositoryInterface</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magefan\AlternateHreflang\Model\GetAlternateHreflang">
+        <arguments>
+            <argument name="modelPool" xsi:type="array">
+                <item name="blog_index" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\BlogIndex</item>
+                <item name="blog_category" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\BlogCategory</item>
+                <item name="blog_post" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\BlogPost</item>
+                <item name="blog_tag" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\BlogTag</item>
+                <item name="blog_author" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\BlogAuthor</item>
+                <item name="secondblog_index" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogIndex</item>
+                <item name="secondblog_post" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogPost</item>
+                <item name="secondblog_category" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogCategory</item>
+                <item name="secondblog_tag" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogTag</item>
+                <item name="secondblog_author" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\SecondBlogAuthor</item>
+                <item name="category" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\Category</item>
+                <item name="product" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\Product</item>
+                <item name="cms" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\CmsPage</item>
+                <item name="homepage" xsi:type="object">Magefan\AlternateHreflang\Model\AlternateHreflang\CmsIndex</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
+
