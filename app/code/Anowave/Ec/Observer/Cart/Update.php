@@ -30,30 +30,30 @@ class Update implements ObserverInterface
 	 * @var \Anowave\Ec\Helper\Data
 	 */
 	protected $helper;
-	
+
 	/**
 	 * @var \Magento\Customer\Model\Session
 	 */
 	protected $session;
-	
+
 	/**
 	 * @var \Magento\Checkout\Model\Session
 	 */
 	protected $sessionCheckout;
-	
+
 	/**
 	 * @var \Magento\Catalog\Model\ProductFactory
 	 */
 	protected $productFactory;
-	
+
 	/**
 	 * @var \Magento\Catalog\Model\CategoryRepository
 	 */
 	protected $categoryRepository;
-	
+
 	/**
-	 * Constructor 
-	 * 
+	 * Constructor
+	 *
 	 * @param \Magento\Customer\Model\SessionFactory $sessionFactory
 	 * @param \Magento\Checkout\Model\Session $sessionCheckout
 	 * @param \Magento\Catalog\Model\ProductFactory $productFactory
@@ -69,53 +69,53 @@ class Update implements ObserverInterface
 		\Anowave\Ec\Helper\Data $helper
 	)
 	{
-		$this->session = $sessionFactory->create();	
-		
+		$this->session = $sessionFactory->create();
+
 		/**
 		 * Set checkout session
-		 * 
+		 *
 		 * @var \Magento\Checkout\Model\Session $sessionCheckout
 		 */
 		$this->sessionCheckout = $sessionCheckout;
-		
+
 		/**
-		 * Set product factory 
-		 * 
+		 * Set product factory
+		 *
 		 * @var \Magento\Catalog\Model\ProductFactory $productFactory
 		 */
 		$this->productFactory = $productFactory;
-		
+
 		/**
-		 * Set category respository 
-		 * 
+		 * Set category respository
+		 *
 		 * @var \Magento\Catalog\Model\CategoryRepository $categoryRepository
 		 */
 		$this->categoryRepository = $categoryRepository;
-		
+
 		/**
-		 * Set helper 
-		 * 
+		 * Set helper
+		 *
 		 * @var \Anowave\Ec\Helper\Data $helper
 		 */
 		$this->helper = $helper;
 	}
-	
+
 	/**
 	 * Execute (non-PHPdoc)
-	 * 
+	 *
 	 * @see \Magento\Framework\Event\ObserverInterface::execute()
 	 */
 	public function execute(EventObserver $observer)
 	{
 		$push = [];
-		
+
 		/**
-		 * Get cart parameters 
-		 * 
+		 * Get cart parameters
+		 *
 		 * @var [] $cart
 		 */
 		$cart = $observer->getRequest()->getParam('cart');
-		
+
 		if ($cart)
 		{
 			foreach ($cart as $key => $data)
@@ -123,19 +123,19 @@ class Update implements ObserverInterface
 				if (isset($data['qty']))
 				{
 					/**
-					 * Get quantity 
-					 * 
+					 * Get quantity
+					 *
 					 * @var Ambiguous $quantity
 					 */
 					$quantity = (int) $data['qty'];
-					
+
 					/**
-					 * Get item by id 
-					 * 
+					 * Get item by id
+					 *
 					 * @var \Magento\Quote\Model\Quote\Item
 					 */
 					$item = $this->sessionCheckout->getQuote()->getItemById($key);
-					
+
 					if ($item && $item->getId())
 					{
 						/**
@@ -145,10 +145,11 @@ class Update implements ObserverInterface
 						{
 							continue;
 						}
-						
-						$product = 
+
+						$product =
 						[
-							'id' 	=> $this->helper->getIdentifier($item->getProduct()),
+							'id' 	=> $this->helper->getIdentifierID($item->getProduct()),
+							'sku' 	=> $this->helper->getIdentifier($item->getProduct()),
 							'price' => $item->getPriceInclTax(),
 							'name' 	=> $item->getName(),
 							'brand'	=> $this->helper->getBrand
@@ -156,9 +157,9 @@ class Update implements ObserverInterface
 								$item->getProduct()
 							)
 						];
-						
+
 						$categories = $this->helper->getCurrentStoreProductCategories($item->getProduct());
-						
+
 						if (!$categories)
 						{
 							if (null !== $root = $this->helper->getStoreRootDefaultCategoryId())
@@ -166,7 +167,7 @@ class Update implements ObserverInterface
 								$categories[] = $root;
 							}
 						}
-						
+
 						if ($categories)
 						{
 							/**
@@ -176,14 +177,14 @@ class Update implements ObserverInterface
 							(
 								end($categories)
 							);
-							
+
 							$product['category'] = $this->helper->getCategoryDetailList($item->getProduct(), $category);
 						}
-						
+
 						if ($quantity > $item->getQty())
 						{
-							$product['quantity'] = ($quantity - $item->getQty()); 
-							
+							$product['quantity'] = ($quantity - $item->getQty());
+
 							$push =
 							[
 							    'event' => \Anowave\Ec\Helper\Constants::EVENT_ADD_TO_CART,
@@ -191,7 +192,7 @@ class Update implements ObserverInterface
 								[
 									'add' =>
 									[
-										'products' => 
+										'products' =>
 										[
 											$product
 										]
@@ -199,10 +200,10 @@ class Update implements ObserverInterface
 								]
 							];
 						}
-						else 
+						else
 						{
-							$product['quantity'] = ($item->getQty() - $quantity); 
-							
+							$product['quantity'] = ($item->getQty() - $quantity);
+
 							$push =
 							[
 							    'event' => \Anowave\Ec\Helper\Constants::EVENT_REMOVE_FROM_CART,
@@ -210,7 +211,7 @@ class Update implements ObserverInterface
 								[
 									'remove' =>
 									[
-										'products' => 
+										'products' =>
 										[
 											$product
 										]
@@ -222,12 +223,12 @@ class Update implements ObserverInterface
 				}
 			}
 		}
-		
+
 		if ($push)
 		{
 			$this->session->setCartUpdateEvent($this->helper->getJsonHelper()->encode($push));
 		}
-		
+
 		return true;
 	}
 }

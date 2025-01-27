@@ -1,0 +1,9 @@
+<script>
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            // Append new <li> after "Continue to Checkout" button's <li>
+            var newLi = '<li class="new-list-item">Your Custom Text or Button Here</li>';
+            $('ul.checkout.methods.items.checkout-methods-items').after(newLi);
+        });
+    });
+</script>

@@ -76,7 +76,9 @@ class OptionsCollector
         if($orderItem->getData('clamp')){
             $result[] = ['name' => 'clamp', 'value' => $orderItem->getData('clamp')];
         }
-
+        if ($orderItem->getProductType() === 'simple' && $orderItem->getSku() !== 'curtain_tracks'){
+             $result[] = ['name' => 'accessory_sku', 'value' => $orderItem->getData('accessory_sku')];
+        }
 
         return $result;
     }

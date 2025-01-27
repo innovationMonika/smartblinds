@@ -38,7 +38,7 @@ $viewModel = $block->getData('view_model');
         <ol class="products list items product-items">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
-                <li class="item product product-item"
+                <li class="item product product-item 1"
                     data-role="sample_to_basket_id_<?= $_product->getId() ?>"
                     data-bind="scope: 'sample_to_basket_id_<?= $_product->getId() ?>'">
                     <div class="product-item-info"

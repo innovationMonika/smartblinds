@@ -1,0 +1,98 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .blog-navigation {
+        a {
+            .lib-button(
+                @_button-font-size: 16px,
+                @_button-background: #ffffff,
+                @_button-color-hover: @primary__color,
+                @_button-background-hover: #ffffff,
+                @_button-border-hover: 1px solid @primary__color
+            );
+
+            border-radius: 19.5px;
+            padding: 15px 25px !important;
+            text-decoration: none;
+
+        }
+
+        > ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            > li {
+                padding: 0;
+                display: inline-block;
+                vertical-align: middle;
+
+                li, ul {
+                     display: none !important;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .blog-navigation {
+        margin-bottom: 20px;
+        padding-bottom: 5px;
+        overflow-x: auto;
+
+        &::-webkit-scrollbar {
+            height: 0px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: @smartblinds-color-gray;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: @primary__color;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: @primary__color;
+        }
+
+        > ul {
+            text-align: left;
+            min-width: 480px;
+            white-space: nowrap;
+
+            > li {
+                margin: 0 0 0 10px;
+
+                &:first-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .blog-navigation {
+        margin-bottom: 40px;
+
+        > ul {
+            text-align: center;
+
+            > li {
+                margin: 0 5px;
+            }
+        }
+    }
+}

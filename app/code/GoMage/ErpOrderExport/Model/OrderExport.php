@@ -40,7 +40,6 @@ class OrderExport
             $data = $this->dataProvider->getData($order);
 
             $response = $this->transport->send($data);
-
             $status = $response['@attributes']['status'] ?? 'rejected';
             $this->handlerPool->getByStatus($status)->handle($order, $response);
 

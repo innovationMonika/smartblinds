@@ -1,0 +1,115 @@
+<?php /* @var $block \Smartblinds\Options\Block\Catalog\Product\View\Options\Type\WidthHeight */ ?>
+<?php
+$_option = $block->getOption();
+$class = ($_option->getIsRequire()) ? ' required' : '';
+$class = $_option->getMoveToTop() ? $class . ' top' : $class . ' bottom';
+$dataRoleStep = $_option->getIsRequire() ? ' data-role="step"' : '';
+$optionCode = $_option->getOptionCode();
+$modalCode = $_option->getModalCode();
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
+$categories = $product->getCategoryIds(); /*will return category ids array*/
+$matchCategories = [];
+if(is_array($categories)){
+    foreach($categories as $category){
+        $cat = $objectManager->create('Magento\Catalog\Model\Category')->load($category);
+        $matchCategories[] = $cat->getName();
+    }
+}
+$width = '';
+$height = '';
+if(is_array($matchCategories) && (in_array("Rolgordijnen", $matchCategories) || in_array("Roller blinds", $matchCategories) || in_array("Rollos", $matchCategories))){
+    $width = '66 - 250 cm';
+    $height = '30 - 350 cm';
+}
+else if(is_array($matchCategories) && (in_array("Duo rolgordijnen", $matchCategories)  || in_array("Day and night blinds", $matchCategories) || in_array("Doppelrollos", $matchCategories)) ){
+    $width = '66 - 240 cm';
+    $height = '30 - 270 cm';
+}
+else if(is_array($matchCategories) && ( in_array("Honeycomb blinds", $matchCategories) ||in_array("Plisségordijnen", $matchCategories) || in_array("Elektrische plisségordijnen", $matchCategories) || in_array("Plissees", $matchCategories) ) ){
+    $width = '61 - 250 cm';
+    $height = '50 - 270 cm';
+}
+else if(is_array($matchCategories) && in_array("Jaloezieën", $matchCategories)){
+    $width = '86 - 240 cm';
+    $height = '50 - 280 cm';
+}
+
+?>
+
+<div class="product-option width-height-option field <?= /* @noEscape */ $class ?>"
+     data-mage-init='{"Smartblinds_Options/js/price-option/width-height":{}}'
+     <?= $dataRoleStep ?>>
+
+    <div class="width-height-option-header">
+        <label class="label" for="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>_text">
+            <span><?= $block->escapeHtml(__('Customize and order')) ?></span>
+            <?= /* @noEscape */ $block->getFormattedPrice() ?>
+        </label>
+        <div class="product-info-price">
+            <?= $block->getLayout()->getBlock('product.price.final.additional')->toHtml() ?>
+        </div>
+    </div>
+
+    <div class="control">
+            <?php
+                $_textValidate = null;
+                if ($_option->getIsRequire()) {
+                    $_textValidate['required'] = true;
+                }
+                $_textValidate['validate-no-utf8mb4-characters'] = true;
+                $_textValidate['validate-number'] = true;
+                $_textValidate['width-height'] = true;
+            ?>
+            <?php foreach (['width', 'height'] as $field):
+                if($field == 'width'){
+                    $placeholder = $width;
+                }
+                else if($field == 'height'){
+                    $placeholder = $height;
+                }
+                ?>
+                <div class="width-height-option__item">
+                    <div class="width-height-option__item-label">
+                        <span class="width-height-option__item-label-text"><?= __(ucfirst($field)) ?><?= ' (in cm)' ?></span>
+                        <span class="product-option-info-icon" data-option-modal="<?= $block->escapeHtml($modalCode) ?>">
+                            <span class="fas fa-info-circle"></span>
+                        </span>
+                    </div>
+                    <?php $identifier = "options_{$block->escapeHtmlAttr($_option->getId())}_width_height_$field"; ?>
+                    <input type="text" pattern="[0-9\.\,]*" inputmode="decimal"
+                           id="<?= $identifier ?>"
+                           class="input-text"
+                        <?php if (!empty($_textValidate)):?>
+                            data-validate="<?= $block->escapeHtml(json_encode($_textValidate)) ?>"
+                        <?php endif; ?>
+                           name="<?= $identifier ?>"
+                           data-selector="<?= $identifier ?>"
+                           data-role="<?=$field?>"
+                           placeholder = "<?=$placeholder?>"
+                          <?php /* placeholder="<?=__(ucfirst($field))?>"
+                           data-placeholder="<?=__(ucfirst($field))?>" */ ?>
+                           value="<?= $block->getDefaultValue($field) ?>"/>
+                </div>
+            <?php endforeach; ?>
+            <input type="hidden"
+                   id="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>"
+                   class="input-text product-custom-option"
+                   name="options[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                   data-selector="options[<?= $block->escapeHtmlAttr($_option->getId()) ?>]"
+                   value="<?= $block->escapeHtml($block->getDefaultValue()) ?>"
+                   data-role="options_<?= $block->escapeHtmlAttr($_option->getId()) ?>"/>
+    </div>
+    <div id="error-placement-element"><?php echo ' '; // space here is important because for some reason magento or custom code removes closing tag and markup will be broken, so keep it ?></div>
+    <div class="pdp-options-save-button">
+        <div class="btn" data-role="progress-button"><?= $block->escapeHtml(__('Calculate price')) ?></div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Smartblinds_ConfigurableProduct/js/view/progress": {}
+        }
+    }
+</script>

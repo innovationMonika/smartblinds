@@ -18,7 +18,7 @@
  * @copyright 	Copyright (c) 2023 Anowave (https://www.anowave.com/)
  * @license  	https://www.anowave.com/license-agreement/
  */
- 
+
 namespace Anowave\Ec\Controller\Index;
 
 class Cart extends \Magento\Framework\App\Action\Action
@@ -27,30 +27,30 @@ class Cart extends \Magento\Framework\App\Action\Action
 	 * @var \Magento\Framework\Controller\Result\JsonFactory
 	 */
 	protected $resultJsonFactory;
-	
+
 	/**
 	 * @var \Anowave\Ec\Model\Api\Measurement\Protocol
 	 */
 	protected $protocol;
-	
+
 	/**
-	 * @var \Magento\Checkout\Model\Session\Proxy 
+	 * @var \Magento\Checkout\Model\Session\Proxy
 	 */
 	protected $proxy;
-	
+
 	/**
 	 * @var \Anowave\Ec\Helper\Data
 	 */
 	protected $helper;
-	
+
 	/**
 	 * @var \Magento\Framework\App\RequestInterface
 	 */
 	private $request;
-	
+
 	/**
-	 * Constructor 
-	 * 
+	 * Constructor
+	 *
 	 * @param \Magento\Framework\App\Action\Context $context
 	 * @param \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory
 	 * @param \Anowave\Ec\Model\Api\Measurement\Protocol $protocol
@@ -67,33 +67,33 @@ class Cart extends \Magento\Framework\App\Action\Action
 	)
 	{
 		parent::__construct($context);
-		
+
 		$this->request = $context->getRequest();
-		
+
 		/**
-		 * Set response type factory 
-		 * 
+		 * Set response type factory
+		 *
 		 * @var \Magento\Framework\Controller\Result\JsonFactory
 		 */
 		$this->resultJsonFactory = $resultJsonFactory;
-		
+
 		/**
-		 * Set protocol 
-		 * 
+		 * Set protocol
+		 *
 		 * @var \Anowave\Ec\Model\Api\Measurement\Protocol $protocol
 		 */
 		$this->protocol = $protocol;
-		
+
 		/**
-		 * Set cart proxy 
-		 * 
+		 * Set cart proxy
+		 *
 		 * @var \Magento\Checkout\Model\Session\Proxy  $proxy
 		 */
 		$this->proxy = $proxy;
-		
+
 		/**
-		 * Set helper 
-		 * 
+		 * Set helper
+		 *
 		 * @var \Anowave\Ec\Helper\Data $helper
 		 */
 		$this->helper = $helper;
@@ -105,49 +105,50 @@ class Cart extends \Magento\Framework\App\Action\Action
 	 * @see \Magento\Framework\App\ActionInterface::execute()
 	 */
 	public function execute()
-	{ 
+	{
 		$result = $this->resultJsonFactory->create();
-		
+
 		/**
-		 * Default response 
-		 * 
+		 * Default response
+		 *
 		 * @var array $response
 		 */
-		$response = 
+		$response =
 		[
 			'event'           => 'summary',
 		    'eventTrigger'    => $this->request->getParam('event'),
 		    'items'           => []
 		];
-		
+
 		/**
 		 * Get parameters
-		 * 
+		 *
 		 * @var array $params
 		 */
 		if ($this->getRequest()->isXmlHttpRequest())
 		{
 		    $items = [];
-		    
+
 		    $current = $this->proxy->getQuote()->getItems();
-		    
+
 		    if ($current)
 		    {
     			foreach ($current as $item)
     			{
-    			    $items[] = 
+    			    $items[] =
     			    [
-    			        'id'         => $this->helper->getIdentifier($item->getProduct()),
+    			        'id'         => $this->helper->getIdentifierID($item->getProduct()),
+															'sku'     => $this->helper->getIdentifierID($products[$key]),
     			        'price'      => $this->helper->getPrice($item->getProduct()),
     			        'name'       => $item->getProduct()->getName(),
     			        'quantity'   => $item->getQty()
     			    ];
     			}
-    			
+
     			$response['items'] = $items;
 		    }
 		}
-		else 
+		else
 		{
 			$response['error'] = __('CSRF');
 		}

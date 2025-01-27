@@ -28,6 +28,7 @@
                     <option name="operating_side" value="left"/>
                     <option name="accessories" value="usbc.hon"/>
                     <option name="motor" value="coulisse-cm-03"/>
+                    <option name="accessory_sku" value="service - montageservice"/>
                 </item>
             </items>
         </order>

@@ -27,6 +27,7 @@
         <column xsi:type="varchar" name="bottombar" nullable="true" length="255" comment="Bottom Bar"/>
         <column xsi:type="varchar" name="side_span" nullable="true" length="255" comment="Side Span"/>
         <column xsi:type="varchar" name="clamp" nullable="true" length="255" comment="Clamp"/>
+        <column xsi:type="varchar" name="accessory_sku" nullable="true" length="255" comment="accessory_sku"/>
         <column xsi:type="int" name="smartblinds_registration_id" nullable="true" unsigned="true" padding="10" comment="Smartblinds registration ID"/>
     </table>
     <table name="sales_order">

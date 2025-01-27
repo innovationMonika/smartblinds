@@ -31,13 +31,13 @@ class Config
     public function getConfiguratorTips(): array
     {
         if ($this->request->getFullActionName() === 'checkout_cart_index') {
-             return array_filter(explode(PHP_EOL, $this->getValue('configurator/carttips') ?? ''));
+             return array_filter(explode(PHP_EOL, $this->getValue('configurator/carttips')));
         }
         else if($this->request->getFullActionName() === 'checkout_index_index'){
-             return array_filter(explode(PHP_EOL, $this->getValue('configurator/checkouttips') ?? ''));
+             return array_filter(explode(PHP_EOL, $this->getValue('configurator/checkouttips')));
         }
 
-        return array_filter(explode(PHP_EOL, $this->getValue('configurator/tips') ?? ''));
+        return array_filter(explode(PHP_EOL, $this->getValue('configurator/tips')));
     }
 
     public function getDiscountMessage(): string

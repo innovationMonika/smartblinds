@@ -154,15 +154,9 @@ class TotalSaving extends \Meetanshi\Totalsaving\Model\Total\TotalSaving
 
                 $rate = $this->currencyFactory->create()->load($currencyCodeFrom)->getAnyRate($currencyCodeTo);
                 //$itemAmount = $item->getProduct()->getPrice() * $rate;
-               // $itemAmount = number_format($item->getPriceInclTax(), 2);
-                  $itemAmount = $item->getPriceInclTax();
+                $itemAmount = number_format($item->getPriceInclTax(), 2);
 
-                //$productPriceTotal += $itemAmount * $item->getQty();
-
-                if (is_numeric($itemAmount) && is_numeric($item->getQty())) {
-                    $itemAmount = number_format((float)$itemAmount, 2, '.', ''); // Ensure it's a float and formatted correctly
-                    $productPriceTotal += (float)$itemAmount * (float)$item->getQty(); // Ensure both values are treated as floats
-                }
+                $productPriceTotal += $itemAmount * $item->getQty();
 
                 $productId = $item->getProductId();
                 $product = $productRepository->getById($productId);

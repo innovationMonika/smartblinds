@@ -26,7 +26,8 @@
             "curtain_type": true,
             "bottombar": true,
             "side_span": true,
-            "clamp": true
+            "clamp": true,
+            "accessory_sku" : true
         }
     },
     "sales_order": {

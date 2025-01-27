@@ -1,1 +1,1 @@
-define(["jquery","optionSwatches","uiRegistry"],function(o,a,t){"use strict";return function(n){var i=t.get("mageworxOptionBase");if(i)i.addUpdater(20,a(n.jsonData));else{var e=t.get("mageworxOptionUpdaters");e||(e={}),e[20]=a(n.jsonData),t.set("mageworxOptionUpdaters",e)}}});
+define(["jquery","optionSwatches","uiRegistry"],function(n,a,t){"use strict";return function(r){var i=t.get("mageworxOptionBase");if(i)i.addUpdater(20,a(r.jsonData));else{var e=t.get("mageworxOptionUpdaters");e||(e={}),e[20]=a(r.jsonData),t.set("mageworxOptionUpdaters",e)}}});

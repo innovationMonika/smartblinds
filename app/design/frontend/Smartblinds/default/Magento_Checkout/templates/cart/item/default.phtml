@@ -82,9 +82,11 @@ $cartItemHelper = $this->helper(\Smartblinds\Checkout\Helper\CartItem::class);
 
                         $motorSideOptId = null;
                         $productOptions = $_item->getProduct()->getOptions();
-                        foreach ($productOptions as $option) {
-                            if($option->getOptionCode() === 'motor_side'){
-                                $motorSideOptId = $option->getOptionId();
+                        if(is_array($productOptions)){
+                            foreach ($productOptions as $option) {
+                                if($option->getOptionCode() === 'motor_side'){
+                                    $motorSideOptId = $option->getOptionId();
+                                }
                             }
                         }
                         ?>

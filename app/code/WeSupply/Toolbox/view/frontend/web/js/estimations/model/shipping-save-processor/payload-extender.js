@@ -1,0 +1,1 @@
+define(["jquery"],function(r){"use strict";return function(e){var t=r("#selected_delivery_timestamp_"+e.addressInformation.shipping_method_code+"_"+e.addressInformation.shipping_carrier_code);return t.length&&(e.addressInformation.extension_attributes={selected_delivery_timestamp:t.val()}),e}});

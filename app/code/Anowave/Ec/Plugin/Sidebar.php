@@ -29,44 +29,44 @@ class Sidebar
      * @var \Magento\Checkout\Model\Cart
      */
     protected $cart = null;
-    
+
     /**
      * @var \Anowave\Ec\Helper\Data
      */
     protected $dataHelper = null;
-    
+
     /**
      * @var \Magento\Catalog\Model\ProductRepository
      */
     protected $productRepository;
-    
+
     /**
      * @var \Magento\Catalog\Model\CategoryRepository
      */
     protected $categoryRepository;
-    
+
     /**
      * @var \Magento\Framework\App\RequestInterface
      */
     protected $request;
 
     /**
-     * Remove flag 
-     * 
+     * Remove flag
+     *
      * @var boolean
      */
     private $remove = false;
-    
+
     /**
-     * Update flag 
-     * 
+     * Update flag
+     *
      * @var string
      */
     private $update = false;
-    
+
     /**
      * Constructor
-     * 
+     *
      * @param \Magento\Checkout\Model\Cart $cart
      * @param \Anowave\Ec\Helper\Data $dataHelper
      * @param \Magento\Catalog\Model\ProductRepository $productRepository
@@ -83,21 +83,21 @@ class Sidebar
     )
     {
         $this->cart = $cart;
-        
+
         /**
          * Set helper
          *
          * @var \Anowave\Ec\Helper\Data $dataHelper
          */
         $this->dataHelper = $dataHelper;
-        
+
         /**
          * Set product repository
          *
          * @var \Magento\Catalog\Model\ProductRepository $productRepository
          */
         $this->productRepository = $productRepository;
-        
+
         /**
          * Set category repository
          *
@@ -106,16 +106,16 @@ class Sidebar
         $this->categoryRepository = $categoryRepository;
 
         /**
-         * Set request 
-         * 
+         * Set request
+         *
          * @var \Magento\Framework\App\RequestInterface $request
          */
         $this->request = $request;
     }
-    
+
     /**
-     * After remove item 
-     * 
+     * After remove item
+     *
      * @param \Magento\Checkout\Model\Sidebar $sidebar
      * @param \Magento\Checkout\Model\Sidebar $response
      * @return \Magento\Checkout\Model\Sidebar
@@ -124,21 +124,21 @@ class Sidebar
     {
         /**
          * Set remove
-         * 
+         *
          * @var \Anowave\Ec\Plugin\Sidebar $remove
          */
         $this->remove = true;
-        
+
         /**
-         * Unset update 
-         * 
+         * Unset update
+         *
          * @var \Anowave\Ec\Plugin\Sidebar $update
          */
         $this->update = false;
-        
+
         return $response;
     }
-    
+
     /**
      * After update item
      *
@@ -149,25 +149,25 @@ class Sidebar
     public function afterUpdateQuoteItem(\Magento\Checkout\Model\Sidebar $sidebar, $response)
     {
         /**
-         * Unset remove 
-         * 
+         * Unset remove
+         *
          * @var \Anowave\Ec\Plugin\Sidebar $remove
          */
         $this->remove = false;
-        
+
         /**
          * Set update
-         * 
+         *
          * @var \Anowave\Ec\Plugin\Sidebar $update
          */
         $this->update = true;
-        
+
         return $response;
     }
-    
+
     /**
-     * Get response data 
-     * 
+     * Get response data
+     *
      * @param \Magento\Checkout\Model\Sidebar $sidebar
      * @param unknown $response
      * @return unknown
@@ -177,7 +177,7 @@ class Sidebar
         if ($this->remove)
         {
             $item = $this->cart->getQuote()->getItemById((int) $this->request->getParam('item_id'));
-            
+
             if ($item instanceof \Magento\Quote\Api\Data\CartItemInterface)
             {
                 /**
@@ -189,7 +189,7 @@ class Sidebar
                 (
                     $item->getProductId()
                 );
-                
+
                 $data =
                 [
                     'event' 	=> \Anowave\Ec\Helper\Constants::EVENT_REMOVE_FROM_CART,
@@ -197,14 +197,14 @@ class Sidebar
                     [
                         'remove' =>
                         [
-                            'actionField' => 
+                            'actionField' =>
                             [
                                 'list' => __('Test')
                             ],
                             'products' =>
                             [
                                 [
-                                    'id'  			=> ($this->dataHelper->useSimples() ? $this->dataHelper->getIdentifierItem($item) : $this->dataHelper->getIdentifier($product)),
+                                    'id'  			=> ($this->dataHelper->useSimples() ? $this->dataHelper->getIdentifierItem($item) : $this->dataHelper->getIdentifierID($product)),
                                     'name' 			=> $item->getName(),
                                     'quantity' 		=> $item->getQty(),
                                     'price'			=> $item->getPriceInclTax(),
@@ -215,12 +215,12 @@ class Sidebar
                         ]
                     ]
                 ];
-                
+
                 /**
                  * Get all product categories
                  */
                 $categories = $this->dataHelper->getCurrentStoreProductCategories($product);
-                
+
                 if ($categories)
                 {
                     /**
@@ -230,12 +230,12 @@ class Sidebar
                     (
                         end($categories)
                     );
-                    
+
                     /**
                      * Set category name
                      */
                     $data['ecommerce']['remove']['products'][0]['category'] = $this->dataHelper->getCategory($category);
-                    
+
                     /**
                      * Set action field
                      */
@@ -244,32 +244,32 @@ class Sidebar
                         'list' => $this->dataHelper->getCategoryList($category)
                     ];
                 }
-                else 
+                else
                 {
                     $data['ecommerce']['remove']['actionField'] =
                     [
                         'list' => __('Unlisted')
                     ];
                 }
-                
+
                 $response['remove'] = true;
-                 
+
                 /**
                  * Set response push
                  */
                 $response['dataLayer'] = $data;
             }
-            
+
             $this->remove = false;
         }
-        
+
         if ($this->update)
         {
             $response['update'] = true;
-            
+
             $this->update = false;
         }
-        
+
         return $response;
     }
 }

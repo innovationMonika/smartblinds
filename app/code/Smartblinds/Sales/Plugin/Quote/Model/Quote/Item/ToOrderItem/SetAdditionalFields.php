@@ -42,7 +42,6 @@ class SetAdditionalFields
             if ($orderItem instanceof OrderItemInterface) {
                 $product = $quoteItem->getProduct();
                 $option = $product->getCustomOption('simple_product');
-
                 /** @var Product $simpleProduct */
                 $simpleProduct = $option ? $option->getProduct() : null;
                 if ($simpleProduct) {
@@ -50,8 +49,13 @@ class SetAdditionalFields
                     if ($simpleProduct) {
                         $this->setSystemFields($orderItem, $simpleProduct);
                         $orderItem->setData('software', $simpleProduct->getData('smartblinds_sku'));
+
                     }
                 }
+                 if ($orderItem->getProductType() === 'simple' && $orderItem->getSku() !== 'curtain_tracks'){
+                     $orderItem->setData('software', $orderItem->getSku());
+                 }
+
 
                 $this->setWidthHeight($orderItem, $product);
                 $this->setOptionValueCodes($product, $orderItem);

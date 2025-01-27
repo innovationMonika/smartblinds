@@ -53,7 +53,6 @@ class Transport
 
         $url = $this->config->getApiUrl();
         $xml = $this->xslXmlGenerator->generateXml($this->moduleName, $this->fileName, $data);
-
         try {
             $curl->post($url, $xml);
         } catch (\Exception $e) {}

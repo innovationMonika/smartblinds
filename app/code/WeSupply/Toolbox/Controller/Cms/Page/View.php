@@ -60,13 +60,9 @@ class View extends \Magento\Cms\Controller\Page\View implements CspAwareActionIn
      */
     public function modifyCsp(array $appliedPolicies): array
     {
-        $storeLocatorIdentifier = $this->_helper->getStoreLocatorIdentifier();
-        $storeDetailsIdentifier = $this->_helper->getStoreDetailsIdentifier();
-        $pageIdentifier = $this->_page->getIdentifier();
-
         if (
-            (is_string($storeLocatorIdentifier) && is_string($pageIdentifier) && str_contains($storeLocatorIdentifier, $pageIdentifier)) ||
-            (is_string($storeDetailsIdentifier) && is_string($pageIdentifier) && str_contains($storeDetailsIdentifier, $pageIdentifier))
+            (strpos($this->_helper->getStoreLocatorIdentifier(), $this->_page->getIdentifier()) !== false ||
+             strpos($this->_helper->getStoreDetailsIdentifier(), $this->_page->getIdentifier()) !== false)
             && $this->_helper->weSupplyHasDomainAlias()
         ) {
             $appliedPolicies[] = new FetchPolicy(

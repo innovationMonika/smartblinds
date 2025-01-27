@@ -334,7 +334,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getQuote()
     {
-
         if ($this->appState->getAreaCode() == \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE) {
             return $this->adminQuoteSession->getQuote();
         }
@@ -415,7 +414,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getCurrentSession()
     {
-
         $areaCode = $this->appState->getAreaCode();
         if ($areaCode == \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE) {
             return $this->objectManager->get('Magento\Backend\Model\Session\Quote');

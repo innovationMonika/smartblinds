@@ -293,7 +293,7 @@
 "View as","Getoond",Magento_Catalog
 "colors","kleuren"
 "Customize and order","Stel op maat samen en bestel"
-"Update dimensions","Afmetingen bijwerken"
+"Update dimensions","Update prijs"
 "Enlarge", "Vergroten"
 "Calculate price", "Bereken prijs"
 "With smart engine", "Met slimme motor"
@@ -321,5 +321,4 @@ Show Password,Wachtwoord weergeven
 "You are signed out","Je bent afgemeld",module,Magento_Customer
 "You have logged out.","Je bent afgemeld.",module,Magento_Backend
 "You have signed out and will go to our homepage in 5 seconds.","Je hebt je afgemeld en zal over 5 seconden naar de homepage doorgestuurd worden.",module,Magento_Customer
-View or change configuration,Bekijk of wijzig configuratie
 "The account sign-in was incorrect or your account is disabled temporarily. Please wait and try again later.","De inloggegevens zijn onjuist. Je kunt het (later) opnieuw proberen of je wachtwoord herstellen.",module,Magento_Customer

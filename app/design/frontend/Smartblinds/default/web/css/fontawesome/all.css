@@ -12786,7 +12786,6 @@ readers do not read off random characters that represent icons */
 .fas {
   font-family: 'Font Awesome 5 Pro';
   font-weight: 900; }
-
 table.totals tr.totals-tax, .checkout-cart-index .column.main.mf-initial .widget.block.block-static-block.mf-initial, .cart-container .cart-summary .block.crosssell  > .title::after {
     display: none;
 }
@@ -12816,10 +12815,6 @@ table.totals tr.totals-tax, .checkout-cart-index .column.main.mf-initial .widget
 }
 .checkout-cart-index .block.widget.block-viewed-products-grid .product-item-details .product-item-description{
   display: none;
-}
-.checkout-payment-method .payment-method-content>.actions-toolbar>.primary .action.primary {
-    background: #019b77 !important;
-    border-color: #019b77;
 }
 @media screen and (min-width:769px) {
   .customer-account-login form.form-login .field-recaptcha{
@@ -12865,7 +12860,7 @@ form#co-payment-form .fieldset > hr{
 
 @media only screen and (min-width: 769px){
     body {
-        zoom: 0.9!important;
+        zoom: 0.8!important;
         -moz-transform: scale(1)!important;
     }
 }

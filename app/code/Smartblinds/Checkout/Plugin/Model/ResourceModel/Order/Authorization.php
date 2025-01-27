@@ -37,7 +37,6 @@ class Authorization
 
     protected function isAllowed(Order $order)
     {
-
         if (in_array($this->userContext->getUserId(), $this->config->getSupportCustomerIds())) {
             return true;
         }

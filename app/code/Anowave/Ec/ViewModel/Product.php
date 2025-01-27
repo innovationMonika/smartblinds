@@ -26,20 +26,20 @@ namespace Anowave\Ec\ViewModel;
 class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
     const EVENT = 'detail';
-    
+
     /**
      * @var \Anowave\Ec\Helper\Data
      */
     protected $helper;
-    
+
     /**
      * @var \Magento\Framework\Registry
      */
     protected $registry;
 
     /**
-     * Constructor 
-     * 
+     * Constructor
+     *
      * @param \Anowave\Ec\Helper\Data $helper
      * @param \Magento\Framework\Registry $registry
      */
@@ -51,22 +51,22 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
     {
         /**
          * Set helper
-         * 
+         *
          * @var \Anowave\Ec\Helper\Data $helper
          */
         $this->helper = $helper;
-        
+
         /**
-         * Set registry 
-         * 
+         * Set registry
+         *
          * @var \Magento\Framework\Registry $registry
          */
         $this->registry = $registry;
     }
-    
+
     /**
-     * Get impression payload default parameters 
-     * 
+     * Get impression payload default parameters
+     *
      * @param \Magento\Catalog\Block\Product\ListProduct $block
      * @return string
      */
@@ -76,7 +76,7 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
         {
             return $this->helper->getJsonHelper()->encode(['payload' => 'detail']);
         }
-        
+
         /**
          * @todo Implementation of async product detail view. Upcoming in future releases.
          */
@@ -84,23 +84,23 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
         {
             return $this->helper->getJsonHelper()->encode([]);
         }
-        
-        try 
+
+        try
         {
             /**
-             * Get product 
-             * 
+             * Get product
+             *
              * @var \Magento\Catalog\Model\Product $product
              */
             $product = $block->getProduct();
-            
+
             /**
-             * Get category 
-             * 
+             * Get category
+             *
              * @var \Magento\Catalog\Model\Category $category
              */
-            $category = $this->getCurrentCategory(); 
-            
+            $category = $this->getCurrentCategory();
+
             /**
              * Pick category from layer resolver
              */
@@ -108,8 +108,8 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
             {
                 $category = $this->helper->getLayerResolver()->get()->getCurrentCategory();
             }
-            
-            
+
+
             /**
              * Check if category isn't root category
              */
@@ -120,19 +120,19 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
                     $category = null;
                 }
             }
-            
+
             /**
              * Pick category from list of categories product is assigned to
              */
             if (!$category)
             {
                 $categories = $this->helper->getCurrentStoreProductCategories($product);
-                
+
                 if (!$categories && $product->getCategoryIds())
                 {
                     $categories = $product->getCategoryIds();
                 }
-                
+
                 /**
                  * Cases when product does not exist in any category
                  */
@@ -140,7 +140,7 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
                 {
                     $categories[] = $this->helper->getStoreRootDefaultCategoryId();
                 }
-                
+
                 /**
                  * Load last category
                  */
@@ -149,7 +149,7 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
                     end($categories)
                 );
             }
-            
+
             /**
              * Create transport object
              *
@@ -162,38 +162,39 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
                     'product'    => $product
                 ]
             );
-            
+
             /**
              * Notify others
              */
             $this->helper->getEventManager()->dispatch('ec_get_viewmodel_detail_attributes', ['transport' => $transport]);
-            
+
             /**
              * Get response
              */
             $attributes = $transport->getAttributes();
 
-            $payload = 
+            $payload =
             [
-                'ecommerce' => 
+                'ecommerce' =>
                 [
                     'currencyCode' => $this->helper->getCurrency(),
-                    'detail' => 
+                    'detail' =>
                     [
-                        'products' => 
+                        'products' =>
                         [
                             array_merge
                             (
                                 [
-                                    
-                                    'id' 								         => $this->helper->getIdentifier($product),
+
+                                    'id' 								         => $this->helper->getIdentifierID($product),
+                                    'sku' 								         => $this->helper->getIdentifier($product),
                                     'name' 								         => $product->getName(),
                                     'price' 							         => $this->helper->getPrice($product),
                                     'brand'								         => $this->helper->getBrand($product),
                                     'category'							         => $this->helper->getCategory($category),
                                     $this->helper->getStockDimensionIndex(true)  => $this->helper->getStock($product),
                                     'quantity' 							         => 1
-                                ], 
+                                ],
                                 $attributes
                             )
                         ]
@@ -204,26 +205,26 @@ class Product implements \Magento\Framework\View\Element\Block\ArgumentInterface
         }
         catch (\Exception $e)
         {
-            $payload = 
+            $payload =
             [
-                'error' => $e->getMessage() 
-            ];   
+                'error' => $e->getMessage()
+            ];
         }
-        
+
         return $this->helper->getJsonHelper()->encode($payload);
     }
 
-   
+
     /**
-     * Get current category 
-     * 
+     * Get current category
+     *
      * @return mixed|NULL
      */
     public function getCurrentCategory()
     {
         return $this->registry->registry('current_category');
     }
-    
+
     /**
      * Get current category
      *

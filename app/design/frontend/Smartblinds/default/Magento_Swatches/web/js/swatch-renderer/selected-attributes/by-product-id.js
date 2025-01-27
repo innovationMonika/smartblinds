@@ -1,0 +1,1 @@
+define(["underscore"],function(t){"use strict";return function(e,u){return t.object(t.filter(t.map(e,function(n){var r=t.find(n.options,function(i){return t.contains(i.products,u)});return r?[n.code,r.id]:null})))}});

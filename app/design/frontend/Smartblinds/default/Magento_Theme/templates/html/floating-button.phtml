@@ -1,16 +1,5 @@
 <?php
 /** @var $block \Magento\Framework\View\Element\Template */
-
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
-$storeId = $store->getId();
-$url = '/stoffmuster-bestellen/';
-if($storeId == 5 || $storeId == 6){
- $url = "/samples/";
-}
-else if($storeId == 1){
- $url = "/stalen-aanvragen/";
-}
 ?>
-<a href="<?php echo $url; ?>" class="float-btn-request-sample desktop"><?= __('Request free samples'); ?></a>
-<a href="<?php echo $url; ?>" class="float-btn-request-sample mobile"><?= __('Request free sample'); ?></a>
+<a href="/stalen-aanvragen/" class="float-btn-request-sample desktop"><?= __('Request free samples'); ?></a>
+<a href="/stalen-aanvragen/" class="float-btn-request-sample mobile"><?= __('Request free sample'); ?></a>
