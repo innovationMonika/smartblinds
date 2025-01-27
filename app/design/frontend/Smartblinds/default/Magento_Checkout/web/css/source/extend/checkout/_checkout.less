@@ -466,6 +466,25 @@
                     }
                 }
             }
+            .form .field:not(._error):not(._warn) input.valid-input,
+                #checkout-step-shipping
+                    form.form-shipping-address
+                    .field:not(._error):not(._warn)
+                    input.valid-input,
+                #checkout-step-shipping
+                    .billing-address-form
+                    .field:not(._error):not(._warn)
+                    input.valid-input,
+                #checkout-step-shipping form.form-login input:not(.mage-error),
+                form#discount-form input.valid-input {
+                    border: 1px solid #019B77;
+                    background: url(../images/check.png);
+                    background-repeat: no-repeat;
+                    background-position: center right 10px;
+                    background-size: 14px;
+                    background-color: #ffffff;
+                    opacity: 1;
+                }
 
             .step-content {
                 margin-bottom: 25px;
