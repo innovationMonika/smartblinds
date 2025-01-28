@@ -6,7 +6,10 @@
     },
     "catalog_product_option_type_value": {
         "column": {
-            "value_code": true
+            "value_code": true,
+            "value_code_width" : true,
+            "value_code_height" : true,
+            "value_code_m2" : true
         }
     }
 }

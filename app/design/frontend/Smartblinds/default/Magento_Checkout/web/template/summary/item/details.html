@@ -28,6 +28,11 @@
             <dl class="item-options">
                 <!--ko foreach: JSON.parse($parent.options)-->
                 <!-- ko if: (
+                    !$data.label.toLowerCase().includes('matchwidth') &&
+                    !$data.label.toLowerCase().includes('matchheight') &&
+                    !$data.label.toLowerCase().includes('matchm2')
+                )-->
+                <!-- ko if: (
                     $data.label.toLowerCase().includes('width') ||
                     $data.label.toLowerCase().includes('height') ||
                     $data.label.toLowerCase().includes('breedte') ||
@@ -42,6 +47,7 @@
                 <!-- ko ifnot: ($data.full_view)-->
                 <!-- ko with: {valueUnsanitizedHtml: $data.value}-->
                 <dd class="values" data-bind="html: valueUnsanitizedHtml"></dd>
+                <!-- /ko -->
                 <!-- /ko -->
                 <!-- /ko -->
                 <br />

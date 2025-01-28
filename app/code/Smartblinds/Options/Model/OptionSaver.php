@@ -48,6 +48,10 @@ class OptionSaver extends \MageWorx\OptionTemplates\Model\OptionSaver
                         $productOptionValue['dependency']                 = $groupOptionValue['dependency'];
                         $productOptionValue['need_to_process_dependency'] = true;
                         $productOptionValue['value_code'] = $groupOptionValue['value_code'] ?? null;
+                        $productOptionValue['value_code_width'] = $groupOptionValue['value_code_width'] ?? null;
+                        $productOptionValue['value_code_height'] = $groupOptionValue['value_code_height'] ?? null;
+                        $productOptionValue['value_code_m2'] = $groupOptionValue['value_code_m2'] ?? null;
+
                         $this->attributeSaver->addNewGroupOptionIds($groupOption['option_id']);
                     }
                 }

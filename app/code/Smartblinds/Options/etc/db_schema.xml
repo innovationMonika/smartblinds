@@ -7,5 +7,8 @@
     </table>
     <table name="catalog_product_option_type_value">
         <column xsi:type="varchar" name="value_code" nullable="true" length="255" comment="Value Code"/>
+        <column xsi:type="varchar" name="value_code_width" nullable="true" length="255" comment="Value Width"/>
+        <column xsi:type="varchar" name="value_code_height" nullable="true" length="255" comment="Value Height"/>
+        <column xsi:type="varchar" name="value_code_m2" nullable="true" length="255" comment="Value M2"/>
     </table>
 </schema>

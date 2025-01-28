@@ -57,7 +57,7 @@ $cartItemHelper = $this->helper(\Smartblinds\Checkout\Helper\CartItem::class);
                     <?php endif; ?>
                 </strong>
                 <?php if ($_options = $block->getOptionList()) : ?>
-                    <dl class="item-options">
+                    <dl class="item-options 1">
                         <?php
                         $systemTypeAttr = $productAttribute->getAttribute('system_type');
 
@@ -98,7 +98,10 @@ $cartItemHelper = $this->helper(\Smartblinds\Checkout\Helper\CartItem::class);
                                     $optValue = json_decode($_option['value']);
                                     $optText = [];
                                     foreach ($optValue as $optKey => $optItem) {
-                                        $optText[] = __($optKey) . ": " . ((float)$optItem / 10);
+
+                                        if($optKey != 'matchwidth' && $optKey != 'matchheight' && $optKey != 'm2'){
+                                            $optText[] = __($optKey) . ": " . ((float)$optItem / 10);
+                                        }
                                     }
                                     $_option['value'] = implode(", ", $optText);
                                 } catch (\Exception|\Error $e) {

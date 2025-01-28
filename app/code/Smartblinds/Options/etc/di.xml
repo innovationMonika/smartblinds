@@ -55,6 +55,9 @@
         <arguments>
             <argument name="data" xsi:type="array">
                 <item name="value_code" xsi:type="object">Smartblinds\Options\Model\Attribute\OptionValue\ValueCode</item>
+                <item name="value_code_width" xsi:type="object">Smartblinds\Options\Model\Attribute\OptionValue\ValueWidth</item>
+                <item name="value_code_height" xsi:type="object">Smartblinds\Options\Model\Attribute\OptionValue\ValueHeight</item>
+                <item name="value_code_m2" xsi:type="object">Smartblinds\Options\Model\Attribute\OptionValue\ValueM2</item>
             </argument>
         </arguments>
     </type>

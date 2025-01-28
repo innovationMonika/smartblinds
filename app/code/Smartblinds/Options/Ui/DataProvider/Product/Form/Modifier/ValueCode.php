@@ -15,6 +15,9 @@ use Smartblinds\Options\Model\Attribute\Option\ModalCode as ModalCodeOption;
 class ValueCode extends AbstractModifier implements ModifierInterface
 {
     const FIELD_VALUE_CODE_NAME = 'value_code';
+    const FIELD_WIDTH_CODE_NAME = 'value_code_width';
+    const FIELD_HEIGHT_CODE_NAME = 'value_code_height';
+    const FIELD_M2_CODE_NAME = 'value_code_m2';
 
     private Http $request;
 
@@ -70,6 +73,30 @@ class ValueCode extends AbstractModifier implements ModifierInterface
             [$optionContainerName]['children'][$commonOptionContainerName]['children'],
             $this->getOptionFieldsConfig()
         );
+
+        // Add fields to the option
+        $this->meta[$groupCustomOptionsName]['children']['options']['children']['record']['children']
+        [$optionContainerName]['children']['values']['children']['record']['children'] = array_replace_recursive(
+            $this->meta[$groupCustomOptionsName]['children']['options']['children']['record']['children']
+            [$optionContainerName]['children']['values']['children']['record']['children'],
+            $this->getOptionWidthFieldsConfig()
+        );
+
+         // Add fields to the option
+        $this->meta[$groupCustomOptionsName]['children']['options']['children']['record']['children']
+        [$optionContainerName]['children']['values']['children']['record']['children'] = array_replace_recursive(
+            $this->meta[$groupCustomOptionsName]['children']['options']['children']['record']['children']
+            [$optionContainerName]['children']['values']['children']['record']['children'],
+            $this->getOptionHeightFieldsConfig()
+        );
+
+        // Add fields to the option
+        $this->meta[$groupCustomOptionsName]['children']['options']['children']['record']['children']
+        [$optionContainerName]['children']['values']['children']['record']['children'] = array_replace_recursive(
+            $this->meta[$groupCustomOptionsName]['children']['options']['children']['record']['children']
+            [$optionContainerName]['children']['values']['children']['record']['children'],
+            $this->getOptionM2FieldsConfig()
+        );
     }
 
     protected function getOptionFieldsConfig()
@@ -86,6 +113,27 @@ class ValueCode extends AbstractModifier implements ModifierInterface
         return $fields;
     }
 
+    protected function getOptionWidthFieldsConfig()
+    {
+        $fields[self::FIELD_WIDTH_CODE_NAME] = $this->getSortOrderWidthConfig(52);
+
+        return $fields;
+    }
+
+    protected function getOptionHeightFieldsConfig()
+    {
+        $fields[self::FIELD_HEIGHT_CODE_NAME] = $this->getSortOrderHeightConfig(53);
+
+        return $fields;
+    }
+
+    protected function getOptionM2FieldsConfig()
+    {
+        $fields[self::FIELD_M2_CODE_NAME] = $this->getSortOrderM2Config(54);
+
+        return $fields;
+    }
+
     protected function getSortOrderConfig($sortOrder)
     {
         return [
@@ -96,6 +144,67 @@ class ValueCode extends AbstractModifier implements ModifierInterface
                         'componentType'     => Field::NAME,
                         'formElement'       => Input::NAME,
                         'dataScope'         => self::FIELD_VALUE_CODE_NAME,
+                        'dataType'          => Text::NAME,
+                        'visible'           => true,
+                        'additionalClasses' => 'mageworx-width-125',
+                        'sortOrder'         => $sortOrder
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    protected function getSortOrderWidthConfig($sortOrder)
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'label'             => __('Width'),
+                        'componentType'     => Field::NAME,
+                        'formElement'       => Input::NAME,
+                        'dataScope'         => self::FIELD_WIDTH_CODE_NAME,
+                        'dataType'          => Text::NAME,
+                        'visible'           => true,
+                        'additionalClasses' => 'mageworx-width-125',
+                        'sortOrder'         => $sortOrder
+                    ],
+                ],
+            ],
+        ];
+    }
+
+    protected function getSortOrderHeightConfig($sortOrder)
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'label'             => __('Height'),
+                        'componentType'     => Field::NAME,
+                        'formElement'       => Input::NAME,
+                        'dataScope'         => self::FIELD_HEIGHT_CODE_NAME,
+                        'dataType'          => Text::NAME,
+                        'visible'           => true,
+                        'additionalClasses' => 'mageworx-width-125',
+                        'sortOrder'         => $sortOrder
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
+    protected function getSortOrderM2Config($sortOrder)
+    {
+        return [
+            'arguments' => [
+                'data' => [
+                    'config' => [
+                        'label'             => __('M2'),
+                        'componentType'     => Field::NAME,
+                        'formElement'       => Input::NAME,
+                        'dataScope'         => self::FIELD_M2_CODE_NAME,
                         'dataType'          => Text::NAME,
                         'visible'           => true,
                         'additionalClasses' => 'mageworx-width-125',
