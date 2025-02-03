@@ -85,4 +85,7 @@
     <preference for="MageWorx\OptionBase\Helper\Price"
                 type="Smartblinds\Options\Helper\Price" />
 
+    <preference for="Magento\Catalog\Helper\Product\Configuration"
+                type="Smartblinds\Options\Helper\Product\Configuration" />
+
 </config>

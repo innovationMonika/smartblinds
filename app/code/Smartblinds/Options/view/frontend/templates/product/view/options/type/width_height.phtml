@@ -8,13 +8,6 @@ $optionCode = $_option->getOptionCode();
 $modalCode = $_option->getModalCode();
 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $product = $objectManager->get('Magento\Framework\Registry')->registry('current_product');
-$productOptions = $product->getOptions();
-    if(is_array($productOptions)){
-        foreach ($productOptions as $option) {
-                foreach ($option->getValues() ?: [] as $optionValue) {
-                }
-        }
-    }
 $categories = $product->getCategoryIds(); /*will return category ids array*/
 $matchCategories = [];
 if(is_array($categories)){
@@ -83,10 +76,12 @@ else if(is_array($matchCategories) && in_array("Jaloezieën", $matchCategories))
                             <span class="fas fa-info-circle"></span>
                         </span>
                     </div>
-                    <input type="hidden" pattern="[0-9\.\,]*" inputmode="decimal"
-                           id="default_<?=$field?>"
-                           placeholder="<?=$placeholder?>" />
-                   <?php $identifier = "options_{$block->escapeHtmlAttr($_option->getId())}_width_height_$field"; ?>
+                    <?php
+                    if(is_array($matchCategories) && in_array("Jaloezieën", $matchCategories)){
+                        echo '<input type="text" id="default_'.$field.'" placeholder="'.$placeholder.'" value="" style="display:none;"/>';
+                    }
+                    ?>
+                    <?php $identifier = "options_{$block->escapeHtmlAttr($_option->getId())}_width_height_$field"; ?>
                     <input type="text" pattern="[0-9\.\,]*" inputmode="decimal"
                            id="<?= $identifier ?>"
                            class="input-text"
@@ -100,7 +95,6 @@ else if(is_array($matchCategories) && in_array("Jaloezieën", $matchCategories))
                           <?php /* placeholder="<?=__(ucfirst($field))?>"
                            data-placeholder="<?=__(ucfirst($field))?>" */ ?>
                            value="<?= $block->getDefaultValue($field) ?>"/>
-
                 </div>
             <?php endforeach; ?>
             <input type="hidden"
