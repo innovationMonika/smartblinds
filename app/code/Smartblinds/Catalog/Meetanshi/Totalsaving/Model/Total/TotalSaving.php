@@ -156,7 +156,7 @@ class TotalSaving extends \Meetanshi\Totalsaving\Model\Total\TotalSaving
                 //$itemAmount = $item->getProduct()->getPrice() * $rate;
                 $itemAmount = number_format($item->getPriceInclTax(), 2);
 
-                $productPriceTotal += $itemAmount * $item->getQty();
+                $productPriceTotal += (float)$itemAmount * (int)$item->getQty();
 
                 $productId = $item->getProductId();
                 $product = $productRepository->getById($productId);
